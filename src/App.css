@@ -1,0 +1,363 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: white;
+  font-size: 16px;
+  font-family: Poppins, 'Courier New', Courier, monospace;
+  color: var(--secondary-text);
+}
+
+.padding {
+  padding: 7%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.heading1 {
+  font-family: Lora-Bold;
+  font-size: 48px;
+  color: var(--secondary-text);
+}
+
+.heading1 span {
+  font-family: Lora-Bold;
+  font-size: 48px;
+  color: var(--primary-text);
+}
+
+.heading2 {
+  font-family: Poppins-SemiBold;
+  font-size: 32px;
+  color: var(--primary-text);
+
+}
+
+.heading3 {
+  font-family: Poppins-SemiBold;
+  font-size: 24px;
+  color: var(--primary-text);
+
+}
+
+.text-center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+
+/* margins  */
+
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+/* adminPanel table  */
+.ap-table-data {
+  width: 100%;
+  min-height: 320px;
+  margin: 40px 0px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 3%;
+}
+
+.ap-upperMost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ap-add-user-btn {
+  font-size: 14px;
+  color: white;
+  background-color: #16C098;
+  cursor: pointer;
+  padding: 10px 30px;
+  border-radius: 10px;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+}
+
+.ap-add-user-btn:hover {
+  opacity: 0.8;
+}
+
+.ap-table-data-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ap-table-data-heading {
+  font-family: Sarabun-SemiBold;
+  font-size: 22px;
+  color: black;
+  margin-bottom: 8px;
+}
+
+.ap-table-data-subHeading {
+  font-family: Sarabun-Regular;
+  font-size: 14px;
+  color: #16C098;
+}
+
+
+
+.ap-table-data-header-right {
+  display: flex;
+  gap: 30px;
+}
+
+.ap1-searchBox {
+  display: flex;
+  align-items: center;
+  width: 216px;
+  height: 38px;
+  border-radius: 10px;
+  background-color: #F5F5F5;
+  padding: 5px 10px;
+  gap: 10px;
+}
+
+.ap1-searchBox img {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+.ap1-selectBox {
+  background-color: #F5F5F5;
+  height: 38px;
+  width: 154px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  font-size: 12px;
+  font-family: Sarabun-SemiBold;
+}
+
+.ap1-selectBox span {
+  font-size: 12px;
+  font-family: Sarabun;
+  text-decoration: none;
+}
+
+.table-data-headings-Box {
+  margin-top: 20px;
+  padding: 15px 0px;
+  border-bottom: 1px solid lightgray;
+
+}
+
+.table-data-heading {
+  font-size: 14px;
+  color: #B5B7C0;
+}
+
+.table-data-content-item {
+  padding: 20px 0px;
+  border-bottom: 1px solid lightgray;
+}
+
+.table-data-item-text {
+  font-size: 14px;
+  color: #292D32;
+}
+
+.table-data-content-item span {
+  text-decoration: none;
+  font-family: Sarabun-SemiBold;
+  display: none;
+}
+
+.table-data-item-btns {
+  display: flex;
+  gap: 20px;
+}
+
+
+
+.ap-edit-btn {
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: navy;
+  color: white;
+  border-radius: 5px;
+}
+
+.ap-edit-btn:hover {
+  opacity: 0.8;
+}
+
+.ap-delete-btn {
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+
+.ap-delete-btn:hover {
+  opacity: 0.8;
+}
+
+.ap-assign-btn {
+  cursor: pointer;
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #16C098;
+  color: white;
+  border-radius: 5px;
+}
+
+.ap-assign-btn:hover {
+  opacity: 0.8;
+}
+
+.ap-pagination-style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.ap-pagination-style div {
+  margin-top: -5px;
+}
+
+.ap-pagination-style span {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ap-pagination-style span:hover {
+  color: #FF4A44;
+  transition: 0.5s ease;
+}
+
+.ap-userModal-style {
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ap-userModal-content {
+  padding: 40px;
+  padding-right: 0px;
+  background-color: white;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.ap-modal-cancel-icon {
+  /* margin-top: -25px; */
+  /* margin-left: -20px; */
+  padding: 10px;
+  cursor: pointer;
+  width: 40px;
+}
+
+.ap-modal-cancel-icon:hover {
+  color: #FF4A44;
+  transition: 0.5s ease;
+}
+
+
+
+
+
+
+@media (max-width: 699px) {
+  * {
+    font-size: 14px;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .ap-table-data-header-right {
+    display: none;
+  }
+
+  .table-data-headings-Box {
+    display: none;
+  }
+
+  .table-data-content-item {
+    margin: 20px 10px;
+    border: 1px solid lightgray;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .table-data-content-item span {
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  .ap-upperMost {
+    display: block;
+  }
+
+  .ap-add-user-btn {
+    margin-left: auto;
+    max-width: 120px;
+    margin-right: 0px;
+    margin-top: 20px;
+  }
+}

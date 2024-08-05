@@ -1,0 +1,202 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.navBar {
+    background-color: var(--primary-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 4%;
+    height: 110px;
+    z-index: 1111;
+}
+
+.logo-nb {
+    cursor: pointer;
+    font-family: Lato-SemiBold;
+    color: var(--accent-text);
+    font-size: 24px;
+}
+
+.logo-nb span {
+    color: var(--primary-text);
+    font-size: 24px;
+}
+
+.faq-nb {
+    width: 30px;
+    cursor: pointer;
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.link-nb {
+    color: var(--primary-text);
+    font-size: 16px;
+    font-family: Lato-Medium;
+    cursor: pointer;
+}
+
+.link-nb:hover {
+    color: var(--primary-text);
+    transition: 0.5s ease;
+}
+
+
+.link-nb1 {
+    font-size: 16px;
+    color: var(--accent-text);
+    cursor: pointer;
+    font-family: Lato-Medium;
+}
+
+.link-nb1:hover {
+    color: var(--primary-text);
+    transition: 0.5s ease;
+}
+
+
+.icon {
+    display: none;
+}
+
+.dialog-link1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 0px;
+    border-bottom: 1px solid lightgray;
+    font-size: 14px;
+    color: #292D32;
+    cursor: pointer;
+}
+
+.dialog-link2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 0px;
+    border-bottom: 1px solid lightgray;
+    padding-left: 10px;
+    font-size: 12px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.dialog-link3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 0px;
+    /* border-bottom:  1px solid lightgray; */
+    font-size: 14px;
+    color: #292D32;
+    cursor: pointer;
+}
+
+.dialog-link4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 0px;
+    border-top: 1px solid lightgray;
+    margin-left: 15px;
+    padding-left: 10px;
+    font-size: 12px;
+    color: #000000;
+    cursor: pointer;
+}
+
+.dialog-iconBox {
+    background-color: rgba(241, 205, 204, 0.7);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dialog-iconBox img {
+    width: 12px;
+    height: 12px;
+}
+
+.GBPLinks-style {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navBtn {
+    padding: 8px 20px;
+    font-family: Poppins-SemiBold;
+    background-color: var(--accent-bg);
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.navBtn:hover {
+    opacity: 0.8;
+    transition: 0.5s ease;
+}
+
+
+@media screen and (max-width:900px) {
+
+    .navBar {
+        height: 60px;
+    }
+
+    .navLinks {
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        z-index: 88;
+        top: 60px;
+        right: -300px;
+        width: 250px;
+        height: calc(100vh - 60px);
+        background-color: var(--secondary-bg);
+        /* background-color: white; */
+        transition: 1s ease;
+        padding-left: 30px;
+        padding-top: 30px;
+    }
+
+    .active {
+        right: 0px;
+    }
+
+
+    .link {
+        line-height: 50px;
+        color: white;
+    }
+
+    .icon {
+        display: block;
+    }
+
+    .logo-nb {
+        font-size: 18px;
+    }
+
+    .logo-nb span {
+        font-size: 18px;
+    }
+
+    .GBPLinks-style {
+        flex-direction: column;
+    }
+}

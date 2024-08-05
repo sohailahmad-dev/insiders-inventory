@@ -1,0 +1,86 @@
+.dashboard-pd {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dashboard-pd img {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+}
+
+.dashboard-pd-heading {
+    font-family: Roboto-Bold;
+    font-size: 22px;
+    color: #EE786C;
+    margin-bottom: 5px;
+}
+
+.dashboard-pd-heading span {
+    font-family: Roboto-Regular;
+    font-size: 22px;
+    color: #EE786C;
+    text-decoration: none;
+}
+
+.dashboard-pd-subHeading {
+    font-family: Roboto-Regular;
+    color: #BABEC6;
+    font-size: 14px;
+}
+
+.ap-statistics {
+    margin: 30px 0px;
+}
+
+.ap-statistics-item {
+    height: 130px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    padding: 12%;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ap-statistics-item-iconBox {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #FF4A44;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ap-statistics-item-iconBox img {
+    width: 22px;
+}
+
+.ap-statistics-text1 {
+    color: #BABEC6;
+    font-size: 12px;
+}
+
+.ap-statistics-text2 {
+    color: #0F123F;
+    font-size: 25px;
+    font-family: Poppins-SemiBold;
+    line-height: 40px;
+    margin-top: 7px;
+}
+
+.ap-statistics-text3 {
+    color: #BABEC6;
+    font-size: 12px;
+}
+
+@media (max-width: 699px) {
+    .dashboard-ap {
+        padding: 5%;
+    }
+
+}

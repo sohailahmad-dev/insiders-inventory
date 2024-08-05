@@ -1,0 +1,10 @@
+/* colors */
+:root {
+    --primary-bg: #0F2928;
+    --secondary-bg: #163231;
+    --accent-bg: #2A5DDE;
+    --primary-text: #4DAD49;
+    --secondary-text: #3C3C3C;
+    --accent-text: #FFFFFF;
+    --text: #666666;
+}

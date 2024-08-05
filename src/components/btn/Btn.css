@@ -1,0 +1,33 @@
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    height: 56px;
+    border-radius: 50px;
+    margin: 8px 0px;
+    background-color: var(--primary-text);
+    color: white;
+    outline: none;
+    border: none;
+    font-family: Lato-Bold, 'Courier New', Courier, monospace;
+    font-size: 18px;
+    padding: 0px 30px;
+    border: 2px solid var(--primary-text);
+
+}
+
+.button:hover {
+    opacity: 0.85;
+    transition: 0.5s ease;
+}
+
+@media (max-width:699px) {
+    .button {
+        height: 45px;
+        font-size: 14px;
+    }
+
+
+}

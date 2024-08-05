@@ -1,0 +1,360 @@
+/* .ap-top{
+    height: 60px;
+    background-color: var(--primary-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 1px 5px 5px rgba(0,0,0,0.1);
+
+} */
+
+.graphs{
+    margin-top: 50px;
+}
+.bar-chart{
+    box-shadow: 2px 10px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.ap-leftBox {
+    display: flex;
+    align-items: center;
+}
+
+.ap-menuIcon {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.ap-menuIcon:hover {
+    opacity: 0.8;
+}
+
+.ap-logo {
+    height: 46px;
+    height: 46px;
+    cursor: pointer;
+}
+
+.ap-btnsBox {
+    display: flex;
+    margin-right: 20px;
+    gap: 20px;
+}
+
+.sideBar-Profile-sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0px;
+}
+
+.ap-profile {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.sideBar-profile-name {
+    font-size: 11px;
+    color: #141414;
+    line-height: 15px;
+}
+
+.sideBar-profile-email {
+    color: #94A3B8;
+    font-size: 10px;
+    line-height: 15px;
+}
+
+.ap-iconBtnActive {
+    /* background-image: linear-gradient(#0071D4, #006AC7, var(--primary-bg)); */
+    background-color: var(--accent-bg);
+    margin: 5px 0px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    color: white;
+    font-family: Poppins-SemiBold, 'Courier New', Courier, monospace;
+}
+
+.ap-iconBtnActive:hover {
+    opacity: 0.9;
+}
+
+.ap-iconBtn {
+    margin: 5px 0px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.ap-iconBtn:hover {
+    opacity: 0.9;
+    font-weight: bold;
+    color: var(--accent-bg);
+    transition: 0.5s ease;
+
+}
+
+
+.ap-main {
+    display: flex;
+    height: 100vh
+}
+
+.ap-rightSide {
+    flex: 1;
+    padding: 0px 2%;
+    overflow-y: scroll;
+    /* Hide the default scrollbar */
+    transition: 1s ease;
+}
+
+/* Style the custom scrollbar */
+.ap-rightSide::-webkit-scrollbar {
+    width: 10px;
+    /* Set your desired scrollbar width */
+}
+
+.ap-rightSide::-webkit-scrollbar-thumb {
+    background-color: lightgray;
+    border-radius: 10px;
+    /* Set the radius of the scrollbar thumb */
+}
+
+/* Optional: Hover styles for the thumb */
+.ap-rightSide::-webkit-scrollbar-thumb:hover {
+    background-color: gray;
+    /* Set the color of the scrollbar thumb on hover */
+}
+
+
+.ap-contractContent {
+    margin-left: 275px;
+    transition: 1s ease;
+}
+
+.ap-navLinks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    z-index: 88;
+    left: -300px;
+    width: 275px;
+    height: 100vh;
+    background-color: #F7F7FF;
+    transition: 1s ease;
+    padding: 10px;
+    border: 2px solid #DFDFDF;
+}
+
+.ap-activeMenu {
+    left: 0px;
+}
+
+.ap-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0px;
+    margin-bottom: 30px;
+}
+
+.ap-header-left {
+    font-family: Sarabun-SemiBold;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.ap-header-right {
+    display: flex;
+    gap: 20px;
+}
+
+.ap-searchBox {
+    width: 430px;
+    height: 53px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 0px 20px;
+}
+
+.ap-searchBox img {
+    width: 17px;
+    cursor: pointer;
+}
+
+.ap-header-profile {
+    width: 293px;
+    height: 53px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+.ap-header-profile-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ap-header-profile-left-imgBox {
+    position: relative;
+}
+
+.ap-header-profile-left-imgBox img {
+    width: 36px;
+    height: 36px;
+}
+
+.ap-header-profile-left-imgBox div {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #087F00;
+    position: absolute;
+    right: -5px;
+    bottom: 5px;
+}
+
+.ap-header-profile-left-text-name {
+    font-size: 12px;
+    font-family: Sarabun-SemiBold;
+    color: #2C3E50;
+}
+
+.ap-header-profile-left-text-role {
+    font-family: Sarabun-Regular;
+    color: #BABEC6;
+    font-size: 11px;
+}
+
+.ap-header-profile-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ap-header-profile-right img {
+    width: 20px;
+    height: 18px;
+}
+
+.ap-header-profile-right-notificationBox {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: #F8F8FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ap-header-profile-right-notificationBox img {
+    width: 14px;
+    height: 15px;
+}
+
+.ap-header-profile-right-notificationBox div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: -5px;
+    top: 0px;
+    color: white;
+    background-color: #EE786C;
+}
+
+.ap-userModal-style{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ap-userModal-content{
+    max-height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+@media screen and (max-width:800px) {
+
+    .ap-top {
+        height: 50px;
+    }
+
+    .ap-menuIcon {
+        height: 50px;
+    }
+
+    .ap-logo {
+        height: 30px;
+        margin-right: 10px;
+    }
+
+    .ap-btnsBox {
+        margin-right: 10px;
+    }
+
+    .ap-main {
+        display: flex;
+        height: 100vh;
+    }
+
+    .ap-contractContent {
+        margin-left: 0px;
+        transition: 1s ease;
+    }
+
+    .ap-navLinks {
+        height: 100vh;
+    }
+
+    /* Style the custom scrollbar */
+    .ap-rightSide::-webkit-scrollbar {
+        width: 5px;
+        /* Set your desired scrollbar width */
+    }
+
+    .ap-header-right {
+        display: none;
+    }
+}

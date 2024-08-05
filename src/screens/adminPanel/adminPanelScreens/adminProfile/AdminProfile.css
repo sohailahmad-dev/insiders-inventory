@@ -1,0 +1,18 @@
+.profile-heading{
+    text-align: center;
+    font-size: 30px;
+    font-family: Poppins-SemiBold;
+    margin-bottom: 20px;
+}
+
+.profile-item{
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-item span{
+    font-family: Poppins-SemiBold;
+
+}

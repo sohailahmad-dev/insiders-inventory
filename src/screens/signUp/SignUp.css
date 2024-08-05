@@ -1,0 +1,67 @@
+.signUpRight {
+    min-height: 100vh;
+    width: 60%;
+    background-color: white;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+    overflow-y: auto;
+
+}
+
+.signUpLeft {
+    height: 100vh;
+    width: 45%;
+    background-color: var(--primary-bg);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background-image: linear-gradient(#0071D4, #006AC7, var(--primary-bg));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-top-right-radius: 130px;
+    border-bottom-right-radius: 130px;
+    flex-direction: column;
+    padding: 6%;
+    gap: 15px;
+    position: fixed;
+}
+
+.accountSignIn {
+    color: #828282;
+    margin-top: 15px;
+}
+
+.accountSignIn span {
+    cursor: pointer;
+    color: var(--primary-text);
+    font-family: Poppins-Medium, 'Courier New', Courier, monospace;
+
+}
+
+.accountSignIn span:hover {
+    font-weight: bold;
+    text-decoration: underline;
+    transition: 0.5s ease;
+}
+
+@media (max-width: 900px) {
+    .signUpRight {
+        width: 100%;
+    }
+
+    .signUpLeft {
+        display: none;
+    }
+
+
+}
