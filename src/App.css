@@ -14,6 +14,7 @@ body {
 
 .padding {
   padding: 7%;
+  padding-bottom: 0%;
 }
 
 .text-center {
@@ -27,6 +28,7 @@ body {
 }
 
 .heading1 span {
+  margin-left: 20px;
   font-family: Lora-Bold;
   font-size: 48px;
   color: var(--primary-text);
@@ -329,6 +331,19 @@ body {
   .desktop {
     display: none;
   }
+
+.heading1 {
+  font-family: Lora-Bold;
+  font-size: 28px;
+  color: var(--secondary-text);
+}
+
+.heading1 span {
+  /* margin-left: 5px; */
+  font-family: Lora-Bold;
+  font-size: 28px;
+  color: var(--primary-text);
+}
 
   .ap-table-data-header-right {
     display: none;

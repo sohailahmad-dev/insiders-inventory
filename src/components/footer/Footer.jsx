@@ -44,6 +44,7 @@ export default function Footer({ active }) {
     }, [])
     return (
         <div className='footer'>
+            <div style={{ height: 400 }} ></div>
             <div className="footer-upper">
                 <img src={building} className='building' />
                 <Grid container spacing={1}>

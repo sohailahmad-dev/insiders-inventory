@@ -8,6 +8,7 @@ import { Grid } from '@mui/material'
 // local temp imgs 
 import img1 from '../../assets/imgs/img1.png'
 import img2 from '../../assets/imgs/img2.png'
+import Slider1 from '../../components/slider1/Slider1'
 
 let propertyTypes = [
     {
@@ -53,8 +54,13 @@ export const Home = () => {
                     />
                 </div>
             </div>
+            {/* sec 2  */}
+            <div className="h-sec4 padding" >
+                <Slider1 />
+            </div>
             {/* sec 3  */}
             <section className='h-sec3 padding'>
+                <div className="heading1 text-center mb-40">Off-Market<span>Property Types</span></div>
                 <Grid container spacing={5}>
                     {propertyTypes && propertyTypes.length > 0 &&
                         propertyTypes.map(e => (
@@ -75,7 +81,10 @@ export const Home = () => {
                     }
                 </Grid>
             </section>
-            <div style={{ height: 500 }} ></div>
+            {/* sec 4  */}
+            {/* <section className="h-sec4 padding">
+                <div className="heading1 text-center">What Our<span>Clients Say</span></div>
+            </section> */}
             <Footer />
         </div>
     )

@@ -45,10 +45,6 @@
 
 /* sec 3  */
 
-.h-sec3 {
-    margin-bottom: 300px;
-}
-
 .home-card3 {
     text-align: center;
     padding: 0px 5%;
@@ -70,6 +66,13 @@
     font-size: 22;
     color: var(--secondary-text);
     margin-top: 20px;
+}
+
+.home-card3-description{
+    font-family: Lato-Regular;
+    font-size: 16px;
+    color: var(--text);
+    margin-top: 10px;
 }
 
 
