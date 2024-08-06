@@ -64,6 +64,16 @@
     src: url('../public//font/Lora/Lora-Italic.ttf');
 }
 
+@font-face {
+    font-family: Lora-Medium;
+    src: url('../public//font/Lora/Lora-Medium.ttf');
+}
+
+@font-face {
+    font-family: Lora-SemiBold;
+    src: url('../public//font/Lora/Lora-SemiBold.ttf');
+}
+
 
 
 

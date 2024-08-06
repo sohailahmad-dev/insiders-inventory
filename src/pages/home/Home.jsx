@@ -5,22 +5,26 @@ import Btn from '../../components/btn/Btn'
 import Footer from '../../components/footer/Footer'
 import { Grid } from '@mui/material'
 
+// local temp imgs 
+import img1 from '../../assets/imgs/img1.png'
+import img2 from '../../assets/imgs/img2.png'
+
 let propertyTypes = [
     {
         id: 1,
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn4A_RLzV0uivShsYShHz1WPSsRrEhZAwELQ&s',
+        img: img1,
         type: 'Buy & Hold Properties',
         description: 'Secure your future with our Buy & Hold properties, offering stability and long-term growth potential.'
     },
     {
         id: 2,
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgss8nTPgAGDE-_8TWth_F77xtxII3agtQVQ&s',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZFyb2akvS_EkACDpyNNre3CDOCThUovLmw&s',
         type: 'Retail - Owner Occupant',
         description: 'Tailored Retail Spaces for Owner-Occupied Success in Prime Locations.'
     },
     {
         id: 3,
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZFyb2akvS_EkACDpyNNre3CDOCThUovLmw&s',
+        img: img2,
         type: 'Flip Opportunities',
         description: "Seize Profit Potential: Explore High-Yield Flip Opportunities with Insider's Inventory."
     },
@@ -50,13 +54,17 @@ export const Home = () => {
                 </div>
             </div>
             {/* sec 3  */}
-            {/* <section className='h-sec3 padding'>
-                <Grid container spacing={3}>
+            <section className='h-sec3 padding'>
+                <Grid container spacing={5}>
                     {propertyTypes && propertyTypes.length > 0 &&
                         propertyTypes.map(e => (
                             <Grid item sm={4} xs={12}>
                                 <div className="home-card3">
-                                    <img className='home-card3-img' src={e?.img} alt="img" />
+                                    <div className='home-card3-imgBox'
+                                        style={{ backgroundImage: `url(${e?.img})` }}
+                                    >
+
+                                    </div>
                                     <div className='home-card3-type'>
                                         {e.type}
                                     </div>
@@ -66,7 +74,7 @@ export const Home = () => {
                         )
                     }
                 </Grid>
-            </section> */}
+            </section>
             <div style={{ height: 500 }} ></div>
             <Footer />
         </div>

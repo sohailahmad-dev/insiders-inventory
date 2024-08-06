@@ -51,12 +51,30 @@
 
 .home-card3 {
     text-align: center;
+    padding: 0px 5%;
 }
 
-.home-card3-img {
-    width: 70%;
+.home-card3-imgBox {
+    width: 100%;
+    padding-top: 100%;
+    background-color: lightgray;
+    position: relative;
     border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+.home-card3-type {
+    font-family: Lora-Medium;
+    font-size: 22;
+    color: var(--secondary-text);
+    margin-top: 20px;
+}
+
+
+
+
 
 @media screen and (max-width:699px) {
     .h-hero {
