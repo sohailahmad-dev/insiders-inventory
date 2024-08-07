@@ -9,6 +9,7 @@ import { Grid } from '@mui/material'
 import img1 from '../../assets/imgs/img1.png'
 import img2 from '../../assets/imgs/img2.png'
 import Slider1 from '../../components/slider1/Slider1'
+import Testimonial from '../../components/testimonial/Testimonial'
 
 let propertyTypes = [
     {
@@ -38,9 +39,9 @@ export const Home = () => {
             <NavBar active={'Home'} />
             {/* sec 1 hero  */}
             <div className="h-hero">
-                <div className="h-subHeading">Insiders Off-Market Inventory</div>
+                <div className="h-subHeading">Insider's Off-Market Inventory</div>
                 <div className="h-heading">Your <span> Next Opportunity </span> <br className="desktop" /> Awaits</div>
-                <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures. Discover your path to profitable real estate investments period.</div>
+                <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures. Discover your path to profitable real estate investments.</div>
                 <div className="h-btns">
                     <Btn
                         label='Submit an Off-Market Property'
@@ -82,9 +83,9 @@ export const Home = () => {
                 </Grid>
             </section>
             {/* sec 4  */}
-            {/* <section className="h-sec4 padding">
-                <div className="heading1 text-center">What Our<span>Clients Say</span></div>
-            </section> */}
+            <section className="h-sec4 padding">
+                <Testimonial />
+            </section>
             <Footer />
         </div>
     )

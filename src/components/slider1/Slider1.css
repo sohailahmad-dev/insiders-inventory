@@ -1,23 +1,24 @@
 /* section 8  */
-.slider1-upper{
+.slider1-upper {
     display: flex;
     justify-content: space-between;
     margin-bottom: 50px;
 }
 
 .slick-slide>div {
-    margin: 0px 30px;
+    margin: 0px 20px;
+    padding: 10px 0px;
 }
 
 /* content styling */
 
-.slider1-Item{
+.slider1-Item {
     border: 1px solid #4DAD49;
     border-radius: 20px;
     padding: 10px;
 }
 
-.slider1-img{
+.slider1-img {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -28,85 +29,85 @@
     margin-bottom: 50px;
 }
 
-.slider1-item-status{
+.slider1-item-status {
     background-color: black;
     color: white;
     border-radius: 3px;
     padding: 8px 15px;
     font-family: Lato-Regular;
-    font-size: 14px;  
+    font-size: 14px;
     margin: 20px;
 
 }
 
-.slider1-item-statsBox{
+.slider1-item-statsBox {
     position: absolute;
     width: 80%;
-    left:10%;
+    left: 10%;
     bottom: -30px;
     background-color: white;
     border-radius: 10px;
     border: 1px solid lightgray;
 }
 
-.sldier1-stats-left{
+.sldier1-stats-left {
     padding: 10px;
     border-right: 1px solid lightgray;
 
 }
 
-.sldier1-stats-right{
+.sldier1-stats-right {
     padding: 10px;
-    
+
 }
 
-.sldier1-item-contents{
+.sldier1-item-contents {
     display: flex;
     flex-direction: column;
     gap: 5px;
     padding-left: 5px;
 }
 
-.slider1-stats-label{
+.slider1-stats-label {
     font-family: Lora-Regular;
     font-size: 14px;
     color: var(--secondary-text);
 }
 
-.slider1-stats-figure{
+.slider1-stats-figure {
     font-family: Lato-Bold;
     color: var(--primary-text);
     font-size: 16px;
 }
 
-.slider1-item1-heading{
+.slider1-item1-heading {
     font-family: Lora-Bold;
     font-size: 20;
     color: var(--secondary-text);
 }
 
-.slider1-item-price{
+.slider1-item-price {
     font-size: Lato-Bold;
     font-size: 20px;
     color: var(--primary-text);
 }
 
-.slider1-item-specs{
+.slider1-item-specs {
     font-family: Lato-Bold;
     font-size: 14px;
     color: var(--secondary-text);
 }
 
-.slider1-item-lcation{
+.slider1-item-lcation {
     font-family: Lato-Bold;
     font-size: 14px;
     color: var(--primary-text);
     display: flex;
     align-items: center;
-    gap:5px;
+    gap: 5px;
 }
 
-.slider1-item-lcation img{
+.slider1-item-lcation img {
     width: 18px;
 }
 
@@ -148,15 +149,14 @@
 }
 
 @media screen and (max-width:700px) {
-    .slider1-upper{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 50px;
+    .slider1-upper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 50px;
+    }
+
+    .slick-slide>div {
+        margin: 0px;
+    }
 }
-}
-
-
-
-
-

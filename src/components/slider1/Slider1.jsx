@@ -31,23 +31,26 @@ export default function Slider1() {
             img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZFyb2akvS_EkACDpyNNre3CDOCThUovLmw&s',
             status: 'Sold'
         },
-
+        {
+            img: img5,
+            status: 'New'
+        },
     ]
     var settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1424,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: false,
                 }
             },
             {

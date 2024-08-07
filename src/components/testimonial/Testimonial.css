@@ -1,0 +1,46 @@
+.slider2-Item {
+    box-shadow: 3px 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 20px;
+    margin: 40px 0px;
+}
+
+.slider2-Item p {
+    font-family: Lato-Regular;
+    color: var(--text);
+    font-size: 19px;
+}
+
+.testimonial-bottom {
+    display: flex;
+    gap: 20px;
+}
+
+.testimonial-img {
+    width: 82px;
+    height: 82px;
+    border-radius: 41px;
+}
+
+.testimonial-bgImg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 82px;
+    height: 82px;
+    border-radius: 41px;
+    background-color: red;
+
+}
+
+.testimonial-name {
+    font-family: Lora-Medium;
+    font-size: 29px;
+    color: var(--text-secondary);
+}
+
+.testimonial-description {
+    font-family: Lato-Regular;
+    font-size: 19px;
+    color: var(--text-secondary);
+}
