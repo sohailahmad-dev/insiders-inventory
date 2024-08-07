@@ -1,0 +1,61 @@
+.signImg{
+    width:100%;
+}
+
+.sign-heading{
+    font-family: Lora-Bold;
+    font-size: 28px;
+    color: var(--secondary-text);
+}
+
+.sign-right{
+    padding: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sign-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.sign-bottom div{
+    font-family: Lato-Medium;
+    font-size: 18px;
+    color: var(--primary-text);
+}
+
+.check-box{
+    display: flex;
+    align-items: center;
+    font-family: Lato-Regular; 
+    font-size: 18px;
+    color: red;
+}
+
+.sign-bottom-text{
+    text-align: center;
+    font-family: Lato-Regular;
+    color: var(--text);
+    font-size: 18px;
+}
+
+.sign-bottom-text span{
+    text-align: center;
+    font-family: Lato-Bold;
+    color: var(--primary-text);
+    font-size: 18px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:700px) {
+    .sign-right{
+    padding: 0%;
+    gap: 15px;
+}
+}

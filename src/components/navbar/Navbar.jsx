@@ -99,12 +99,12 @@ export default function NavBar({ active }) {
                         }
                     >Off-Market Inventory</div>
                     {isMobile && <Btn
-                        label="Login/Signup" onClick={() => navigate('/')} />}
+                        label="Login/Signup" onClick={() => navigate('/Login')} />}
 
 
                 </div>
                 {!isMobile && <Btn
-                    label="Login/Signup" onClick={() => navigate('/')} />}
+                    label="Login/Signup" onClick={() => navigate('/Login')} />}
 
                 <div className="icon">
                     {menu ? <MenuIcon
