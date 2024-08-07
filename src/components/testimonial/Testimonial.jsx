@@ -14,51 +14,52 @@ export default function Testimonial() {
             img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHiGq5x0SqinC4KFPlAT-L5DEnn_5reux9sQ&s',
             name: 'John Doe',
             description: 'Web Designer, Biffco Enterprises Ltd.',
-            review: 'Vestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus ',
+            review: 'This platform has completely transformed my property buying experience. The interface is user-friendly, and the customer support is top-notch. I found my dream home within days. Highly recommended!'
         },
         {
             id: 2,
             img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOE2AaCGRhz7g3ribGzHaOxbRMzp1MCGTnDg&s',
             name: 'Mr. Thomas',
             description: 'Web Designer, Biffco Enterprises Ltd.',
-            review: 'Vestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus ',
+            review: 'Excellent service for renting properties! The listings are detailed, and the communication with landlords is smooth. I was able to secure a rental property quickly and without any hassle.'
         },
         {
             id: 3,
             img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgwJRsxUrb9hB9VR8myjuFSrP23y9WPURSFQ&s',
             name: 'Eldon Jack',
             description: 'Web Designer, Biffco Enterprises Ltd.',
-            review: 'Vestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus ',
+            review: 'Selling my house was a breeze with this marketplace. The process was efficient, and I got multiple offers within a week. The support team was there to assist me at every step. Great experience!'
         },
         {
             id: 4,
             img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuVisGkyp_w7pFpDd8inDuKQX12irab4SR1Q&s',
             name: 'Mr. Jack',
             description: 'Web Designer, Biffco Enterprises Ltd.',
-            review: 'Vestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus ',
+            review: 'A fantastic platform for anyone looking to rent properties. The variety of listings and the ease of use made my apartment hunt stress-free. The customer service is very responsive and helpful.'
         },
         {
             id: 5,
             img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjLP65qWrL27IKDzKLmVWZOl_6kzv1aKFB8g&s',
             name: 'Jenny',
             description: 'Web Designer, Biffco Enterprises Ltd.',
-            review: 'Vestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus AVestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus ',
-        },
-    ]
+            review: 'I was skeptical at first, but this marketplace proved to be an excellent choice for selling my property. The listing process was simple, and I got a good deal in a short amount of time. Highly satisfied!'
+        }
+    ];
+
     var settings = {
         className: "center",
         centerMode: true,
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
             {
                 breakpoint: 1424,
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: false,
@@ -76,6 +77,7 @@ export default function Testimonial() {
             {
                 breakpoint: 480,
                 settings: {
+                    centerMode: false,
                     slidesToShow: 1,
                     slidesToScroll: 1
                 }
@@ -102,7 +104,7 @@ export default function Testimonial() {
             {/* slider ruler  */}
             <div className="heading1 text-center">What Our<span>Clients Say</span></div>
 
-            <div className='home-slider1'  >
+            <div className='home-slider2'  >
                 <Slider
                     ref={slider => {
                         sliderRef = slider;
