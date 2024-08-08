@@ -14,7 +14,10 @@ export default function Login() {
             <section className="padding">
                 <Grid container spacing={5}>
                     <Grid item sm={5.5} xs={12}>
-                        <img src={signImg} alt="img" className='signImg' />
+                        <div className="text-center">
+                            <img src={signImg} alt="img" className='signImg' />
+                        </div>
+
                     </Grid>
                     <Grid item sm={6.5} xs={12}>
                         <div className='sign-right'>
