@@ -1,16 +1,12 @@
 import React, { useState } from 'react'
 import './FooterInput.css'
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 import { Icon } from '@mui/material';
 
 export default function FooterInput({ icon, placeholder, isPassword, onChange, value, inputType, style }) {
 
     let [type, setType] = useState('text')
 
-    const handleType = () => {
-        type === 'text' ? setType('password') : setType('text')
-    }
 
     useState(() => {
         if (isPassword) {

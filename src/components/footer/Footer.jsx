@@ -88,14 +88,14 @@ export default function Footer({ active }) {
             </div>
             <div className=" padding footer-lower">
                 <Grid container spacing={5}>
-                    <Grid item sm={6} xs={12}>
+                    <Grid item sm={4} xs={12}>
                         <img src={logo} alt="logo" className='footer-logo' />
                         <div className="logo-nb">
                             Insider's <span>Inventory</span>
                         </div>
                         <div className="footer-text">Your Gateway to Real Estate Excellence. </div>
                     </Grid>
-                    <Grid item sm={6} xs={12}>
+                    <Grid item sm={8} xs={12}>
                         <div className='footerLinks'>
 
                             <div

@@ -22,7 +22,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 300px;
+    min-height: 250px;
     border-radius: 20px;
     padding-top: 20px;
     position: relative;
@@ -35,7 +35,7 @@
     border-radius: 3px;
     padding: 8px 15px;
     font-family: Lato-Regular;
-    font-size: 14px;
+    font-size: 12px;
     margin: 20px;
 
 }
@@ -70,14 +70,15 @@
 
 .slider1-stats-label {
     font-family: Lora-Regular;
-    font-size: 14px;
+    font-size: 12px;
     color: var(--secondary-text);
 }
 
 .slider1-stats-figure {
     font-family: Lato-Bold;
     color: var(--primary-text);
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 22px;
 }
 
 .slider1-item1-heading {
@@ -88,7 +89,7 @@
 
 .slider1-item-price {
     font-size: Lato-Bold;
-    font-size: 20px;
+    font-size: 18px;
     color: var(--primary-text);
 }
 
@@ -124,14 +125,14 @@
 .slider1-navigation {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 10px;
     /* margin-left: 5%; */
     z-index: 5;
     /* position: absolute; */
 }
 
 .slider1-navigation img {
-    width: 50px;
+    width: 40px;
     cursor: pointer;
 }
 

@@ -10,7 +10,7 @@
     position: absolute;
     bottom: 0px;
     left: 0px;
-    width: 35%;
+    width: 30%;
 }
 
 .footer-lower {
@@ -26,10 +26,10 @@
 }
 
 .footer-text {
-    font-size: 16px;
+    font-size: 13px;
     font-family: Lora-Regular;
     color: white;
-    line-height: 40px;
+    line-height: 30px;
 }
 
 .footerLinks {
@@ -47,15 +47,15 @@
 }
 
 .footer-social img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
 }
 
 .footer-line {
     height: 1px;
     background-color: white;
-    margin: 30px 10%;
+    margin: 20px 10%;
 }
 
 .footer-upper-right {
@@ -64,14 +64,14 @@
 }
 
 .footer-heading {
-    font-size: 32px;
+    font-size: 24px;
     font-family: Lora-Bold;
     color: white;
 }
 
 .footer-upper-text {
     font-family: Lato-Regular;
-    font-size: 20px;
+    font-size: 14px;
     color: white;
     padding: 20px 5%;
     padding-right: 8%;

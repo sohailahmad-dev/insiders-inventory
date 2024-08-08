@@ -1,5 +1,5 @@
 .h-hero {
-    min-height: 650px;
+    min-height: 450px;
     background-color: var(--primary-bg);
     display: flex;
     align-items: center;
@@ -10,14 +10,14 @@
 
 .h-subHeading {
     font-family: Lato-Medium;
-    font-size: 24px;
+    font-size: 18px;
     color: var(--accent-text);
     text-align: center;
 }
 
 .h-heading {
     font-family: Lora-Bold;
-    font-size: 74px;
+    font-size: 48px;
     color: var(--accent-text);
     text-align: center;
 }
@@ -25,17 +25,17 @@
 
 .h-heading span {
     font-family: Lora-Bold;
-    font-size: 74px;
+    font-size: 48px;
     color: var(--primary-text);
 }
 
 .h-text {
     font-family: Lato-Medium;
-    font-size: 20px;
+    font-size: 14px;
     color: var(--accent-text);
     text-align: center;
     padding: 0px 25%;
-    line-height: 28px;
+    line-height: 20px;
 }
 
 .h-btns {
@@ -47,7 +47,7 @@
 
 .home-card3 {
     text-align: center;
-    padding: 0px 15%;
+    padding: 0px 20%;
 }
 
 .home-card3-imgBox {
@@ -63,14 +63,14 @@
 
 .home-card3-type {
     font-family: Lora-Medium;
-    font-size: 22;
+    font-size: 16px;
     color: var(--secondary-text);
     margin-top: 20px;
 }
 
-.home-card3-description{
+.home-card3-description {
     font-family: Lato-Regular;
-    font-size: 16px;
+    font-size: 14px;
     color: var(--text);
     margin-top: 10px;
 }
