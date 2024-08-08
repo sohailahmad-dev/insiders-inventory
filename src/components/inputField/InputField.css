@@ -5,6 +5,7 @@
     /* border: 1px solid #C0C0C0; */
     background-color: #EFF0F2;
     width: 100%;
+    max-width: 600px;
     height: 45px;
     padding: 0px 20px;
     border-radius: 50px;
