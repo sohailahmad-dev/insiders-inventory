@@ -6,15 +6,17 @@ import { Checkbox, FormControlLabel, Grid } from '@mui/material'
 import signImg from '../../assets/imgs/signImg.png'
 import InputField from '../../components/inputField/InputField'
 import Btn from '../../components/btn/Btn'
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
+    const navigate = useNavigate();
     return (
         <div>
             <NavBar active='Login' />
             <section className="padding">
                 <Grid container spacing={5}>
                     <Grid item sm={5.5} xs={12}>
-                        <div className="text-center">
+                        <div className="text-center sign-left">
                             <img src={signImg} alt="img" className='signImg' />
                         </div>
 
@@ -51,7 +53,11 @@ export default function Login() {
                                 />
 
                             </div>
-                            <div className='sign-bottom-text'>Don't have an account? <span> Sign up</span></div>
+                            <div className='sign-bottom-text'>Don't have an account?
+                                <span
+                                    onClick={() => navigate('/Signup')}
+                                > Sign up</span>
+                            </div>
 
                         </div>
                     </Grid>

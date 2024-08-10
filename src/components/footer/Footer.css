@@ -94,31 +94,31 @@
 
 @media screen and (min-width:1300px) {
     .building-margin {
-        height: 300px;
+        height: 250px;
     }
 }
 
 @media screen and (min-width:1400px) {
     .building-margin {
-        height: 300px;
+        height: 250px;
     }
 }
 
 
 @media screen and (min-width:1500px) {
     .building-margin {
-        height: 400px;
+        height: 300px;
     }
 }
 
 @media screen and (min-width:1600px) {
     .building-margin {
-        height: 500px;
+        height: 300px;
     }
 }
 
 @media screen and (min-width:1700px) {
     .building-margin {
-        height: 700px;
+        height: 400px;
     }
 }
