@@ -45,6 +45,9 @@ export default function Signup() {
                                 <div className='check-box'>
                                     <FormControlLabel
                                         control={<Checkbox
+                                            size='sm'
+                                            color='success'
+
                                             onChange={() => { }}
                                         />}
                                         sx={{
@@ -57,6 +60,8 @@ export default function Signup() {
                                 <div className='check-box'>
                                     <FormControlLabel
                                         control={<Checkbox
+                                            size='sm'
+                                            color='success'
                                             onChange={() => { }}
                                         />}
                                         sx={{
@@ -71,6 +76,8 @@ export default function Signup() {
                                 <div className='check-box'>
                                     <FormControlLabel
                                         control={<Checkbox
+                                            size='sm'
+                                            color='success'
                                             onChange={() => { }}
                                         />}
                                         sx={{
@@ -83,6 +90,8 @@ export default function Signup() {
                                 <div className='check-box'>
                                     <FormControlLabel
                                         control={<Checkbox
+                                            size='sm'
+                                            color='success'
                                             onChange={() => { }}
                                         />}
                                         sx={{
@@ -106,6 +115,8 @@ export default function Signup() {
                                 <div className='check-box'>
                                     <FormControlLabel
                                         control={<Checkbox
+                                            size='sm'
+                                            color='success'
                                             onChange={() => { }}
                                         />}
                                         sx={{

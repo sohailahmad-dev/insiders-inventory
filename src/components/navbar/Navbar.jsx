@@ -54,7 +54,7 @@ export default function NavBar({ active }) {
                     <div
                         className={activeLink === 'Buyers' ? "link-nb" : "link-nb1"}
                         onClick={() => {
-                            navigate('/')
+                            navigate('/Buyers')
                         }
                         }
                     >Buyers</div>
@@ -94,7 +94,7 @@ export default function NavBar({ active }) {
                     <div
                         className={activeLink === 'Off-Market Inventory' ? "link-nb" : "link-nb1"}
                         onClick={() => {
-                            navigate('/')
+                            navigate('/AddProperty')
                         }
                         }
                     >Off-Market Inventory</div>

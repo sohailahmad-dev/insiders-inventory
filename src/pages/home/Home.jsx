@@ -4,7 +4,6 @@ import NavBar from '../../components/navbar/Navbar'
 import Btn from '../../components/btn/Btn'
 import Footer from '../../components/footer/Footer'
 import { Grid } from '@mui/material'
-
 // local temp imgs 
 import img1 from '../../assets/imgs/img1.png'
 import img2 from '../../assets/imgs/img2.png'
@@ -65,7 +64,7 @@ export const Home = () => {
                 <Grid container spacing={5}>
                     {propertyTypes && propertyTypes.length > 0 &&
                         propertyTypes.map(e => (
-                            <Grid item sm={4} xs={12}>
+                            <Grid item sm={4} xs={12} key={e?.type} >
                                 <div className="home-card3">
                                     <div className='home-card3-imgBox'
                                         style={{ backgroundImage: `url(${e?.img})` }}

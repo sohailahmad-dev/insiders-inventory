@@ -1,5 +1,6 @@
 .h-hero {
-    min-height: 450px;
+    min-height: 350px;
+    padding: 10% 0px;
     background-color: var(--primary-bg);
     display: flex;
     align-items: center;

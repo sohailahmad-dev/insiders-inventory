@@ -1,0 +1,12 @@
+.buyers-sec2-bottom {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buyers-sec2-bottom p {
+    font-size: 13px;
+    font-family: Lora-Regular;
+    margin-top: 8px;
+}

@@ -31,11 +31,14 @@ export default function Login() {
                             <InputField
                                 label='Password'
                                 placeholder='Enter your password'
+
                             />
                             <div className='sign-bottom' >
                                 <div className='check-box'>
                                     <FormControlLabel
                                         control={<Checkbox
+                                            color='success'
+                                            size='sm'
                                             onChange={() => { }}
                                         />}
                                         sx={{

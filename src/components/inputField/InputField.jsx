@@ -3,20 +3,11 @@ import './InputField.css'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Icon } from '@mui/material';
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
-export default function InputField({ icon, placeholder, isPassword, onChange, value, inputType, style, label }) {
+export default function InputField({ icon, placeholder, isPassword, onChange, value, inputType, style, label, }) {
 
-    let [type, setType] = useState('text')
 
-    const handleType = () => {
-        type === 'text' ? setType('password') : setType('text')
-    }
-
-    useState(() => {
-        if (isPassword) {
-            setType('password')
-        }
-    }, [])
 
     return (
         <div>
@@ -26,13 +17,8 @@ export default function InputField({ icon, placeholder, isPassword, onChange, va
             <div className='inputBox' style={style} >
                 <div className='leftBox' >
                     {icon && <Icon fontSize='small' component={icon} />}
-                    <input onChange={onChange} value={value} placeholder={placeholder} type={inputType ?? type} />
+                    <input onChange={onChange} value={value} placeholder={placeholder} type={inputType} />
                 </div>
-                {isPassword &&
-                    <div onClick={handleType} style={{ cursor: 'pointer' }} >
-                        {type === 'password' ? <VisibilityIcon fontSize='small' /> :
-                            <VisibilityOffIcon fontSize='small' />}
-                    </div>}
             </div>
         </div>
     )

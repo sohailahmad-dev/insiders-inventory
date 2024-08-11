@@ -2,14 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* border: 1px solid #C0C0C0; */
     background-color: #EFF0F2;
     width: 100%;
-    max-width: 600px;
     height: 45px;
     padding: 0px 20px;
     border-radius: 50px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .leftBox {
@@ -24,7 +22,7 @@ input {
     border: none;
     background: transparent;
     height: 100%;
-    width: 90%;
+    width: 100%;
     font-size: 14px;
 }
 

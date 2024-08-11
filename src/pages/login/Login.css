@@ -21,7 +21,7 @@
     max-width: 600px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     height: 100%;
     justify-content: center;
 }
@@ -45,7 +45,7 @@
     align-items: center;
     font-family: Lato-Regular;
     font-size: 14px;
-    min-width: 40%;
+    min-width: 100px;
 }
 
 .sign-bottom-text {

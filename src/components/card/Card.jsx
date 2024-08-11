@@ -1,26 +1,49 @@
+import { Grid } from '@mui/material'
+import './Card.css'
 import React from 'react'
 import Btn from '../btn/Btn'
+import location from '../../assets/imgs/location.png';
 
-export default function Card({ name = 'default', description = 'default', img, showControls, onEdit, onDelete, onDetail, onApply }) {
+
+export default function Card({ status, img, currentStatus }) {
   return (
-    <div className="course-card">
-      <img src={img ?? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Z-Viu23Zi9aepAkisUn3zQAUzGBys45htQ&s'} alt="img" />
-      <div className="course-card-body">
-        <div className='course-card-heading' >{name}</div>
-        <div className="course-card-descripiton">
-          {description.slice(0, 80)} . . .
+    <div className="card-Item">
+      <div className="card-img"
+        style={{ backgroundImage: `url(${img})` }}
+      >
+        {currentStatus === 'Sold' && <span className='card-house-sold' >{currentStatus}</span>}
+        {currentStatus === 'New' && <span className='card-house-new' >{currentStatus}</span>}
+        <span className="card-item-status">{status}</span>
+        {/* stats  */}
+        <div className='card-item-statsBox'>
+          <Grid container spacing={0} >
+            <Grid item xs={6}>
+              <div className="sldier1-stats-left">
+                <div className="card-stats-label">Initial Investment</div>
+                <div className="card-stats-figure">$45,120</div>
+              </div>
+            </Grid>
+            <Grid item xs={6}>
+              <div className="sldier1-stats-right">
+                <div className="card-stats-label">Potential ROI</div>
+                <div className="card-stats-figure">37%</div>
+              </div>
+            </Grid>
+          </Grid>
         </div>
-        {showControls ? <div className="course-card-btns-box">
-          <Btn label='Details' onClick={onDetail} className="course-card-btn" style={{ backgroundColor: 'green' }} />
-          <Btn label='Edit' onClick={onEdit} className="course-card-btn" />
-          <Btn label='Delete' onClick={onDelete} className="course-card-btn" style={{ background: 'red' }} />
-        </div> :
-          <div className="course-card-btns-box">
-            <Btn label='Enroll Now' onClick={onApply} className="course-card-btn" style={{ backgroundColor: 'green' }} />
-            <Btn label='Check Details' onClick={onDetail} className="course-card-btn" />
-          </div>}
       </div>
 
+      <div className="sldier1-item-contents">
+        <div className="card-item1-heading">Luxury Apartment</div>
+        <div className="card-item-price">$450,000</div>
+        <div className="card-item-specs">3 bedroom | 1 bathroom | 971 sq. ft.</div>
+        <div className="card-item-lcation">
+          <img src={location} alt="location-icon" />
+          Australia</div>
+        <Btn
+          label='Login to make an offer'
+        ></Btn>
+      </div>
     </div>
   )
 }

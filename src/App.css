@@ -16,7 +16,7 @@ body {
 }
 
 .padding {
-  padding: 5% 12%;
+  padding: 5% 10%;
   padding-bottom: 0%;
 }
 
@@ -38,24 +38,27 @@ body {
 }
 
 .heading2 {
-  font-family: Poppins-SemiBold;
+  font-family: Lora-Bold;
   font-size: 28px;
-  color: var(--primary-text);
+  color: var(--secondary-text);
 
 }
 
 .heading3 {
-  font-family: Poppins-SemiBold;
-  font-size: 24px;
-  color: var(--primary-text);
-
+  font-family: Lora-Bold;
+  font-size: 20px;
+  color: var(--secondary-text);
 }
 
 .text-center {
   text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
 }
+
+
 
 .mb-10 {
   margin-bottom: 10px;
@@ -75,6 +78,28 @@ body {
 
 .mb-50 {
   margin-bottom: 50px;
+}
+
+/* margin top  */
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.mt-50 {
+  margin-top: 50px;
 }
 
 

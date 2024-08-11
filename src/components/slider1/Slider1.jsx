@@ -8,9 +8,9 @@ import img4 from '../../assets/local/img4.png';
 import img5 from '../../assets/local/img5.png';
 import prev from '../../assets/imgs/prev.png';
 import next from '../../assets/imgs/next.png';
-import location from '../../assets/imgs/location.png';
 import { Grid } from '@mui/material';
 import Btn from '../btn/Btn';
+import Card from '../card/Card';
 
 export default function Slider1() {
     let [currentSlide, setCurrentSlide] = useState(0);
@@ -112,42 +112,11 @@ export default function Slider1() {
                     }}
                     {...settings}>
                     {sliderData.map(item => (
-                        <div className="slider1-Item" key={item?.status}>
-                            <div className="slider1-img"
-                                style={{ backgroundImage: `url(${item?.img})` }}
-                            >
-                                <span className="slider1-item-status">{item?.status}</span>
-                                {/* stats  */}
-                                <div className='slider1-item-statsBox'>
-                                    <Grid container spacing={0} >
-                                        <Grid item xs={6}>
-                                            <div className="sldier1-stats-left">
-                                                <div className="slider1-stats-label">Initial Investment</div>
-                                                <div className="slider1-stats-figure">$45,120</div>
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <div className="sldier1-stats-right">
-                                                <div className="slider1-stats-label">Potential ROI</div>
-                                                <div className="slider1-stats-figure">37%</div>
-                                            </div>
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                            </div>
-
-                            <div className="sldier1-item-contents">
-                                <div className="slider1-item1-heading">Luxury Apartment</div>
-                                <div className="slider1-item-price">$450,000</div>
-                                <div className="slider1-item-specs">3 bedroom | 1 bathroom | 971 sq. ft.</div>
-                                <div className="slider1-item-lcation">
-                                    <img src={location} alt="location-icon" />
-                                    Australia</div>
-                                <Btn
-                                    label='Login to make an offer'
-                                ></Btn>
-                            </div>
-                        </div>
+                        <Card
+                            key={item?.status}
+                            status={item?.status}
+                            img={item?.img}
+                        />
                     ))}
                 </Slider>
 

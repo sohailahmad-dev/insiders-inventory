@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './SelectBox.css'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export default function SelectBox({ label, options, onSelect, selected }) {
+const SelectBox = ({ options, icon, label, onSelect, style }) => {
+    const [selectedValue, setSelectedValue] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
 
-    let [val, setVal] = useState('');
-
-
-    const onChange = (e) => {
-        setVal(e.target.value)
-        if (onSelect) {
-            onSelect(e.target.value);
-        }
-    }
-
-    useEffect(() => {
-        if (selected) {
-            setVal(selected)
-        }
-
-    }, [])
+    const handleSelect = (value) => {
+        setSelectedValue(value);
+        setIsOpen(false);
+        onSelect(value);
+    };
 
     return (
-        <div className='selectBox' >
-            <div className="selectLabel">{(val === '') ? label : ''}</div>
-            <select id="select" value={val} onChange={onChange}>
-                <option key='' value=''> </option>
-                {options.map((option) => (
-                    <option key={option} value={option}>
-                        {option}
-                    </option>
-                ))}
-            </select>
+        <div className="custom-select1-container" style={style}>
+            <div className="custom-select1-label" onClick={() => setIsOpen(!isOpen)}>
+                <span className="custom-select1-text">{selectedValue || label}</span>
+                <KeyboardArrowDownIcon />
+            </div>
+            {isOpen && (
+                <ul className="custom-select1-options">
+                    {options.map((option, index) => (
+                        <li
+                            key={index}
+                            className="custom-select1-option"
+                            onClick={() => handleSelect(option)}
+                        >
+                            {option}
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };
+
+export default SelectBox;
 
