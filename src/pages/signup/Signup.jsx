@@ -6,6 +6,7 @@ import signImg from '../../assets/imgs/signImg.png'
 import InputField from '../../components/inputField/InputField'
 import Btn from '../../components/btn/Btn'
 import { useNavigate } from 'react-router-dom'
+import CheckBox from '../../components/checkBox1/CheckBox'
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -42,65 +43,21 @@ export default function Signup() {
                             />
                             {/* checbox  */}
                             <div style={{ display: 'flex' }}>
-                                <div className='check-box'>
-                                    <FormControlLabel
-                                        control={<Checkbox
-                                            size='sm'
-                                            color='success'
-
-                                            onChange={() => { }}
-                                        />}
-                                        sx={{
-                                            marginRight: 0
-                                        }}
-                                    />
-                                    <span style={{ color: '#4D5959', marginRight: 5 }}>Investor
-                                    </span>
-                                </div>
-                                <div className='check-box'>
-                                    <FormControlLabel
-                                        control={<Checkbox
-                                            size='sm'
-                                            color='success'
-                                            onChange={() => { }}
-                                        />}
-                                        sx={{
-                                            marginRight: 0
-                                        }}
-                                    />
-                                    <span style={{ color: '#4D5959', marginRight: 5 }}>Home Buyer
-                                    </span>
-                                </div>
+                                <CheckBox
+                                    label='Investor'
+                                />
+                                <CheckBox
+                                    label='Home Buyer'
+                                />
                             </div>
                             <div style={{ display: 'flex' }}>
-                                <div className='check-box'>
-                                    <FormControlLabel
-                                        control={<Checkbox
-                                            size='sm'
-                                            color='success'
-                                            onChange={() => { }}
-                                        />}
-                                        sx={{
-                                            marginRight: 0
-                                        }}
-                                    />
-                                    <span style={{ color: '#4D5959', marginRight: 5 }}>Agent
-                                    </span>
-                                </div>
-                                <div className='check-box'>
-                                    <FormControlLabel
-                                        control={<Checkbox
-                                            size='sm'
-                                            color='success'
-                                            onChange={() => { }}
-                                        />}
-                                        sx={{
-                                            marginRight: 0
-                                        }}
-                                    />
-                                    <span style={{ color: '#4D5959', marginRight: 5 }}>Fund/REIT Investment Buyer
-                                    </span>
-                                </div>
+
+                                <CheckBox
+                                    label='Agent'
+                                />
+                                <CheckBox
+                                    label='Fund/REIT Investment Buyer'
+                                />
                             </div>
                             <InputField
                                 label='Phone Number'

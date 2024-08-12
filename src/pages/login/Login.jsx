@@ -7,6 +7,7 @@ import signImg from '../../assets/imgs/signImg.png'
 import InputField from '../../components/inputField/InputField'
 import Btn from '../../components/btn/Btn'
 import { useNavigate } from 'react-router-dom'
+import CheckBox from '../../components/checkBox1/CheckBox'
 
 export default function Login() {
     const navigate = useNavigate();
@@ -34,20 +35,9 @@ export default function Login() {
 
                             />
                             <div className='sign-bottom' >
-                                <div className='check-box'>
-                                    <FormControlLabel
-                                        control={<Checkbox
-                                            color='success'
-                                            size='sm'
-                                            onChange={() => { }}
-                                        />}
-                                        sx={{
-                                            marginRight: 0
-                                        }}
-                                    />
-                                    <span style={{ color: '#4D5959' }}>Remember Me
-                                    </span>
-                                </div>
+                                <CheckBox
+                                    label='Remember Me'
+                                />
                                 <div>Forgot Password?</div>
                             </div>
                             <div className='text-center'>

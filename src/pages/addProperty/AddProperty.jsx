@@ -1,18 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './AddProperty.css'
 import NavBar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
-import CustomSelect from '../../components/customSelect/CustomSelect'
-import { Checkbox, FormControlLabel, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import InputField from '../../components/inputField/InputField'
 import SelectBox from '../../components/selectBox/SelectBox'
 import FileUpload from '../../components/fileInput/FileUpload'
 import Btn from '../../components/btn/Btn'
+import CheckBox from '../../components/checkBox1/CheckBox'
 
+const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package']
 
 
 export const AddProperty = () => {
-    const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package']
+
+    let [dataObj, setDataObj] = useState({});
+
+    const addData = (label, value) => {
+        dataObj[label] = value;
+        setDataObj({ ...dataObj });
+    }
+
+
     return (
         <div>
             <NavBar active='Off-Market Inventory' />
@@ -29,53 +38,48 @@ export const AddProperty = () => {
                 <div className="add-property-types">
                     {types && types.length > 0 &&
                         types.map(type => (
-                            <div key={type} className='add-property-type' >
+                            <div key={type}
+                                onClick={() => addData('property_type', type)}
+                                className={dataObj.property_type === type ? 'add-property-type add-property-type-active' : 'add-property-type'}
+                            >
                                 {type}
                             </div>
                         ))}
                 </div>
+                {dataObj.property_type === 'Portfolio Package' && <Grid container spacing={2}>
+                    <Grid item sm={6} xs={12}>
+                        <SelectBox
+                            label='No. of Units'
+                            options={[1, 2, 3, 4, 5]}
+                        />
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <InputField
+                            placeholder='Target Area'
+                        />
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <InputField
+                            placeholder='ROI'
+                        />
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <InputField
+                            placeholder='Price'
+                        />
+                    </Grid>
+                </Grid>}
                 <div className="heading3">Opportunity Type</div>
                 <div style={{ display: 'flex', width: '100%', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
-                    <div className='check-box'>
-                        <FormControlLabel
-                            control={<Checkbox
-                                size='sm'
-                                onChange={() => { }}
-                            />}
-                            sx={{
-                                marginRight: 0
-                            }}
-                        />
-                        <span style={{ color: '#4D5959', marginRight: 5 }}>Buy & Hold
-                        </span>
-                    </div>
-                    <div className='check-box'>
-                        <FormControlLabel
-                            control={<Checkbox
-                                size='sm'
-                                onChange={() => { }}
-                            />}
-                            sx={{
-                                marginRight: 0
-                            }}
-                        />
-                        <span style={{ color: '#4D5959', marginRight: 5 }}>Flip Opportunity
-                        </span>
-                    </div>
-                    <div className='check-box'>
-                        <FormControlLabel
-                            control={<Checkbox
-                                size='sm'
-
-                                onChange={() => { }}
-                            />}
-                            sx={{
-                                marginRight: 0
-                            }}
-                        />
-                        <span style={{ color: '#4D5959', marginRight: 5 }}>Retail Owner Occupant
-                        </span>
-                    </div>
+                    <CheckBox
+                        label='Buy & Hold'
+                    />
+                    <CheckBox
+                        label='Flip Opportunity'
+                    />
+                    <CheckBox
+                        label='Retail Owner Occupant'
+                    />
                 </div>
                 <div className="heading3">Property Address</div>
                 <Grid container spacing={2}>
@@ -161,6 +165,7 @@ export const AddProperty = () => {
                         <SelectBox
                             label='Property Management Company'
                             options={['Yes', 'No']}
+                            onSelect={(e) => addData('property_management_company', e)}
                         />
                     </Grid>
                     <Grid item sm={6} xs={12}>
@@ -168,6 +173,12 @@ export const AddProperty = () => {
                             placeholder='Cash on Cash Return'
                         />
                     </Grid>
+                    {dataObj.property_management_company === 'Yes' &&
+                        <Grid item sm={6.1} xs={12}>
+                            <InputField
+                                placeholder='Property Management Information'
+                            />
+                        </Grid>}
                     <Grid item xs={12}>
                         <InputField
                             placeholder='Additional Information / Remarks'

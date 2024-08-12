@@ -24,8 +24,14 @@
     padding: 0px 15px;
     border-radius: 50px;
     background-color: #EFF0F2;
+    border: 1px solid #EFF0F2;
     font-family: Lato-Medium;
     color: #4D5959;
     font-size: 14px;
     cursor: pointer;
+}
+
+.add-property-type-active {
+    background-color: rgba(77, 173, 73, 0.04);
+    border: 1px solid #4DAD49;
 }

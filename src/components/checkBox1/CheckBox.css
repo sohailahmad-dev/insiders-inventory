@@ -1,0 +1,7 @@
+.check-box {
+    display: flex;
+    align-items: center;
+    font-family: Lato-Regular;
+    font-size: 14px;
+    min-width: 100px;
+}
