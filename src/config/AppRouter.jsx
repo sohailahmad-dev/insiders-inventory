@@ -5,10 +5,7 @@ import Login from '../pages/login/Login';
 import Signup from '../pages/signup/Signup';
 import { Buyers } from '../pages/buyers/Buyers';
 import { AddProperty } from '../pages/addProperty/AddProperty';
-
-
-
-
+import PropertyDetail from '../pages/propertyDetail/PropertyDetail';
 
 
 export default function AppRouter() {
@@ -19,6 +16,7 @@ export default function AppRouter() {
                     <Route path='/' element={<Home />}></Route>
                     <Route path='/AddProperty' element={<AddProperty />}></Route>
                     <Route path='/Buyers' element={<Buyers />}></Route>
+                    <Route path='/PropertyDetail' element={<PropertyDetail />}></Route>
                     <Route path='/Login' element={<Login />}></Route>
                     <Route path='/Signup' element={<Signup />}></Route>
                 </Routes>

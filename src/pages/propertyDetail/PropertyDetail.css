@@ -1,0 +1,14 @@
+.pd-padding{
+    padding: 5%;
+    padding-bottom: 0%;
+}
+
+.pd-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pd-header-right{
+    display: flex;
+    gap: 20px;
+}

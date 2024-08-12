@@ -3,11 +3,16 @@ import './Card.css'
 import React from 'react'
 import Btn from '../btn/Btn'
 import location from '../../assets/imgs/location.png';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Card({ status, img, currentStatus }) {
+  const navigate = useNavigate();
   return (
-    <div className="card-Item">
+    <div
+      className="card-Item"
+      onClick={() => navigate('/PropertyDetail')}
+    >
       <div className="card-img"
         style={{ backgroundImage: `url(${img})` }}
       >
