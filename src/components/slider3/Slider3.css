@@ -1,0 +1,18 @@
+.slider3{
+    position: relative;
+    padding: 0px 40px;
+}
+
+.slider3-item{
+    /* padding: 0px 20px; */
+}
+
+.slider3-img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.slick-slide> span {
+    margin: 0px;
+    padding: 10px 0px;
+}

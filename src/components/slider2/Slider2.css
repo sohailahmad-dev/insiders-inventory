@@ -1,17 +1,15 @@
 .slider2{
     position: relative;
-    border-radius: 50px;
+    border-radius: 20px;
     overflow: hidden;
     border: none;
     outline: none;
-    max-width: 800px;
+    max-width: 1000px;
 }
 
 .slider2-img{
     width: 100%;
-    border-radius: 50px;
-
-   
+    border-radius: 50px;  
 }
 
 .slider2-prev, .slider2-next{
@@ -29,4 +27,11 @@
     position: absolute;
     top: 49%;
     right: 10px;
+}
+
+@media screen and (max-width:700px) {
+    
+.slider2-prev, .slider2-next{
+    width: 25px;
+}
 }

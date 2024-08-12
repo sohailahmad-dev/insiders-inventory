@@ -132,7 +132,7 @@ export default function Testimonial() {
 
 
             </div>
-            <div className='slider1-navigation text-center'>
+            <div className='slider1-navigation' style={{ display: 'flex', justifyContent: 'center' }}>
                 <img onClick={prevSlide} src={prev} alt="prev"
                     style={{
                         opacity: currentSlide === 0 ? 0.5 : 1,

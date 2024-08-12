@@ -12,3 +12,15 @@
     display: flex;
     gap: 20px;
 }
+
+@media screen and (max-width:700px) {
+    .pd-header{
+        flex-direction: column;
+    }
+
+    .pd-header-right{
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 20px;
+    }
+}

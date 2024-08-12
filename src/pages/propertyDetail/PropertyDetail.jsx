@@ -6,6 +6,7 @@ import location from '../../assets/imgs/location.png';
 import Btn from '../../components/btn/Btn';
 import { Grid } from '@mui/material';
 import Slider2 from '../../components/slider2/Slider2';
+import Slider3 from '../../components/slider3/Slider3';
 
 
 export default function PropertyDetail() {
@@ -36,6 +37,9 @@ export default function PropertyDetail() {
                 <Grid container spacing={5}>
                     <Grid item sm={7} xs={12}>
                         <Slider2 />
+                        <div >
+                            <Slider3 />
+                        </div>
                     </Grid>
                     <Grid item sm={5} xs={12}>
                         Right
