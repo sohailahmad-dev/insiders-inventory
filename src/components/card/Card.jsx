@@ -11,7 +11,7 @@ export default function Card({ status, img, currentStatus }) {
   return (
     <div
       className="card-Item"
-      onClick={() => navigate('/PropertyDetail')}
+      onClick={() => navigate('/PropertyDetail', { state: Math.random() })}
     >
       <div className="card-img"
         style={{ backgroundImage: `url(${img})` }}

@@ -1,37 +1,42 @@
-.slider2{
+.slider2 {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
     border: none;
     outline: none;
-    max-width: 1000px;
 }
 
-.slider2-img{
+.slider2-img {
     width: 100%;
-    border-radius: 50px;  
+    border-radius: 20px;
 }
 
-.slider2-prev, .slider2-next{
+.slider2-prev,
+.slider2-next {
     width: 34px;
 }
 
-.slider2-prev{
+.slider2-prev {
     position: absolute;
     top: 49%;
     left: 10px;
     z-index: 1;
 }
 
-.slider2-next{
+.slider2-next {
     position: absolute;
     top: 49%;
     right: 10px;
 }
 
 @media screen and (max-width:700px) {
-    
-.slider2-prev, .slider2-next{
-    width: 25px;
-}
+
+    .slider2-prev,
+    .slider2-next {
+        width: 25px;
+    }
+
+    .slider2-img {
+        border-radius: 10px;
+    }
 }

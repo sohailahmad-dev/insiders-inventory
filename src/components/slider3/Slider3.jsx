@@ -21,6 +21,7 @@ export default function Slider3() {
         slidesToScroll: 1,
         initialSlide: 0,
 
+
     };
 
     let sliderRef = useRef(null);
@@ -38,12 +39,14 @@ export default function Slider3() {
             sliderRef.slickNext();
         }
     }
+
+
     return (
         <section className='slider3' >
             {/* slider ruler  */}
             {/* navigation  */}
             <img onClick={prevSlide} src={prev} alt="prev"
-                className='slider2-prev'
+                className='slider3-prev'
                 style={{
                     opacity: currentSlide === 0 ? 0.5 : 1,
                     cursor: currentSlide === 0 ? 'default' : 'pointer'
@@ -51,7 +54,7 @@ export default function Slider3() {
             />
 
             <img onClick={nextSlide} src={next} alt="next"
-                className='slider2-next'
+                className='slider3-next'
                 style={{
                     opacity: currentSlide === (sliderData.length - 1) ? 0.5 : 1,
                     cursor: currentSlide === (sliderData.length - 1) ? 'default' : 'pointer'
@@ -69,7 +72,6 @@ export default function Slider3() {
                             key={item}
                             className='slider3-item'
                         >
-
                             <img src={item} alt="img" className='slider3-img' />
                         </span>
                     ))}

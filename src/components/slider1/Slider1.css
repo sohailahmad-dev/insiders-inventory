@@ -5,120 +5,10 @@
     margin-bottom: 50px;
 }
 
-.slick-slide > div {
+.slick-slide>div {
     margin: 0px 10px;
-    padding: 10px 0px;
+    padding: 5px 0px;
 }
-
-/* content styling */
-
-.slider1-Item {
-    border: 1px solid #4DAD49;
-    border-radius: 20px;
-    padding: 10px;
-}
-
-.slider1-img {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 250px;
-    border-radius: 20px;
-    padding-top: 20px;
-    position: relative;
-    margin-bottom: 50px;
-}
-
-.slider1-item-status {
-    background-color: black;
-    color: white;
-    border-radius: 3px;
-    padding: 8px 15px;
-    font-family: Lato-Regular;
-    font-size: 12px;
-    margin: 20px;
-
-}
-
-.slider1-item-statsBox {
-    position: absolute;
-    width: 80%;
-    left: 10%;
-    bottom: -30px;
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid lightgray;
-}
-
-.sldier1-stats-left {
-    padding: 10px;
-    border-right: 1px solid lightgray;
-
-}
-
-.sldier1-stats-right {
-    padding: 10px;
-
-}
-
-.sldier1-item-contents {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-left: 5px;
-}
-
-.slider1-stats-label {
-    font-family: Lora-Regular;
-    font-size: 12px;
-    color: var(--secondary-text);
-}
-
-.slider1-stats-figure {
-    font-family: Lato-Bold;
-    color: var(--primary-text);
-    font-size: 14px;
-    line-height: 22px;
-}
-
-.slider1-item1-heading {
-    font-family: Lora-Bold;
-    font-size: 20;
-    color: var(--secondary-text);
-}
-
-.slider1-item-price {
-    font-size: Lato-Bold;
-    font-size: 18px;
-    color: var(--primary-text);
-}
-
-.slider1-item-specs {
-    font-family: Lato-Bold;
-    font-size: 14px;
-    color: var(--secondary-text);
-}
-
-.slider1-item-lcation {
-    font-family: Lato-Bold;
-    font-size: 14px;
-    color: var(--primary-text);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.slider1-item-lcation img {
-    width: 18px;
-}
-
-
-
-
-
-
-
-
 
 /* navigation  */
 
@@ -159,5 +49,6 @@
 
     .slick-slide>div {
         margin: 0px;
+        padding: 5px 0px;
     }
 }
