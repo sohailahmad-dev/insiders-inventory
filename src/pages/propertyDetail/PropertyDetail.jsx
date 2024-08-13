@@ -224,7 +224,7 @@ export default function PropertyDetail() {
                                 </div>
                             </div>
                             {/* video  */}
-                            <div className='text-center'>
+                            <div className='text-center pd-video-sec'>
                                 <div className="heading3 text-center mt-40 mb-20">Video</div>
                                 <img src={videoImg} alt="img" />
                                 <img className='mt-20' src={map1} alt='map1' />

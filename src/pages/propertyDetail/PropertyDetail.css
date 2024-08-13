@@ -1,6 +1,10 @@
 .pd-padding {
-    padding: 5%;
-    padding-bottom: 0%;
+    /* padding: 5%;
+    padding-bottom: 0%; */
+    padding: 5% 10%;
+  padding-bottom: 0%;
+  padding-top: 2%;
+
 }
 
 .pd-m {
@@ -99,6 +103,11 @@
     color: var(--primary-text);
     font-family: Lato-Bold;
     font-size: 44px;
+}
+
+.pd-video-sec img{
+width: 100%;
+max-width: 350px;
 }
 
 
