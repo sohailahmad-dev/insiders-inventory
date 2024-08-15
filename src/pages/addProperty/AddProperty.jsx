@@ -46,162 +46,165 @@ export const AddProperty = () => {
                             </div>
                         ))}
                 </div>
-                {dataObj.property_type === 'Portfolio Package' && <Grid container spacing={2}>
-                    <Grid item sm={6} xs={12}>
-                        <SelectBox
-                            label='No. of Units'
-                            options={[1, 2, 3, 4, 5]}
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='Target Area'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='ROI'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='Price'
-                        />
-                    </Grid>
-                </Grid>}
-                <div className="heading3">Opportunity Type</div>
-                <div style={{ display: 'flex', width: '100%', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
-                    <CheckBox
-                        label='Buy & Hold'
-                    />
-                    <CheckBox
-                        label='Flip Opportunity'
-                    />
-                    <CheckBox
-                        label='Retail Owner Occupant'
-                    />
-                </div>
-                <div className="heading3">Property Address</div>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <InputField
-                            placeholder='Street Address'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='City'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='Zip Code'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='State'
-                        />
-                    </Grid>
-                </Grid>
-                <div className="heading3 mt-20">Details about your Listing</div>
-                <Grid container spacing={2}>
-
-                    <Grid item sm={6} xs={12}>
-                        <SelectBox
-                            label='Current Status'
-                            options={['Owner-Occupied', 'Tenant-Occupiend', 'Vacant']}
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <SelectBox
-                            label='Leased?'
-                            options={['Yes', 'No']}
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='Price'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='Initial Investment'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='Date'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='Size (SqFt)'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='# of Bedroom'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='# of Bathrooms'
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <SelectBox
-                            label='Basement'
-                            options={['Yes', 'No']}
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <SelectBox
-                            label='Garage'
-                            options={['Yes', 'No']}
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <SelectBox
-                            label='Property Management Company'
-                            options={['Yes', 'No']}
-                            onSelect={(e) => addData('property_management_company', e)}
-                        />
-                    </Grid>
-                    <Grid item sm={6} xs={12}>
-                        <InputField
-                            placeholder='Cash on Cash Return'
-                        />
-                    </Grid>
-                    {dataObj.property_management_company === 'Yes' &&
-                        <Grid item sm={6.1} xs={12}>
+                <>
+                    {dataObj.property_type === 'Portfolio Package' && <Grid container spacing={2}>
+                        <Grid item sm={6} xs={12}>
+                            <SelectBox
+                                label='No. of Units'
+                                options={[1, 2, 3, 4, 5]}
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
                             <InputField
-                                placeholder='Property Management Information'
+                                placeholder='Target Area'
                             />
-                        </Grid>}
-                    <Grid item xs={12}>
-                        <InputField
-                            placeholder='Additional Information / Remarks'
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <FileUpload />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <FileUpload
-                            label='Upload Video if any'
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Btn
-                                label='Submit'
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='ROI'
                             />
-                        </div>
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='Price'
+                            />
+                        </Grid>
+                    </Grid>}
+                    <div className="heading3">Opportunity Type</div>
+                    <div style={{ display: 'flex', width: '100%', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+                        <CheckBox
+                            label='Buy & Hold'
+                        />
+                        <CheckBox
+                            label='Flip Opportunity'
+                        />
+                        <CheckBox
+                            label='Retail Owner Occupant'
+                        />
+                    </div>
+                    <div className="heading3">Property Address</div>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <InputField
+                                placeholder='Street Address'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='City'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='Zip Code'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='State'
+                            />
+                        </Grid>
                     </Grid>
+                    <div className="heading3 mt-20">Details about your Listing</div>
+                    <Grid container spacing={2}>
+
+                        <Grid item sm={6} xs={12}>
+                            <SelectBox
+                                label='Current Status'
+                                options={['Owner-Occupied', 'Tenant-Occupiend', 'Vacant']}
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <SelectBox
+                                label='Leased?'
+                                options={['Yes', 'No']}
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='Price'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='Initial Investment'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='Date'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='Size (SqFt)'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='# of Bedroom'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='# of Bathrooms'
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <SelectBox
+                                label='Basement'
+                                options={['Yes', 'No']}
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <SelectBox
+                                label='Garage'
+                                options={['Yes', 'No']}
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <SelectBox
+                                label='Property Management Company'
+                                options={['Yes', 'No']}
+                                onSelect={(e) => addData('property_management_company', e)}
+                            />
+                        </Grid>
+                        <Grid item sm={6} xs={12}>
+                            <InputField
+                                placeholder='Cash on Cash Return'
+                            />
+                        </Grid>
+                        {dataObj.property_management_company === 'Yes' &&
+                            <Grid item sm={6.1} xs={12}>
+                                <InputField
+                                    placeholder='Property Management Information'
+                                />
+                            </Grid>}
+                        <Grid item xs={12}>
+                            <InputField
+                                placeholder='Additional Information / Remarks'
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FileUpload />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <FileUpload
+                                label='Upload Video if any'
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <Btn
+                                    label='Submit'
+                                />
+                            </div>
+                        </Grid>
 
 
-                </Grid>
+                    </Grid>
+                </>
+
             </section>
 
 

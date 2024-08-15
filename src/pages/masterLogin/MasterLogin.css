@@ -1,0 +1,51 @@
+.mLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--secondary-bg);
+    background-color: #0F2928;
+    padding-bottom: 20px;
+}
+
+.mLogin-box{
+    width: 500px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mLogin-logo {
+    width: 350px;
+}
+
+.logo-mLogin {
+    cursor: pointer;
+    font-family: Lato-SemiBold;
+    color: var(--accent-text);
+    font-size: 48px;
+    margin-bottom:50px ;
+}
+
+.logo-mLogin span {
+    color: var(--primary-text);
+    font-size: 48px;
+}
+
+@media screen and (max-width:700px) {
+    .mLogin-logo{
+        width: 200px;
+    }
+
+    .logo-mLogin{
+        font-size: 28px;
+    }
+
+    .logo-mLogin span{
+        font-size: 28px;
+    }
+}
+
+
+

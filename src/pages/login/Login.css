@@ -38,6 +38,7 @@
     font-family: Lato-Medium;
     font-size: 14px;
     color: var(--primary-text);
+    cursor: pointer;
 }
 
 
@@ -47,6 +48,9 @@
     font-family: Lato-Regular;
     color: var(--text);
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sign-bottom-text span {

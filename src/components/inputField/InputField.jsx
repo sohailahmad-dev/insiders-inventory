@@ -5,13 +5,13 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Icon } from '@mui/material';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
-export default function InputField({ icon, placeholder, isPassword, onChange, value, inputType, style, label, }) {
+export default function InputField({ icon, placeholder, isPassword, onChange, value, inputType, style, label, labelStyle }) {
 
 
 
     return (
         <div>
-            <div className='inputField-label' >
+            <div className='inputField-label' style={labelStyle} >
                 {label}
             </div>
             <div className='inputBox' style={style} >
