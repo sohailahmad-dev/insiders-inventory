@@ -18,13 +18,21 @@ import videoImg from '../../assets/imgs/videoImg.png'
 import Card from '../../components/card/Card'
 import Properties from '../../static/json/Properties'
 import { useLocation } from 'react-router-dom'
+import ApplyModal from './applyModal/ApplyModal'
 
 
 
 
 export default function PropertyDetail() {
     let [properties, setProperties] = useState([]);
+    let [openModal, setOpenModal] = useState(false);
     const location = useLocation();
+
+    const closeModal = () => {
+        setOpenModal(false)
+    }
+
+
     useEffect(() => {
         setProperties(Properties.slice(0, 6))
     }, [])
@@ -48,6 +56,7 @@ export default function PropertyDetail() {
                     <div className='pd-header-right' >
                         <Btn
                             label='Submit An Offer'
+                            onClick={() => setOpenModal(true)}
                         />
                         <Btn
                             label='Book A Call'
@@ -251,7 +260,10 @@ export default function PropertyDetail() {
                     }
                 </Grid>
             </section>
-
+            <ApplyModal
+                open={openModal}
+                onClose={closeModal}
+            />
             <Footer active='Off-Market Inventory' />
         </div>
     )
