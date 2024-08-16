@@ -15,6 +15,7 @@ import { Grid } from '@mui/material'
 import RangePicker from '../../components/rangePicker/RangePicker'
 import Card from '../../components/card/Card'
 import Properties from '../../static/json/Properties'
+import InputField from '../../components/inputField/InputField'
 
 
 
@@ -98,6 +99,14 @@ export const Buyers = () => {
                         options={['4956 W Red Oaks (A to Z)', 'Price (Low to High)', 'Price (High to Low)']}
                         label="Sort By"
                     />
+                </div>
+
+                <div>
+                    <div style={{ padding: '20px 20%' }}>
+                        <InputField
+                            placeholder='Search Property'
+                        />
+                    </div>
                 </div>
             </section>
             {/* sec 3  */}
