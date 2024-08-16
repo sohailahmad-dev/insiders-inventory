@@ -1,9 +1,15 @@
+.footer {
+    position: relative;
+}
+
 .footer-upper {
     margin: 0px 7%;
     background-color: var(--secondary-bg);
     border-radius: 20px;
     position: relative;
     padding-bottom: 0px;
+    z-index: 11;
+
 }
 
 .building {

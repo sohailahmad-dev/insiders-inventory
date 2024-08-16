@@ -2,9 +2,9 @@ import { Checkbox, FormControlLabel } from '@mui/material'
 import './CheckBox.css'
 import React from 'react'
 
-export default function CheckBox({ label, onChange, sx, labelColor }) {
+export default function CheckBox({ label, onChange, sx, labelColor, style }) {
     return (
-        <div className='check-box'>
+        <div className='check-box' style={style}>
             <FormControlLabel
                 control={<Checkbox
                     size='sm'

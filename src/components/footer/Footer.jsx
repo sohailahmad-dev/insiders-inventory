@@ -32,7 +32,7 @@ const socials = [
     }
 ]
 
-export default function Footer({ active }) {
+export default function Footer({ active, inPanel }) {
     let [activeLink, setActiveLink] = useState('Home');
     let isMobile = useIsMobile();
     const navigate = useNavigate();
@@ -44,9 +44,21 @@ export default function Footer({ active }) {
     }, [])
     return (
         <div className='footer'>
-            <div className='building-margin' ></div>
+            {inPanel && <div
+                style={{
+                    width: '200px',
+                    minHeight: '700px',
+                    background: inPanel ? '#0F2928' : 'white',
+                    position: 'absolute'
+                }}
+            >
+            </div>}
+            <div className='building-margin'></div>
             <div className="footer-upper">
                 <img src={building} className='building' />
+                <div>
+
+                </div>
                 <Grid container spacing={1}>
                     <Grid item sm={4.5} xs={12}></Grid>
                     <Grid item sm={7.5} xs={12}>

@@ -1,0 +1,37 @@
+.user-p-subHeading {
+    font-family: Lato-Medium;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.user-p-stats-item {
+    border: 1px solid lightgray;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.user-p-stats-figures {
+    font-family: Lora-SemiBold;
+    font-size: 20px;
+    color: var(--primary-text);
+}
+
+.user-p-stats-label-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 3px;
+}
+
+.user-p-stats-circle {
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+}
+
+.user-p-stats-label {
+    font-family: Lato-Medium;
+    font-size: 18px;
+    color: var(--text);
+
+}

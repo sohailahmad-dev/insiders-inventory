@@ -4,6 +4,7 @@
     align-items: center;
     background-color: #EFF0F2;
     width: 100%;
+    min-width: 100px;
     height: 45px;
     padding: 0px 20px;
     border-radius: 50px;

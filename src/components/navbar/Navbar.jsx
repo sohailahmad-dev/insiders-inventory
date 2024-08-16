@@ -31,13 +31,17 @@ export default function NavBar({ active }) {
         }
     }, [])
 
-
+    const goToHome = () => {
+        navigate('/')
+    }
 
 
     return (
         <>
             <div className="navBar">
-                <div className="logo-nb">
+                <div className="logo-nb"
+                    onClick={goToHome}
+                >
                     Insider's <span>Inventory</span>
                 </div>
 

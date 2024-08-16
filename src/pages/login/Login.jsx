@@ -11,6 +11,10 @@ import CheckBox from '../../components/checkBox1/CheckBox'
 
 export default function Login() {
     const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate('/UserPanel');
+    }
     return (
         <div>
             <NavBar active='Login' />
@@ -24,7 +28,11 @@ export default function Login() {
                     </Grid>
                     <Grid item sm={6.5} xs={12}>
                         <div className='sign-right'>
-                            <div className="sign-heading text-center mb-20">Log in to Submit an Off-Market <br className="desktop" /> Property</div>
+                            <div
+                                onClick={() => navigate('/MasterLogin')}
+                                className="sign-heading text-center mb-20">
+                                Log in to Submit an Off-Market <br className="desktop" /> Property
+                            </div>
                             <InputField
                                 label='Username'
                                 placeholder='John Doe'
@@ -43,6 +51,7 @@ export default function Login() {
                             <div className='text-center'>
                                 <Btn
                                     label='Sign In'
+                                    onClick={handleLogin}
                                 />
 
                             </div>
