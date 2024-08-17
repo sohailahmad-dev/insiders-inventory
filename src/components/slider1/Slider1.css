@@ -2,7 +2,7 @@
 .slider1-upper {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .slick-slide>div {

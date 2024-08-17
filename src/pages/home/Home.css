@@ -1,12 +1,11 @@
 .h-hero {
-    min-height: 350px;
-    padding: 10% 0px;
+    padding: 3% 0px;
     background-color: var(--primary-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .h-subHeading {

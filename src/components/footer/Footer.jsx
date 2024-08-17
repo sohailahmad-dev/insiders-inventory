@@ -47,21 +47,17 @@ export default function Footer({ active, inPanel }) {
             {inPanel && <div
                 style={{
                     width: '200px',
-                    minHeight: '700px',
+                    minHeight: '300px',
                     background: inPanel ? '#0F2928' : 'white',
                     position: 'absolute'
                 }}
             >
             </div>}
-            <div className='building-margin'></div>
             <div className="footer-upper">
-                <img src={building} className='building' />
-                <div>
-
-                </div>
+                <div style={{ height: 30, background: 'white' }} />
                 <Grid container spacing={1}>
-                    <Grid item sm={4.5} xs={12}></Grid>
-                    <Grid item sm={7.5} xs={12}>
+                    <Grid item sm={1} xs={12}></Grid>
+                    <Grid item sm={10} xs={12}>
                         <div className="footer-upper-right">
                             <div className="footer-heading">Signup for the Latest Deals</div>
                             <div className="footer-upper-text">By joining our mailing list, you'll receive the latest updates and opportunities in investment properties directly to your inbox.</div>

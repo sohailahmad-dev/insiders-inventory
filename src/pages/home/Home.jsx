@@ -53,6 +53,14 @@ export const Home = () => {
                         }}
                     />
                 </div>
+                <div className="h-btns">
+                    <Btn
+                        label='Sign up for the Latest Deals?'
+                    />
+                </div>
+                <div className="h-text">Sign up to receive the newest off-market opportunities before everyone
+                    else, straight to your inbox!</div>
+
             </div>
             {/* sec 2  */}
             <div className="h-sec4 padding" >
@@ -60,7 +68,7 @@ export const Home = () => {
             </div>
             {/* sec 3  */}
             <section className='h-sec3 padding'>
-                <div className="heading1 text-center mb-40">Off-Market<span>Property Types</span></div>
+                <div className="heading1 mb-40" style={{ textAlign: 'center' }}>Off-Market<span>Property Types</span></div>
                 <Grid container spacing={5}>
                     {propertyTypes && propertyTypes.length > 0 &&
                         propertyTypes.map(e => (

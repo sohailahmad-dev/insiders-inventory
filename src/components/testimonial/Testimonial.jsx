@@ -102,7 +102,7 @@ export default function Testimonial() {
     return (
         <section className="home-sec8-box">
             {/* slider ruler  */}
-            <div className="heading1 text-center">What Our<span>Clients Say</span></div>
+            <div className="heading1" style={{ textAlign: 'center' }}>What Our<span>Clients Say</span></div>
 
             <div className='home-slider2'  >
                 <Slider
