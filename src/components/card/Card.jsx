@@ -16,8 +16,9 @@ export default function Card({ status, img, currentStatus }) {
       <div className="card-img"
         style={{ backgroundImage: `url(${img})` }}
       >
-        {currentStatus === 'Sold' && <span className='card-house-sold' >{currentStatus}</span>}
+        {currentStatus === 'Sold' && <span className='card-house-new' style={{ background: 'red' }} >{currentStatus}</span>}
         {currentStatus === 'New' && <span className='card-house-new' >{currentStatus}</span>}
+        {currentStatus === 'Pending' && <span className='card-house-new' style={{ background: 'orange' }} >{currentStatus}</span>}
         <span className="card-item-status">{status}</span>
         {/* stats  */}
         <div className='card-item-statsBox'>

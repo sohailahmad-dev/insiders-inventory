@@ -1,7 +1,7 @@
 .custom-select1-container {
     position: relative;
     width: 100%;
-    min-height: 45px;
+    height: 45px;
     margin-top: 8px;
 }
 
@@ -16,6 +16,7 @@
     color: gray;
     font-family: Lato-Regular, 'Courier New', Courier, monospace;
     font-size: 14px;
+    height: 100%;
 }
 
 

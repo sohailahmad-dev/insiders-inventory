@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SelectBox.css'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-const SelectBox = ({ options, icon, label, onSelect, style }) => {
+const SelectBox = ({ options, icon, label, onSelect, style, labelStyle, containerStyle, iconColor }) => {
     const [selectedValue, setSelectedValue] = useState('');
     const [isOpen, setIsOpen] = useState(false);
 
@@ -14,9 +14,9 @@ const SelectBox = ({ options, icon, label, onSelect, style }) => {
 
     return (
         <div className="custom-select1-container" style={style}>
-            <div className="custom-select1-label" onClick={() => setIsOpen(!isOpen)}>
-                <span className="custom-select1-text">{selectedValue || label}</span>
-                <KeyboardArrowDownIcon />
+            <div className="custom-select1-label" style={containerStyle} onClick={() => setIsOpen(!isOpen)}>
+                <span className="custom-select1-text" style={labelStyle}>{selectedValue || label}</span>
+                <KeyboardArrowDownIcon sx={{ color: iconColor ?? 'gray' }} />
             </div>
             {isOpen && (
                 <ul className="custom-select1-options">

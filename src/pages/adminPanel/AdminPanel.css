@@ -88,7 +88,7 @@
 
 .ap-rightSide {
     flex: 1;
-    padding: 0px 2%;
+    padding: 2%;
     overflow-y: scroll;
     /* Hide the default scrollbar */
     transition: 1s ease;
@@ -160,10 +160,14 @@
     }
 
 
+    .ap-rightSide {
+        padding: 5%;
+    }
 
     .ap-contractContent {
         margin-left: 0px;
         transition: 1s ease;
+        padding: 5%;
     }
 
     /* Style the custom scrollbar */

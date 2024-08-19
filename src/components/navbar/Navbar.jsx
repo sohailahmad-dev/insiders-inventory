@@ -13,7 +13,7 @@ import useIsMobile from "../../hooks/UseIsMobile";
 
 
 
-export default function NavBar({ active }) {
+export default function NavBar({ active, onLogoClick }) {
     let [menu, setMenu] = useState('true');
     let [activeMenu, setActiveMenu] = useState('navLinks');
     let [activeLink, setActiveLink] = useState('Home');
@@ -40,7 +40,7 @@ export default function NavBar({ active }) {
         <>
             <div className="navBar">
                 <div className="logo-nb"
-                    onClick={goToHome}
+                    onClick={onLogoClick ?? goToHome}
                 >
                     Insider's <span>Inventory</span>
                 </div>

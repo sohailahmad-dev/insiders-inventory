@@ -11,7 +11,7 @@ const Properties = [
     {
         "img": img4,
         "status": "Owner Occupied",
-        "currentStatus": ""
+        "currentStatus": "Pending"
     },
     {
         "img": img5,
@@ -31,7 +31,7 @@ const Properties = [
     {
         "img": img3,
         "status": "Vacant",
-        "currentStatus": ""
+        "currentStatus": "Pending"
     },
     {
         "img": img4,
@@ -61,7 +61,7 @@ const Properties = [
     {
         "img": img4,
         "status": "Owner Occupied",
-        "currentStatus": ""
+        "currentStatus": "Pending"
     },
     {
         "img": img5,

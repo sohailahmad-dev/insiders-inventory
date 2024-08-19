@@ -87,6 +87,15 @@
     height: 200px;
 }
 
+.panel-div {
+    width: 200px;
+    min-height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2
+}
+
 @media screen and (max-width:700px) {
     .building {
         display: none;
@@ -94,6 +103,10 @@
 
     .footer-links {
         flex-direction: column;
+    }
+
+    .panel-div {
+        display: none;
     }
 
 }

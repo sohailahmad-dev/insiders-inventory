@@ -44,17 +44,11 @@ export default function Footer({ active, inPanel }) {
     }, [])
     return (
         <div className='footer'>
-            {inPanel && <div
-                style={{
-                    width: '200px',
-                    minHeight: '300px',
-                    background: inPanel ? '#0F2928' : 'white',
-                    position: 'absolute'
-                }}
-            >
-            </div>}
+            {inPanel && <div className='panel-div' style={{
+                background: inPanel ? '#0F2928' : 'white',
+            }}></div>}
             <div className="footer-upper">
-                <div style={{ height: 30, background: 'white' }} />
+                <div style={{ height: 10, marginTop: inPanel ? 0 : 40 }} > </div>
                 <Grid container spacing={1}>
                     <Grid item sm={1} xs={12}></Grid>
                     <Grid item sm={10} xs={12}>
@@ -173,6 +167,6 @@ export default function Footer({ active, inPanel }) {
                 <div className="footer-line"></div>
                 <div className="footer-text text-center">Copyright Insider’s Inventory 2024 . All rights reserved.</div>
             </div>
-        </div>
+        </div >
     )
 }

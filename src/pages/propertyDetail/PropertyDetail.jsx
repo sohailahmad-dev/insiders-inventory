@@ -248,7 +248,7 @@ export default function PropertyDetail() {
                 <Grid container spacing={3}>
                     {properties && properties.length > 0 &&
                         properties.map(item => (
-                            <Grid item lg={3} md={4} sm={4} xs={12} key={Math.random()} >
+                            <Grid item xl={3} lg={4} md={4} sm={4} xs={12} key={Math.random()} >
                                 <Card
                                     key={item?.status}
                                     status={item?.status}

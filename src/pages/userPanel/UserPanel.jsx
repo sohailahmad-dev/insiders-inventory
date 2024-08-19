@@ -146,7 +146,9 @@ export default function UserPanel() {
 
     return (
         <div>
-            <NavBar active='Off-Market Inventory' />
+            <NavBar active='Off-Market Inventory' onLogoClick={() => {
+                setMenu(!menu)
+            }} />
             <div className='ap-main'>
                 <div className={activeMenu}>
                     <div>
@@ -183,7 +185,6 @@ export default function UserPanel() {
                     <Routes>
                         <Route path='UserProfile' element={<UserProfile />}></Route>
                         <Route path='UserProperties' element={<UserProperties />}></Route>
-
                     </Routes>
                 </div>
 
