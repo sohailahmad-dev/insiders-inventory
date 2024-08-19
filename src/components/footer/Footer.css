@@ -101,12 +101,13 @@
         display: none;
     }
 
-    .footer-links {
-        flex-direction: column;
-    }
-
     .panel-div {
         display: none;
+    }
+
+    .footerLinks{
+        display: none;
+        /* flex-direction: column; */
     }
 
 }

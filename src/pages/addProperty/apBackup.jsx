@@ -15,7 +15,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package']
 
 
-export const AddProperty = () => {
+export const AddProperty1 = () => {
 
     let [dataObj, setDataObj] = useState({});
 

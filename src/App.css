@@ -363,7 +363,7 @@ body {
   }
 
   .heading1 span {
-    /* margin-left: 5px; */
+    margin-left: 5px;
     font-family: Lora-Bold;
     font-size: 28px;
     color: var(--primary-text);
