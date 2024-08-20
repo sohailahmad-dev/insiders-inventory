@@ -11,6 +11,7 @@ import { Icon } from '@mui/material';
 import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
 import UserProfile from './userPanelScreens/userProfile/UserProfile';
 import UserProperties from './userPanelScreens/userProperties/UserProperties';
+import AddProperty from '../addProperty/AddProperty'
 
 
 
@@ -46,8 +47,8 @@ export default function UserPanel() {
             icon: MapsHomeWorkOutlinedIcon,
         },
         {
-            label: 'Home',
-            to: '',
+            label: 'Submit Property',
+            to: 'AddProperty',
             icon: HomeOutlinedIcon,
         },
         {
@@ -85,14 +86,12 @@ export default function UserPanel() {
         if (e.label === 'Logout') {
             navigate('/')
         } else {
-            setActiveScreen(e.label);
-            navigate(e.to)
             if (deviceType === 'Mobile') {
                 setMenu(!menu)
             }
+            setActiveScreen(e.label);
+            navigate(e.to, { state: e.to })
         }
-
-
     }
 
     useEffect(() => {
@@ -185,6 +184,7 @@ export default function UserPanel() {
                     <Routes>
                         <Route path='UserProfile' element={<UserProfile />}></Route>
                         <Route path='UserProperties' element={<UserProperties />}></Route>
+                        <Route path='AddProperty' element={<AddProperty />}></Route>
                     </Routes>
                 </div>
 

@@ -4,7 +4,7 @@ import { Home } from '../pages/home/Home';
 import Login from '../pages/login/Login';
 import Signup from '../pages/signup/Signup';
 import { Buyers } from '../pages/buyers/Buyers';
-import { AddProperty } from '../pages/addProperty/AddProperty';
+import AddProperty from '../pages/addProperty/AddProperty';
 import PropertyDetail from '../pages/propertyDetail/PropertyDetail';
 import MasterLogin from '../pages/masterLogin/MasterLogin';
 import AdminPanel from '../pages/adminPanel/AdminPanel';

@@ -9,6 +9,7 @@ import img1 from '../../assets/imgs/img1.png'
 import img2 from '../../assets/imgs/img2.png'
 import Slider1 from '../../components/slider1/Slider1'
 import Testimonial from '../../components/testimonial/Testimonial'
+import { useNavigate } from 'react-router-dom'
 
 let propertyTypes = [
     {
@@ -33,6 +34,7 @@ let propertyTypes = [
 ]
 
 export const Home = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <NavBar active={'Home'} />
@@ -43,24 +45,19 @@ export const Home = () => {
                 <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures. Discover your path to profitable real estate investments.</div>
                 <div className="h-btns">
                     <Btn
-                        label='Submit an Off-Market Property'
+                        onClick={() => navigate('/Buyers')}
+                        label='View our Off-Market Inventory'
+
                     />
                     <Btn
-                        label='View our Off-Market Inventory'
+                        onClick={() => navigate('/AddProperty')}
+                        label='Submit an Off-Market Property'
                         style={{
                             backgroundColor: 'transparent',
                             color: '#4DAD49'
                         }}
                     />
                 </div>
-                <div className="h-btns">
-                    <Btn
-                        label='Sign up for the Latest Deals?'
-                    />
-                </div>
-                <div className="h-text">Sign up to receive the newest off-market opportunities before everyone
-                    else, straight to your inbox!</div>
-
             </div>
             {/* sec 2  */}
             <div className="h-sec4 padding" >

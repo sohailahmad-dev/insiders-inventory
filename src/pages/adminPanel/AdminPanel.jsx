@@ -8,7 +8,14 @@ import Footer from '../../components/footer/Footer';
 import NavBar from '../../components/navbar/Navbar';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import Person2OutlinedIcon from '@mui/icons-material/Person2Outlined';
 import { Icon } from '@mui/material';
+import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
+import UserProfile from '../userPanel/userPanelScreens/userProfile/UserProfile';
+import AddProperty from '../addProperty/AddProperty';
+import UserProperties from '../userPanel/userPanelScreens/userProperties/UserProperties';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import Users from './adminPanelScreens/users/Users';
 
 
 
@@ -23,7 +30,7 @@ export default function AdminPanel() {
     let [menu, setMenu] = useState(false);
     let [activeMenu, setActiveMenu] = useState('ap-navLinks ap-activeMenu');
     let [handleContent, setHandleContent] = useState('ap-rightSide ap-contractContent');
-    let [activeScreen, setActiveScreen] = useState('Home');
+    let [activeScreen, setActiveScreen] = useState('Properties');
     let [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
     let [userData, setUserData] = useState({});
     let [isLoading, setIsLoading] = useState(false);
@@ -34,8 +41,23 @@ export default function AdminPanel() {
 
     const btns = [
         {
-            label: 'Home',
-            to: '',
+            label: 'My Profile',
+            to: 'UserProfile',
+            icon: Person2OutlinedIcon,
+        },
+        {
+            label: 'Users',
+            to: 'Users',
+            icon: GroupOutlinedIcon,
+        },
+        {
+            label: 'Properties',
+            to: 'UserProperties',
+            icon: MapsHomeWorkOutlinedIcon,
+        },
+        {
+            label: 'Submit Property',
+            to: 'AddProperty',
             icon: HomeOutlinedIcon,
         },
         {
@@ -69,11 +91,16 @@ export default function AdminPanel() {
     // }, [isAdminLoggedIn])
 
 
+
     const handleBtnClick = (e) => {
-        setActiveScreen(e.label);
-        navigate(e.to)
-        if (deviceType === 'Mobile') {
-            setMenu(!menu)
+        if (e.label === 'Logout') {
+            navigate('/')
+        } else {
+            if (deviceType === 'Mobile') {
+                setMenu(!menu)
+            }
+            setActiveScreen(e.label);
+            navigate(e.to, { state: e.to })
         }
     }
 
@@ -84,6 +111,9 @@ export default function AdminPanel() {
 
 
     useEffect(() => {
+        navigate('UserProperties')
+
+
         const handleResize = () => {
             const width = window.innerWidth;
             if (width < 768) {
@@ -161,7 +191,10 @@ export default function AdminPanel() {
 
                     <Routes>
                         {/* <Route path='UserManagement' element={<UserManagement />}></Route> */}
-
+                        <Route path='UserProfile' element={<UserProfile />}></Route>
+                        <Route path='UserProperties' element={<UserProperties />}></Route>
+                        <Route path='AddProperty' element={<AddProperty />}></Route>
+                        <Route path='Users' element={<Users />}></Route>
                     </Routes>
                 </div>
 

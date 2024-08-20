@@ -11,13 +11,16 @@ import CheckBox from '../../components/checkBox1/CheckBox'
 import add from '../../assets/imgs/add.png'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useLocation } from 'react-router-dom'
 
 const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package']
 
-
-export const AddProperty = () => {
+const AddProperty = () => {
 
     let [dataObj, setDataObj] = useState({});
+    const location = useLocation();
+
+    console.log(location.state)
 
     const [properties, setProperties] = useState([{}]); // Initialize with one property
     const [formVisibility, setFormVisibility] = useState([true]); // Control form visibility for each property
@@ -44,12 +47,12 @@ export const AddProperty = () => {
 
     return (
         <div>
-            <NavBar active='Off-Market Inventory' />
+            {location.state !== 'AddProperty' && <NavBar active='Off-Market Inventory' />}
             {/* sec 1 hero  */}
-            <div className="h-hero">
+            {location.state !== 'AddProperty' && <div className="h-hero">
                 <div className="h-heading"> <span> Sell and Buy </span> Property</div>
                 <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures. Discover your path to profitable real estate investments today</div>
-            </div>
+            </div>}
             {/* sec 2  */}
             <section className="add-property-sec-2 padding">
                 <div className="heading2 mb-30">Add a Property</div>
@@ -213,15 +216,6 @@ export const AddProperty = () => {
                                 label='Upload Video if any'
                             />
                         </Grid>
-                        <Grid item xs={12}>
-                            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                <Btn
-                                    label='Submit'
-                                />
-                            </div>
-                        </Grid>
-
-
                     </Grid>
                 </>}
 
@@ -379,7 +373,9 @@ export const AddProperty = () => {
             </section>
 
 
-            <Footer active='Off-Market Inventory' />
+            {location.state !== 'AddProperty' && <Footer active='Off-Market Inventory' />}
         </div>
     )
 }
+
+export default AddProperty;

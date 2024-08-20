@@ -1,5 +1,4 @@
 import React from 'react'
-import './UserProperties.css'
 import SelectBox from '../../../../components/selectBox/SelectBox'
 import { Grid } from '@mui/material'
 import InputField from '../../../../components/inputField/InputField'
@@ -44,68 +43,67 @@ const data = [
 
 ]
 
-export default function UserProperties() {
+const users = [
+    {
+        id: 1,
+        firstname: 'John',
+        lastname: 'Doe',
+        email: 'johndoe@gmail.com',
+        category: 'invester',
+        phonenumber: '111222333',
+    },
+    {
+        id: 2,
+        firstname: 'John',
+        lastname: 'Doe',
+        email: 'johndoe@gmail.com',
+        category: 'invester',
+        phonenumber: '111222333',
+    },
+    {
+        id: 3,
+        firstname: 'John',
+        lastname: 'Doe',
+        email: 'johndoe@gmail.com',
+        category: 'invester',
+        phonenumber: '111222333',
+    },
+    {
+        id: 4,
+        firstname: 'John',
+        lastname: 'Doe',
+        email: 'johndoe@gmail.com',
+        category: 'invester',
+        phonenumber: '111222333',
+    },
+]
+
+export default function Users() {
     const navigate = useNavigate();
     return (
         <div>
-            <div className="heading2 mb-20">All Properties</div>
-            <Grid container spacing={1}>
-                <Grid item sm={2} xs={6}>
-                    <SelectBox
-                        label='Sale Status'
-                        options={['Pending', 'Sold']}
-                    />
-                </Grid>
-                <Grid item sm={2} xs={6}>
-                    <SelectBox
-                        label='Type'
-                        options={['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential']}
-                    />
-                </Grid>
-                <Grid item sm={2} xs={6}>
-                    <SelectBox
-                        label='Property Status'
-                        options={['Pending', 'Sold']}
-                    />
-                </Grid>
-                <Grid item sm={2} xs={6}>
-                    <SelectBox
-                        label='Price'
-                        options={['200000', '300000']}
-                    />
-                </Grid>
-                <Grid item sm={4} xs={6}>
-                    <div style={{ display: 'flex', gap: '5px' }} >
-                        <InputField
-                            placeholder='Search a Listing'
-                        />
-                        <Btn
-                            label='Search'
-                        />
-                    </div>
-                </Grid>
-            </Grid>
+            <div className="heading2 mb-20">All Users</div>
 
             <div className="ap-table">
                 <div className="ap-th">
                     <Grid container spacing={1}>
-                        <Grid item sm={0.75}>
+                        <Grid item sm={0.5}>
                             <div className="th-heading">#</div>
                         </Grid>
-                        <Grid item sm={3.25}>
-                            <div className="th-heading">Property</div>
+                        <Grid item sm={2}>
+                            <div className="th-heading">First Name</div>
                         </Grid>
                         <Grid item sm={2}>
-                            <div className="th-heading">Property Status</div>
+                            <div className="th-heading">Last Name</div>
                         </Grid>
-                        <Grid item sm={1.5}>
-                            <div className="th-heading">Type</div>
+                        <Grid item sm={2}>
+                            <div className="th-heading">Email</div>
                         </Grid>
-                        <Grid item sm={1.5}>
-                            <div className="th-heading">Price</div>
+                        <Grid item sm={2}>
+                            <div className="th-heading">Category</div>
                         </Grid>
-                        <Grid item sm={1.5}>
-                            <div className="th-heading">Status</div>
+                        <Grid item sm={2}>
+                            <div className="th-heading">Phone Number</div>
                         </Grid>
                         <Grid item sm={1.5}>
                             <div className="th-heading">Actions</div>
@@ -113,60 +111,43 @@ export default function UserProperties() {
                     </Grid>
                 </div>
                 <div className="ap-tb">
-                    {data.map(e => (
+                    {users.map(e => (
                         <div className='ap-th'>
                             <Grid container spacing={1}>
-                                <Grid item sm={0.75} xs={12} >
+                                <Grid item sm={0.5} xs={12} >
                                     <div className="ap-tr">
                                         <div className="th-heading1">#</div>
                                         <div className="tr-data">{e?.id}</div>
                                     </div>
                                 </Grid>
-                                <Grid item sm={3.25} xs={12}>
+                                <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
-                                        <div className="th-heading1">Property</div>
-                                        <div className="tr-property">
-                                            <img src={e?.img} alt='img' />
-                                            <div>
-                                                <div className="tr-data">Apartment with subunits</div>
-                                                <div className="tr-data-loc">Jersey city, Greenville</div>
-                                            </div>
-                                        </div>
+                                        <div className="th-heading1">First Name</div>
+                                        <div className="tr-data">{e?.firstname}</div>
                                     </div>
                                 </Grid>
                                 <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
-                                        <div className="th-heading1">Property Status</div>
-                                        <div className="tr-data">{e?.status}</div>
+                                        <div className="th-heading1">Last Name</div>
+                                        <div className="tr-data">{e?.lastname}</div>
                                     </div>
                                 </Grid>
-                                <Grid item sm={1.5} xs={12}>
+                                <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
-                                        <div className="th-heading1">Type</div>
-                                        <div className="tr-data">{e?.type}</div>
+                                        <div className="th-heading1">Email</div>
+                                        <div className="tr-data">{e?.email}</div>
                                     </div>
                                 </Grid>
-                                <Grid item sm={1.5} xs={12}>
+                                <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
-                                        <div className="th-heading1">Price</div>
-                                        <div className="tr-data" style={{ color: 'green' }} >${e?.price}</div>
+                                        <div className="th-heading1">Category</div>
+                                        <div className="tr-data" >${e?.category}</div>
                                     </div>
                                 </Grid>
-                                <Grid item sm={1.5} xs={12}>
+                                <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
-                                        <div className="th-heading1">Status</div>
-                                        <SelectBox
-                                            label='Status'
-                                            options={['Pending', 'Sold']}
-                                            style={{
-                                                marginTop: 0,
-                                                height: '30px',
-                                                width: '90%'
-                                            }}
-                                            labelStyle={{
-                                                fontSize: 12,
-                                            }}
-                                        />
+                                        <div className="th-heading1">Phone Number</div>
+                                        <div className="tr-data">{e?.phonenumber}</div>
                                     </div>
                                 </Grid>
                                 <Grid item sm={1.5} xs={12}>

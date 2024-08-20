@@ -45,6 +45,7 @@ export default function MasterLogin() {
                 </div>
                 <div className='text-center'>
                     <Btn
+                        onClick={() => navigate('/AdminPanel')}
                         label='Sign In'
                     />
 
