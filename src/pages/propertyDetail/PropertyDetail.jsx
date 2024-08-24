@@ -55,12 +55,14 @@ export default function PropertyDetail() {
                     </div>
                     <div className='pd-header-right' >
                         <Btn
-                            label='Submit An Offer'
-                            onClick={() => setOpenModal(true)}
+                            label='Schedule a Showing'
                         />
                         <Btn
-                            label='Book A Call'
+                            label='Submit An Offer'
+                            style={{ background: 'orange', border: '2px solid orange' }}
+                            onClick={() => setOpenModal(true)}
                         />
+
                     </div>
                 </div>
             </section>
@@ -76,7 +78,7 @@ export default function PropertyDetail() {
                             {/* property stats  */}
                             <div className="pd-box mt-30">
                                 <div className="pd-p-header">
-                                    <div className="pd-heading">Overview</div>
+                                    <div className="pd-heading">Property Information</div>
                                     <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
                                         <div className="pd-p-label">Property ID:</div>
 
@@ -192,32 +194,80 @@ export default function PropertyDetail() {
                     <Grid item sm={4.5} xs={12}>
                         <div className="pd-sec2-right">
                             <div className="pd-box pd-price-box">
-                                <div className="pd-heading">Purchase Price</div>
-                                <div className="heading1 pd-price">$112,000</div>
+                                <div className="pd-heading white-text" >Purchase Price</div>
+                                <div className="heading1 pd-price orange-text">$112,000</div>
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
-                                    <div className="pd-p-label"> Initial Investment</div>
-                                    <div className="pd-p-val">
+                                    <div className="pd-p-label white-text"> Initial Investment</div>
+                                    <div className="pd-p-val white-text">
                                         $22400
                                     </div>
                                 </div>
                                 <div className="pd-stats-item1">
-                                    <div className="pd-p-label"> Potential ROI </div>
-                                    <div className="pd-p-val"> 15% </div>
+                                    <div className="pd-p-label white-text"> Potential ROI </div>
+                                    <div className="pd-p-val white-text"> 15% </div>
                                 </div>
                                 <div className="pd-stats-item1">
-                                    <div className="pd-p-label">Cap Rate </div>
-                                    <div className="pd-p-val"> 9%</div>
+                                    <div className="pd-p-label white-text">Cap Rate </div>
+                                    <div className="pd-p-val white-text"> 9%</div>
                                 </div>
                                 <div className="pd-stats-item1">
-                                    <div className="pd-p-label"> Cash Flow Per Month </div>
-                                    <div className="pd-p-val"> $220</div>
+                                    <div className="pd-p-label white-text"> Cash Flow Per Month </div>
+                                    <div className="pd-p-val white-text"> $220</div>
+                                </div>
+
+                            </div>
+                            <div className="pd-box pd-price-box">
+                                <div className="pd-heading white-text" >Purchase Price</div>
+                                <div className="heading1 pd-price">$112,000</div>
+                                <div className="pd-line"></div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label white-text"> Initial Investment</div>
+                                    <div className="pd-p-val white-text">
+                                        $22400
+                                    </div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label white-text"> Potential ROI </div>
+                                    <div className="pd-p-val white-text"> 15% </div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label white-text">Cap Rate </div>
+                                    <div className="pd-p-val white-text"> 9%</div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label white-text"> Cash Flow Per Month </div>
+                                    <div className="pd-p-val white-text"> $220</div>
+                                </div>
+
+                            </div>
+                            <div className="pd-box pd-price-box">
+                                <div className="pd-heading orange-text" >Purchase Price</div>
+                                <div className="heading1 pd-price">$112,000</div>
+                                <div className="pd-line"></div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label orange-text"> Initial Investment</div>
+                                    <div className="pd-p-val white-text">
+                                        $22400
+                                    </div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label orange-text"> Potential ROI </div>
+                                    <div className="pd-p-val white-text"> 15% </div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label orange-text">Cap Rate </div>
+                                    <div className="pd-p-val white-text"> 9%</div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label orange-text"> Cash Flow Per Month </div>
+                                    <div className="pd-p-val white-text"> $220</div>
                                 </div>
 
                             </div>
                             {/* lower  */}
                             <div className="pd-box mt-40">
-                                <div className="heading3 text-center">Property Information</div>
+                                <div className="heading3 text-center">Lease Information</div>
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label"> Current Status </div>

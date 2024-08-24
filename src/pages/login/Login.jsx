@@ -13,6 +13,14 @@ export default function Login() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
+        const userObject = {
+            username: 'John Doe',
+            password: '123456',
+            rememberMe: true,
+        };
+
+        // Store userObject in localStorage
+        localStorage.setItem('user', JSON.stringify(userObject));
         navigate('/UserPanel');
     }
     return (

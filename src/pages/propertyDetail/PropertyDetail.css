@@ -2,8 +2,8 @@
     /* padding: 5%;
     padding-bottom: 0%; */
     padding: 5% 10%;
-  padding-bottom: 0%;
-  padding-top: 2%;
+    padding-bottom: 0%;
+    padding-top: 2%;
 
 }
 
@@ -97,6 +97,7 @@
 
 .pd-price-box {
     text-align: center;
+    background-color: var(--primary-bg);
 }
 
 .pd-price {
@@ -105,9 +106,17 @@
     font-size: 44px;
 }
 
-.pd-video-sec img{
-width: 100%;
-max-width: 350px;
+.pd-video-sec img {
+    width: 100%;
+    max-width: 350px;
+}
+
+.white-text {
+    color: white;
+}
+
+.orange-text {
+    color: orange;
 }
 
 

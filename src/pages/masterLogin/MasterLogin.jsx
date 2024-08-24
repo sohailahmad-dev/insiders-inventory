@@ -45,7 +45,17 @@ export default function MasterLogin() {
                 </div>
                 <div className='text-center'>
                     <Btn
-                        onClick={() => navigate('/AdminPanel')}
+                        onClick={() => {
+                            const userObject = {
+                                username: 'John Doe',
+                                password: '123456',
+                                rememberMe: true,
+                            };
+
+                            // Store userObject in localStorage
+                            localStorage.setItem('user', JSON.stringify(userObject));
+                            navigate('/AdminPanel')
+                        }}
                         label='Sign In'
                     />
 

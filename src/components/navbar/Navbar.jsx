@@ -94,7 +94,6 @@ export default function NavBar({ active, onLogoClick }) {
                         }
                         }
                     >Flip Opportunities</div>
-
                     <div
                         className={activeLink === 'Off-Market Inventory' ? "link-nb" : "link-nb1"}
                         onClick={() => {
@@ -102,6 +101,13 @@ export default function NavBar({ active, onLogoClick }) {
                         }
                         }
                     >Off-Market Inventory</div>
+                    <div
+                        className={"link-nb"}
+                        onClick={() => {
+                            navigate('/EmailSignup')
+                        }
+                        }
+                    >Subscribe for emails</div>
                     {isMobile && <Btn
                         label="Login/Signup" onClick={() => navigate('/Login')} />}
 

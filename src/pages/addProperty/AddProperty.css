@@ -36,7 +36,7 @@
     border: 1px solid #4DAD49;
 }
 
-.add-property-box{
+.add-property-box {
     width: 100%;
     display: flex;
     align-items: center;
@@ -44,18 +44,18 @@
     margin: 20px 0px;
 }
 
-.add-property-box-inner{
-    flex:1;
-    height:60px;
+.add-property-box-inner {
+    flex: 1;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border:1px solid lightgray;
+    border: 1px solid lightgray;
     border-radius: 10px;
     padding: 0px 20px;
 }
 
-.add-property-box img{
+.add-property-box img {
     width: 48px;
     height: 48px;
     cursor: pointer;
