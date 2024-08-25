@@ -193,6 +193,30 @@ export default function PropertyDetail() {
                     </Grid>
                     <Grid item sm={4.5} xs={12}>
                         <div className="pd-sec2-right">
+                            <div className="pd-box pd-price-box" style={{ background: 'white' }} >
+                                <div className="pd-heading" >Purchase Price</div>
+                                <div className="heading1 pd-price" style={{ color: '#163231' }}>$112,000</div>
+                                <div className="pd-line"></div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label "> Initial Investment</div>
+                                    <div className="pd-p-val ">
+                                        $22400
+                                    </div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label "> Potential ROI </div>
+                                    <div className="pd-p-val "> 15% </div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label ">Cap Rate </div>
+                                    <div className="pd-p-val "> 9%</div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label "> Cash Flow Per Month </div>
+                                    <div className="pd-p-val "> $220</div>
+                                </div>
+
+                            </div>
                             <div className="pd-box pd-price-box">
                                 <div className="pd-heading white-text" >Purchase Price</div>
                                 <div className="heading1 pd-price orange-text">$112,000</div>
@@ -241,30 +265,7 @@ export default function PropertyDetail() {
                                 </div>
 
                             </div>
-                            <div className="pd-box pd-price-box">
-                                <div className="pd-heading orange-text" >Purchase Price</div>
-                                <div className="heading1 pd-price">$112,000</div>
-                                <div className="pd-line"></div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label orange-text"> Initial Investment</div>
-                                    <div className="pd-p-val white-text">
-                                        $22400
-                                    </div>
-                                </div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label orange-text"> Potential ROI </div>
-                                    <div className="pd-p-val white-text"> 15% </div>
-                                </div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label orange-text">Cap Rate </div>
-                                    <div className="pd-p-val white-text"> 9%</div>
-                                </div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label orange-text"> Cash Flow Per Month </div>
-                                    <div className="pd-p-val white-text"> $220</div>
-                                </div>
 
-                            </div>
                             {/* lower  */}
                             <div className="pd-box mt-40">
                                 <div className="heading3 text-center">Lease Information</div>
