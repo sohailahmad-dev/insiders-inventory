@@ -219,7 +219,7 @@ export default function PropertyDetail() {
                             </div>
                             <div className="pd-box pd-price-box">
                                 <div className="pd-heading white-text" >Purchase Price</div>
-                                <div className="heading1 pd-price orange-text">$112,000</div>
+                                <div className="heading1 pd-price">$112,000</div>
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label white-text"> Initial Investment</div>
@@ -243,7 +243,7 @@ export default function PropertyDetail() {
                             </div>
                             <div className="pd-box pd-price-box">
                                 <div className="pd-heading white-text" >Purchase Price</div>
-                                <div className="heading1 pd-price">$112,000</div>
+                                <div className="heading1 pd-price orange-text">$112,000</div>
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label white-text"> Initial Investment</div>
@@ -265,6 +265,7 @@ export default function PropertyDetail() {
                                 </div>
 
                             </div>
+
 
                             {/* lower  */}
                             <div className="pd-box mt-40">
