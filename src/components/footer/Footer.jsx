@@ -32,7 +32,7 @@ const socials = [
     }
 ]
 
-export default function Footer({ active, inPanel }) {
+export default function Footer({ active, inPanel, hideEmail }) {
     let [activeLink, setActiveLink] = useState('Home');
     let isMobile = useIsMobile();
     const navigate = useNavigate();

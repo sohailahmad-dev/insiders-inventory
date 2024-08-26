@@ -11,8 +11,10 @@ import CheckBox from '../../components/checkBox1/CheckBox'
 import add from '../../assets/imgs/add.png'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/UseAuth'
+import signImg from '../../assets/imgs/signImg.png'
+
 
 const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package']
 
@@ -21,8 +23,8 @@ const AddProperty = () => {
     let [dataObj, setDataObj] = useState({});
     const isLoggedIn = useAuth();
     const location = useLocation();
+    const navigate = useNavigate();
 
-    console.log(location.state)
 
     const [properties, setProperties] = useState([{}]); // Initialize with one property
     const [formVisibility, setFormVisibility] = useState([true]); // Control form visibility for each property
@@ -395,11 +397,52 @@ const AddProperty = () => {
                     </Grid>
                 </section>
                 :
-                <div className='padding heading2 text-center mt-30 mb-50'>Please login/sign-up to submit your off-market
-                    inventory today </div>}
+                <div>
+                    <section className="padding">
+                        <Grid container spacing={5}>
+                            <Grid sm={1} />
+                            <Grid item sm={3.5} xs={12}>
+                                <div className="text-center sign-left">
+                                    <img src={signImg} alt="img" className='signImg' />
+                                </div>
+
+                            </Grid>
+                            <Grid item sm={6.5} xs={12}>
+                                <div className='sign-right'>
+                                    <div
+                                        onClick={() => navigate('/MasterLogin')}
+                                        className="sign-heading text-center mb-20">
+                                        <span style={{ color: '#4DAD49' }}>Login/Sign-Up </span> to Submit Your Off-Market
+                                        Inventory Today!
+                                    </div>
 
 
-            {location.state !== 'AddProperty' && <Footer active='Off-Market Inventory' />}
+                                    <div className="h-btns" style={{ justifyContent: 'center' }}>
+                                        <Btn
+                                            onClick={() => navigate('/Login')}
+                                            label='Login'
+
+                                        />
+                                        <Btn
+                                            onClick={() => navigate('/Signup')}
+                                            label='Sign-Up'
+                                            style={{
+                                                backgroundColor: 'transparent',
+                                                color: '#4DAD49'
+                                            }}
+                                        />
+                                    </div>
+
+
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </section>
+                </div>
+            }
+
+
+            {location.state !== 'AddProperty' && <Footer hideEmail={true} active='Off-Market Inventory' />}
         </div>
     )
 }

@@ -38,6 +38,10 @@ export default function NavBar({ active, onLogoClick }) {
 
     return (
         <>
+            <div className="nb-email">
+                Signup to our VIP Buyers List to see new listings before everyone else
+                <span onClick={() => navigate('/EmailSignup')} > Signup</span>
+            </div>
             <div className="navBar">
                 <div className="logo-nb"
                     onClick={onLogoClick ?? goToHome}
@@ -101,13 +105,6 @@ export default function NavBar({ active, onLogoClick }) {
                         }
                         }
                     >Off-Market Inventory</div>
-                    <div
-                        className={"link-nb"}
-                        onClick={() => {
-                            navigate('/EmailSignup')
-                        }
-                        }
-                    >Subscribe for emails</div>
                     {isMobile && <Btn
                         label="Login/Signup" onClick={() => navigate('/Login')} />}
 
