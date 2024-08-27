@@ -14,6 +14,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/UseAuth'
 import signImg from '../../assets/imgs/signImg.png'
+import Login from '../login/Login'
 
 
 const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package']
@@ -398,46 +399,7 @@ const AddProperty = () => {
                 </section>
                 :
                 <div>
-                    <section className="padding">
-                        <Grid container spacing={5}>
-                            <Grid sm={1} />
-                            <Grid item sm={3.5} xs={12}>
-                                <div className="text-center sign-left">
-                                    <img src={signImg} alt="img" className='signImg' />
-                                </div>
-
-                            </Grid>
-                            <Grid item sm={6.5} xs={12}>
-                                <div className='sign-right'>
-                                    <div
-                                        onClick={() => navigate('/MasterLogin')}
-                                        className="sign-heading text-center mb-20">
-                                        <span style={{ color: '#4DAD49' }}>Login/Sign-Up </span> to Submit Your Off-Market
-                                        Inventory Today!
-                                    </div>
-
-
-                                    <div className="h-btns" style={{ justifyContent: 'center' }}>
-                                        <Btn
-                                            onClick={() => navigate('/Login')}
-                                            label='Login'
-
-                                        />
-                                        <Btn
-                                            onClick={() => navigate('/Signup')}
-                                            label='Sign-Up'
-                                            style={{
-                                                backgroundColor: 'transparent',
-                                                color: '#4DAD49'
-                                            }}
-                                        />
-                                    </div>
-
-
-                                </div>
-                            </Grid>
-                        </Grid>
-                    </section>
+                    <Login hide={true} />
                 </div>
             }
 

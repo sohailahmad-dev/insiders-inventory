@@ -39,6 +39,29 @@
     margin-top: 30px;
 }
 
+.slider1 {
+    position: relative;
+    padding: 0px 40px;
+}
+
+.slider1-prev,
+.slider1-next {
+    width: 30px;
+}
+
+.slider1-prev {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    z-index: 1;
+}
+
+.slider1-next {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+}
+
 @media screen and (max-width:700px) {
     .slider1-upper {
         display: flex;
@@ -51,4 +74,15 @@
         margin: 0px;
         padding: 5px 0px;
     }
+
+    .slider1 {
+        position: relative;
+        padding: 0px 35px;
+    }
+
+    .slider1-prev,
+    .slider1-next {
+        width: 20px;
+    }
+
 }

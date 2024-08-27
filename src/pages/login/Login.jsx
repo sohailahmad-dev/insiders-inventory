@@ -9,7 +9,7 @@ import Btn from '../../components/btn/Btn'
 import { useNavigate } from 'react-router-dom'
 import CheckBox from '../../components/checkBox1/CheckBox'
 
-export default function Login() {
+export default function Login({ hide }) {
     const navigate = useNavigate();
 
     const handleLogin = () => {
@@ -25,7 +25,7 @@ export default function Login() {
     }
     return (
         <div>
-            <NavBar active='Login' />
+            {hide || <NavBar active='Login' />}
             <section className="padding">
                 <Grid container spacing={5}>
                     <Grid item sm={5.5} xs={12}>
@@ -38,8 +38,9 @@ export default function Login() {
                         <div className='sign-right'>
                             <div
                                 onClick={() => navigate('/MasterLogin')}
-                                className="sign-heading text-center mb-20">
-                                Log in to Submit an Off-Market <br className="desktop" /> Property
+                                className="sign-heading text-center mb-20"
+                            >
+                                Login to Submit an Off-Market Property Today!
                             </div>
                             <InputField
                                 label='Username'
@@ -66,14 +67,14 @@ export default function Login() {
                             <div className='sign-bottom-text'>Don't have an account?
                                 <span
                                     onClick={() => navigate('/Signup')}
-                                > Sign up</span>
+                                > Sign-Up</span>
                             </div>
 
                         </div>
                     </Grid>
                 </Grid>
             </section>
-            <Footer active='Login' />
+            {hide || <Footer active='Login' />}
         </div>
     )
 }
