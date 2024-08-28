@@ -12,6 +12,8 @@ import Btn from '../btn/Btn';
 import Card from '../card/Card';
 import prev from '../../assets/imgs/prev1.png';
 import next from '../../assets/imgs/next1.png';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 export default function Slider1() {
     const sliderData = [
@@ -87,7 +89,7 @@ export default function Slider1() {
 
                 {/* </div> */}
             </div>
-            <img onClick={prevSlide} src={prev} alt="prev"
+            {/* <img onClick={prevSlide} src={prev} alt="prev"
                 className='slider1-prev'
                 style={{
                     opacity: 1,
@@ -101,7 +103,26 @@ export default function Slider1() {
                     opacity: 1,
                     cursor: 'pointer'
                 }}
-            />
+            /> */}
+
+            <div className='slider1-prev' onClick={prevSlide}>
+                <ArrowBackIosIcon
+                    fontSize='large'
+                    sx={{
+                        cursor: 'pointer',
+                        color: '#4DAD49'
+                    }}
+                />
+            </div>
+            <div className='slider1-next' onClick={nextSlide}>
+                <ArrowForwardIosIcon
+                    fontSize='large'
+                    sx={{
+                        cursor: 'pointer',
+                        color: '#4DAD49'
+                    }}
+                />
+            </div>
             <div className='home-slider1'  >
                 <Slider
                     ref={slider => {

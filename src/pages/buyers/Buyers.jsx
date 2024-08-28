@@ -16,6 +16,7 @@ import RangePicker from '../../components/rangePicker/RangePicker'
 import Card from '../../components/card/Card'
 import Properties from '../../static/json/Properties'
 import InputField from '../../components/inputField/InputField'
+import MapComponent from '../../components/mapComponent/MapComponent'
 
 
 
@@ -125,6 +126,10 @@ export const Buyers = () => {
                         ))
                     }
                 </Grid>
+            </section>
+            {/* map  */}
+            <section className="padding">
+                <MapComponent />
             </section>
 
             <Footer active='Buyers' />
