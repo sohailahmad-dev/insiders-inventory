@@ -19,7 +19,7 @@ export default function AppRouter() {
                 <Routes>
                     <Route path='/' element={<Home />}></Route>
                     <Route path='/AddProperty' element={<AddProperty />}></Route>
-                    <Route path='/Buyers' element={<Buyers />}></Route>
+                    <Route path='/Properties' element={<Buyers />}></Route>
                     <Route path='/PropertyDetail' element={<PropertyDetail />}></Route>
                     <Route path='/MasterLogin' element={<MasterLogin />}></Route>
                     <Route path='/Login' element={<Login />}></Route>

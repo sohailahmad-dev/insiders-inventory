@@ -21,12 +21,13 @@ import { useLocation } from 'react-router-dom'
 import ApplyModal from './applyModal/ApplyModal'
 
 
-
+const type = 'Assignment'
 
 export default function PropertyDetail() {
     let [properties, setProperties] = useState([]);
     let [openModal, setOpenModal] = useState(false);
     const location = useLocation();
+
 
     const closeModal = () => {
         setOpenModal(false)
@@ -197,8 +198,14 @@ export default function PropertyDetail() {
                     <Grid item sm={4.5} xs={12}>
                         <div className="pd-sec2-right">
                             <div className="pd-box pd-price-box" style={{ background: 'white' }} >
-                                <div className="pd-heading" >Purchase Price</div>
-                                <div className="heading1 pd-price" >$112,000</div>
+                                <div className='pd-type-box'>
+                                    <div className="heading1 pd-price" >$112,000</div>
+                                    <div className="pd-p-val"
+                                        style={{
+                                            color: type === 'Neither' ? 'black' : 'lightgray'
+                                        }}
+                                    >{type === 'Neither' ? 'For Sale' : type}</div>
+                                </div>
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Initial Investment</div>

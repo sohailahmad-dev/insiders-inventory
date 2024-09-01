@@ -73,27 +73,11 @@ export default function AdminPanel() {
         setSeverity('error');
     }
 
-    // useEffect(() => {
-    //     const storedUserData = localStorage.getItem("user");
-    //     if (storedUserData) {
-    //         const data = JSON.parse(storedUserData);
-    //         setUserData(data);
-    //         if (data?.role.toLowerCase() === 'admin') {
-    //             setIsAdminLoggedIn(true);
-    //             setActiveScreen('User Management')
-    //             navigate('UserManagement')
-    //         } else {
-    //             navigate('/');
-    //         }
-    //     } else {
-    //         navigate('/')
-    //     }
-    // }, [isAdminLoggedIn])
-
 
 
     const handleBtnClick = (e) => {
         if (e.label === 'Logout') {
+            localStorage.removeItem('user');
             navigate('/')
         } else {
             if (deviceType === 'Mobile') {

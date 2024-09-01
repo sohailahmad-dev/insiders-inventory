@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Buyers.css'
 import NavBar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
@@ -10,6 +10,7 @@ import bedroomIcon from '../../assets/imgs/bedroomIcon.png'
 import basementIcon from '../../assets/imgs/basementIcon.png'
 import garageIcon from '../../assets/imgs/garageIcon.png'
 import homeIcon from '../../assets/imgs/homeIcon.png'
+import packageIcon from '../../assets/imgs/packageIcon.png'
 import opportunityIcon from '../../assets/imgs/opportunityIcon.png'
 import { Grid } from '@mui/material'
 import RangePicker from '../../components/rangePicker/RangePicker'
@@ -17,6 +18,8 @@ import Card from '../../components/card/Card'
 import Properties from '../../static/json/Properties'
 import InputField from '../../components/inputField/InputField'
 import MapComponent from '../../components/mapComponent/MapComponent'
+import { useNavigate } from 'react-router-dom'
+import useIsMobile from '../../hooks/UseIsMobile'
 
 
 
@@ -29,7 +32,7 @@ const selectsData = [
     {
         icon: homeIcon,
         label: 'Property Type',
-        options: ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential']
+        options: ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Vacant Land']
     },
     {
         icon: opportunityIcon,
@@ -61,51 +64,83 @@ const selectsData = [
         label: 'Size (SqFt)',
         options: ['80', '120', '200', '400']
     },
+    {
+        icon: packageIcon,
+        iconWidth: 15,
+        iconHeight: 15,
+        label: 'Package',
+        options: ['Package - Yes', 'Package - No']
+    }
 ]
 
 export const Buyers = () => {
+    const navigate = useNavigate();
+    const isMobile = useIsMobile();
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+        } else {
+            navigate('/Signup')
+        }
+    }, [])
+
     return (
         <div>
             <NavBar active='Buyers' />
             {/* sec 1 hero  */}
             <div className="h-hero">
-                <div className="h-heading"> <span> Off-Market</span> Inventory</div>
-                <div className="h-text">Our off-market inventory features unique opportunities tailored to your needs. Contact us to explore these hidden gems today.</div>
+                <div className="h-heading">Insider’s Off-Market  <span> Inventory</span> </div>
+                <div className="h-text">Our off-market inventory features unique opportunities tailored to your needs. Sign-Up to explore these hidden gems today.</div>
 
             </div>
             {/* sec 2  */}
             <section className="buyers-sec2 padding">
-                <Grid container spacing={2}>
-                    {selectsData && selectsData.length > 0 &&
-                        selectsData.map(e => (
-                            <Grid item md={2.4} sm={3} xs={6} >
-                                <CustomSelect
-                                    icon={e?.icon}
-                                    options={e?.options}
-                                    label={e?.label}
+                <Grid container spacing={3}>
+                    <Grid item sm={5} xs={12}>
+                        <MapComponent />
+
+                    </Grid>
+                    <Grid item sm={7} xs={12}>
+                        <Grid container spacing={2}>
+                            {selectsData && selectsData.length > 0 &&
+                                selectsData.map(e => (
+                                    <Grid item sm={6} xs={6} >
+                                        <CustomSelect
+                                            iconWidth={e?.iconWidth}
+                                            iconHeight={e?.iconHeight}
+                                            icon={e?.icon}
+                                            options={e?.options}
+                                            label={e?.label}
+                                        />
+                                    </Grid>
+                                ))}
+
+                            <Grid item sm={6} xs={12}>
+                                <RangePicker
                                 />
                             </Grid>
-                        ))}
-                    {/* price range */}
-                    <Grid item md={4.8} sm={6} xs={12}>
-                        <RangePicker
-                        />
+                            {/* price range */}
+                            <Grid item xs={2.5} >
+                                <CustomSelect
+                                    options={['4956 W Red Oaks (A to Z)', 'Price (Low to High)', 'Price (High to Low)', 'Newest']}
+                                    label="Sort By"
+                                />
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
 
+
                 <div className="buyers-sec2-bottom">
                     <p>Showing 1-15 of 480 Properties</p>
-                    <CustomSelect
-                        style={{ width: 200 }}
-                        options={['4956 W Red Oaks (A to Z)', 'Price (Low to High)', 'Price (High to Low)']}
-                        label="Sort By"
-                    />
+
                 </div>
 
                 <div>
                     <div style={{ padding: '20px 20%' }}>
                         <InputField
-                            placeholder='Search Property'
+                            placeholder='Search for a property address'
                         />
                     </div>
                 </div>
@@ -129,7 +164,6 @@ export const Buyers = () => {
             </section>
             {/* map  */}
             <section className="padding">
-                <MapComponent />
             </section>
 
             <Footer active='Buyers' />

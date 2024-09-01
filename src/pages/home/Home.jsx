@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import NavBar from '../../components/navbar/Navbar'
 import Btn from '../../components/btn/Btn'
@@ -10,6 +10,7 @@ import img2 from '../../assets/imgs/img2.png'
 import Slider1 from '../../components/slider1/Slider1'
 import Testimonial from '../../components/testimonial/Testimonial'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/UseAuth'
 
 let propertyTypes = [
     {
@@ -35,6 +36,12 @@ let propertyTypes = [
 
 export const Home = () => {
     const navigate = useNavigate();
+    const isLoggedIn = useAuth();
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/')
+        }
+    }, [])
     return (
         <div>
             <NavBar active={'Home'} />

@@ -84,7 +84,8 @@ export default function UserPanel() {
 
     const handleBtnClick = (e) => {
         if (e.label === 'Logout') {
-            navigate('/')
+            localStorage.removeItem('user');
+            navigate('/');
         } else {
             if (deviceType === 'Mobile') {
                 setMenu(!menu)

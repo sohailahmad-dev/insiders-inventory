@@ -3,10 +3,9 @@ import './Navbar.css';
 import { useEffect, useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-import logo from '../../assets/img/logo.png'
 import Btn from "../btn/Btn";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import useIsMobile from "../../hooks/UseIsMobile";
+import { useAuth } from "../../hooks/UseAuth";
 
 
 
@@ -18,6 +17,7 @@ export default function NavBar({ active, onLogoClick }) {
     let [activeMenu, setActiveMenu] = useState('navLinks');
     let [activeLink, setActiveLink] = useState('Home');
     let isMobile = useIsMobile();
+    let isLoggedIn = useAuth();
 
     const navigate = useNavigate();
 
@@ -35,6 +35,33 @@ export default function NavBar({ active, onLogoClick }) {
         navigate('/')
     }
 
+    const links = [
+        {
+            label: 'Home',
+            to: '/',
+        },
+        {
+            label: 'Become an Insider',
+            to: '/'
+        },
+        {
+            label: 'Off-Market Inventory',
+            to: '/AddProperty'
+        },
+        {
+            label: 'Buy & Hold',
+            to: '/Properties'
+        },
+        {
+            label: 'Retail',
+            to: '/Properties'
+        },
+        {
+            label: 'Flip Opportunities',
+            to: '/Properties'
+        },
+    ]
+
 
     return (
         <>
@@ -51,67 +78,28 @@ export default function NavBar({ active, onLogoClick }) {
 
                 <div className={activeMenu}>
 
-                    <div
-                        className={activeLink == 'Home' ? "link-nb" : "link-nb1"}
-                        onClick={() => {
-                            navigate('/')
-                        }
-                        }
-                    >Home</div>
+                    {links.map(e => (
+                        <div
+                            key={e?.label}
+                            className={activeLink == e?.label ? "link-nb" : "link-nb1"}
+                            onClick={() => {
+                                navigate(e?.to)
+                            }
+                            }
+                        >{e?.label}</div>
+                    ))}
 
-                    <div
-                        className={activeLink === 'Buyers' ? "link-nb" : "link-nb1"}
-                        onClick={() => {
-                            navigate('/Buyers')
-                        }
-                        }
-                    >Buyers</div>
 
-                    <div
-                        className={activeLink === 'Sellers' ? "link-nb" : "link-nb1"}
-                        onClick={() => {
-                            navigate('/')
-                        }
-                        }
-                    >Sellers</div>
 
-                    <div
-                        className={activeLink === 'Buy & Hold' ? "link-nb" : "link-nb1"}
-                        onClick={() => {
-                            navigate('/')
-                        }
-                        }
-                    >Buy & Hold</div>
-
-                    <div
-                        className={activeLink === 'Retail' ? "link-nb" : "link-nb1"}
-                        onClick={() => {
-                            navigate('/')
-                        }
-                        }
-                    >Retail</div>
-
-                    <div
-                        className={activeLink === 'Flip Opportunities' ? "link-nb" : "link-nb1"}
-                        onClick={() => {
-                            navigate('/')
-                        }
-                        }
-                    >Flip Opportunities</div>
-                    <div
-                        className={activeLink === 'Off-Market Inventory' ? "link-nb" : "link-nb1"}
-                        onClick={() => {
-                            navigate('/AddProperty')
-                        }
-                        }
-                    >Off-Market Inventory</div>
+                    {/* {(isMobile && !isLoggedIn) ? <Btn
+                        label="Login/Signup" onClick={() => navigate('/Login')} /> : <div></div>} */}
                     {isMobile && <Btn
-                        label="Login/Signup" onClick={() => navigate('/Login')} />}
+                        label="Member Login/Sign-up" onClick={() => navigate('/Login')} />}
 
 
                 </div>
                 {!isMobile && <Btn
-                    label="Login/Signup" onClick={() => navigate('/Login')} />}
+                    label="Member Login/Sign-up" onClick={() => navigate('/Login')} />}
 
                 <div className="icon">
                     {menu ? <MenuIcon

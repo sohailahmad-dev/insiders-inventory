@@ -40,7 +40,7 @@ export default function Login({ hide }) {
                                 onClick={() => navigate('/MasterLogin')}
                                 className="sign-heading text-center mb-20"
                             >
-                                Login to Submit an Off-Market Property Today!
+                                Login to browse inventory, submit an off- market property, or make an offer today!
                             </div>
                             <InputField
                                 label='Username'
@@ -59,12 +59,12 @@ export default function Login({ hide }) {
                             </div>
                             <div className='text-center'>
                                 <Btn
-                                    label='Sign In'
+                                    label='Member Login'
                                     onClick={handleLogin}
                                 />
 
                             </div>
-                            <div className='sign-bottom-text'>Don't have an account?
+                            <div className='sign-bottom-text'>Not a Member?
                                 <span
                                     onClick={() => navigate('/Signup')}
                                 > Sign-Up</span>

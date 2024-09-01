@@ -96,14 +96,18 @@
 }
 
 .pd-price-box {
-    text-align: center;
     background-color: var(--primary-bg);
+}
+
+.pd-type-box {
+    display: flex;
+    justify-content: space-between;
 }
 
 .pd-price {
     color: var(--primary-text);
     font-family: Lato-Bold;
-    font-size: 44px;
+    font-size: 40px;
 }
 
 .pd-video-sec img {

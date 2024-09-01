@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AddProperty.css'
 import NavBar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
@@ -27,12 +27,12 @@ const AddProperty = () => {
     const navigate = useNavigate();
 
 
-    const [properties, setProperties] = useState([{}]); // Initialize with one property
-    const [formVisibility, setFormVisibility] = useState([true]); // Control form visibility for each property
+    const [properties, setProperties] = useState([{}]);
+    const [formVisibility, setFormVisibility] = useState([true]);
 
     const addProperty = () => {
-        setProperties([...properties, {}]); // Add a new empty property object
-        setFormVisibility([...formVisibility, true]); // Show form for the new property
+        setProperties([...properties, {}]);
+        setFormVisibility([...formVisibility, true]);
     };
 
     const toggleFormVisibility = (index) => {
@@ -48,6 +48,9 @@ const AddProperty = () => {
         dataObj[label] = value;
         setDataObj({ ...dataObj });
     }
+
+
+
 
 
     return (
@@ -219,7 +222,13 @@ const AddProperty = () => {
                                         placeholder='Property Management Information'
                                     />
                                 </Grid>}
-                            <Grid item xs={12}>
+                            <Grid item sm={6} xs={12}>
+                                <SelectBox
+                                    label='Type'
+                                    options={['Assignment', 'Wholesale', 'Neither']}
+                                />
+                            </Grid>
+                            <Grid item sm={12} xs={12}>
                                 <InputField
                                     placeholder='Additional Information / Remarks'
                                 />

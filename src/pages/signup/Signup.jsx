@@ -24,7 +24,7 @@ export default function Signup() {
                     <Grid item sm={6.5} xs={12}>
                         <div className='sign-right'>
 
-                            <div className="sign-heading text-center mb-20">Sign-up to view available inventory  <br className="desktop" /> or to list a property</div>
+                            <div className="sign-heading text-center mb-20">Become a Member or Sign-In to view Available Properties</div>
                             <InputField
                                 label='First Name'
                                 placeholder='John'

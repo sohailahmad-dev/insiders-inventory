@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './CustomSelect.css'; // Add your custom CSS here
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-const CustomSelect = ({ options, icon, label, onSelect, style }) => {
+const CustomSelect = ({ options, icon, label, onSelect, style, iconWidth, iconHeight }) => {
     const [selectedValue, setSelectedValue] = useState('');
     const [isOpen, setIsOpen] = useState(false);
 
@@ -15,7 +15,7 @@ const CustomSelect = ({ options, icon, label, onSelect, style }) => {
     return (
         <div className="custom-select-container" style={style}>
             <div className="custom-select-label" onClick={() => setIsOpen(!isOpen)}>
-                {icon && <img src={icon} alt='icon' className='custom-select-icon' />}
+                {icon && <img src={icon} alt='icon' className='custom-select-icon' style={{ width: iconWidth, height: iconHeight }} />}
                 <span className="custom-select-text">{selectedValue || label}</span>
                 <KeyboardArrowDownIcon />
             </div>
