@@ -6,7 +6,7 @@ import SelectBox from '../../components/selectBox/SelectBox';
 import FileUpload from '../../components/fileInput/FileUpload';
 
 const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package'];
-const opportunityTypes = ['Buy & Hold', 'Flip Opportunity', 'Retail', 'Owner-Occupant', 'Current Renovation']
+const opportunityTypes = ['Buy & Hold', 'Flip Opportunity', 'Retail', 'Owner-Occupant', 'Just Remodeled']
 
 export default function AddPropertyForm() {
     let [dataObj, setDataObj] = useState({});

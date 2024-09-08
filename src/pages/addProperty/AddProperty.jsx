@@ -19,7 +19,6 @@ import AddPropertyForm from './AddPropertyForm'
 
 
 const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package'];
-const opportunityTypes = ['Buy & Hold', 'Flip Opportunity', 'Retail', 'Owner-Occupant', 'Current Renovation']
 
 const AddProperty = () => {
 
