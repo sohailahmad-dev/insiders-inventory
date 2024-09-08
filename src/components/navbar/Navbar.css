@@ -32,7 +32,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 4%;
+    padding: 0px 2%;
     height: 70px;
     z-index: 1111;
 }
@@ -57,7 +57,7 @@
 .navLinks {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .link-nb {

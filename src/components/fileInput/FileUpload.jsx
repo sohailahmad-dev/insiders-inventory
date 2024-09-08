@@ -16,7 +16,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function FileUpload({ label = 'Upload a File' }) {
+export default function FileUpload({ label = 'Upload Photos' }) {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (event) => {

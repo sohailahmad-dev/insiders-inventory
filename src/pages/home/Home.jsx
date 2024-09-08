@@ -16,21 +16,34 @@ let propertyTypes = [
     {
         id: 1,
         img: img1,
-        type: 'Buy & Hold Properties',
+        type: 'Buy & Hold',
         description: 'Secure your future with our Buy & Hold properties, offering stability and long-term growth potential.'
     },
     {
         id: 2,
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZFyb2akvS_EkACDpyNNre3CDOCThUovLmw&s',
-        type: 'Retail - Owner Occupant',
-        description: 'Tailored Retail Spaces for Owner-Occupied Success in Prime Locations.'
-    },
-    {
-        id: 3,
         img: img2,
         type: 'Flip Opportunities',
         description: "Seize Profit Potential: Explore High-Yield Flip Opportunities with Insider's Inventory."
     },
+    {
+        id: 3,
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZFyb2akvS_EkACDpyNNre3CDOCThUovLmw&s',
+        type: 'Retail',
+        description: 'Tailored Retail Spaces for Owner-Occupied Success in Prime Locations.'
+    },
+    {
+        id: 4,
+        img: img1,
+        type: 'Owner-Occupant',
+        description: 'Secure your future with our Buy & Hold properties, offering stability and long-term growth potential.'
+    },
+    {
+        id: 5,
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZFyb2akvS_EkACDpyNNre3CDOCThUovLmw&s',
+        type: 'Current Renovation',
+        description: 'Tailored Retail Spaces for Owner-Occupied Success in Prime Locations.'
+    },
+
 
 ]
 
@@ -78,12 +91,11 @@ export const Home = () => {
                 <Grid container spacing={5}>
                     {propertyTypes && propertyTypes.length > 0 &&
                         propertyTypes.map(e => (
-                            <Grid item sm={4} xs={12} key={e?.type} >
+                            <Grid item sm={2.4} xs={12} key={e?.type} >
                                 <div className="home-card3">
                                     <div className='home-card3-imgBox'
                                         style={{ backgroundImage: `url(${e?.img})` }}
                                     >
-
                                     </div>
                                     <div className='home-card3-type'>
                                         {e.type}

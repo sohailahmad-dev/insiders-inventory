@@ -41,11 +41,7 @@ export default function NavBar({ active, onLogoClick }) {
             to: '/',
         },
         {
-            label: 'Become an Insider',
-            to: '/'
-        },
-        {
-            label: 'Off-Market Inventory',
+            label: 'All Off-Market Inventory',
             to: '/AddProperty'
         },
         {
@@ -53,14 +49,24 @@ export default function NavBar({ active, onLogoClick }) {
             to: '/Properties'
         },
         {
+            label: 'Flip Opportunities',
+            to: '/Properties'
+        },
+        {
             label: 'Retail',
             to: '/Properties'
         },
         {
-            label: 'Flip Opportunities',
+            label: 'Owner-Occupant',
             to: '/Properties'
         },
+        {
+            label: 'Current Renovation',
+            to: '/Properties'
+        },
+
     ]
+
 
 
     return (
