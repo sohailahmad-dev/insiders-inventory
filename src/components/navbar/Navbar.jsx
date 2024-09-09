@@ -42,7 +42,7 @@ export default function NavBar({ active, onLogoClick }) {
         },
         {
             label: 'All Off-Market Inventory',
-            to: '/AddProperty'
+            to: '/Properties'
         },
         {
             label: 'Buy & Hold',
@@ -64,7 +64,10 @@ export default function NavBar({ active, onLogoClick }) {
             label: 'Current Renovation',
             to: '/Properties'
         },
-
+        {
+            label: 'Submit an Off-Market Inventory',
+            to: '/AddProperty'
+        },
     ]
 
 
