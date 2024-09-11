@@ -10,6 +10,7 @@ import MasterLogin from '../pages/masterLogin/MasterLogin';
 import AdminPanel from '../pages/adminPanel/AdminPanel';
 import UserPanel from '../pages/userPanel/UserPanel';
 import { EmailSignup } from '../pages/emailSignup/EmailSignup';
+import LoginSignup from '../pages/loginSignup/LoginSignup';
 
 
 export default function AppRouter() {
@@ -22,6 +23,7 @@ export default function AppRouter() {
                     <Route path='/Properties' element={<Buyers />}></Route>
                     <Route path='/PropertyDetail' element={<PropertyDetail />}></Route>
                     <Route path='/MasterLogin' element={<MasterLogin />}></Route>
+                    <Route path='/LoginSignup' element={<LoginSignup />}></Route>
                     <Route path='/Login' element={<Login />}></Route>
                     <Route path='/Signup' element={<Signup />}></Route>
                     <Route path='/EmailSignup' element={<EmailSignup />}></Route>

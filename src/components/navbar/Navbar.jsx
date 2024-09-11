@@ -103,12 +103,12 @@ export default function NavBar({ active, onLogoClick }) {
                     {/* {(isMobile && !isLoggedIn) ? <Btn
                         label="Login/Signup" onClick={() => navigate('/Login')} /> : <div></div>} */}
                     {isMobile && <Btn
-                        label="Member Login/Sign-up" onClick={() => navigate('/Login')} />}
+                        label="Member Login/Sign-up" onClick={() => navigate('/LoginSignup')} />}
 
 
                 </div>
                 {!isMobile && <Btn
-                    label="Member Login/Sign-up" onClick={() => navigate('/Login')} />}
+                    label="Member Login/Sign-up" onClick={() => navigate('/LoginSignup')} />}
 
                 <div className="icon">
                     {menu ? <MenuIcon

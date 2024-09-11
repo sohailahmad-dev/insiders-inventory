@@ -121,28 +121,35 @@ export const Buyers = () => {
                                 />
                             </Grid>
                             {/* price range */}
-                            <Grid item xs={2.5} >
-                                <CustomSelect
-                                    options={['4956 W Red Oaks (A to Z)', 'Price (Low to High)', 'Price (High to Low)', 'Newest']}
-                                    label="Sort By"
-                                />
-                            </Grid>
+
                         </Grid>
                     </Grid>
                 </Grid>
 
 
-                <div className="buyers-sec2-bottom">
+                <div className="buyers-sec2-bottom"    >
                     <p>Showing 1-15 of 480 Properties</p>
 
                 </div>
 
-                <div>
-                    <div style={{ padding: '20px 20%' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 20, alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
+
+                    <div
+                        style={{ flex: 3, marginRight: '20%' }}
+                    >
                         <InputField
                             placeholder='Search for a property address'
                         />
                     </div>
+                    <div
+                        style={{ flex: 1 }}
+                    >
+                        <CustomSelect
+                            options={['4956 W Red Oaks (A to Z)', 'Price (Low to High)', 'Price (High to Low)', 'Newest']}
+                            label="Sort By"
+                        />
+                    </div>
+
                 </div>
             </section>
             {/* sec 3  */}
