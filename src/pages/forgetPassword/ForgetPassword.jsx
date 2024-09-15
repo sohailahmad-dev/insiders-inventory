@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
-import './Login.css'
 import NavBar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
-import { Checkbox, FormControlLabel, Grid } from '@mui/material'
+import { Grid } from '@mui/material'
 import signImg from '../../assets/imgs/signImg.png'
-import InputField from '../../components/inputField/InputField'
 import Btn from '../../components/btn/Btn'
 import { useNavigate } from 'react-router-dom'
-import CheckBox from '../../components/checkBox1/CheckBox'
-import Loader from '../../components/loader/Loader'
+import InputField from '../../components/inputField/InputField'
 import { postData } from '../../config/apiCalls'
 import { toast, ToastContainer } from 'react-toastify'
+import Loader from '../../components/loader/Loader'
 
-export default function Login({ hide }) {
+export default function ForgetPassword({ hide }) {
     const navigate = useNavigate();
     let [dataObj, setDataObj] = useState({});
     let [isLoading, setIsLoading] = useState(false)
@@ -23,17 +21,15 @@ export default function Login({ hide }) {
     }
 
 
-    function handleLogin() {
-        setIsLoading(true)
+    const handleSubmit = () => {
+        console.log(dataObj)
 
-        postData('login', dataObj).then((response) => {
+        setIsLoading(true)
+        postData('forgotpassword', dataObj).then((response) => {
             toast.success(response.message)
             setIsLoading(false)
-            localStorage.setItem('user', JSON.stringify(response.user))
-            localStorage.setItem('accessToken', response.accessToken)
-            localStorage.setItem('refreshToken', response.refreshToken)
             setTimeout(() => {
-                navigate('/UserPanel')
+                navigate('/Login')
             }, 1000)
         }
         ).catch((err) => {
@@ -41,19 +37,16 @@ export default function Login({ hide }) {
             setIsLoading(false)
         })
 
-
     }
-
     return (
         <div>
             {hide || <NavBar active='Login' />}
             <section className="padding">
                 <Grid container spacing={5}>
-                    <Grid item sm={5.5} xs={12}>
+                    <Grid item sm={4.5} xs={12}>
                         <div className="text-center sign-left">
                             <img src={signImg} alt="img" className='signImg' />
                         </div>
-
                     </Grid>
                     <Grid item sm={6.5} xs={12}>
                         <div className='sign-right'>
@@ -61,45 +54,21 @@ export default function Login({ hide }) {
                                 onClick={() => navigate('/MasterLogin')}
                                 className="sign-heading text-center mb-20"
                             >
-                                Login to browse inventory, submit an off- market property, or make an offer today!
+                                Forgot Your Password? No Problem. We're Here to Help You Reset It.
                             </div>
                             <InputField
                                 label='Email'
                                 placeholder='johndoe@gmail.com'
                                 onChange={(e) => addData('email', e.target.value)}
                             />
-                            <InputField
-                                label='Password'
-                                placeholder='Enter your password'
-                                onChange={(e) => addData('password', e.target.value)}
-
+                            <Btn
+                                onClick={handleSubmit}
+                                label='Submit'
+                                style={{ marginTop: 20, }}
                             />
-                            <div className='sign-bottom' >
-                                <CheckBox
-                                    label='Remember Me'
-                                    onChange={(e) => addData('rememberMe', e.target.checked)}
-                                />
-                                <div
-                                    onClick={() => navigate("/ForgetPassword")}
-                                >Forgot Password?</div>
-                            </div>
-                            <div className='text-center'>
-                                <Btn
-                                    label='Member Login'
-                                    onClick={handleLogin}
-                                />
-
-                            </div>
-                            <div className='sign-bottom-text'>Not a Member?
-                                <span
-                                    onClick={() => navigate('/Signup')}
-                                > Sign-Up</span>
-                            </div>
-
                         </div>
                     </Grid>
                 </Grid>
-
             </section>
             {hide || <Footer active='Login' />}
             <Loader isLoading={isLoading} />

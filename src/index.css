@@ -4,74 +4,74 @@
 
 @font-face {
     font-family: Lato-Black;
-    src: url('../public//font/Lato/Lato-Black.ttf');
+    src: url('/font/Lato/Lato-Black.ttf');
 }
 
 @font-face {
     font-family: Lato-BlackItalic;
-    src: url('../public//font/Lato/Lato-BlackItalic.ttf');
+    src: url('/font/Lato/Lato-BlackItalic.ttf');
 }
 
 @font-face {
     font-family: Lato-Bold;
-    src: url('../public//font/Lato/Lato-Bold.ttf');
+    src: url('/font/Lato/Lato-Bold.ttf');
 }
 
 @font-face {
     font-family: Lato-BoldItalic;
-    src: url('../public//font/Lato/Lato-BoldItalic.ttf');
+    src: url('/font/Lato/Lato-BoldItalic.ttf');
 }
 
 @font-face {
     font-family: Lato-Italic;
-    src: url('../public//font/Lato/Lato-Italic.ttf');
+    src: url('/font/Lato/Lato-Italic.ttf');
 }
 
 @font-face {
     font-family: Lato-Light;
-    src: url('../public//font/Lato/Lato-Light.ttf');
+    src: url('/font/Lato/Lato-Light.ttf');
 }
 
 @font-face {
     font-family: Lato-Regular;
-    src: url('../public//font/Lato/Lato-Regular.ttf');
+    src: url('/font/Lato/Lato-Regular.ttf');
 }
 
 @font-face {
     font-family: Lato-Thin;
-    src: url('../public//font/Lato/Lato-Thin.ttf');
+    src: url('/font/Lato/Lato-Thin.ttf');
 }
 
 /* Lora  */
 
 @font-face {
     font-family: Lora-Bold;
-    src: url('../public//font/Lora/Lora-Bold.ttf');
+    src: url('/font/Lora/Lora-Bold.ttf');
 }
 
 @font-face {
     font-family: Lora-BoldItalic;
-    src: url('../public//font/Lora/Lora-BoldItalic.ttf');
+    src: url('/font/Lora/Lora-BoldItalic.ttf');
 }
 
 @font-face {
     font-family: Lora-Regular;
-    src: url('../public//font/Lora/Lora-Regular.ttf');
+    src: url('/font/Lora/Lora-Regular.ttf');
 }
 
 @font-face {
     font-family: Lora-Italic;
-    src: url('../public//font/Lora/Lora-Italic.ttf');
+    src: url('/font/Lora/Lora-Italic.ttf');
 }
 
 @font-face {
     font-family: Lora-Medium;
-    src: url('../public//font/Lora/Lora-Medium.ttf');
+    src: url('/font/Lora/Lora-Medium.ttf');
 }
 
 @font-face {
     font-family: Lora-SemiBold;
-    src: url('../public//font/Lora/Lora-SemiBold.ttf');
+    src: url('/font/Lora/Lora-SemiBold.ttf');
 }
 
 

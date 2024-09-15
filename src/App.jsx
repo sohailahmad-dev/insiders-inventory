@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import './App.css'
+import 'react-toastify/dist/ReactToastify.css';
 import AppRouter from './config/AppRouter'
 import './static/colors/Colors.css'
 import Aos from 'aos'

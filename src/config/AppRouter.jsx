@@ -11,6 +11,8 @@ import AdminPanel from '../pages/adminPanel/AdminPanel';
 import UserPanel from '../pages/userPanel/UserPanel';
 import { EmailSignup } from '../pages/emailSignup/EmailSignup';
 import LoginSignup from '../pages/loginSignup/LoginSignup';
+import ForgetPassword from '../pages/forgetPassword/ForgetPassword';
+import ResetPassword from '../pages/resetPassword/ResetPassword';
 
 
 export default function AppRouter() {
@@ -27,6 +29,8 @@ export default function AppRouter() {
                     <Route path='/Login' element={<Login />}></Route>
                     <Route path='/Signup' element={<Signup />}></Route>
                     <Route path='/EmailSignup' element={<EmailSignup />}></Route>
+                    <Route path='/ForgetPassword' element={<ForgetPassword />}></Route>
+                    <Route path='/ResetPassword/:id' element={<ResetPassword />}></Route>
                     <Route path='AdminPanel/*' element={<AdminPanel />}></Route>
                     <Route path='UserPanel/*' element={<UserPanel />}></Route>
                 </Routes>

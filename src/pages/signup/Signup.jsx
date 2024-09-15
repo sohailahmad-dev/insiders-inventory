@@ -7,9 +7,51 @@ import InputField from '../../components/inputField/InputField'
 import Btn from '../../components/btn/Btn'
 import { useNavigate } from 'react-router-dom'
 import CheckBox from '../../components/checkBox1/CheckBox'
+import { toast, ToastContainer } from 'react-toastify'
+import Loader from '../../components/loader/Loader'
+import { postData } from '../../config/apiCalls'
 
 export default function Signup() {
     const navigate = useNavigate();
+    let [isLoading, setIsLoading] = useState(false);
+    let [dataObj, setDataObj] = useState({});
+
+    const addData = (key, value) => {
+        dataObj[key] = value;
+        setDataObj({ ...dataObj });
+    }
+
+    // Roles handling
+    const roles = ['Investor', 'Home Buyer', 'Agent', 'Fund/REIT Investment Buyer'];
+    const [selectedRole, setSelectedRole] = useState('');
+
+    const handleChange = (role, checked) => {
+        if (checked) {
+            setSelectedRole(role);
+            addData('role', role);
+        }
+
+    };
+
+
+    const handleSubmit = () => {
+        console.log(dataObj)
+
+        setIsLoading(true)
+        postData('register', dataObj).then((response) => {
+            toast.success(response.message)
+            setIsLoading(false)
+            setTimeout(() => {
+                navigate('/Login')
+            }, 1000)
+        }
+        ).catch((err) => {
+            toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+
+    }
+
     return (
         <div>
             <NavBar active='Signup' />
@@ -28,44 +70,50 @@ export default function Signup() {
                             <InputField
                                 label='First Name'
                                 placeholder='John'
+                                onChange={(e) => addData('firstName', e.target.value)}
+
                             />
                             <InputField
                                 label='Last Name'
                                 placeholder='Doe'
+                                onChange={(e) => addData('lastName', e.target.value)}
                             />
                             <InputField
                                 label='Company Name (optional)'
                                 placeholder='Name of your company'
+                                onChange={(e) => addData('companyName', e.target.value)}
                             />
                             <InputField
                                 label='Email'
                                 placeholder='Enter your email'
+                                onChange={(e) => addData('email', e.target.value)}
                             />
                             {/* checbox  */}
-                            <div style={{ display: 'flex' }}>
-                                <CheckBox
-                                    label='Investor'
-                                />
-                                <CheckBox
-                                    label='Home Buyer'
-                                />
-                            </div>
-                            <div style={{ display: 'flex' }}>
-
-                                <CheckBox
-                                    label='Agent'
-                                />
-                                <CheckBox
-                                    label='Fund/REIT Investment Buyer'
-                                />
+                            <div style={{ flexWrap: 'wrap', display: 'flex' }}>
+                                {roles.map((role) => (
+                                    <CheckBox
+                                        key={role}
+                                        label={role}
+                                        style={{ width: '50%' }}
+                                        checked={selectedRole === role}
+                                        onChange={(e) => handleChange(role, e.target.checked)}
+                                    />
+                                ))}
                             </div>
                             <InputField
                                 label='Phone Number'
                                 placeholder='Enter your phone number '
+                                onChange={(e) => addData('phoneNumber', e.target.value)}
                             />
                             <InputField
                                 label='Password'
                                 placeholder='Enter password'
+                                onChange={(e) => addData('password', e.target.value)}
+                            />
+                            <InputField
+                                label='Confirm Password'
+                                placeholder='Confirm password'
+                                onChange={(e) => addData('confirmPassword', e.target.value)}
                             />
 
                             <div className='sign-bottom' >
@@ -74,7 +122,8 @@ export default function Signup() {
                                         control={<Checkbox
                                             size='sm'
                                             color='success'
-                                            onChange={() => { }}
+                                            onChange={(e) => addData('privacyPolicyAccepted', e.target.checked)}
+
                                         />}
                                         sx={{
                                             marginRight: 0
@@ -89,6 +138,7 @@ export default function Signup() {
                             <div className='text-center'>
                                 <Btn
                                     label='Sign Up'
+                                    onClick={handleSubmit}
                                 />
 
                             </div>
@@ -101,6 +151,8 @@ export default function Signup() {
                 </Grid>
             </section>
             <Footer active='Signup' />
+            <Loader isLoading={isLoading} />
+            <ToastContainer />
         </div>
     )
 }

@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-export const API_BASE_URL = 'http://localhost:8000/api/';
+// export const API_BASE_URL = 'https://localhost:8000/api/';
+export const API_BASE_URL = 'https://inventery-insider-95bd4e1e1c18.herokuapp.com/api/v1/';
 
 const axiosInstance = axios.create({
     baseURL: API_BASE_URL,
-    // withCredentials: true,
+    withCredentials: true,
 });
 
 // Add a request interceptor to include the JWT token in the headers
