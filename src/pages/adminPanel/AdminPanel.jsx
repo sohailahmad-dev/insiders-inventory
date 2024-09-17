@@ -139,7 +139,9 @@ export default function AdminPanel() {
 
     return (
         <div>
-            <NavBar />
+            <NavBar onLogoClick={() => {
+                setMenu(!menu)
+            }} />
             <div className='ap-main'>
                 <div className={activeMenu}>
                     <div>

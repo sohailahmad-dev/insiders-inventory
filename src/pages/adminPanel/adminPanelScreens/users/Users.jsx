@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SelectBox from '../../../../components/selectBox/SelectBox'
 import { Grid } from '@mui/material'
 import InputField from '../../../../components/inputField/InputField'
@@ -9,77 +9,57 @@ import img5 from '../../../../assets/local/img5.png';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom'
+import Loader from '../../../../components/loader/Loader'
+import { ToastContainer, toast } from 'react-toastify'
+import { deleteData, getData } from '../../../../config/apiCalls'
+import UserModal from './UserModal'
 
-
-const data = [
-    {
-        id: 1,
-        img: img3,
-        status: 'Vacant',
-        type: 'Commercial',
-        price: '112000',
-    },
-    {
-        id: 2,
-        img: img4,
-        status: 'Tenant-Occupied',
-        type: 'Condo',
-        price: '202000',
-    },
-    {
-        id: 3,
-        img: img5,
-        status: 'Owner-Occupied',
-        type: 'Single-Family',
-        price: '450000',
-    },
-    {
-        id: 5,
-        img: img3,
-        status: 'Vacant',
-        type: 'Commercial',
-        price: '112000',
-    },
-
-]
-
-const users = [
-    {
-        id: 1,
-        firstname: 'John',
-        lastname: 'Doe',
-        email: 'johndoe@gmail.com',
-        category: 'invester',
-        phonenumber: '111222333',
-    },
-    {
-        id: 2,
-        firstname: 'John',
-        lastname: 'Doe',
-        email: 'johndoe@gmail.com',
-        category: 'invester',
-        phonenumber: '111222333',
-    },
-    {
-        id: 3,
-        firstname: 'John',
-        lastname: 'Doe',
-        email: 'johndoe@gmail.com',
-        category: 'invester',
-        phonenumber: '111222333',
-    },
-    {
-        id: 4,
-        firstname: 'John',
-        lastname: 'Doe',
-        email: 'johndoe@gmail.com',
-        category: 'invester',
-        phonenumber: '111222333',
-    },
-]
 
 export default function Users() {
     const navigate = useNavigate();
+    let [users, setUsers] = useState([]);
+    let [isLoading, setIsLoading] = useState(false)
+    let [openUserModal, setOpenUserModal] = useState(false);
+    let [user, setUser] = useState({});
+
+    function getUsers() {
+        setIsLoading(true)
+
+        getData('users').then((response) => {
+            toast.success(response.message)
+            console.log(response.users)
+            setUsers(response?.users)
+            setIsLoading(false)
+        }
+        ).catch((err) => {
+            toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+    }
+
+    useEffect(() => {
+        getUsers()
+    }, [])
+
+    const deleteUser = (id) => {
+        setIsLoading(true)
+        deleteData(`user/${id}`).then(response => {
+            toast.success(response?.message);
+            getUsers();
+            setIsLoading(false);
+        }).catch(err => {
+            toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+    }
+
+    const handleEditUser = (user) => {
+        setUser(user);
+        setOpenUserModal(true);
+    }
+
+
+
     return (
         <div>
             <div className="heading2 mb-20">All Users</div>
@@ -111,25 +91,25 @@ export default function Users() {
                     </Grid>
                 </div>
                 <div className="ap-tb">
-                    {users.map(e => (
+                    {users.map((e, i) => (
                         <div className='ap-th'>
                             <Grid container spacing={1}>
                                 <Grid item sm={0.5} xs={12} >
                                     <div className="ap-tr">
                                         <div className="th-heading1">#</div>
-                                        <div className="tr-data">{e?.id}</div>
+                                        <div className="tr-data">{i + 1}</div>
                                     </div>
                                 </Grid>
                                 <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
                                         <div className="th-heading1">First Name</div>
-                                        <div className="tr-data">{e?.firstname}</div>
+                                        <div className="tr-data">{e?.firstName}</div>
                                     </div>
                                 </Grid>
                                 <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
                                         <div className="th-heading1">Last Name</div>
-                                        <div className="tr-data">{e?.lastname}</div>
+                                        <div className="tr-data">{e?.lastName}</div>
                                     </div>
                                 </Grid>
                                 <Grid item sm={2} xs={12}>
@@ -141,35 +121,43 @@ export default function Users() {
                                 <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
                                         <div className="th-heading1">Category</div>
-                                        <div className="tr-data" >${e?.category}</div>
+                                        <div className="tr-data" >{e?.role}</div>
                                     </div>
                                 </Grid>
                                 <Grid item sm={2} xs={12}>
                                     <div className="ap-tr">
                                         <div className="th-heading1">Phone Number</div>
-                                        <div className="tr-data">{e?.phonenumber}</div>
+                                        <div className="tr-data">{e?.phoneNumber}</div>
                                     </div>
                                 </Grid>
                                 <Grid item sm={1.5} xs={12}>
                                     <div className="ap-tr">
                                         <div className="th-heading1">Actions</div>
                                         <div >
-                                            <EditIcon
-                                                sx={{
-                                                    cursor: 'pointer',
-                                                    color: '#32CD32',
-                                                    marginRight: 1
+                                            <div
+                                                onClick={() => handleEditUser(e)}
+                                            >
+                                                <EditIcon
+                                                    sx={{
+                                                        cursor: 'pointer',
+                                                        color: '#32CD32',
+                                                        marginRight: 1
 
-                                                }}
-                                            />
-                                            <DeleteIcon
-                                                sx={{
-                                                    cursor: 'pointer',
-                                                    color: 'red',
-                                                    marginRight: 1
+                                                    }}
+                                                />
+                                            </div>
+                                            <div
+                                                onClick={() => deleteUser(e?._id)}
+                                            >
+                                                <DeleteIcon
+                                                    sx={{
+                                                        cursor: 'pointer',
+                                                        color: 'red',
+                                                        marginRight: 1
 
-                                                }}
-                                            />
+                                                    }}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </Grid>
@@ -178,7 +166,17 @@ export default function Users() {
                     ))}
                 </div>
             </div>
+            <UserModal
+                open={openUserModal}
+                onClose={() => {
+                    getUsers()
+                    setOpenUserModal(false)
+                }}
+                user={user}
 
+            />
+            <Loader isLoading={isLoading} />
+            <ToastContainer />
         </div>
     )
 }

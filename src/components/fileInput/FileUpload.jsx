@@ -16,32 +16,52 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function FileUpload({ label = 'Upload Photos' }) {
-  const [selectedFile, setSelectedFile] = useState(null);
+export default function FileUpload({ label = 'Upload Files', onFilesChange, multiple = true, accept = 'image/*', index }) {
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedFile(file);
+    const files = Array.from(event.target.files);
+    setSelectedFiles(files);
+    if (onFilesChange) {
+      if (index) {
+        onFilesChange(files, index);
+      } else {
+        onFilesChange(files);
+      }
+
     }
   };
 
   return (
-    <div className='file-upload-box'>
-      <Button
-        component="label"
-        startIcon={<CloudUploadIcon />}
-        sx={{ color: '#4D5959', textTransform: 'none' }}
-      >
-        {label}
-        <VisuallyHiddenInput type="file" onChange={handleFileChange} />
-      </Button>
-      <br />
-      {selectedFile && (
-        <div className='file-info'>
-          <p> {selectedFile.name}</p>
-        </div>
-      )}
-    </div>
+    <>
+      <div className='file-upload-box'>
+        <Button
+          component="label"
+          startIcon={<CloudUploadIcon />}
+          sx={{ color: '#4D5959', textTransform: 'none' }}
+        >
+          {label}
+          <VisuallyHiddenInput
+            type="file"
+            accept={accept}
+            multiple={multiple}
+            onChange={handleFileChange}
+          />
+        </Button>
+        <br />
+
+      </div>
+      <div style={{ marginLeft: '20px', marginTop: 10, }}>
+        {selectedFiles.length > 0 && (
+          <div className='file-info'>
+            <ul>
+              {selectedFiles.map((file, index) => (
+                <li key={index}>{file.name}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

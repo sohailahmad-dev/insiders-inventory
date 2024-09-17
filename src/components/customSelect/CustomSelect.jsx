@@ -16,7 +16,7 @@ const CustomSelect = ({ options, icon, label, onSelect, style, iconWidth, iconHe
         <div className="custom-select-container" style={style}>
             <div className="custom-select-label" onClick={() => setIsOpen(!isOpen)}>
                 {icon && <img src={icon} alt='icon' className='custom-select-icon' style={{ width: iconWidth, height: iconHeight }} />}
-                <span className="custom-select-text">{selectedValue || label}</span>
+                <span className="custom-select-text" style={{ color: selectedValue ? 'black' : '#757575' }} >{selectedValue || label}</span>
                 <KeyboardArrowDownIcon />
             </div>
             {isOpen && (

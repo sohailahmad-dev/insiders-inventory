@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 // Add a request interceptor to include the JWT token in the headers
 axiosInstance.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('accessToken');
         if (token) {
             config.headers.authentication = `Bearer ${token}`;
         }
@@ -22,10 +22,27 @@ axiosInstance.interceptors.request.use(
     }
 );
 
+// Helper function to handle FormData
+const isFormData = (data) => {
+    return data instanceof FormData;
+};
+
 // Function to make a POST request
 async function postData(endPoint, data) {
     try {
-        const response = await axiosInstance.post(endPoint, data);
+        const config = isFormData(data) ? { headers: { 'Content-Type': 'multipart/form-data' } } : {};
+        const response = await axiosInstance.post(endPoint, data, config);
+        return response.data;
+    } catch (error) {
+        throw error.response.data; // Handle validation errors here
+    }
+}
+
+// Function to make a PUT request
+async function putData(endPoint, data) {
+    try {
+        const config = isFormData(data) ? { headers: { 'Content-Type': 'multipart/form-data' } } : {};
+        const response = await axiosInstance.put(endPoint, data, config);
         return response.data;
     } catch (error) {
         throw error.response.data; // Handle validation errors here
@@ -42,16 +59,6 @@ async function getData(endPoint) {
     }
 }
 
-// Function to make a PUT request
-async function putData(endPoint, data) {
-    try {
-        const response = await axiosInstance.put(endPoint, data);
-        return response.data;
-    } catch (error) {
-        throw error.response.data; // Handle validation errors here
-    }
-}
-
 // Function to make a DELETE request
 async function deleteData(endPoint) {
     try {
@@ -62,4 +69,4 @@ async function deleteData(endPoint) {
     }
 }
 
-export { postData, getData, putData, deleteData }
+export { postData, getData, putData, deleteData };
