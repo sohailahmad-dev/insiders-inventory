@@ -16,8 +16,8 @@ import AddProperty from '../addProperty/AddProperty';
 import UserProperties from '../userPanel/userPanelScreens/userProperties/UserProperties';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import Users from './adminPanelScreens/users/Users';
-
-
+import Categories from './adminPanelScreens/categories/Categories';
+import CategoryIcon from '@mui/icons-material/Category';
 
 
 
@@ -61,6 +61,11 @@ export default function AdminPanel() {
             icon: HomeOutlinedIcon,
         },
         {
+            label: 'Categories',
+            to: 'Categories',
+            icon: CategoryIcon
+        },
+        {
             label: 'Logout',
             to: '',
             icon: LogoutOutlinedIcon,
@@ -85,6 +90,7 @@ export default function AdminPanel() {
             }
             setActiveScreen(e.label);
             navigate(e.to, { state: e.to })
+
         }
     }
 
@@ -181,6 +187,7 @@ export default function AdminPanel() {
                         <Route path='UserProperties' element={<UserProperties />}></Route>
                         <Route path='AddProperty' element={<AddProperty />}></Route>
                         <Route path='Users' element={<Users />}></Route>
+                        <Route path='Categories' element={<Categories />}></Route>
                     </Routes>
                 </div>
 

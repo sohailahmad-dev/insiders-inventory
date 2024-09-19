@@ -5,24 +5,27 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../../../components/loader/Loader'
 import { deleteData, getData } from '../../../../config/apiCalls'
-import UserModal from './UserModal'
+import CategoryModal from './CategoryModal'
+import img from '../../../../assets/imgs/img1.png'
+import Btn from '../../../../components/btn/Btn';
 import toast from 'react-hot-toast';
 
 
-export default function Users() {
-    const navigate = useNavigate();
-    let [users, setUsers] = useState([]);
-    let [isLoading, setIsLoading] = useState(false)
-    let [openUserModal, setOpenUserModal] = useState(false);
-    let [user, setUser] = useState({});
 
-    function getUsers() {
+export default function Categories() {
+    const navigate = useNavigate();
+    let [isLoading, setIsLoading] = useState(false)
+    let [openCategoryModal, setOpenCategoryModal] = useState(false);
+    let [category, setCategory] = useState({});
+    let [categories, setCategories] = useState([]);
+    let [isEdit, setIsEdit] = useState(false);
+
+    function getCategories() {
         setIsLoading(true)
 
-        getData('users').then((response) => {
-            toast.success(response.message)
-            console.log(response.users)
-            setUsers(response?.users)
+        getData('categories').then((response) => {
+            console.log(response.categories)
+            setCategories(response?.categories)
             setIsLoading(false)
         }
         ).catch((err) => {
@@ -32,14 +35,15 @@ export default function Users() {
     }
 
     useEffect(() => {
-        getUsers()
+        getCategories()
     }, [])
 
-    const deleteUser = (id) => {
+
+    const deleteCategory = (id) => {
         setIsLoading(true)
-        deleteData(`user/${id}`).then(response => {
+        deleteData(`category/${id}`).then(response => {
             toast.success(response?.message);
-            getUsers();
+            getCategorys();
             setIsLoading(false);
         }).catch(err => {
             toast.error(err.message ?? 'Network Error')
@@ -47,16 +51,23 @@ export default function Users() {
         })
     }
 
-    const handleEditUser = (user) => {
-        setUser(user);
-        setOpenUserModal(true);
+    const handleEditCategory = (e) => {
+        setCategory(e);
+        setIsEdit(true);
+        setOpenCategoryModal(true);
     }
+
 
 
 
     return (
         <div>
-            <div className="heading2 mb-20">All Users</div>
+            <div className='flex-between'>
+                <div className="heading2">All Categories</div>
+                <Btn
+                    onClick={() => setOpenCategoryModal(true)}
+                    label='Add Category'></Btn>
+            </div>
 
             <div className="ap-table">
                 <div className="ap-th">
@@ -64,20 +75,14 @@ export default function Users() {
                         <Grid item sm={0.5}>
                             <div className="th-heading">#</div>
                         </Grid>
-                        <Grid item sm={2}>
-                            <div className="th-heading">First Name</div>
+                        <Grid item sm={1}>
+                            <div className="th-heading">Image</div>
                         </Grid>
-                        <Grid item sm={2}>
-                            <div className="th-heading">Last Name</div>
+                        <Grid item sm={3}>
+                            <div className="th-heading">Title</div>
                         </Grid>
-                        <Grid item sm={2}>
-                            <div className="th-heading">Email</div>
-                        </Grid>
-                        <Grid item sm={2}>
-                            <div className="th-heading">Category</div>
-                        </Grid>
-                        <Grid item sm={2}>
-                            <div className="th-heading">Phone Number</div>
+                        <Grid item sm={6}>
+                            <div className="th-heading">Description</div>
                         </Grid>
                         <Grid item sm={1.5}>
                             <div className="th-heading">Actions</div>
@@ -85,8 +90,8 @@ export default function Users() {
                     </Grid>
                 </div>
                 <div className="ap-tb">
-                    {users && users.length > 0 &&
-                        users.map((e, i) => (
+                    {categories && categories.length > 0 &&
+                        categories.map((e, i) => (
                             <div className='ap-th'>
                                 <Grid container spacing={1}>
                                     <Grid item sm={0.5} xs={12} >
@@ -95,42 +100,31 @@ export default function Users() {
                                             <div className="tr-data">{i + 1}</div>
                                         </div>
                                     </Grid>
-                                    <Grid item sm={2} xs={12}>
+                                    <Grid item sm={1} xs={12}>
                                         <div className="ap-tr">
-                                            <div className="th-heading1">First Name</div>
-                                            <div className="tr-data">{e?.firstName}</div>
+                                            <div className="th-heading1">Image</div>
+                                            <img src={e?.image ?? img} width='90%' alt="img" />
                                         </div>
                                     </Grid>
-                                    <Grid item sm={2} xs={12}>
+                                    <Grid item sm={3} xs={12}>
                                         <div className="ap-tr">
-                                            <div className="th-heading1">Last Name</div>
-                                            <div className="tr-data">{e?.lastName}</div>
+                                            <div className="th-heading1">Title</div>
+                                            <div className="tr-data">{e?.name}</div>
                                         </div>
                                     </Grid>
-                                    <Grid item sm={2} xs={12}>
+                                    <Grid item sm={6} xs={12}>
                                         <div className="ap-tr">
-                                            <div className="th-heading1">Email</div>
-                                            <div className="tr-data">{e?.email}</div>
+                                            <div className="th-heading1">Description</div>
+                                            <div className="tr-data">{e?.description}</div>
                                         </div>
                                     </Grid>
-                                    <Grid item sm={2} xs={12}>
-                                        <div className="ap-tr">
-                                            <div className="th-heading1">Category</div>
-                                            <div className="tr-data" >{e?.role}</div>
-                                        </div>
-                                    </Grid>
-                                    <Grid item sm={2} xs={12}>
-                                        <div className="ap-tr">
-                                            <div className="th-heading1">Phone Number</div>
-                                            <div className="tr-data">{e?.phoneNumber}</div>
-                                        </div>
-                                    </Grid>
+
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Actions</div>
-                                            <div >
+                                            <div style={{ display: 'flex' }} >
                                                 <div
-                                                    onClick={() => handleEditUser(e)}
+                                                    onClick={() => handleEditCategory(e)}
                                                 >
                                                     <EditIcon
                                                         sx={{
@@ -142,7 +136,7 @@ export default function Users() {
                                                     />
                                                 </div>
                                                 <div
-                                                    onClick={() => deleteUser(e?._id)}
+                                                    onClick={() => deleteCategory(e?._id)}
                                                 >
                                                     <DeleteIcon
                                                         sx={{
@@ -161,16 +155,20 @@ export default function Users() {
                         ))}
                 </div>
             </div>
-            <UserModal
-                open={openUserModal}
+            <CategoryModal
+                open={openCategoryModal}
                 onClose={() => {
-                    getUsers()
-                    setOpenUserModal(false)
+                    setOpenCategoryModal(false);
+                    setIsEdit(false);
+                    setCategory({});
+                    getCategories()
                 }}
-                user={user}
+                category={category}
+                isEdit={isEdit}
 
             />
             <Loader isLoading={isLoading} />
         </div>
     )
 }
+

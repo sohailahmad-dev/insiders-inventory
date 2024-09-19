@@ -7,9 +7,9 @@ import InputField from '../../components/inputField/InputField'
 import Btn from '../../components/btn/Btn'
 import { useNavigate } from 'react-router-dom'
 import CheckBox from '../../components/checkBox1/CheckBox'
-import { toast, ToastContainer } from 'react-toastify'
 import Loader from '../../components/loader/Loader'
 import { postData } from '../../config/apiCalls'
+import toast from 'react-hot-toast'
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -152,7 +152,6 @@ export default function Signup() {
             </section>
             <Footer active='Signup' />
             <Loader isLoading={isLoading} />
-            <ToastContainer />
         </div>
     )
 }

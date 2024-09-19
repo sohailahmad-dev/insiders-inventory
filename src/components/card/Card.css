@@ -94,6 +94,16 @@
     color: var(--secondary-text);
 }
 
+.card-favorite-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-favoriteIcon {
+    cursor: pointer;
+}
+
 .card-item-price {
     font-size: Lato-Bold;
     font-size: 18px;

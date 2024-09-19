@@ -16,7 +16,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function FileUpload({ label = 'Upload Files', onFilesChange, multiple = true, accept = 'image/*', index }) {
+export default function FileUpload({ label = 'Upload Files', onFilesChange, multiple = true, accept = 'image/*', index, labelStyle, hideNames }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const handleFileChange = (event) => {
@@ -34,6 +34,9 @@ export default function FileUpload({ label = 'Upload Files', onFilesChange, mult
 
   return (
     <>
+      <div className='inputField-label' style={labelStyle} >
+        {label}
+      </div>
       <div className='file-upload-box'>
         <Button
           component="label"
@@ -51,7 +54,7 @@ export default function FileUpload({ label = 'Upload Files', onFilesChange, mult
         <br />
 
       </div>
-      <div style={{ marginLeft: '20px', marginTop: 10, }}>
+      {hideNames || <div style={{ marginLeft: '20px', marginTop: 10, }}>
         {selectedFiles.length > 0 && (
           <div className='file-info'>
             <ul>
@@ -61,7 +64,7 @@ export default function FileUpload({ label = 'Upload Files', onFilesChange, mult
             </ul>
           </div>
         )}
-      </div>
+      </div>}
     </>
   );
 }

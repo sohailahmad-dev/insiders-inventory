@@ -7,7 +7,7 @@ import SelectBox from "../../../../components/selectBox/SelectBox";
 import Btn from "../../../../components/btn/Btn";
 import { putData } from "../../../../config/apiCalls";
 import Loader from "../../../../components/loader/Loader";
-import { toast, ToastContainer } from "react-toastify";
+import toast from "react-hot-toast";
 
 
 export default function UserModal({ open, onClose, user }) {
@@ -54,7 +54,7 @@ export default function UserModal({ open, onClose, user }) {
                             <CloseIcon sx={{ fontSize: 29, color: 'green', cursor: 'pointer' }} />
                         </div>
 
-                        <div className='sign-right'>
+                        <div >
                             <InputField
                                 label='First Name'
                                 placeholder='John'
@@ -104,7 +104,6 @@ export default function UserModal({ open, onClose, user }) {
                 </div>
             </Modal>
             <Loader isLoading={isLoading} />
-            <ToastContainer />
         </div>
 
     );

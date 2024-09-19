@@ -157,8 +157,8 @@ export default function Footer({ active, inPanel, hideEmail }) {
                             >Off-Market Inventory</div>
                         </div>
                         <div className="footer-social">
-                            {socials.map(e => (
-                                <img src={e?.icon} alt='icon' />
+                            {socials.map((e, i) => (
+                                <img src={e?.icon} key={i} alt='icon' />
                             ))}
                         </div>
                     </Grid>

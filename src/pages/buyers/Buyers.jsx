@@ -20,9 +20,9 @@ import InputField from '../../components/inputField/InputField'
 import MapComponent from '../../components/mapComponent/MapComponent'
 import { useNavigate } from 'react-router-dom'
 import useIsMobile from '../../hooks/UseIsMobile'
-import { toast, ToastContainer } from 'react-toastify'
 import Loader from '../../components/loader/Loader'
 import { getData } from '../../config/apiCalls'
+import toast from 'react-hot-toast'
 
 
 
@@ -80,8 +80,13 @@ export const Buyers = () => {
     const navigate = useNavigate();
     const isMobile = useIsMobile();
     let [properties, setProperties] = useState([]);
+    let [favorites, setFavorites] = useState([]);
     let [isLoading, setIsLoading] = useState(false)
 
+    const isFavorite = (propertyId) => {
+        let isFavorite = favorites.some(favorite => favorite._id?.toString() === propertyId?.toString());
+        return isFavorite;
+    };
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
@@ -94,8 +99,6 @@ export const Buyers = () => {
         setIsLoading(true)
 
         getData('properties').then((response) => {
-            toast.success(response.message)
-            console.log(response)
             setProperties(response?.properties)
             setIsLoading(false)
         }
@@ -105,9 +108,34 @@ export const Buyers = () => {
         })
     }
 
+    function getFavorites() {
+        setIsLoading(true)
+
+        getData('favorites').then((response) => {
+            setFavorites(response?.properties)
+            setIsLoading(false)
+        }
+        ).catch((err) => {
+            toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+    }
+
+    const updateFavorites = () => {
+        getFavorites();
+        getProperties();
+    }
+
+
+
+
+
     useEffect(() => {
         getProperties()
+        getFavorites()
     }, [])
+
+
 
     return (
         <div>
@@ -128,8 +156,8 @@ export const Buyers = () => {
                     <Grid item sm={7} xs={12}>
                         <Grid container spacing={2}>
                             {selectsData && selectsData.length > 0 &&
-                                selectsData.map(e => (
-                                    <Grid item sm={6} xs={6} >
+                                selectsData.map((e, i) => (
+                                    <Grid item sm={6} xs={6} key={i}>
                                         <CustomSelect
                                             iconWidth={e?.iconWidth}
                                             iconHeight={e?.iconHeight}
@@ -196,6 +224,8 @@ export const Buyers = () => {
                                     bedrooms={item?.propertyInformation?.bedrooms}
                                     bathrooms={item?.propertyInformation?.bathrooms}
                                     sqft={item?.propertyInformation?.sqft}
+                                    isFavourite={isFavorite(item?._id)}
+                                    onFavorite={updateFavorites}
                                 />
                             </Grid>
                         ))
@@ -206,7 +236,6 @@ export const Buyers = () => {
             <section className="padding">
             </section>
             <Loader isLoading={isLoading} />
-            <ToastContainer />
             <Footer active='Buyers' />
         </div>
     )

@@ -54,6 +54,20 @@ body {
 
 }
 
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-img img {
+  width: 200px;
+  max-width: 80%;
+  margin-top: 20px;
+  border-radius: 10px;
+
+}
+
 
 
 .mb-10 {
@@ -126,6 +140,7 @@ body {
 .radio-style input {
   background-color: pink;
 }
+
 
 /* adminPanel table  */
 .ap-table-data {

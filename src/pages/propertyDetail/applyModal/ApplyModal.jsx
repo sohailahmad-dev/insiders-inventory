@@ -6,8 +6,8 @@ import Btn from '../../../components/btn/Btn'
 import InputField from "../../../components/inputField/InputField";
 import SelectBox from "../../../components/selectBox/SelectBox";
 import Loader from "../../../components/loader/Loader";
-import { toast, ToastContainer } from "react-toastify";
 import { postData } from "../../../config/apiCalls";
+import toast from "react-hot-toast";
 
 export default function ApplyModal({ open, onClose, property }) {
     const [dataObj, setDataObj] = useState({});
@@ -126,7 +126,6 @@ export default function ApplyModal({ open, onClose, property }) {
                 </div>
             </Modal>
             <Loader isLoading={isLoading} />
-            <ToastContainer />
         </div>
     );
 }

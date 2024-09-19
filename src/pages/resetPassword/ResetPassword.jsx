@@ -7,8 +7,8 @@ import Btn from '../../components/btn/Btn'
 import { useNavigate, useParams } from 'react-router-dom'
 import InputField from '../../components/inputField/InputField'
 import { postData, putData } from '../../config/apiCalls'
-import { toast, ToastContainer } from 'react-toastify'
 import Loader from '../../components/loader/Loader'
+import toast from 'react-hot-toast'
 
 export default function ResetPassword({ hide }) {
     const { id } = useParams()
@@ -79,7 +79,6 @@ export default function ResetPassword({ hide }) {
             </section>
             {hide || <Footer active='Login' />}
             <Loader isLoading={isLoading} />
-            <ToastContainer />
         </div>
     )
 }

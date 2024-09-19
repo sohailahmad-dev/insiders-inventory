@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import CheckBox from '../../components/checkBox1/CheckBox'
 import Loader from '../../components/loader/Loader'
 import { postData } from '../../config/apiCalls'
-import { toast, ToastContainer } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 export default function Login({ hide }) {
     const navigate = useNavigate();
@@ -30,8 +30,7 @@ export default function Login({ hide }) {
             toast.success(response.message)
             setIsLoading(false)
             localStorage.setItem('user', JSON.stringify(response.user))
-            localStorage.setItem('accessToken', response.accessToken)
-            localStorage.setItem('refreshToken', response.refreshToken)
+
             setTimeout(() => {
                 navigate('/UserPanel')
             }, 1000)
@@ -40,7 +39,6 @@ export default function Login({ hide }) {
             toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
-
 
     }
 
@@ -103,7 +101,6 @@ export default function Login({ hide }) {
             </section>
             {hide || <Footer active='Login' />}
             <Loader isLoading={isLoading} />
-            <ToastContainer />
         </div>
     )
 }

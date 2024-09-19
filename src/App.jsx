@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import './App.css'
-import 'react-toastify/dist/ReactToastify.css';
 import AppRouter from './config/AppRouter'
 import './static/colors/Colors.css'
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -17,6 +17,7 @@ function App() {
   return (
     <>
       <AppRouter />
+      <Toaster />
     </>
   )
 }

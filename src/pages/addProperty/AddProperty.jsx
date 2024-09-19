@@ -17,8 +17,8 @@ import signImg from '../../assets/imgs/signImg.png'
 import Login from '../login/Login'
 import AddPropertyForm from './AddPropertyForm'
 import { postData } from '../../config/apiCalls'
-import { toast, ToastContainer } from 'react-toastify'
 import Loader from '../../components/loader/Loader'
+import toast from 'react-hot-toast'
 
 
 const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package'];
@@ -849,7 +849,6 @@ const AddProperty = () => {
             }
             {location.state !== 'AddProperty' && <Footer hideEmail={true} active='Off-Market Inventory' />}
             <Loader isLoading={isLoading} />
-            <ToastContainer />
 
         </div>
     )

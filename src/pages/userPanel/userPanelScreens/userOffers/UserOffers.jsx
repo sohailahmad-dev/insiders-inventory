@@ -4,8 +4,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../../../components/loader/Loader'
-import { ToastContainer, toast } from 'react-toastify'
 import { getData } from '../../../../config/apiCalls'
+import toast from 'react-hot-toast';
 
 
 export default function UserOffers() {
@@ -127,7 +127,6 @@ export default function UserOffers() {
                 </div>
             </div>
             <Loader isLoading={isLoading} />
-            <ToastContainer />
         </div>
     )
 }
