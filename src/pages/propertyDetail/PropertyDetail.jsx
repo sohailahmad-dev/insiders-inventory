@@ -25,6 +25,7 @@ const type = 'Assignment'
 
 export default function PropertyDetail() {
     let [properties, setProperties] = useState([]);
+    let [property, setProperty] = useState({});
     let [openModal, setOpenModal] = useState(false);
     const location = useLocation();
 
@@ -39,8 +40,11 @@ export default function PropertyDetail() {
     }, [])
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
+        setProperty(location?.state)
     }, [location])
+
+    console.log(location.state)
 
     return (
         <div>
@@ -49,10 +53,10 @@ export default function PropertyDetail() {
             <section className="pd-padding">
                 <div className="pd-header">
                     <div>
-                        <div className="heading1">Luxury Apartment</div>
+                        <div className="heading1">{property?.title ?? 'Luxury Apartment'}</div>
                         <div className="card-item-lcation">
                             <img src={locationIcon} alt="location-icon" />
-                            Australia</div>
+                            {property?.country ?? 'Australia'}</div>
                     </div>
                     <div className='pd-header-right' >
                         <Btn
@@ -86,7 +90,7 @@ export default function PropertyDetail() {
                                     <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
                                         <div className="pd-p-label">Property ID:</div>
 
-                                        <span className='pd-p-val'>Z456</span>
+                                        <span className='pd-p-val'>{property?._id}</span>
                                     </div>
 
                                 </div>
@@ -278,6 +282,7 @@ export default function PropertyDetail() {
             <ApplyModal
                 open={openModal}
                 onClose={closeModal}
+                property={property}
             />
             <Footer active='Off-Market Inventory' />
         </div>

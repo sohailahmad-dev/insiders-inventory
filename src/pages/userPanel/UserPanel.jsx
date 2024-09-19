@@ -12,8 +12,8 @@ import MapsHomeWorkOutlinedIcon from '@mui/icons-material/MapsHomeWorkOutlined';
 import UserProfile from './userPanelScreens/userProfile/UserProfile';
 import UserProperties from './userPanelScreens/userProperties/UserProperties';
 import AddProperty from '../addProperty/AddProperty'
-
-
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import UserOffers from './userPanelScreens/userOffers/UserOffers';
 
 
 
@@ -45,6 +45,11 @@ export default function UserPanel() {
             label: 'My Properties',
             to: 'UserProperties',
             icon: MapsHomeWorkOutlinedIcon,
+        },
+        {
+            label: 'My Offers',
+            to: 'UserOffers',
+            icon: LocalOfferIcon,
         },
         {
             label: 'Submit Property',
@@ -186,6 +191,7 @@ export default function UserPanel() {
                         <Route path='UserProfile' element={<UserProfile />}></Route>
                         <Route path='UserProperties' element={<UserProperties />}></Route>
                         <Route path='AddProperty' element={<AddProperty />}></Route>
+                        <Route path='UserOffers' element={<UserOffers />}></Route>
                     </Routes>
                 </div>
 

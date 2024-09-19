@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Buyers.css'
 import NavBar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
@@ -20,6 +20,9 @@ import InputField from '../../components/inputField/InputField'
 import MapComponent from '../../components/mapComponent/MapComponent'
 import { useNavigate } from 'react-router-dom'
 import useIsMobile from '../../hooks/UseIsMobile'
+import { toast, ToastContainer } from 'react-toastify'
+import Loader from '../../components/loader/Loader'
+import { getData } from '../../config/apiCalls'
 
 
 
@@ -76,6 +79,8 @@ const selectsData = [
 export const Buyers = () => {
     const navigate = useNavigate();
     const isMobile = useIsMobile();
+    let [properties, setProperties] = useState([]);
+    let [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -83,6 +88,25 @@ export const Buyers = () => {
         } else {
             navigate('/Signup')
         }
+    }, [])
+
+    function getProperties() {
+        setIsLoading(true)
+
+        getData('properties').then((response) => {
+            toast.success(response.message)
+            console.log(response)
+            setProperties(response?.properties)
+            setIsLoading(false)
+        }
+        ).catch((err) => {
+            toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+    }
+
+    useEffect(() => {
+        getProperties()
     }, [])
 
     return (
@@ -155,14 +179,23 @@ export const Buyers = () => {
             {/* sec 3  */}
             <section className="buyers-sec-3 padding">
                 <Grid container spacing={3}>
-                    {Properties && Properties.length > 0 &&
-                        Properties.map(item => (
+                    {properties && properties.length > 0 &&
+                        properties.map(item => (
                             <Grid item xl={3} lg={4} md={4} sm={4} xs={12} key={Math.random()} >
                                 <Card
-                                    key={item?.status}
+                                    key={item?._id}
+                                    property={item}
+                                    images={item?.images}
+                                    title={item?.title}
                                     status={item?.status}
-                                    img={item?.img}
-                                    currentStatus={item?.currentStatus}
+                                    country={item?.country}
+                                    propertyType={item?.propertyInformation?.propertyType}
+                                    price={item?.price}
+                                    ROI={item?.assignment?.portentialRoi}
+                                    initialInvestment={item?.assignment?.initialInvestment}
+                                    bedrooms={item?.propertyInformation?.bedrooms}
+                                    bathrooms={item?.propertyInformation?.bathrooms}
+                                    sqft={item?.propertyInformation?.sqft}
                                 />
                             </Grid>
                         ))
@@ -172,7 +205,8 @@ export const Buyers = () => {
             {/* map  */}
             <section className="padding">
             </section>
-
+            <Loader isLoading={isLoading} />
+            <ToastContainer />
             <Footer active='Buyers' />
         </div>
     )

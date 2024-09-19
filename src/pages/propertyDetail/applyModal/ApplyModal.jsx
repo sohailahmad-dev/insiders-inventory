@@ -5,19 +5,47 @@ import CloseIcon from '@mui/icons-material/Close';
 import Btn from '../../../components/btn/Btn'
 import InputField from "../../../components/inputField/InputField";
 import SelectBox from "../../../components/selectBox/SelectBox";
+import Loader from "../../../components/loader/Loader";
+import { toast, ToastContainer } from "react-toastify";
+import { postData } from "../../../config/apiCalls";
 
-export default function ApplyModal({ open, onClose, order }) {
+export default function ApplyModal({ open, onClose, property }) {
     const [dataObj, setDataObj] = useState({});
+    let [isLoading, setIsLoading] = useState(false);
+
+
 
     const addData = (label, value) => {
         dataObj[label] = value;
         setDataObj({ ...dataObj });
     }
 
+    const handleSubmit = () => {
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        if (storedUser && storedUser._id) {
+            dataObj.userId = storedUser._id;
+        }
+        dataObj.propertyId = property?._id;
+        console.log(dataObj)
+
+        setIsLoading(true)
+        postData('send-offer', dataObj).then((response) => {
+            toast.success(response.message)
+            setIsLoading(false)
+            onClose()
+        }
+        ).catch((err) => {
+            toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+
+    }
+
+
+
     const innerDivClick = (event) => {
         event.stopPropagation(); // Prevent the click event from bubbling up to the outer div
     };
-    console.log(order);
     return (
         <div>
             <Modal open={open}>
@@ -37,26 +65,32 @@ export default function ApplyModal({ open, onClose, order }) {
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         placeholder='First Name'
+                                        onChange={e => addData('firstName', e.target.value)}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
+                                        onChange={e => addData('lastName', e.target.value)}
                                         placeholder='Last Name'
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
+                                        onChange={e => addData('companyName', e.target.value)}
                                         placeholder='Company Name'
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
+                                        onChange={e => addData('email', e.target.value)}
                                         placeholder='Email'
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
-                                        placeholder='Offer'
+                                        onChange={e => addData('offerAmount', e.target.value)}
+                                        placeholder='Offer Amount'
+                                        inputType={'number'}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -73,6 +107,7 @@ export default function ApplyModal({ open, onClose, order }) {
                                 <Grid item xs={12}>
                                     <SelectBox
                                         label='Do you have a home to sell?'
+                                        onSelect={(e) => addData('hasHomeToSell', true)}
                                         options={['Yes', 'No']}
                                     />
                                 </Grid>
@@ -80,6 +115,7 @@ export default function ApplyModal({ open, onClose, order }) {
                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                                         <Btn
                                             label='Submit'
+                                            onClick={handleSubmit}
                                         />
                                     </div>
                                 </Grid>
@@ -89,6 +125,8 @@ export default function ApplyModal({ open, onClose, order }) {
                     </div>
                 </div>
             </Modal>
+            <Loader isLoading={isLoading} />
+            <ToastContainer />
         </div>
     );
 }

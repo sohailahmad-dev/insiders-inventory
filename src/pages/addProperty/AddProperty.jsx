@@ -273,18 +273,24 @@ const AddProperty = () => {
         console.log('multiple', properties);
         setIsLoading(true);
 
-        // Check if all required fields are present for each property
-        const allPropertiesValid = properties.every(property => {
+        // Add 'New' status to each property
+        const updatedProperties = properties.map(property => ({
+            ...property,
+            status: 'New',
+        }));
+
+        // Check if all required fields are present for each updated property
+        const allPropertiesValid = updatedProperties.every(property => {
             const {
                 title,
                 price,
                 country,
                 opportunityType,
                 address: { street, zipCode, state, city },
-                status,
                 leaseInformation: { currentStatus },
                 propertyInformation: { bedrooms, bathrooms, sqft },
                 images,
+                status
             } = property;
 
             return (
@@ -305,10 +311,10 @@ const AddProperty = () => {
             );
         });
 
-        if (true || allPropertiesValid) {
+        if (allPropertiesValid) {
             try {
                 // Send the request to the API endpoint for multiple properties
-                const response = await postData('create-multiple-properties', { properties });
+                const response = await postData('create-multiple-properties', { properties: updatedProperties });
                 toast.success('Properties added successfully');
                 console.log(response);
             } catch (error) {
@@ -320,9 +326,10 @@ const AddProperty = () => {
         } else {
             setIsLoading(false);
             toast.error("Required Fields are missing for some properties!");
-            console.log('not valid')
+            console.log('not valid');
         }
     };
+
 
 
 
