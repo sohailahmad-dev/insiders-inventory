@@ -19,6 +19,7 @@ import AddPropertyForm from './AddPropertyForm'
 import { postData } from '../../config/apiCalls'
 import Loader from '../../components/loader/Loader'
 import toast from 'react-hot-toast'
+import useAuthCheck from '../../hooks/UseAuthCheck'
 
 
 const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package'];
@@ -26,6 +27,7 @@ const opportunityTypes = ['Buy & Hold', 'Flip Opportunity', 'Retail', 'Owner-Occ
 
 
 const AddProperty = () => {
+    useAuthCheck()
     const [files, setFiles] = useState([]);
     const [dataObj, setDataObj] = useState({
         title: '',
@@ -76,6 +78,7 @@ const AddProperty = () => {
     const isLoggedIn = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
+    let [user, setUser] = useState({});
     let [isLoading, setIsLoading] = useState(false)
 
     const [properties, setProperties] = useState([{}]);
@@ -331,11 +334,12 @@ const AddProperty = () => {
     };
 
 
-
-
-
-
-
+    useEffect(() => {
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser) {
+            setUser(storedUser)
+        }
+    }, [])
 
     return (
         <div>
@@ -400,7 +404,7 @@ const AddProperty = () => {
                                     ))}
 
                             </div>
-                            {true && <>
+                            {user?.role === 'Admin' && <>
                                 <div className="heading3 mt-20 mb-20">Lockbox Code</div>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
@@ -546,9 +550,11 @@ const AddProperty = () => {
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         inputType='number'
-                                        placeholder='Cash on Cash Return'
+                                        placeholder='Potential Return on Investment (ROI)'
+                                        onChange={(e) => addData('assignment', e.target.value, 'potentialRoi')}
                                     />
                                 </Grid>
+
                                 {dataObj.propertyManagement.managedByCompany === 'Yes' &&
                                     <>
                                         <Grid item sm={6} xs={12}>
@@ -577,9 +583,38 @@ const AddProperty = () => {
                                         onSelect={val => addData('financingOptions', val)}
                                     />
                                 </Grid>
+                                {dataObj?.opportunityType === 'Flip Opportunity' && <Grid item sm={6} xs={12}>
+                                    <InputField
+                                        placeholder='ARV'
+                                        onChange={(e) => addData('ARV', e.target.value)}
+                                    />
+                                </Grid>}
                                 <Grid item sm={12} xs={12}>
                                     <InputField
-                                        placeholder='Additional Information / Remarks'
+                                        placeholder='Description'
+                                        onChange={(e) => addData('description', e.target.value)}
+                                        isTextarea={true}
+                                    />
+                                </Grid>
+                                <Grid item sm={12} xs={12}>
+                                    <InputField
+                                        placeholder='Financing Options'
+                                        onChange={(e) => addData('financingOptions', e.target.value)}
+                                        isTextarea={true}
+                                    />
+                                </Grid>
+                                <Grid item sm={12} xs={12}>
+                                    <InputField
+                                        placeholder='Investment Terms'
+                                        onChange={(e) => addData('investmentTerms', e.target.value)}
+                                        isTextarea={true}
+                                    />
+                                </Grid>
+                                <Grid item sm={12} xs={12}>
+                                    <InputField
+                                        placeholder='Buying Process'
+                                        onChange={(e) => addData('buyingProcess', e.target.value)}
+                                        isTextarea={true}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -693,7 +728,7 @@ const AddProperty = () => {
                                                     onSelect={val => addData1(index, 'leaseInformation', val, 'currentStatus')}
                                                 />
                                             </Grid>
-                                            {dataObj.leaseInformation.currentStatus === 'Yes' && <>
+                                            {properties[index]?.leaseInformation?.currentStatus === 'Yes' && <>
                                                 <Grid item sm={6} xs={12}>
                                                     <InputField
                                                         placeholder='Lease Start Date'
@@ -773,10 +808,11 @@ const AddProperty = () => {
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
                                                     inputType='number'
-                                                    placeholder='Cash on Cash Return'
+                                                    placeholder='Potential Cash on Investment (ROI) '
+                                                    onChange={(e) => addData1(index, 'assignment', e.target.value, 'potentialRoi')}
                                                 />
                                             </Grid>
-                                            {dataObj.propertyManagement.managedByCompany === 'Yes' &&
+                                            {properties[index].propertyManagement.managedByCompany === 'Yes' &&
                                                 <>
                                                     <Grid item sm={6} xs={12}>
                                                         <InputField
@@ -804,9 +840,38 @@ const AddProperty = () => {
                                                     onSelect={val => addData1(index, 'financingOptions', val)}
                                                 />
                                             </Grid>
+                                            {properties[index].opportunityType === 'Flip Opportunity' && <Grid item sm={6} xs={12}>
+                                                <InputField
+                                                    placeholder='ARV'
+                                                    onChange={(e) => addData1(index, 'ARV', e.target.value)}
+                                                />
+                                            </Grid>}
                                             <Grid item sm={12} xs={12}>
                                                 <InputField
-                                                    placeholder='Additional Information / Remarks'
+                                                    placeholder='Description'
+                                                    onChange={(e) => addData1(index, 'description', e.target.value)}
+                                                    isTextarea={true}
+                                                />
+                                            </Grid>
+                                            <Grid item sm={12} xs={12}>
+                                                <InputField
+                                                    placeholder='Financing Options'
+                                                    onChange={(e) => addData1(index, 'financingOptions', e.target.value)}
+                                                    isTextarea={true}
+                                                />
+                                            </Grid>
+                                            <Grid item sm={12} xs={12}>
+                                                <InputField
+                                                    placeholder='Investment Terms'
+                                                    onChange={(e) => addData1(index, 'investmentTerms', e.target.value)}
+                                                    isTextarea={true}
+                                                />
+                                            </Grid>
+                                            <Grid item sm={12} xs={12}>
+                                                <InputField
+                                                    placeholder='Buying Process'
+                                                    onChange={(e) => addData1(index, 'buyingProcess', e.target.value)}
+                                                    isTextarea={true}
                                                 />
                                             </Grid>
                                             <Grid item xs={12}>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import './UserProperties.css'
 import SelectBox from '../../../../components/selectBox/SelectBox'
 import { Grid } from '@mui/material'
 import InputField from '../../../../components/inputField/InputField'
@@ -13,8 +12,8 @@ import toast from 'react-hot-toast'
 import useAuthCheck from '../../../../hooks/UseAuthCheck'
 
 
-export default function UserProperties() {
-    useAuthCheck()
+export default function Properties() {
+    useAuthCheck(true)
     const navigate = useNavigate();
     let [properties, setProperties] = useState([]);
     let [dataObj, setDataObj] = useState({})
@@ -132,9 +131,7 @@ export default function UserProperties() {
                                         <div className="ap-tr">
                                             <div className="th-heading1">Property</div>
                                             <div className="tr-property">
-                                                {/* <div className="category-img"> */}
                                                 <img src={e?.images?.[0] || noImg} alt='img' />
-                                                {/* </div> */}
                                                 <div>
                                                     <div className="tr-data">{e?.title}</div>
                                                     <div className="tr-data-loc">{e?.country}</div>

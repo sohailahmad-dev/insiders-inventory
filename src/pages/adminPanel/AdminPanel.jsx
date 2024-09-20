@@ -18,6 +18,8 @@ import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import Users from './adminPanelScreens/users/Users';
 import Categories from './adminPanelScreens/categories/Categories';
 import CategoryIcon from '@mui/icons-material/Category';
+import Properties from './adminPanelScreens/properties/Properties';
+import useAuthCheck from '../../hooks/UseAuthCheck';
 
 
 
@@ -26,6 +28,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 
 
 export default function AdminPanel() {
+    useAuthCheck(true)
     const [deviceType, setDeviceType] = useState('');
     let [menu, setMenu] = useState(false);
     let [activeMenu, setActiveMenu] = useState('ap-navLinks ap-activeMenu');
@@ -52,7 +55,7 @@ export default function AdminPanel() {
         },
         {
             label: 'Properties',
-            to: 'UserProperties',
+            to: 'Properties',
             icon: MapsHomeWorkOutlinedIcon,
         },
         {
@@ -101,7 +104,7 @@ export default function AdminPanel() {
 
 
     useEffect(() => {
-        navigate('UserProperties')
+        navigate('Properties')
 
 
         const handleResize = () => {
@@ -182,9 +185,8 @@ export default function AdminPanel() {
 
 
                     <Routes>
-                        {/* <Route path='UserManagement' element={<UserManagement />}></Route> */}
                         <Route path='UserProfile' element={<UserProfile />}></Route>
-                        <Route path='UserProperties' element={<UserProperties />}></Route>
+                        <Route path='Properties' element={<Properties />}></Route>
                         <Route path='AddProperty' element={<AddProperty />}></Route>
                         <Route path='Users' element={<Users />}></Route>
                         <Route path='Categories' element={<Categories />}></Route>

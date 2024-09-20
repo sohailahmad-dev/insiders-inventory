@@ -4,10 +4,11 @@ import { Grid } from '@mui/material'
 import InputField from '../../../../components/inputField/InputField'
 import CheckBox from '../../../../components/checkBox1/CheckBox'
 import Btn from '../../../../components/btn/Btn'
+import useAuthCheck from '../../../../hooks/UseAuthCheck'
 
 
 export default function UserProfile() {
-
+    useAuthCheck()
     return (
         <div>
             <div className="user-p-subHeading">Welcome</div>

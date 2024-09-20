@@ -9,10 +9,12 @@ import CategoryModal from './CategoryModal'
 import img from '../../../../assets/imgs/img1.png'
 import Btn from '../../../../components/btn/Btn';
 import toast from 'react-hot-toast';
+import useAuthCheck from '../../../../hooks/UseAuthCheck';
 
 
 
 export default function Categories() {
+    useAuthCheck(true)
     const navigate = useNavigate();
     let [isLoading, setIsLoading] = useState(false)
     let [openCategoryModal, setOpenCategoryModal] = useState(false);

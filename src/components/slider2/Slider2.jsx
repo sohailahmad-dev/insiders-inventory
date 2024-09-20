@@ -3,17 +3,12 @@ import './Slider2.css'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import img3 from '../../assets/local/img3.png';
-import img4 from '../../assets/local/img4.png';
-import img5 from '../../assets/local/img5.png';
+import noImg from '../../assets/imgs/noImg.jpeg';
 import prev from '../../assets/imgs/prev1.png';
 import next from '../../assets/imgs/next1.png';
-import { Grid } from '@mui/material';
-import Card from '../card/Card';
 
-export default function Slider2() {
+export default function Slider2({ sliderData = [noImg] }) {
     let [currentSlide, setCurrentSlide] = useState(0);
-    const sliderData = [img3, img4, img5]
     var settings = {
         dots: false,
         infinite: true,

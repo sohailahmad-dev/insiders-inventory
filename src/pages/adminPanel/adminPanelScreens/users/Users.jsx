@@ -7,9 +7,11 @@ import Loader from '../../../../components/loader/Loader'
 import { deleteData, getData } from '../../../../config/apiCalls'
 import UserModal from './UserModal'
 import toast from 'react-hot-toast';
+import useAuthCheck from '../../../../hooks/UseAuthCheck';
 
 
 export default function Users() {
+    useAuthCheck(true)
     const navigate = useNavigate();
     let [users, setUsers] = useState([]);
     let [isLoading, setIsLoading] = useState(false)

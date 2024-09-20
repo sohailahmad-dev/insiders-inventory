@@ -6,9 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import Loader from '../../../../components/loader/Loader'
 import { getData } from '../../../../config/apiCalls'
 import toast from 'react-hot-toast';
+import useAuthCheck from '../../../../hooks/UseAuthCheck';
 
 
 export default function UserOffers() {
+    useAuthCheck()
     let [offers, setOffers] = useState([]);
     let [isLoading, setIsLoading] = useState(false)
 

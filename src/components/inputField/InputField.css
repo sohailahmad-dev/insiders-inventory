@@ -5,9 +5,9 @@
     background-color: #EFF0F2;
     width: 100%;
     min-width: 100px;
-    height: 45px;
-    padding: 0px 20px;
-    border-radius: 50px;
+    min-height: 45px;
+    padding: 8px 20px;
+    border-radius: 20px;
     /* margin-bottom: 10px; */
 }
 
@@ -18,7 +18,8 @@
     flex: 1;
 }
 
-input {
+input,
+textarea {
     outline: none;
     border: none;
     background: transparent;
@@ -28,7 +29,14 @@ input {
     color: black
 }
 
-input::placeholder {
+textarea,
+input {
+    font-family: Lato-Regular;
+    font-size: 14px;
+}
+
+input::placeholder,
+textarea::placeholder {
     color: gray;
     font-family: Lato-Regular, 'Courier New', Courier, monospace;
     font-size: 14px;
@@ -40,14 +48,4 @@ input::placeholder {
     font-size: 14px;
     margin-bottom: 7px;
     margin-top: 7px;
-}
-
-
-@media (max-width: 699px) {
-    .inputBox {
-        height: 45px;
-    }
-
-
-
 }

@@ -14,6 +14,7 @@ import UserProperties from './userPanelScreens/userProperties/UserProperties';
 import AddProperty from '../addProperty/AddProperty'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import UserOffers from './userPanelScreens/userOffers/UserOffers';
+import useAuthCheck from '../../hooks/UseAuthCheck';
 
 
 
@@ -22,6 +23,7 @@ import UserOffers from './userPanelScreens/userOffers/UserOffers';
 
 
 export default function UserPanel() {
+    useAuthCheck()
     const [deviceType, setDeviceType] = useState('');
     let [menu, setMenu] = useState(false);
     let [activeMenu, setActiveMenu] = useState('ap-navLinks ap-activeMenu');

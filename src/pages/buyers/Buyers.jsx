@@ -23,6 +23,7 @@ import useIsMobile from '../../hooks/UseIsMobile'
 import Loader from '../../components/loader/Loader'
 import { getData } from '../../config/apiCalls'
 import toast from 'react-hot-toast'
+import useAuthCheck from '../../hooks/UseAuthCheck'
 
 
 
@@ -76,7 +77,8 @@ const selectsData = [
     }
 ]
 
-export const Buyers = () => {
+export const Buyers = ({ hide }) => {
+    useAuthCheck()
     const navigate = useNavigate();
     const isMobile = useIsMobile();
     let [properties, setProperties] = useState([]);
@@ -87,13 +89,7 @@ export const Buyers = () => {
         let isFavorite = favorites.some(favorite => favorite._id?.toString() === propertyId?.toString());
         return isFavorite;
     };
-    useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-        } else {
-            navigate('/Signup')
-        }
-    }, [])
+
 
     function getProperties() {
         setIsLoading(true)
@@ -116,7 +112,7 @@ export const Buyers = () => {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
+            // toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
     }
@@ -139,15 +135,15 @@ export const Buyers = () => {
 
     return (
         <div>
-            <NavBar active='Buyers' />
+            {hide || <NavBar active='Buyers' />}
             {/* sec 1 hero  */}
-            <div className="h-hero">
+            {hide || <div className="h-hero">
                 <div className="h-heading">Insider’s Off-Market  <span> Inventory</span> </div>
                 <div className="h-text">Our off-market inventory features unique opportunities tailored to your needs. Sign-Up to explore these hidden gems today.</div>
 
-            </div>
+            </div>}
             {/* sec 2  */}
-            <section className="buyers-sec2 padding">
+            {hide || <section className="buyers-sec2 padding">
                 <Grid container spacing={3}>
                     <Grid item sm={5} xs={12}>
                         <MapComponent />
@@ -203,7 +199,7 @@ export const Buyers = () => {
                     </div>
 
                 </div>
-            </section>
+            </section>}
             {/* sec 3  */}
             <section className="buyers-sec-3 padding">
                 <Grid container spacing={3}>
@@ -232,11 +228,8 @@ export const Buyers = () => {
                     }
                 </Grid>
             </section>
-            {/* map  */}
-            <section className="padding">
-            </section>
             <Loader isLoading={isLoading} />
-            <Footer active='Buyers' />
+            {hide || <Footer active='Buyers' />}
         </div>
     )
 }

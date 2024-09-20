@@ -20,7 +20,7 @@ export default function Card({
   country = 'Australia',
   propertyType = 'Condo',
   price = '1200000',
-  ROI = '37',
+  ROI = '15',
   initialInvestment = '25000',
   bedrooms = 2,
   bathrooms = 3,
@@ -71,6 +71,7 @@ export default function Card({
         {status === 'Sold' && <span className='card-house-new' style={{ background: 'red' }} >{status}</span>}
         {status === 'New' && <span className='card-house-new' >{status}</span>}
         {status === 'Pending' && <span className='card-house-new' style={{ background: 'orange' }} >{status}</span>}
+        {status === 'Withdrawn' && <span className='card-house-new' style={{ background: 'red', fontSize: 8 }} >{status}</span>}
         <span className="card-item-status">{propertyType}</span>
         {/* stats  */}
         <div className='card-item-statsBox'>

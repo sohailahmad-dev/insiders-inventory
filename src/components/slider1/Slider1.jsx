@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Slider1.css'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -14,8 +14,56 @@ import prev from '../../assets/imgs/prev1.png';
 import next from '../../assets/imgs/next1.png';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { getData } from '../../config/apiCalls';
+import Loader from '../loader/Loader';
+import toast from 'react-hot-toast';
 
 export default function Slider1() {
+    let [properties, setProperties] = useState([]);
+    let [isLoading, setIsLoading] = useState(false);
+    let [favorites, setFavorites] = useState([]);
+
+    const isFavorite = (propertyId) => {
+        let isFavorite = favorites.some(favorite => favorite._id?.toString() === propertyId?.toString());
+        return isFavorite;
+    };
+
+    function getProperties() {
+        setIsLoading(true)
+
+        getData('properties').then((response) => {
+            setProperties(response?.properties)
+            setIsLoading(false)
+        }
+        ).catch((err) => {
+            setIsLoading(false)
+        })
+    }
+
+
+    function getFavorites() {
+        setIsLoading(true)
+
+        getData('favorites').then((response) => {
+            setFavorites(response?.properties)
+            setIsLoading(false)
+        }
+        ).catch((err) => {
+            setIsLoading(false)
+        })
+    }
+
+    const updateFavorites = () => {
+        getFavorites();
+        getProperties();
+    }
+
+    useEffect(() => {
+        getProperties();
+        getFavorites()
+
+    }, [])
+
     const sliderData = [
         {
             img: img3,
@@ -80,6 +128,9 @@ export default function Slider1() {
         sliderRef.slickNext();
 
     }
+
+
+
     return (
         <section className="home-sec8-box slider1"  >
             {/* slider ruler  */}
@@ -129,13 +180,26 @@ export default function Slider1() {
                         sliderRef = slider;
                     }}
                     {...settings}>
-                    {sliderData.map(item => (
-                        <Card
-                            key={item?.status}
-                            status={item?.status}
-                            img={item?.img}
-                        />
-                    ))}
+                    {properties && properties.length > 0 &&
+                        properties.map(item => (
+                            <Card
+                                key={item?._id}
+                                property={item}
+                                images={item?.images}
+                                title={item?.title}
+                                status={item?.status}
+                                country={item?.country}
+                                propertyType={item?.propertyInformation?.propertyType}
+                                price={item?.price}
+                                ROI={item?.assignment?.portentialRoi}
+                                initialInvestment={item?.assignment?.initialInvestment}
+                                bedrooms={item?.propertyInformation?.bedrooms}
+                                bathrooms={item?.propertyInformation?.bathrooms}
+                                sqft={item?.propertyInformation?.sqft}
+                                isFavourite={isFavorite(item?._id)}
+                                onFavorite={updateFavorites}
+                            />
+                        ))}
                 </Slider>
 
 
@@ -144,7 +208,7 @@ export default function Slider1() {
 
             </div>
 
-
+            <Loader isLoading={isLoading} />
         </section>
     )
 }

@@ -3,16 +3,14 @@ import './Slider3.css'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import img3 from '../../assets/local/img3.png';
-import img4 from '../../assets/local/img4.png';
-import img5 from '../../assets/local/img5.png';
 import prev from '../../assets/imgs/prev1.png';
 import next from '../../assets/imgs/next1.png';
+import noImg from '../../assets/imgs/noImg.jpeg';
 
 
-export default function Slider3() {
+
+export default function Slider3({ sliderData = [noImg] }) {
     let [currentSlide, setCurrentSlide] = useState(0);
-    const sliderData = [img3, img4, img5, img3, img4, img5, img3, img4, img5]
     var settings = {
         dots: false,
         infinite: true,
@@ -20,8 +18,6 @@ export default function Slider3() {
         slidesToShow: 4,
         slidesToScroll: 1,
         initialSlide: 0,
-
-
     };
 
     let sliderRef = useRef(null);

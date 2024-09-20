@@ -73,9 +73,11 @@ export default function NavBar({ active, onLogoClick }) {
 
 
     return (
-        <>
+        <div >
             <div className="nb-email">
-                Signup to our VIP Buyers List to see new listings before everyone else
+                <div onClick={() => setMenu('false')} >
+                    Signup to our VIP Buyers List to see new listings before everyone else
+                </div>
                 <span onClick={() => navigate('/EmailSignup')} > Signup</span>
             </div>
             <div className="navBar">
@@ -86,7 +88,12 @@ export default function NavBar({ active, onLogoClick }) {
                 </div>
 
                 <div className={activeMenu}>
-
+                    <div className="icon">
+                        {menu ? null :
+                            <CloseIcon
+                                sx={{ color: 'white' }}
+                                onClick={() => setMenu(!menu)} />}
+                    </div>
                     {links.map(e => (
                         <div
                             key={e?.label}
@@ -120,6 +127,6 @@ export default function NavBar({ active, onLogoClick }) {
                 </div>
 
             </div>
-        </>
+        </div>
     )
 } 

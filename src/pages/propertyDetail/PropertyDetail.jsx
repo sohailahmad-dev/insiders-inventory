@@ -19,11 +19,15 @@ import Card from '../../components/card/Card'
 import Properties from '../../static/json/Properties'
 import { useLocation } from 'react-router-dom'
 import ApplyModal from './applyModal/ApplyModal'
+import VideoBox from '../../components/videoBox/VideoBox'
+import { Buyers } from '../buyers/Buyers'
+import useAuthCheck from '../../hooks/UseAuthCheck'
 
 
 const type = 'Assignment'
 
 export default function PropertyDetail() {
+    useAuthCheck();
     let [properties, setProperties] = useState([]);
     let [property, setProperty] = useState({});
     let [openModal, setOpenModal] = useState(false);
@@ -79,9 +83,9 @@ export default function PropertyDetail() {
                 <Grid container spacing={5}>
                     <Grid item sm={7.5} xs={12}>
                         <div className='pd-sec2-left'>
-                            <Slider2 />
+                            <Slider2 sliderData={property?.images} />
                             <div >
-                                <Slider3 />
+                                <Slider3 sliderData={property?.images} />
                             </div>
                             {/* property stats  */}
                             <div className="pd-box mt-30">
@@ -98,40 +102,40 @@ export default function PropertyDetail() {
                                 <div className="pd-stats">
                                     <div className="pd-stats-item">
                                         <div className="pd-p-label">Property Type</div>
-                                        <div className="pd-p-val">Apartment</div>
+                                        <div className="pd-p-val">{property?.propertyInformation?.propertyType}</div>
                                     </div>
                                     <div className="pd-stats-item">
                                         <div className="pd-p-label">Bedrooms</div>
                                         <div className="pd-p-val">
                                             <img src={pdIcon1} alt="icon" className='pd-p-icon' />
-                                            3</div>
+                                            {property?.propertyInformation?.bedrooms}</div>
                                     </div>
                                     <div className="pd-stats-item">
                                         <div className="pd-p-label"> Bathrooms</div>
                                         <div className="pd-p-val">
                                             <img src={pdIcon2} alt="icon" className='pd-p-icon' />
-                                            2
+                                            {property?.propertyInformation?.bathrooms}
                                         </div>
                                     </div>
                                     <div className="pd-stats-item">
                                         <div className="pd-p-label"> SqFt</div>
                                         <div className="pd-p-val">
                                             <img src={pdIcon3} alt="icon" className='pd-p-icon' />
-                                            2560
+                                            {property?.propertyInformation?.sqft}
                                         </div>
                                     </div>
                                     <div className="pd-stats-item">
                                         <div className="pd-p-label"> Garage</div>
                                         <div className="pd-p-val">
                                             <img src={pdIcon4} alt="icon" className='pd-p-icon' />
-                                            Yes
+                                            {property?.propertyInformation?.garage}
                                         </div>
                                     </div>
                                     <div className="pd-stats-item">
                                         <div className="pd-p-label">Basement </div>
                                         <div className="pd-p-val">
                                             <img src={pdIcon5} alt="icon" className='pd-p-icon' />
-                                            No
+                                            {property?.propertyInformation?.basement}
                                         </div>
                                     </div>
                                 </div>
@@ -140,7 +144,8 @@ export default function PropertyDetail() {
                             <ExpandableBox
                                 label='Description'
                             >
-                                <p className='pd-p-val'>
+                                {property?.description}
+                                {/* <p className='pd-p-val'>
                                     This heritage home in Lorain OH has been Majorly Renovated. It’s beautiful inside, structurally sound, and set to appreciate.
                                     <br />
                                     Renovations include:
@@ -157,7 +162,7 @@ export default function PropertyDetail() {
                                     <br />* new GFCI outlets, repaired drywall, new lock sets
                                     <br />* all new glass block windows.
                                     Exterior: repaired siding, repaired lattice around front steps, pressure washed exterior, painted foundation, floor and porch paint, exterior paint, landscaped perimeter of house for moisture protection.
-                                </p>
+                                </p> */}
                             </ExpandableBox>
                             {/* address  */}
                             <ExpandableBox
@@ -166,34 +171,34 @@ export default function PropertyDetail() {
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label"> Location</div>
                                     <div className="pd-p-val">
-                                        194 Mercer Street
+                                        {property?.address?.street}
                                     </div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label"> Zip/Postal Code </div>
-                                    <div className="pd-p-val">OH 11002 </div>
+                                    <div className="pd-p-val">{property?.address?.zipCode} </div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label">State </div>
-                                    <div className="pd-p-val"> New York</div>
+                                    <div className="pd-p-val"> {property?.address?.state}</div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label">City </div>
-                                    <div className="pd-p-val">New York </div>
+                                    <div className="pd-p-val">{property?.address?.city} </div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label"> Country</div>
-                                    <div className="pd-p-val"> United States</div>
+                                    <div className="pd-p-val"> {property?.country}</div>
                                 </div>
                             </ExpandableBox>
                             <ExpandableBox label='Financing Options'>
-                                <p className='pd-p-val' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, sapiente ratione. Dicta fugit nemo eos, labore tempora architecto reiciendis ipsum provident accusamus, quia eius totam doloremque quisquam cupiditate eaque sunt!</p>
+                                <p className='pd-p-val' >{property?.financingOptions}</p>
                             </ExpandableBox>
                             <ExpandableBox label='Investment Terms' >
-                                <p className='pd-p-val' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, sapiente ratione. Dicta fugit nemo eos, labore tempora architecto reiciendis ipsum provident accusamus, quia eius totam doloremque quisquam cupiditate eaque sunt!</p>
+                                <p className='pd-p-val' >{property?.investmentTerms}</p>
                             </ExpandableBox>
                             <ExpandableBox label='Buying Process' >
-                                <p className='pd-p-val' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, sapiente ratione. Dicta fugit nemo eos, labore tempora architecto reiciendis ipsum provident accusamus, quia eius totam doloremque quisquam cupiditate eaque sunt!</p>
+                                <p className='pd-p-val' >{property?.buyingProcess}</p>
                             </ExpandableBox>
 
                         </div>
@@ -203,7 +208,7 @@ export default function PropertyDetail() {
                         <div className="pd-sec2-right">
                             <div className="pd-box pd-price-box" style={{ background: 'white' }} >
                                 <div className='pd-type-box'>
-                                    <div className="heading1 pd-price" >$112,000</div>
+                                    <div className="heading1 pd-price" >${property?.price}</div>
                                     <div className="pd-p-val"
                                         style={{
                                             color: type === 'Neither' ? 'black' : 'lightgray'
@@ -214,20 +219,20 @@ export default function PropertyDetail() {
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Initial Investment</div>
                                     <div className="pd-p-val ">
-                                        $22400
+                                        ${property?.assignment?.initialInvestment ?? 20 / property?.price * 100}
                                     </div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Potential ROI </div>
-                                    <div className="pd-p-val "> 15% </div>
+                                    <div className="pd-p-val ">  </div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label ">Cap Rate </div>
-                                    <div className="pd-p-val "> 9%</div>
+                                    <div className="pd-p-val "> ${((8 / 100) * property?.price).toFixed(2)}</div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Cash Flow Per Month </div>
-                                    <div className="pd-p-val "> $220</div>
+                                    <div className="pd-p-val "> ${property?.assignment?.cashFlowPerMonth}</div>
                                 </div>
 
                             </div>
@@ -240,21 +245,22 @@ export default function PropertyDetail() {
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label"> Current Status </div>
-                                    <div className="pd-p-val">Occupied </div>
+                                    <div className="pd-p-val">{property?.leaseInformation?.currentStatus} </div>
                                 </div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label">Lease Start Date  </div>
-                                    <div className="pd-p-val"> 06/01/2024</div>
-                                </div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label"> Lease End Date </div>
-                                    <div className="pd-p-val"> 05/31/2025</div>
-                                </div>
+                                {property?.leaseInformation?.currentStatus === 'Yes' && <>
+                                    <div className="pd-stats-item1">
+                                        <div className="pd-p-label">Lease Start Date  </div>
+                                        <div className="pd-p-val"> {property?.leaseInformation?.leaseStartDate}</div>
+                                    </div>
+                                    <div className="pd-stats-item1">
+                                        <div className="pd-p-label"> Lease End Date </div>
+                                        <div className="pd-p-val"> {property?.leaseInformation?.leaseEndDate}</div>
+                                    </div>
+                                </>}
                             </div>
                             {/* video  */}
                             <div className='text-center pd-video-sec'>
-                                <div className="heading3 text-center mt-40 mb-20">Video</div>
-                                <img src={videoImg} alt="img" />
+                                <VideoBox videoURL={property?.videoUrl} />
                                 <img className='mt-20' src={map1} alt='map1' />
                             </div>
                         </div>
@@ -262,23 +268,15 @@ export default function PropertyDetail() {
                 </Grid>
             </div>
             {/* sec3 */}
-            <section className="pd-sec3 pd-padding">
-                <div className="heading2 mb-20">Similar Listings</div>
-                <Grid container spacing={3}>
-                    {properties && properties.length > 0 &&
-                        properties.map(item => (
-                            <Grid item xl={3} lg={4} md={4} sm={4} xs={12} key={Math.random()} >
-                                <Card
-                                    key={item?.status}
-                                    status={item?.status}
-                                    img={item?.img}
-                                    currentStatus={item?.currentStatus}
-                                />
-                            </Grid>
-                        ))
-                    }
-                </Grid>
-            </section>
+            <div>
+                <section className="pd-sec3 padding">
+                    <div className="heading2 mb-20">Similar Listings</div>
+
+                </section>
+                <Buyers
+                    hide={true}
+                />
+            </div>
             <ApplyModal
                 open={openModal}
                 onClose={closeModal}
