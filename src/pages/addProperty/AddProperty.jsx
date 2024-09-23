@@ -467,7 +467,7 @@ const AddProperty = () => {
                                 {dataObj.leaseInformation.currentStatus === 'Yes' && <>
                                     <Grid item sm={6} xs={12}>
                                         <InputField
-                                            placeholder='Price'
+                                            placeholder='Lease Amount'
                                             inputType='number'
                                             onChange={(e) => addData('leaseInformation', e.target.value, 'leaseAmount')}
                                         />
