@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.css'
 import NavBar from '../../components/navbar/Navbar'
 import Btn from '../../components/btn/Btn'
@@ -11,50 +11,40 @@ import Slider1 from '../../components/slider1/Slider1'
 import Testimonial from '../../components/testimonial/Testimonial'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/UseAuth'
-
-let propertyTypes = [
-    {
-        id: 1,
-        img: img1,
-        type: 'Buy & Hold',
-        description: 'Secure your future with our Buy & Hold properties, offering stability and long-term growth potential.'
-    },
-    {
-        id: 2,
-        img: img2,
-        type: 'Flip Opportunities',
-        description: "Seize Profit Potential: Explore High-Yield Flip Opportunities with Insider's Inventory."
-    },
-    {
-        id: 3,
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZFyb2akvS_EkACDpyNNre3CDOCThUovLmw&s',
-        type: 'Retail',
-        description: 'Tailored Retail Spaces for Owner-Occupied Success in Prime Locations.'
-    },
-    {
-        id: 4,
-        img: img1,
-        type: 'Owner-Occupant',
-        description: 'Secure your future with our Buy & Hold properties, offering stability and long-term growth potential.'
-    },
-    {
-        id: 5,
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZFyb2akvS_EkACDpyNNre3CDOCThUovLmw&s',
-        type: 'Current Renovation',
-        description: 'Tailored Retail Spaces for Owner-Occupied Success in Prime Locations.'
-    },
-
-
-]
+import Loader from '../../components/loader/Loader'
+import { getData } from '../../config/apiCalls'
+import Slider4 from '../../components/slider4/Slider4'
 
 export const Home = () => {
     const navigate = useNavigate();
     const isLoggedIn = useAuth();
+    let [categories, setCategories] = useState([]);
+    let [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         if (!isLoggedIn) {
             navigate('/')
         }
     }, [])
+
+    function getCategories() {
+        setIsLoading(true)
+
+        getData('categories').then((response) => {
+            console.log(response.categories)
+            setCategories(response?.categories)
+            setIsLoading(false)
+        }
+        ).catch((err) => {
+            toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+    }
+
+    useEffect(() => {
+        getCategories()
+    }, [])
+
     return (
         <div>
             <NavBar active={'Home'} />
@@ -88,29 +78,13 @@ export const Home = () => {
             {/* sec 3  */}
             <section className='h-sec3 padding'>
                 <div className="heading1 mb-40" style={{ textAlign: 'center' }}>Off-Market<span>Property Types</span></div>
-                <Grid container spacing={5}>
-                    {propertyTypes && propertyTypes.length > 0 &&
-                        propertyTypes.map(e => (
-                            <Grid item sm={2.4} xs={12} key={e?.type} >
-                                <div className="home-card3">
-                                    <div className='home-card3-imgBox'
-                                        style={{ backgroundImage: `url(${e?.img})` }}
-                                    >
-                                    </div>
-                                    <div className='home-card3-type'>
-                                        {e.type}
-                                    </div>
-                                    <div className="home-card3-description">{e?.description}</div>
-                                </div>
-                            </Grid>)
-                        )
-                    }
-                </Grid>
+                <Slider4 />
             </section>
             {/* sec 4  */}
             <section className="h-sec4 padding">
                 <Testimonial />
             </section>
+            <Loader isLoading={isLoading} />
             <Footer />
         </div>
     )

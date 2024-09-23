@@ -35,8 +35,6 @@ export default function Signup() {
 
 
     const handleSubmit = () => {
-        console.log(dataObj)
-
         setIsLoading(true)
         postData('register', dataObj).then((response) => {
             toast.success(response.message)
@@ -137,14 +135,14 @@ export default function Signup() {
                             </div>
                             <div className='text-center'>
                                 <Btn
-                                    label='Sign Up'
+                                    label='Insider Sign Up'
                                     onClick={handleSubmit}
                                 />
 
                             </div>
                             <div className='sign-bottom-text'>Already have an account? <span
                                 onClick={() => navigate('/Login')}
-                            > Login</span></div>
+                            > Insider Login</span></div>
 
                         </div>
                     </Grid>

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './Slider1.css'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -18,53 +17,27 @@ import { getData } from '../../config/apiCalls';
 import Loader from '../loader/Loader';
 import toast from 'react-hot-toast';
 
-export default function Slider1() {
-    let [properties, setProperties] = useState([]);
+export default function Slider4() {
+    let [categories, setCategories] = useState([]);
     let [isLoading, setIsLoading] = useState(false);
-    let [favorites, setFavorites] = useState([]);
 
-    const isFavorite = (propertyId) => {
-        let isFavorite = favorites.some(favorite => favorite._id?.toString() === propertyId?.toString());
-        return isFavorite;
-    };
-
-    function getProperties() {
+    function getCategories() {
         setIsLoading(true)
 
-        getData('properties').then((response) => {
-            setProperties(response?.properties)
+        getData('categories').then((response) => {
+            console.log(response.categories)
+            setCategories(response?.categories)
             setIsLoading(false)
         }
         ).catch((err) => {
+            toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
-    }
-
-
-    function getFavorites() {
-        setIsLoading(true)
-
-        getData('favorites').then((response) => {
-            setFavorites(response?.properties)
-            setIsLoading(false)
-        }
-        ).catch((err) => {
-            setIsLoading(false)
-        })
-    }
-
-    const updateFavorites = () => {
-        getFavorites();
-        getProperties();
     }
 
     useEffect(() => {
-        getProperties();
-        getFavorites()
-
+        getCategories()
     }, [])
-
-
     var settings = {
         dots: false,
         infinite: true,
@@ -76,7 +49,7 @@ export default function Slider1() {
             {
                 breakpoint: 1424,
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 4,
                     slidesToScroll: 1,
                     infinite: true,
                     dots: false,
@@ -116,29 +89,6 @@ export default function Slider1() {
 
     return (
         <section className="home-sec8-box slider1"  >
-            {/* slider ruler  */}
-            <div className='slider1-upper' >
-                <div className="heading1">Off-Market<span>Properties</span></div>
-                {/* <div className='slider1-navigation'> */}
-
-                {/* </div> */}
-            </div>
-            {/* <img onClick={prevSlide} src={prev} alt="prev"
-                className='slider1-prev'
-                style={{
-                    opacity: 1,
-                    cursor: 'pointer'
-                }}
-            />
-
-            <img onClick={nextSlide} src={next} alt="next"
-                className='slider1-next'
-                style={{
-                    opacity: 1,
-                    cursor: 'pointer'
-                }}
-            /> */}
-
             <div className='slider1-prev' onClick={prevSlide}>
                 <ArrowBackIosIcon
                     fontSize='large'
@@ -163,26 +113,21 @@ export default function Slider1() {
                         sliderRef = slider;
                     }}
                     {...settings}>
-                    {properties && properties.length > 0 &&
-                        properties.map(item => (
-                            <Card
-                                key={item?._id}
-                                property={item}
-                                images={item?.images}
-                                title={item?.title}
-                                status={item?.status}
-                                country={item?.country}
-                                propertyType={item?.propertyInformation?.propertyType}
-                                price={item?.price}
-                                ROI={item?.assignment?.portentialRoi}
-                                initialInvestment={item?.assignment?.initialInvestment}
-                                bedrooms={item?.propertyInformation?.bedrooms}
-                                bathrooms={item?.propertyInformation?.bathrooms}
-                                sqft={item?.propertyInformation?.sqft}
-                                isFavourite={isFavorite(item?._id)}
-                                onFavorite={updateFavorites}
-                            />
-                        ))}
+                    {categories && categories.length > 0 &&
+                        categories.map(e => (
+                            <div className="home-card3">
+                                <div className='home-card3-imgBox'
+                                    style={{ backgroundImage: `url(${e?.image})` }}
+                                >
+                                </div>
+                                <div className='home-card3-type'>
+                                    {e?.name}
+                                </div>
+                                <div className="home-card3-description">{e?.description}</div>
+                            </div>
+                        )
+                        )
+                    }
                 </Slider>
 
             </div>

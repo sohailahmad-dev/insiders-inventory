@@ -43,11 +43,12 @@ export default function Categories() {
 
     const deleteCategory = (id) => {
         setIsLoading(true)
-        deleteData(`category/${id}`).then(response => {
+        deleteData(`categories/${id}`).then(response => {
             toast.success(response?.message);
-            getCategorys();
+            getCategories();
             setIsLoading(false);
         }).catch(err => {
+            console.log(err)
             toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })

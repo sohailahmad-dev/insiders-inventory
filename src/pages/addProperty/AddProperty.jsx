@@ -126,7 +126,8 @@ const AddProperty = () => {
     // for single property 
     const handleUploadPhotos = async (images) => {
         setIsLoading(true)
-        if (images) {
+
+        if (images.length >= 2) {
             try {
                 const formData = new FormData();
                 images.forEach((img) => {
@@ -144,7 +145,7 @@ const AddProperty = () => {
             }
         } else {
             setIsLoading(false)
-            toast.error("Select Image(s)")
+            toast.error("Minimum 2 Images are required")
         }
     };
 
@@ -500,6 +501,13 @@ const AddProperty = () => {
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
+                                        onChange={(e) => addData('assignment', e.target.value, 'capRate')}
+                                        inputType='number'
+                                        placeholder='Cap Rate (%)'
+                                    />
+                                </Grid>
+                                <Grid item sm={6} xs={12}>
+                                    <InputField
                                         onChange={(e) => addData('assignment', e.target.value, 'cashFlowPerMonth')}
                                         inputType='number'
                                         placeholder='Cash Flow Per Month'
@@ -550,7 +558,7 @@ const AddProperty = () => {
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         inputType='number'
-                                        placeholder='Potential Return on Investment (ROI)'
+                                        placeholder='Potential Return on Investment (ROI %)'
                                         onChange={(e) => addData('assignment', e.target.value, 'potentialRoi')}
                                     />
                                 </Grid>
@@ -758,6 +766,13 @@ const AddProperty = () => {
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
+                                                    onChange={(e) => addData1(index, 'assignment', e.target.value, 'capRate')}
+                                                    inputType='number'
+                                                    placeholder='Cap Rate (%)'
+                                                />
+                                            </Grid>
+                                            <Grid item sm={6} xs={12}>
+                                                <InputField
                                                     onChange={(e) => addData1(index, 'assignment', e.target.value, 'cashFlowPerMonth')}
                                                     inputType='number'
                                                     placeholder='Cash Flow Per Month'
@@ -808,7 +823,7 @@ const AddProperty = () => {
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
                                                     inputType='number'
-                                                    placeholder='Potential Cash on Investment (ROI) '
+                                                    placeholder='Potential Cash on Investment (ROI %) '
                                                     onChange={(e) => addData1(index, 'assignment', e.target.value, 'potentialRoi')}
                                                 />
                                             </Grid>

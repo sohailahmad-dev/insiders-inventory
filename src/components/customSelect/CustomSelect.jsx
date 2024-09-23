@@ -9,7 +9,9 @@ const CustomSelect = ({ options, icon, label, onSelect, style, iconWidth, iconHe
     const handleSelect = (value) => {
         setSelectedValue(value);
         setIsOpen(false);
-        onSelect(value);
+        if (onSelect) {
+            onSelect(value);
+        }
     };
 
     return (

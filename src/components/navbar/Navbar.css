@@ -106,6 +106,45 @@
     transition: 0.5s ease;
 }
 
+.nb-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+
+.nb-profile-name {
+    font-size: 10px;
+    color: white;
+    font-family: Lato-SemiBold;
+}
+
+.nb-profile-popup {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 120px;
+    z-index: 1000;
+    padding: 10px;
+    text-align: left;
+}
+
+.nb-popup-option {
+    padding: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: Lato-Regular;
+    transition: background-color 0.3s ease;
+}
+
+.nb-popup-option:hover {
+    background-color: #f0f0f0;
+    /* Change to the hover color you prefer */
+}
+
 
 @media screen and (max-width:900px) {
 
@@ -151,7 +190,16 @@
         font-size: 14px;
     }
 
-    .GBPLinks-style {
-        flex-direction: column;
+    .nb-profile {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 5px;
+    }
+
+    .nb-profile-name {
+        font-size: 14px;
+        color: white;
+        font-family: Lato-SemiBold;
     }
 }

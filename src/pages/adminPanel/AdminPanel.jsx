@@ -133,18 +133,12 @@ export default function AdminPanel() {
 
 
 
-    const handleLogout = () => {
-        setIsLoading(true);
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        setSnackMsg("Successfully logged Out");
-        setOpenSnack(true);
-        setSeverity('success')
-        setIsLoading(false)
-        setTimeout(() => {
-            setIsAdminLoggedIn(false);
-        }, 2000)
-    }
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            console.log(user)
+        }
+    }, [])
 
     return (
         <div>
@@ -168,7 +162,7 @@ export default function AdminPanel() {
                                             style={{ background: e.label === activeScreen ? '#4DAD49' : 'transparent' }}
                                         >
                                             <Icon
-                                                sx='sm'
+                                                fontSize='sm'
                                                 component={e?.icon} ></Icon>
                                             {e.label}
                                         </div>

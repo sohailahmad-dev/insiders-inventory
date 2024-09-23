@@ -26,54 +26,62 @@ import toast from 'react-hot-toast'
 import useAuthCheck from '../../hooks/UseAuthCheck'
 
 
-
 const selectsData = [
     {
         icon: locationIcon,
         label: 'Location',
-        options: ['Gujrat', 'Delhi', 'Mumbai']
+        options: ['Gujrat', 'Delhi', 'Mumbai'],
+        filterName: 'location'
     },
     {
         icon: homeIcon,
         label: 'Property Type',
-        options: ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Vacant Land']
+        options: ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Vacant Land'],
+        filterName: 'propertyType'
     },
     {
         icon: opportunityIcon,
         label: 'Opportunity Type',
-        options: ['Buy & Hold', 'Flip Opportunity', 'Retail Owner-Occupant', 'All']
+        options: ['Buy & Hold', 'Flip Opportunity', 'Retail Owner-Occupant', 'All'],
+        filterName: 'opportunityType'
     },
     {
         icon: garageIcon,
         label: 'Garage',
-        options: ['Yes', 'No']
+        options: ['Yes', 'No'],
+        filterName: 'garage'
     },
     {
         icon: basementIcon,
         label: 'Basement',
-        options: ['Yes', 'No']
+        options: ['Yes', 'No'],
+        filterName: 'basement'
     },
     {
         icon: bedroomIcon,
         label: 'Bedrooms',
-        options: ['2', '3', '4', '5']
+        options: ['2', '3', '4', '5'],
+        filterName: 'bedrooms'
     },
     {
         icon: bathroomIcon,
         label: 'Bathrooms',
-        options: ['2', '3', '4']
+        options: ['2', '3', '4'],
+        filterName: 'bathrooms'
     },
     {
         icon: sizeIcon,
         label: 'Size (SqFt)',
-        options: ['80', '120', '200', '400']
+        options: ['80', '120', '200', '400'],
+        filterName: 'sqft'
     },
     {
         icon: packageIcon,
         iconWidth: 15,
         iconHeight: 15,
         label: 'Package',
-        options: ['Package - Yes', 'Package - No']
+        options: ['Package - Yes', 'Package - No'],
+        filterName: 'package'
     }
 ]
 
@@ -83,7 +91,78 @@ export const Buyers = ({ hide }) => {
     const isMobile = useIsMobile();
     let [properties, setProperties] = useState([]);
     let [favorites, setFavorites] = useState([]);
-    let [isLoading, setIsLoading] = useState(false)
+    let [isLoading, setIsLoading] = useState(false);
+
+    let [filteredProperties, setFilteredProperties] = useState([])
+
+    const [filters, setFilters] = useState({
+        location: '',
+        propertyType: '',
+        opportunityType: '',
+        garage: '',
+        basement: '',
+        bedrooms: null,
+        bathrooms: null,
+        sqft: null,
+        price: { min: 0, max: 1000000 },  // Example price range
+    });
+
+    // Function to handle filter updates
+    const updateFilter = (filterName, value) => {
+        setFilters({
+            ...filters,
+            [filterName]: value,
+        });
+    };
+
+    // Function to filter properties
+    const applyFilters = () => {
+        const filtered = properties.filter((property) => {
+            const {
+                location,
+                propertyType,
+                opportunityType,
+                garage,
+                basement,
+                bedrooms,
+                bathrooms,
+                sqft,
+                price,
+            } = filters;
+
+            // Only filter if a criterion is set; otherwise, pass
+            const matchesLocation = location ? property.address.location.toLowerCase().includes(location.toLowerCase()) : true;
+            const matchesPropertyType = propertyType ? property.propertyInformation.propertyType === propertyType : true;
+            const matchesOpportunityType = opportunityType ? property.opportunityType === opportunityType : true;
+            const matchesGarage = garage ? property.propertyInformation.garage === garage : true;
+            const matchesBasement = basement ? property.propertyInformation.basement === basement : true;
+            const matchesBedrooms = bedrooms !== null ? property.propertyInformation.bedrooms === bedrooms : true;
+            const matchesBathrooms = bathrooms !== null ? property.propertyInformation.bathrooms === bathrooms : true;
+            const matchesSqft = sqft ? property.propertyInformation.sqft >= sqft : true;
+            const matchesPrice = property.price >= price.min && property.price <= price.max;
+
+            // A property must match all active (non-null, non-empty) filters
+            return (
+                matchesLocation &&
+                matchesPropertyType &&
+                matchesOpportunityType &&
+                matchesGarage &&
+                matchesBasement &&
+                matchesBedrooms &&
+                matchesBathrooms &&
+                matchesSqft &&
+                matchesPrice
+            );
+        });
+
+        setFilteredProperties(filtered);
+    };
+
+
+    useEffect(() => {
+        // Apply the filters every time the `filters` state changes
+        applyFilters();
+    }, [filters]);
 
     const isFavorite = (propertyId) => {
         let isFavorite = favorites.some(favorite => favorite._id?.toString() === propertyId?.toString());
@@ -96,6 +175,7 @@ export const Buyers = ({ hide }) => {
 
         getData('properties').then((response) => {
             setProperties(response?.properties)
+            setFilteredProperties(response?.properties)
             setIsLoading(false)
         }
         ).catch((err) => {
@@ -112,7 +192,6 @@ export const Buyers = ({ hide }) => {
             setIsLoading(false)
         }
         ).catch((err) => {
-            // toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
     }
@@ -147,19 +226,19 @@ export const Buyers = ({ hide }) => {
                 <Grid container spacing={3}>
                     <Grid item sm={5} xs={12}>
                         <MapComponent />
-
                     </Grid>
                     <Grid item sm={7} xs={12}>
                         <Grid container spacing={2}>
                             {selectsData && selectsData.length > 0 &&
                                 selectsData.map((e, i) => (
-                                    <Grid item sm={6} xs={6} key={i}>
+                                    <Grid item sm={6} xs={12} key={i}>
                                         <CustomSelect
                                             iconWidth={e?.iconWidth}
                                             iconHeight={e?.iconHeight}
                                             icon={e?.icon}
                                             options={e?.options}
                                             label={e?.label}
+                                            onSelect={(val) => updateFilter(e?.filterName, val)}
                                         />
                                     </Grid>
                                 ))}
@@ -203,8 +282,8 @@ export const Buyers = ({ hide }) => {
             {/* sec 3  */}
             <section className="buyers-sec-3 padding">
                 <Grid container spacing={3}>
-                    {properties && properties.length > 0 &&
-                        properties.map(item => (
+                    {filteredProperties && filteredProperties.length > 0 ?
+                        filteredProperties.map(item => (
                             <Grid item xl={3} lg={4} md={4} sm={4} xs={12} key={Math.random()} >
                                 <Card
                                     key={item?._id}
@@ -224,7 +303,9 @@ export const Buyers = ({ hide }) => {
                                     onFavorite={updateFavorites}
                                 />
                             </Grid>
-                        ))
+                        )) : (<div style={{ textAlign: 'center', width: '100%' }}>
+                            <div className='heading1 mt-50 mb-50' >No Inventory Available</div >
+                        </div>)
                     }
                 </Grid>
             </section>

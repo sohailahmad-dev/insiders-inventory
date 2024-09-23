@@ -83,7 +83,7 @@ export default function Login({ hide }) {
                             </div>
                             <div className='text-center'>
                                 <Btn
-                                    label='Member Login'
+                                    label='Insider Login'
                                     onClick={handleLogin}
                                 />
 
@@ -91,7 +91,7 @@ export default function Login({ hide }) {
                             <div className='sign-bottom-text'>Not a Member?
                                 <span
                                     onClick={() => navigate('/Signup')}
-                                > Sign-Up</span>
+                                >Insider Sign-Up</span>
                             </div>
 
                         </div>

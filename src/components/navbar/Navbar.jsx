@@ -1,11 +1,10 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './Navbar.css';
 import { useEffect, useState } from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Btn from "../btn/Btn";
 import useIsMobile from "../../hooks/UseIsMobile";
-import { useAuth } from "../../hooks/UseAuth";
 
 
 
@@ -16,8 +15,29 @@ export default function NavBar({ active, onLogoClick }) {
     let [menu, setMenu] = useState('true');
     let [activeMenu, setActiveMenu] = useState('navLinks');
     let [activeLink, setActiveLink] = useState('Home');
+    let [userData, setUserData] = useState({});
     let isMobile = useIsMobile();
-    let isLoggedIn = useAuth();
+    const [showPopup, setShowPopup] = useState(false);
+
+    const togglePopup = () => {
+        setShowPopup(!showPopup);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        navigate('/');
+        setUserData({})
+        togglePopup();
+    };
+
+    const goToUserPanel = () => {
+        if (userData.role === 'Admin') {
+            navigate('/AdminPanel/Properties')
+        } else {
+            navigate('/UserPanel/UserProperties')
+        }
+        togglePopup()
+    };
 
     const navigate = useNavigate();
 
@@ -28,6 +48,11 @@ export default function NavBar({ active, onLogoClick }) {
     useEffect(() => {
         if (active) {
             setActiveLink(active)
+        }
+
+        const usr = JSON.parse(localStorage.getItem('user'));
+        if (usr) {
+            setUserData(usr)
         }
     }, [])
 
@@ -94,6 +119,32 @@ export default function NavBar({ active, onLogoClick }) {
                                 sx={{ color: 'white' }}
                                 onClick={() => setMenu(!menu)} />}
                     </div>
+                    {isMobile && (userData?.firstName ?
+                        <div className="sideBar-Profile-sec" style={{ width: '100%', position: 'relative', cursor: 'pointer' }}>
+                            <img
+                                src={"https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"}
+                                className='nb-profile'
+                                onClick={togglePopup}
+                                alt="Profile"
+                            />
+                            <div className="nb-profile-name">
+                                {userData?.firstName + " " + userData?.lastName ?? "John Doe"}
+                            </div>
+
+                            {showPopup && (
+                                <div className="profile-popup" style={popupStyle}>
+                                    <div className="popup-option" onClick={goToUserPanel}>
+                                        {userData.role === 'Admin' ? "Go to Admin Panel" : "Go to User Panel"}
+                                    </div>
+                                    <div className="popup-option" onClick={handleLogout}>
+                                        Logout
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        :
+                        <Btn
+                            label="Insider Login/Sign-up" onClick={() => navigate('/LoginSignup')} />)}
                     {links.map(e => (
                         <div
                             key={e?.label}
@@ -109,13 +160,36 @@ export default function NavBar({ active, onLogoClick }) {
 
                     {/* {(isMobile && !isLoggedIn) ? <Btn
                         label="Login/Signup" onClick={() => navigate('/Login')} /> : <div></div>} */}
-                    {isMobile && <Btn
-                        label="Member Login/Sign-up" onClick={() => navigate('/LoginSignup')} />}
+
 
 
                 </div>
-                {!isMobile && <Btn
-                    label="Member Login/Sign-up" onClick={() => navigate('/LoginSignup')} />}
+                {!isMobile && (userData?.firstName ?
+                    <div className="sideBar-Profile-sec" style={{ position: 'relative', textAlign: 'center', minWidth: 80, cursor: 'pointer' }}>
+                        <img
+                            src={"https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"}
+                            className='nb-profile'
+                            onClick={togglePopup}
+                            alt="Profile"
+                        />
+                        <div className="nb-profile-name">
+                            {userData?.firstName + " " + userData?.lastName ?? "John Doe"}
+                        </div>
+
+                        {showPopup && (
+                            <div className="nb-profile-popup" >
+                                <div className="nb-popup-option" onClick={goToUserPanel}>
+                                    Go to User Panel
+                                </div>
+                                <div className="nb-popup-option" onClick={handleLogout}>
+                                    Logout
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                    :
+                    <Btn
+                        label="Insider Login/Sign-up" onClick={() => navigate('/LoginSignup')} />)}
 
                 <div className="icon">
                     {menu ? <MenuIcon
@@ -129,4 +203,5 @@ export default function NavBar({ active, onLogoClick }) {
             </div>
         </div>
     )
-} 
+}
+

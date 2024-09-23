@@ -136,6 +136,14 @@ export default function UserPanel() {
         };
     }, []);
 
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+            setUserData(user)
+            console.log(user)
+        }
+    }, [])
+
 
 
     const handleLogout = () => {
@@ -161,7 +169,7 @@ export default function UserPanel() {
                     <div>
                         <div className="sideBar-Profile-sec">
                             <img src={"https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"} className='ap-profile' />
-                            <div className="sideBar-profile-name">{userData?.username ?? "John Doe"}</div>
+                            <div className="sideBar-profile-name">{userData?.firstName + userData?.lastName ?? "John Doe"}</div>
                             <div className="sideBar-profile-email">{userData?.email}</div>
                         </div>
 
@@ -173,7 +181,7 @@ export default function UserPanel() {
                                             style={{ background: e.label === activeScreen ? '#4DAD49' : 'transparent' }}
                                         >
                                             <Icon
-                                                sx='sm'
+                                                fontSize='sm'
                                                 component={e?.icon} ></Icon>
                                             {e.label}
                                         </div>

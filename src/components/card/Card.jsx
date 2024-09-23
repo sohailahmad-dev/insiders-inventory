@@ -85,7 +85,7 @@ export default function Card({
             <Grid item xs={6}>
               <div className="sldier1-stats-right">
                 <div className="card-stats-label">Potential ROI</div>
-                <div className="card-stats-figure">{ROI}%</div>
+                <div className="card-stats-figure">{property?.assignment?.potentialRoi ?? 15}%</div>
               </div>
             </Grid>
           </Grid>

@@ -120,7 +120,7 @@ export default function UserProperties() {
                 <div className="ap-tb">
                     {properties && properties.length > 0 &&
                         properties.map((e, i) => (
-                            <div className='ap-th'>
+                            <div className='ap-th' key={i}>
                                 <Grid container spacing={1}>
                                     <Grid item sm={0.75} xs={12} >
                                         <div className="ap-tr">
