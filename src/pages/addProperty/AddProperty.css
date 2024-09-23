@@ -60,3 +60,33 @@
     height: 48px;
     cursor: pointer;
 }
+
+.custom-select1-option {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.custom-select1-option:hover {
+    background-color: #f0f0f0;
+    /* Optional light hover effect */
+}
+
+/* Style for the checkbox */
+.custom-select1-option input[type="checkbox"] {
+    accent-color: #4DAD49;
+    /* Green checkbox color */
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+
+/* Keeps background white, no color changes for selection */
+.custom-select1-option input[type="checkbox"]:checked {
+    background-color: #4DAD49;
+    /* Green checkbox */
+}

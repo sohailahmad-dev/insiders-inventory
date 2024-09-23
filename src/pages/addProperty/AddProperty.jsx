@@ -33,7 +33,7 @@ const AddProperty = () => {
         title: '',
         price: 0,
         country: '',
-        opportunityType: '',
+        opportunityType: [],
         address: {
             location: '',
             street: '',
@@ -66,7 +66,7 @@ const AddProperty = () => {
         images: [],
         videoUrl: '',
         mapUrl: '',
-        financingOptions: '',
+        financingOptions: [],
         investmentTerms: '',
         buyingProcess: '',
         propertyManagement: {
@@ -82,7 +82,53 @@ const AddProperty = () => {
     let [user, setUser] = useState({});
     let [isLoading, setIsLoading] = useState(false)
 
-    const [properties, setProperties] = useState([{}]);
+    const [properties, setProperties] = useState([{
+        title: '',
+        price: 0,
+        country: '',
+        opportunityType: [],
+        address: {
+            location: '',
+            street: '',
+            zipCode: '',
+            state: '',
+            city: ''
+        },
+        status: 'New',
+        assignment: {
+            initialInvestment: 0,
+            potentialRoi: 0,
+            capRate: 0,
+            cashFlowPerMonth: 0
+        },
+        leaseInformation: {
+            currentStatus: '',
+            leaseStartDate: '',
+            leaseEndDate: '',
+            leaseAmount: 0,
+        },
+        propertyInformation: {
+            propertyType: '',
+            bedrooms: 0,
+            bathrooms: 0,
+            sqft: '',
+            garage: false,
+            basement: false
+        },
+        description: '',
+        images: [],
+        videoUrl: '',
+        mapUrl: '',
+        financingOptions: [],
+        investmentTerms: '',
+        buyingProcess: '',
+        propertyManagement: {
+            managedByCompany: false,
+            companyName: '',
+            contactInformation: ''
+        },
+        lockboxCode: ''
+    }]);
     const [formVisibility, setFormVisibility] = useState([true]);
 
     const addProperty = () => {
@@ -100,29 +146,51 @@ const AddProperty = () => {
 
 
     const addData = (label, value, child) => {
-        if (child) {
-            dataObj[label][child] = value
+        if (label === 'opportunityType') {
+            if (dataObj[label].includes(value)) {
+                dataObj[label] = dataObj[label].filter(item => item !== value);
+            } else {
+                dataObj[label].push(value);
+            }
+        } else if (child) {
+            dataObj[label][child] = value;
         } else {
             dataObj[label] = value;
         }
-        setDataObj({ ...dataObj })
-    }
+        setDataObj({ ...dataObj });
+    };
 
     const addData1 = (index, label, value, child) => {
         setProperties(prevProperties => {
             const newProperties = [...prevProperties];
             const property = { ...newProperties[index] };
 
-            if (child) {
+            if (label === 'opportunityType') {
+                // Ensure that property[label] is an array, even if it's undefined or null
+                property[label] = Array.isArray(property[label]) ? [...property[label]] : [];
+
+                // Toggle value: remove if it exists, otherwise add it
+                if (property[label].includes(value)) {
+                    property[label] = property[label].filter(item => item !== value);
+                } else {
+                    property[label].push(value);
+                }
+            } else if (child) {
+                // Handle nested child properties
                 property[label] = { ...property[label], [child]: value };
             } else {
+                // Handle simple property update
                 property[label] = value;
             }
 
+            // Update the new property in the properties array
             newProperties[index] = property;
+
+            // Return the updated properties array to update the state
             return newProperties;
         });
     };
+
 
     // for single property 
     const handleUploadPhotos = async (images) => {
@@ -397,7 +465,7 @@ const AddProperty = () => {
                                     opportunityTypes.map(type => (
                                         <div key={type}
                                             onClick={() => addData('opportunityType', type)}
-                                            className={dataObj.opportunityType === type ? 'add-property-type add-property-type-active' : 'add-property-type'}
+                                            className={dataObj?.opportunityType?.includes(type) ? 'add-property-type add-property-type-active' : 'add-property-type'}
                                         >
                                             {type}
                                         </div>
@@ -453,7 +521,7 @@ const AddProperty = () => {
                                 <Grid item sm={6} xs={12}>
                                     <SelectBox
                                         label='Current Status'
-                                        options={['Owner-Occupied', 'Tenant-Occupied', 'Vacant', 'Eviction/Squatter', 'new']}
+                                        options={['Owner-Occupied', 'Tenant-Occupied', 'Vacant', 'Eviction/Squatter']}
                                         onSelect={(val) => addData('currentStatus', val)}
                                     />
                                 </Grid>
@@ -563,7 +631,7 @@ const AddProperty = () => {
                                     />
                                 </Grid>
 
-                                {dataObj.propertyManagement.managedByCompany === 'Yes' &&
+                                {dataObj?.propertyManagement?.managedByCompany === 'Yes' &&
                                     <>
                                         <Grid item sm={6} xs={12}>
                                             <InputField
@@ -586,12 +654,13 @@ const AddProperty = () => {
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <SelectBox
+                                        multiSelect={true}
                                         label='Financing Types'
                                         options={['Cash', 'Conventional', 'FHA', 'Land Contract']}
                                         onSelect={val => addData('financingOptions', val)}
                                     />
                                 </Grid>
-                                {dataObj?.opportunityType === 'Flip Opportunity' && <Grid item sm={6} xs={12}>
+                                {dataObj?.opportunityType?.includes('Flip Opportunity') && <Grid item sm={6} xs={12}>
                                     <InputField
                                         placeholder='ARV'
                                         onChange={(e) => addData('ARV', e.target.value)}
@@ -611,13 +680,6 @@ const AddProperty = () => {
                                         isTextarea={true}
                                     />
                                 </Grid> */}
-                                <Grid item sm={12} xs={12}>
-                                    <InputField
-                                        placeholder='Investment Terms'
-                                        onChange={(e) => addData('investmentTerms', e.target.value)}
-                                        isTextarea={true}
-                                    />
-                                </Grid>
                                 <Grid item xs={12}>
                                     <FileUpload
                                         label='Upload Photo Files'
@@ -648,7 +710,7 @@ const AddProperty = () => {
                                 <img src={add} alt="add-btn" onClick={addProperty} />
                             </div>
                             {formVisibility[index] && (
-                                <div style={{ textAlign: 'center', }} >
+                                <div >
                                     <>
                                         <div className="heading3 mb-20">Opportunity Type</div>
                                         <div style={{ display: 'flex', width: '100%', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
@@ -656,7 +718,7 @@ const AddProperty = () => {
                                                 opportunityTypes.map(type => (
                                                     <div key={type}
                                                         onClick={() => addData1(index, 'opportunityType', type)}
-                                                        className={properties[index].opportunityType === type ? 'add-property-type add-property-type-active' : 'add-property-type'}
+                                                        className={properties[index]?.opportunityType?.includes(type) ? 'add-property-type add-property-type-active' : 'add-property-type'}
                                                     >
                                                         {type}
                                                     </div>
@@ -821,7 +883,7 @@ const AddProperty = () => {
                                                     onChange={(e) => addData1(index, 'assignment', e.target.value, 'potentialRoi')}
                                                 />
                                             </Grid>
-                                            {properties[index].propertyManagement.managedByCompany === 'Yes' &&
+                                            {properties[index]?.propertyManagement?.managedByCompany === 'Yes' &&
                                                 <>
                                                     <Grid item sm={6} xs={12}>
                                                         <InputField
@@ -844,12 +906,13 @@ const AddProperty = () => {
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <SelectBox
+                                                    multiSelect={true}
                                                     label='Financing Types'
                                                     options={['Cash', 'Conventional', 'FHA', 'Land Contract']}
                                                     onSelect={val => addData1(index, 'financingOptions', val)}
                                                 />
                                             </Grid>
-                                            {properties[index].opportunityType === 'Flip Opportunity' && <Grid item sm={6} xs={12}>
+                                            {properties[index].opportunityType.includes('Flip Opportunity') && <Grid item sm={6} xs={12}>
                                                 <InputField
                                                     placeholder='ARV'
                                                     onChange={(e) => addData1(index, 'ARV', e.target.value)}
@@ -869,14 +932,6 @@ const AddProperty = () => {
                                                     isTextarea={true}
                                                 />
                                             </Grid> */}
-                                            <Grid item sm={12} xs={12}>
-                                                <InputField
-                                                    placeholder='Investment Terms'
-                                                    onChange={(e) => addData1(index, 'investmentTerms', e.target.value)}
-                                                    isTextarea={true}
-                                                />
-                                            </Grid>
-
                                             <Grid item xs={12}>
                                                 <FileUpload
                                                     index={index}

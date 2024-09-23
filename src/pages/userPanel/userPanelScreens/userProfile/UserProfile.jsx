@@ -145,9 +145,6 @@ export default function UserProfile() {
                                     value="Investor" control={<Radio color='success' />} label="Investor" />
                                 <FormControlLabel
                                     sx={{ marginRight: 5 }}
-                                    value="Admin" control={<Radio color='success' />} label="Admin" />
-                                <FormControlLabel
-                                    sx={{ marginRight: 5 }}
                                     value="Home Buyer" control={<Radio color='success' />} label="Home Buyer" />
                                 <FormControlLabel
                                     sx={{ marginRight: 5 }}

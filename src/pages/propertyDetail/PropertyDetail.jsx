@@ -194,9 +194,6 @@ export default function PropertyDetail() {
                             <ExpandableBox label='Financing Options'>
                                 <p className='pd-p-val' >{property?.financingOptions}</p>
                             </ExpandableBox>
-                            <ExpandableBox label='Investment Terms' >
-                                <p className='pd-p-val' >{property?.investmentTerms}</p>
-                            </ExpandableBox>
                             <ExpandableBox label='Buying Process' >
                                 <p className='pd-p-val' >{property?.buyingProcess}</p>
                             </ExpandableBox>
