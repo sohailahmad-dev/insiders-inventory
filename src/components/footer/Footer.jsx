@@ -12,6 +12,9 @@ import useIsMobile from '../../hooks/UseIsMobile'
 import InputField from '../inputField/InputField'
 import FooterInput from '../footerInput/FooterInput'
 import Btn from '../btn/Btn'
+import Loader from '../loader/Loader'
+import { postData } from '../../config/apiCalls'
+import toast from 'react-hot-toast'
 
 const socials = [
     {
@@ -32,10 +35,49 @@ const socials = [
     }
 ]
 
+
+
 export default function Footer({ active, inPanel, hideEmail }) {
     let [activeLink, setActiveLink] = useState('Home');
     let isMobile = useIsMobile();
     const navigate = useNavigate();
+    let [isLoading, setIsLoading] = useState(false);
+    let [dataObj, setDataObj] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: ''
+    });
+
+    const addData = (key, value) => {
+        dataObj[key] = value;
+        setDataObj({ ...dataObj });
+    }
+
+    const handleSubmit = () => {
+        const { firstName, lastName, email, phone } = dataObj;
+        setIsLoading(true)
+        if (firstName && lastName && email && phone) {
+            postData('newsletter', dataObj).then((response) => {
+                toast.success(response.message)
+                setDataObj({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    phone: ''
+                })
+                setIsLoading(false)
+            }
+            ).catch((err) => {
+                toast.error(err.message ?? 'Network Error')
+                setIsLoading(false)
+            })
+        } else {
+            toast.error('Required Fields are missing!')
+            setIsLoading(false)
+        }
+
+    }
 
     useEffect(() => {
         if (active) {
@@ -59,27 +101,36 @@ export default function Footer({ active, inPanel, hideEmail }) {
                                 <Grid item sm={6} xs={12}>
                                     <FooterInput
                                         placeholder='First Name'
+                                        value={dataObj?.firstName}
+                                        onChange={e => addData("firstName", e.target.value)}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <FooterInput
                                         placeholder='Last Name'
+                                        value={dataObj?.lastName}
+                                        onChange={e => addData("lastName", e.target.value)}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <FooterInput
                                         placeholder='Email'
+                                        value={dataObj?.email}
+                                        onChange={e => addData("email", e.target.value)}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <FooterInput
                                         placeholder='Phone Number'
+                                        value={dataObj?.phone}
+                                        onChange={e => addData("phone", e.target.value)}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <div className='text-center'>
                                         <Btn
                                             label='Sign up for the Latest Deals'
+                                            onClick={handleSubmit}
                                         ></Btn>
                                     </div>
                                 </Grid>
@@ -99,7 +150,6 @@ export default function Footer({ active, inPanel, hideEmail }) {
                     </Grid>
                     <Grid item sm={8} xs={12}>
                         <div className='footerLinks'>
-
                             <div
                                 className={activeLink == 'Home' ? "link-nb" : "link-nb1"}
                                 onClick={() => {
@@ -131,7 +181,8 @@ export default function Footer({ active, inPanel, hideEmail }) {
                                 }
                                 }
                             >Buy & Hold</div>
-
+                        </div>
+                        <div className='footerLinks mt-20'>
                             <div
                                 className={activeLink === 'Retail' ? "link-nb" : "link-nb1"}
                                 onClick={() => {
@@ -156,16 +207,18 @@ export default function Footer({ active, inPanel, hideEmail }) {
                                 }
                             >Off-Market Inventory</div>
                         </div>
-                        <div className="footer-social">
+
+                        {/* <div className="footer-social">
                             {socials.map((e, i) => (
                                 <img src={e?.icon} key={i} alt='icon' />
                             ))}
-                        </div>
+                        </div> */}
                     </Grid>
                 </Grid>
 
                 <div className="footer-line"></div>
                 <div className="footer-text text-center">Copyright Insider’s Inventory 2024 . All rights reserved.</div>
+                <Loader isLoading={isLoading} />
             </div>
         </div >
     )

@@ -12,6 +12,10 @@ import { postData } from '../../config/apiCalls'
 import toast from 'react-hot-toast'
 
 export default function Signup() {
+    // Roles handling
+    const roles = ['Investor', 'Home Buyer', 'Agent', 'Fund/REIT Investment Buyer'];
+    const [selectedRole, setSelectedRole] = useState('');
+
     const navigate = useNavigate();
     let [isLoading, setIsLoading] = useState(false);
     let [dataObj, setDataObj] = useState({});
@@ -21,9 +25,6 @@ export default function Signup() {
         setDataObj({ ...dataObj });
     }
 
-    // Roles handling
-    const roles = ['Investor', 'Home Buyer', 'Agent', 'Fund/REIT Investment Buyer'];
-    const [selectedRole, setSelectedRole] = useState('');
 
     const handleChange = (role, checked) => {
         if (checked) {
@@ -47,7 +48,6 @@ export default function Signup() {
             toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
-
     }
 
     return (

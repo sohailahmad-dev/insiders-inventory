@@ -25,7 +25,6 @@ export default function Slider4() {
         setIsLoading(true)
 
         getData('categories').then((response) => {
-            console.log(response.categories)
             setCategories(response?.categories)
             setIsLoading(false)
         }
@@ -114,8 +113,8 @@ export default function Slider4() {
                     }}
                     {...settings}>
                     {categories && categories.length > 0 &&
-                        categories.map(e => (
-                            <div className="home-card3">
+                        categories.map((e, key) => (
+                            <div className="home-card3" key={key}>
                                 <div className='home-card3-imgBox'
                                     style={{ backgroundImage: `url(${e?.image})` }}
                                 >

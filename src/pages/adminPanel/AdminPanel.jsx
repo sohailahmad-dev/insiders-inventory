@@ -20,6 +20,7 @@ import Categories from './adminPanelScreens/categories/Categories';
 import CategoryIcon from '@mui/icons-material/Category';
 import Properties from './adminPanelScreens/properties/Properties';
 import useAuthCheck from '../../hooks/UseAuthCheck';
+import VipBuyers from './adminPanelScreens/vipBuyer/VipBuyers';
 
 
 
@@ -51,6 +52,11 @@ export default function AdminPanel() {
         {
             label: 'Users',
             to: 'Users',
+            icon: GroupOutlinedIcon,
+        },
+        {
+            label: 'VIP Buyers',
+            to: 'VipBuyers',
             icon: GroupOutlinedIcon,
         },
         {
@@ -183,6 +189,7 @@ export default function AdminPanel() {
                         <Route path='Properties' element={<Properties />}></Route>
                         <Route path='AddProperty' element={<AddProperty />}></Route>
                         <Route path='Users' element={<Users />}></Route>
+                        <Route path='VipBuyers' element={<VipBuyers />}></Route>
                         <Route path='Categories' element={<Categories />}></Route>
                     </Routes>
                 </div>

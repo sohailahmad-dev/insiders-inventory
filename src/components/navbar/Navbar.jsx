@@ -134,7 +134,7 @@ export default function NavBar({ active, onLogoClick }) {
                             {showPopup && (
                                 <div className="profile-popup" style={popupStyle}>
                                     <div className="popup-option" onClick={goToUserPanel}>
-                                        {userData.role === 'Admin' ? "Go to Admin Panel" : "Go to User Panel"}
+                                        Go to Dashboard
                                     </div>
                                     <div className="popup-option" onClick={handleLogout}>
                                         Logout
@@ -179,7 +179,7 @@ export default function NavBar({ active, onLogoClick }) {
                         {showPopup && (
                             <div className="nb-profile-popup" >
                                 <div className="nb-popup-option" onClick={goToUserPanel}>
-                                    Go to User Panel
+                                    Go to Dashboard
                                 </div>
                                 <div className="nb-popup-option" onClick={handleLogout}>
                                     Logout

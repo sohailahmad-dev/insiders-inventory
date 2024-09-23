@@ -213,7 +213,7 @@ export default function PropertyDetail() {
                                         style={{
                                             color: type === 'Neither' ? 'black' : 'lightgray'
                                         }}
-                                    >{type === 'Neither' ? 'For Sale' : type}</div>
+                                    >{property?.ownerType ?? 'Assignmenbt'}</div>
                                 </div>
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
@@ -224,7 +224,7 @@ export default function PropertyDetail() {
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Potential ROI </div>
-                                    <div className="pd-p-val ">  </div>
+                                    <div className="pd-p-val ">{property?.assignment?.potentialRoi ?? 0}%</div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label ">Cap Rate </div>

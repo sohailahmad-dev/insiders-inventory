@@ -31,7 +31,6 @@ export const Home = () => {
         setIsLoading(true)
 
         getData('categories').then((response) => {
-            console.log(response.categories)
             setCategories(response?.categories)
             setIsLoading(false)
         }
