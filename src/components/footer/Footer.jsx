@@ -174,6 +174,9 @@ export default function Footer({ active, inPanel, hideEmail }) {
                                 }
                             >Sellers</div>
 
+
+                        </div>
+                        <div className='footerLinks mt-20'>
                             <div
                                 className={activeLink === 'Buy & Hold' ? "link-nb" : "link-nb1"}
                                 onClick={() => {
@@ -181,8 +184,6 @@ export default function Footer({ active, inPanel, hideEmail }) {
                                 }
                                 }
                             >Buy & Hold</div>
-                        </div>
-                        <div className='footerLinks mt-20'>
                             <div
                                 className={activeLink === 'Retail' ? "link-nb" : "link-nb1"}
                                 onClick={() => {

@@ -42,7 +42,7 @@ const selectsData = [
     {
         icon: opportunityIcon,
         label: 'Opportunity Type',
-        options: ['Buy & Hold', 'Flip Opportunity', 'Retail Owner-Occupant', 'All'],
+        options: ['Buy & Hold', 'Flip Opportunity', 'Owner-Occupant', 'Retail', 'Current Renovation'],
         filterName: 'opportunityType'
     },
     {
@@ -68,12 +68,6 @@ const selectsData = [
         label: 'Bathrooms',
         options: ['2', '3', '4'],
         filterName: 'bathrooms'
-    },
-    {
-        icon: sizeIcon,
-        label: 'Size (SqFt)',
-        options: ['80', '120', '200', '400'],
-        filterName: 'sqft'
     },
     {
         icon: packageIcon,
@@ -201,8 +195,9 @@ export const Buyers = ({ hide }) => {
         getProperties();
     }
 
-
-
+    const resetFilters = () => {
+        setFilteredProperties([...properties])
+    }
 
 
     useEffect(() => {
@@ -243,6 +238,13 @@ export const Buyers = ({ hide }) => {
                                     </Grid>
                                 ))}
 
+                            <Grid item sm={6} xs={12}>
+                                <RangePicker
+                                    label='Sqft'
+                                    MIN={1}
+                                    MAX={200}
+                                />
+                            </Grid>
                             <Grid item sm={6} xs={12}>
                                 <RangePicker
                                 />
@@ -304,7 +306,9 @@ export const Buyers = ({ hide }) => {
                                 />
                             </Grid>
                         )) : (<div style={{ textAlign: 'center', width: '100%' }}>
-                            <div className='heading1 mt-50 mb-50' >No Inventory Available</div >
+                            <div className='heading2 mt-50 mb-50 all-inventorty-text'
+                                onClick={resetFilters}
+                            >Check Out All Inventory Instead</div >
                         </div>)
                     }
                 </Grid>

@@ -173,6 +173,10 @@
     }
 
 
+}
+
+@media screen and (max-width:600px) {
+
     .link {
         line-height: 50px;
         color: white;

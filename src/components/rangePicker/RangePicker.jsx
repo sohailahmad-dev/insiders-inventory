@@ -3,18 +3,15 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 
-const MAX = 1000000;
-const MIN = 0;
 
-
-export default function RangePicker() {
-    const [val, setVal] = React.useState(MIN);
+export default function RangePicker({ MIN = 0, MAX = 1000000, label = 'Price' }) {
+    const [val, setVal] = React.useState([MIN, MAX]);
     const handleChange = (_, newValue) => {
         setVal(newValue);
     };
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={{ width: '90%', margin: '0px 10px', }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography
                     variant="body2"
@@ -23,7 +20,7 @@ export default function RangePicker() {
                         fontFamily: "Lato-SemiBold"
                     }}
                 >
-                    Price
+                    {label}
                 </Typography>
                 <Typography
                     variant="body2"
@@ -32,7 +29,7 @@ export default function RangePicker() {
                         fontFamily: "Lato-SemiBold", color: 'gray'
                     }}
                 >
-                    $ {val}
+                    {val[0] + ' , ' + val[1]}
                 </Typography>
             </Box>
             <Slider
@@ -44,7 +41,6 @@ export default function RangePicker() {
                 color={'success'}
                 onChange={handleChange}
             />
-
         </Box>
     );
 }

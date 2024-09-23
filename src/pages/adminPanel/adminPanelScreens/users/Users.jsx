@@ -22,8 +22,6 @@ export default function Users() {
         setIsLoading(true)
 
         getData('users').then((response) => {
-            toast.success(response.message)
-            console.log(response.users)
             setUsers(response?.users)
             setIsLoading(false)
         }
@@ -130,7 +128,7 @@ export default function Users() {
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Actions</div>
-                                            <div >
+                                            <div style={{ display: 'flex' }}>
                                                 <div
                                                     onClick={() => handleEditUser(e)}
                                                 >

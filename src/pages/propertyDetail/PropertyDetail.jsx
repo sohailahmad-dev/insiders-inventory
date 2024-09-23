@@ -207,13 +207,16 @@ export default function PropertyDetail() {
                     <Grid item sm={4.5} xs={12}>
                         <div className="pd-sec2-right">
                             <div className="pd-box pd-price-box" style={{ background: 'white' }} >
-                                <div className='pd-type-box'>
+                                <div className='pd-type-box1'>
                                     <div className="heading1 pd-price" >${property?.price}</div>
                                     <div className="pd-p-val"
                                         style={{
-                                            color: type === 'Neither' ? 'black' : 'lightgray'
+                                            color: 'lightgray',
+                                            margin: '10px auto',
+                                            display: 'flex',
+                                            justifyContent: 'center'
                                         }}
-                                    >{property?.ownerType ?? 'Assignmenbt'}</div>
+                                    >{property?.ownerType ?? 'Assignment'}</div>
                                 </div>
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
@@ -244,10 +247,14 @@ export default function PropertyDetail() {
                                 <div className="heading3 text-center">Lease Information</div>
                                 <div className="pd-line"></div>
                                 <div className="pd-stats-item1">
-                                    <div className="pd-p-label"> Current Status </div>
+                                    <div className="pd-p-label"> Current Lease </div>
                                     <div className="pd-p-val">{property?.leaseInformation?.currentStatus} </div>
                                 </div>
                                 {property?.leaseInformation?.currentStatus === 'Yes' && <>
+                                    <div className="pd-stats-item1">
+                                        <div className="pd-p-label">Lease Amount  </div>
+                                        <div className="pd-p-val"> ${property?.leaseInformation?.leaseAmount ?? 0}</div>
+                                    </div>
                                     <div className="pd-stats-item1">
                                         <div className="pd-p-label">Lease Start Date  </div>
                                         <div className="pd-p-val"> {property?.leaseInformation?.leaseStartDate}</div>

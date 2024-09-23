@@ -10,3 +10,8 @@
     font-family: Lora-Regular;
     margin-top: 8px;
 }
+
+.all-inventorty-text {
+    color: green;
+    cursor: pointer;
+}

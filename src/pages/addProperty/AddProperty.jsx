@@ -51,7 +51,8 @@ const AddProperty = () => {
         leaseInformation: {
             currentStatus: '',
             leaseStartDate: '',
-            leaseEndDate: ''
+            leaseEndDate: '',
+            leaseAmount: 0,
         },
         propertyInformation: {
             propertyType: '',
@@ -241,7 +242,6 @@ const AddProperty = () => {
 
         // Check if all values are available
         if (
-            title &&
             price &&
             country &&
             opportunityType &&
@@ -298,7 +298,6 @@ const AddProperty = () => {
             } = property;
 
             return (
-                title &&
                 price &&
                 country &&
                 opportunityType &&
@@ -451,12 +450,6 @@ const AddProperty = () => {
                             </Grid>
                             <div className="heading3 mt-20">Details about your Listing</div>
                             <Grid container spacing={2}>
-                                <Grid item sm={12} xs={12}>
-                                    <InputField
-                                        placeholder='Enter Property Title (e.g. Prime Residential Apartment)'
-                                        onChange={(e) => addData('title', e.target.value)}
-                                    />
-                                </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <SelectBox
                                         label='Current Status'
@@ -472,6 +465,13 @@ const AddProperty = () => {
                                     />
                                 </Grid>
                                 {dataObj.leaseInformation.currentStatus === 'Yes' && <>
+                                    <Grid item sm={6} xs={12}>
+                                        <InputField
+                                            placeholder='Price'
+                                            inputType='number'
+                                            onChange={(e) => addData('leaseInformation', e.target.value, 'leaseAmount')}
+                                        />
+                                    </Grid>
                                     <Grid item sm={6} xs={12}>
                                         <InputField
                                             placeholder='Lease Start Date'
@@ -599,18 +599,18 @@ const AddProperty = () => {
                                 </Grid>}
                                 <Grid item sm={12} xs={12}>
                                     <InputField
-                                        placeholder='Description'
+                                        placeholder='Description/Remarks'
                                         onChange={(e) => addData('description', e.target.value)}
                                         isTextarea={true}
                                     />
                                 </Grid>
-                                <Grid item sm={12} xs={12}>
+                                {/* <Grid item sm={12} xs={12}>
                                     <InputField
                                         placeholder='Financing Options'
                                         onChange={(e) => addData('financingOptions', e.target.value)}
                                         isTextarea={true}
                                     />
-                                </Grid>
+                                </Grid> */}
                                 <Grid item sm={12} xs={12}>
                                     <InputField
                                         placeholder='Investment Terms'
@@ -618,22 +618,15 @@ const AddProperty = () => {
                                         isTextarea={true}
                                     />
                                 </Grid>
-                                <Grid item sm={12} xs={12}>
-                                    <InputField
-                                        placeholder='Buying Process'
-                                        onChange={(e) => addData('buyingProcess', e.target.value)}
-                                        isTextarea={true}
-                                    />
-                                </Grid>
                                 <Grid item xs={12}>
                                     <FileUpload
-                                        label='Upload Photos'
+                                        label='Upload Photo Files'
                                         onFilesChange={handleUploadPhotos}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <FileUpload
-                                        label='Upload Video'
+                                        label='Upload Video File'
                                         accept='video/*'
                                         multiple={false}
                                         onFilesChange={handleUploadVideo}
@@ -716,16 +709,10 @@ const AddProperty = () => {
                                         </Grid>
                                         <div className="heading3 mt-20 mb-20">Details about your Listing</div>
                                         <Grid container spacing={2}>
-                                            <Grid item sm={12} xs={12}>
-                                                <InputField
-                                                    placeholder='Enter Property Title (e.g. Prime Residential Apartment)'
-                                                    onChange={(e) => addData1(index, 'title', e.target.value)}
-                                                />
-                                            </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <SelectBox
                                                     label='Current Status'
-                                                    options={['Owner-Occupied', 'Tenant-Occupied', 'Vacant', 'Eviction/Squatter', 'new']}
+                                                    options={['Owner-Occupied', 'Tenant-Occupied', 'Vacant', 'Eviction/Squatter']}
                                                     onSelect={(val) => addData1(index, 'currentStatus', val)}
                                                 />
                                             </Grid>
@@ -737,6 +724,13 @@ const AddProperty = () => {
                                                 />
                                             </Grid>
                                             {properties[index]?.leaseInformation?.currentStatus === 'Yes' && <>
+                                                <Grid item sm={6} xs={12}>
+                                                    <InputField
+                                                        placeholder='Lease Amount'
+                                                        inputType='number'
+                                                        onChange={(e) => addData1(index, 'leaseInformation', e.target.value, 'leaseAmount')}
+                                                    />
+                                                </Grid>
                                                 <Grid item sm={6} xs={12}>
                                                     <InputField
                                                         placeholder='Lease Start Date'
@@ -863,18 +857,18 @@ const AddProperty = () => {
                                             </Grid>}
                                             <Grid item sm={12} xs={12}>
                                                 <InputField
-                                                    placeholder='Description'
+                                                    placeholder='Description/Remarks'
                                                     onChange={(e) => addData1(index, 'description', e.target.value)}
                                                     isTextarea={true}
                                                 />
                                             </Grid>
-                                            <Grid item sm={12} xs={12}>
+                                            {/* <Grid item sm={12} xs={12}>
                                                 <InputField
                                                     placeholder='Financing Options'
                                                     onChange={(e) => addData1(index, 'financingOptions', e.target.value)}
                                                     isTextarea={true}
                                                 />
-                                            </Grid>
+                                            </Grid> */}
                                             <Grid item sm={12} xs={12}>
                                                 <InputField
                                                     placeholder='Investment Terms'
@@ -882,23 +876,17 @@ const AddProperty = () => {
                                                     isTextarea={true}
                                                 />
                                             </Grid>
-                                            <Grid item sm={12} xs={12}>
-                                                <InputField
-                                                    placeholder='Buying Process'
-                                                    onChange={(e) => addData1(index, 'buyingProcess', e.target.value)}
-                                                    isTextarea={true}
-                                                />
-                                            </Grid>
+
                                             <Grid item xs={12}>
                                                 <FileUpload
                                                     index={index}
-                                                    label='Upload Photos'
+                                                    label='Upload Photo Files'
                                                     onFilesChange={handleUploadPhotos1}
                                                 />
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <FileUpload
-                                                    label='Upload Video'
+                                                    label='Upload Video File'
                                                     accept='video/*'
                                                     index={index}
                                                     multiple={false}

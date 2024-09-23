@@ -21,25 +21,30 @@ const SelectBox = ({ options, icon, label, onSelect, style, labelStyle, containe
     }, [])
 
     return (
-        <div className="custom-select1-container" style={style}>
-            <div className="custom-select1-label" style={containerStyle} onClick={() => setIsOpen(!isOpen)}>
-                <span className="custom-select1-text" style={{ color: selectedValue ? 'black' : '#757575' }}>{selectedValue || label}</span>
-                <KeyboardArrowDownIcon sx={{ color: iconColor ?? 'gray' }} />
+        <>
+            <div className='inputField-label' style={labelStyle}>
+                {label}
             </div>
-            {isOpen && (
-                <ul className="custom-select1-options">
-                    {options.map((option, index) => (
-                        <li
-                            key={index}
-                            className="custom-select1-option"
-                            onClick={() => handleSelect(option)}
-                        >
-                            {option}
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
+            <div className="custom-select1-container" style={style}>
+                <div className="custom-select1-label" style={containerStyle} onClick={() => setIsOpen(!isOpen)}>
+                    <span className="custom-select1-text" style={{ color: selectedValue ? 'black' : '#757575' }}>{selectedValue || label}</span>
+                    <KeyboardArrowDownIcon sx={{ color: iconColor ?? 'gray' }} />
+                </div>
+                {isOpen && (
+                    <ul className="custom-select1-options">
+                        {options.map((option, index) => (
+                            <li
+                                key={index}
+                                className="custom-select1-option"
+                                onClick={() => handleSelect(option)}
+                            >
+                                {option}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        </>
     );
 };
 

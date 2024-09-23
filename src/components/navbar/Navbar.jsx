@@ -90,7 +90,7 @@ export default function NavBar({ active, onLogoClick }) {
             to: '/Properties'
         },
         {
-            label: 'Submit an Off-Market Inventory',
+            label: 'Submit an Off-Market Property',
             to: '/AddProperty'
         },
     ]

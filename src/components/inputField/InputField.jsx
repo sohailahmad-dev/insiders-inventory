@@ -16,11 +16,9 @@ export default function InputField({
 }) {
     return (
         <div>
-            {label && (
-                <div className='inputField-label' style={labelStyle}>
-                    {label}
-                </div>
-            )}
+            <div className='inputField-label' style={labelStyle}>
+                {label ?? placeholder}
+            </div>
             <div className='inputBox' style={style}>
                 <div className='leftBox'>
                     {icon && <Icon fontSize='small' component={icon} />}
