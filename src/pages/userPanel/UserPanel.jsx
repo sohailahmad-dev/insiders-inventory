@@ -98,7 +98,7 @@ export default function UserPanel() {
                 setMenu(!menu)
             }
             setActiveScreen(e.label);
-            navigate(e.to, { state: e.to })
+            navigate(e.to, { state: { path: e.to } })
         }
     }
 

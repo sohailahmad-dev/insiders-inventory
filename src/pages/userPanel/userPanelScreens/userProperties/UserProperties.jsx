@@ -136,8 +136,8 @@ export default function UserProperties() {
                                                 <img src={e?.images?.[0] || noImg} alt='img' />
                                                 {/* </div> */}
                                                 <div>
-                                                    <div className="tr-data">{e?.title}</div>
-                                                    <div className="tr-data-loc">{e?.country}</div>
+                                                    <div className="tr-data">{e?.propertyInformation?.propertyType}</div>
+                                                    <div className="tr-data-loc"> {e?.address?.city + ", "}{e?.country}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,7 +181,15 @@ export default function UserProperties() {
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Actions</div>
-                                            <div >
+                                            <div
+                                                onClick={() => navigate('/UserPanel/AddProperty', {
+                                                    state: {
+                                                        property: e,
+                                                        path: 'AddProperty',
+                                                        isEdit: true,
+                                                    }
+                                                })}
+                                            >
                                                 <EditIcon
                                                     sx={{
                                                         cursor: 'pointer',

@@ -22,12 +22,14 @@ import toast from 'react-hot-toast'
 import useAuthCheck from '../../hooks/UseAuthCheck'
 
 
-const types = ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package'];
+
 const opportunityTypes = ['Buy & Hold', 'Flip Opportunity', 'Retail', 'Owner-Occupant', 'Just Remodeled']
 
 
 const AddProperty = () => {
+
     useAuthCheck()
+    let [types, setTypes] = useState(['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package'])
     const [files, setFiles] = useState([]);
     const [dataObj, setDataObj] = useState({
         title: '',
@@ -407,13 +409,18 @@ const AddProperty = () => {
         if (storedUser) {
             setUser(storedUser)
         }
+        if (location?.state?.isEdit) {
+            setTypes(['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential'])
+            setDataObj(location?.state?.property)
+            console.log(location?.state?.property)
+        }
     }, [])
 
     return (
         <div>
-            {location.state !== 'AddProperty' && <NavBar active='Off-Market Inventory' />}
+            {location?.state?.path !== 'AddProperty' && <NavBar active='Off-Market Inventory' />}
             {/* sec 1 hero  */}
-            {location.state !== 'AddProperty' && <div className="h-hero">
+            {location?.state?.path !== 'AddProperty' && <div className="h-hero">
                 <div className="h-heading"> <span> Sell and Buy </span> Property</div>
                 <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures. Discover your path to profitable real estate investments today</div>
             </div>}
@@ -428,7 +435,7 @@ const AddProperty = () => {
                             types.map(type => (
                                 <div key={type}
                                     onClick={() => addData('propertyInformation', type, 'propertyType')}
-                                    className={dataObj.propertyInformation.propertyType === type ? 'add-property-type add-property-type-active' : 'add-property-type'}
+                                    className={dataObj?.propertyInformation.propertyType === type ? 'add-property-type add-property-type-active' : 'add-property-type'}
                                 >
                                     {type}
                                 </div>
@@ -439,6 +446,7 @@ const AddProperty = () => {
                             <SelectBox
                                 label='No. of Units'
                                 options={[1, 2, 3, 4, 5]}
+
                             />
                         </Grid>
                         <Grid item sm={6} xs={12}>
@@ -479,6 +487,7 @@ const AddProperty = () => {
                                         <InputField
                                             placeholder='Lockbox Code'
                                             onChange={(e) => addData('lockboxCode', e.target.value)}
+                                            value={dataObj?.lockboxCode}
                                         />
                                     </Grid>
                                 </Grid>
@@ -489,30 +498,35 @@ const AddProperty = () => {
                                     <InputField
                                         placeholder='Street Address'
                                         onChange={(e) => addData('address', e.target.value, 'street')}
+                                        value={dataObj?.address?.street}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         placeholder='City'
                                         onChange={(e) => addData('address', e.target.value, 'city')}
+                                        value={dataObj?.address?.city}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         onChange={(e) => addData('address', e.target.value, 'zipCode')}
                                         placeholder='Zip Code'
+                                        value={dataObj?.address?.zipCode}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         onChange={(e) => addData('address', e.target.value, 'state')}
                                         placeholder='State'
+                                        value={dataObj?.address?.state}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         onChange={(e) => addData('country', e.target.value)}
                                         placeholder='Country'
+                                        value={dataObj?.country}
                                     />
                                 </Grid>
                             </Grid>
@@ -523,6 +537,7 @@ const AddProperty = () => {
                                         label='Current Status'
                                         options={['Owner-Occupied', 'Tenant-Occupied', 'Vacant', 'Eviction/Squatter']}
                                         onSelect={(val) => addData('currentStatus', val)}
+                                        defaultValue={dataObj?.currentStatus}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -530,14 +545,17 @@ const AddProperty = () => {
                                         label='Leased?'
                                         options={['Yes', 'No']}
                                         onSelect={val => addData('leaseInformation', val, 'currentStatus')}
+                                        defaultValue={dataObj?.leaseInformation?.currentStatus}
+
                                     />
                                 </Grid>
-                                {dataObj.leaseInformation.currentStatus === 'Yes' && <>
+                                {dataObj?.leaseInformation?.currentStatus === 'Yes' && <>
                                     <Grid item sm={6} xs={12}>
                                         <InputField
                                             placeholder='Lease Amount'
                                             inputType='number'
                                             onChange={(e) => addData('leaseInformation', e.target.value, 'leaseAmount')}
+                                            value={dataObj?.leaseInformation?.leaseAmount}
                                         />
                                     </Grid>
                                     <Grid item sm={6} xs={12}>
@@ -970,7 +988,7 @@ const AddProperty = () => {
                     <Login hide={true} />
                 </div>
             }
-            {location.state !== 'AddProperty' && <Footer hideEmail={true} active='Off-Market Inventory' />}
+            {location?.state?.path !== 'AddProperty' && <Footer hideEmail={true} active='Off-Market Inventory' />}
             <Loader isLoading={isLoading} />
 
         </div>
