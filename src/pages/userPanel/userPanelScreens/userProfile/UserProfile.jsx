@@ -36,7 +36,6 @@ export default function UserProfile() {
         let user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             setDataObj(user);
-            console.log(user)
         }
     }, [])
 

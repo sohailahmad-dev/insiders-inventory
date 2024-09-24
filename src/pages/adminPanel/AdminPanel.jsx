@@ -21,8 +21,8 @@ import CategoryIcon from '@mui/icons-material/Category';
 import Properties from './adminPanelScreens/properties/Properties';
 import useAuthCheck from '../../hooks/UseAuthCheck';
 import VipBuyers from './adminPanelScreens/vipBuyer/VipBuyers';
-
-
+import EmailIcon from '@mui/icons-material/Email';
+import Emails from './adminPanelScreens/emails/Emails';
 
 
 
@@ -48,6 +48,11 @@ export default function AdminPanel() {
             label: 'My Profile',
             to: 'UserProfile',
             icon: Person2OutlinedIcon,
+        },
+        {
+            label: 'Send Email(s)',
+            to: 'Emails',
+            icon: EmailIcon
         },
         {
             label: 'Users',
@@ -142,7 +147,6 @@ export default function AdminPanel() {
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
-            console.log(user)
         }
     }, [])
 
@@ -190,6 +194,7 @@ export default function AdminPanel() {
                         <Route path='AddProperty' element={<AddProperty />}></Route>
                         <Route path='Users' element={<Users />}></Route>
                         <Route path='VipBuyers' element={<VipBuyers />}></Route>
+                        <Route path='Emails' element={<Emails />}></Route>
                         <Route path='Categories' element={<Categories />}></Route>
                     </Routes>
                 </div>

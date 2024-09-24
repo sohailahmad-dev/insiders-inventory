@@ -54,7 +54,7 @@ export default function UserProperties() {
     return (
         <div>
             <div className="heading2 mb-20">All Properties</div>
-            <Grid container spacing={1}>
+            {/* <Grid container spacing={1}>
                 <Grid item sm={2} xs={6}>
                     <SelectBox
                         label='Sale Status'
@@ -89,7 +89,7 @@ export default function UserProperties() {
                         />
                     </div>
                 </Grid>
-            </Grid>
+            </Grid> */}
 
             <div className="ap-table">
                 <div className="ap-th">
@@ -182,15 +182,15 @@ export default function UserProperties() {
                                         <div className="ap-tr">
                                             <div className="th-heading1">Actions</div>
                                             <div
-                                                onClick={() => navigate('/UserPanel/AddProperty', {
-                                                    state: {
-                                                        property: e,
-                                                        path: 'AddProperty',
-                                                        isEdit: true,
-                                                    }
-                                                })}
                                             >
                                                 <EditIcon
+                                                    onClick={() => navigate('/UserPanel/AddProperty', {
+                                                        state: {
+                                                            property: e,
+                                                            path: 'AddProperty',
+                                                            isEdit: true,
+                                                        }
+                                                    })}
                                                     sx={{
                                                         cursor: 'pointer',
                                                         color: '#32CD32',

@@ -53,7 +53,7 @@ export default function Properties() {
     return (
         <div>
             <div className="heading2 mb-20">All Properties</div>
-            <Grid container spacing={1}>
+            {/* <Grid container spacing={1}>
                 <Grid item sm={2} xs={6}>
                     <SelectBox
                         label='Sale Status'
@@ -88,7 +88,7 @@ export default function Properties() {
                         />
                     </div>
                 </Grid>
-            </Grid>
+            </Grid> */}
 
             <div className="ap-table">
                 <div className="ap-th">
@@ -180,6 +180,13 @@ export default function Properties() {
                                             <div className="th-heading1">Actions</div>
                                             <div >
                                                 <EditIcon
+                                                    onClick={() => navigate('/AdminPanel/AddProperty', {
+                                                        state: {
+                                                            property: e,
+                                                            path: 'AddProperty',
+                                                            isEdit: true,
+                                                        }
+                                                    })}
                                                     sx={{
                                                         cursor: 'pointer',
                                                         color: '#32CD32',

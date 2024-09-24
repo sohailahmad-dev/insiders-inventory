@@ -61,7 +61,6 @@ export default function CategoryModal({ open, onClose, category, isEdit }) {
 
         putData(`categories/${dataObj?._id}`, dataObj).then(response => {
             setIsLoading(false);
-            console.log(response)
             toast.success(response?.message);
             onClose()
         }).catch(err => {

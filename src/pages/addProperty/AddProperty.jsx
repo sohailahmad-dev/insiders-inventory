@@ -16,10 +16,11 @@ import { useAuth } from '../../hooks/UseAuth'
 import signImg from '../../assets/imgs/signImg.png'
 import Login from '../login/Login'
 import AddPropertyForm from './AddPropertyForm'
-import { postData } from '../../config/apiCalls'
+import { postData, putData } from '../../config/apiCalls'
 import Loader from '../../components/loader/Loader'
 import toast from 'react-hot-toast'
 import useAuthCheck from '../../hooks/UseAuthCheck'
+import VideoBox from '../../components/videoBox/VideoBox'
 
 
 
@@ -296,7 +297,6 @@ const AddProperty = () => {
 
 
     const handleSubmit = async () => {
-        console.log(dataObj)
         setIsLoading(true);
         const {
             title,
@@ -403,6 +403,51 @@ const AddProperty = () => {
         }
     };
 
+    const updateProperty = async () => {
+        setIsLoading(true);
+        const {
+            title,
+            price,
+            country,
+            opportunityType,
+            address: { street, zipCode, state, city },
+            status,
+            leaseInformation: { currentStatus },
+            propertyInformation: { propertyType, bedrooms, bathrooms, sqft },
+            images,
+        } = dataObj;
+
+        // Check if all values are available
+        if (
+            price &&
+            country &&
+            opportunityType &&
+            street &&
+            state &&
+            city &&
+            status &&
+            currentStatus &&
+            propertyType &&
+            bedrooms &&
+            bathrooms &&
+            images
+        ) {
+            try {
+                const response = await putData(`property/${dataObj?._id}`, dataObj);
+                toast.success('Property updated successfully');
+                console.log(response);
+            } catch (error) {
+                toast.error(error.message || 'Error in updating property');
+                console.log(error)
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            setIsLoading(false)
+            toast.error("Required Fields are missing!")
+        }
+    };
+
 
     useEffect(() => {
         const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -412,7 +457,7 @@ const AddProperty = () => {
         if (location?.state?.isEdit) {
             setTypes(['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential'])
             setDataObj(location?.state?.property)
-            console.log(location?.state?.property)
+            console.log(location?.state)
         }
     }, [])
 
@@ -427,20 +472,22 @@ const AddProperty = () => {
             {/* sec 2  */}
             {isLoggedIn ?
                 <section className="add-property-sec-2 padding">
-                    <div className="heading2 mb-30">Add a Property</div>
+                    {location?.state?.isEdit || <>
+                        <div className="heading2 mb-30">Add a Property</div>
+                        <div className="heading3">Property Type</div>
+                        <div className="add-property-types">
+                            {types && types.length > 0 &&
+                                types.map(type => (
+                                    <div key={type}
+                                        onClick={() => addData('propertyInformation', type, 'propertyType')}
+                                        className={dataObj?.propertyInformation.propertyType === type ? 'add-property-type add-property-type-active' : 'add-property-type'}
+                                    >
+                                        {type}
+                                    </div>
+                                ))}
+                        </div>
+                    </>}
 
-                    <div className="heading3">Property Type</div>
-                    <div className="add-property-types">
-                        {types && types.length > 0 &&
-                            types.map(type => (
-                                <div key={type}
-                                    onClick={() => addData('propertyInformation', type, 'propertyType')}
-                                    className={dataObj?.propertyInformation.propertyType === type ? 'add-property-type add-property-type-active' : 'add-property-type'}
-                                >
-                                    {type}
-                                </div>
-                            ))}
-                    </div>
                     {dataObj?.propertyInformation?.propertyType === 'Portfolio Package' && <Grid container spacing={2}>
                         <Grid item sm={6} xs={12}>
                             <SelectBox
@@ -562,12 +609,14 @@ const AddProperty = () => {
                                         <InputField
                                             placeholder='Lease Start Date'
                                             onChange={(e) => addData('leaseInformation', e.target.value, 'leaseStartDate')}
+                                            value={dataObj?.leaseInformation?.leaseStartDate}
                                         />
                                     </Grid>
                                     <Grid item sm={6} xs={12}>
                                         <InputField
                                             placeholder='Lease End Date'
                                             onChange={(e) => addData('leaseInformation', e.target.value, 'leaseEndDate')}
+                                            value={dataObj?.leaseInformation?.leaseEndDate}
                                         />
                                     </Grid>
                                 </>}
@@ -576,6 +625,7 @@ const AddProperty = () => {
                                         placeholder='Price'
                                         inputType='number'
                                         onChange={(e) => addData('price', e.target.value)}
+                                        value={dataObj?.price}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -583,6 +633,7 @@ const AddProperty = () => {
                                         onChange={(e) => addData('assignment', e.target.value, 'initialInvestment')}
                                         inputType='number'
                                         placeholder='Initial Investment / Down Payment'
+                                        value={dataObj?.assignment?.initialInvestment}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -590,6 +641,7 @@ const AddProperty = () => {
                                         onChange={(e) => addData('assignment', e.target.value, 'capRate')}
                                         inputType='number'
                                         placeholder='Cap Rate (%)'
+                                        value={dataObj?.assignment?.capRate}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -597,6 +649,7 @@ const AddProperty = () => {
                                         onChange={(e) => addData('assignment', e.target.value, 'cashFlowPerMonth')}
                                         inputType='number'
                                         placeholder='Cash Flow Per Month'
+                                        value={dataObj?.assignment?.cashFlowPerMonth}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -604,6 +657,7 @@ const AddProperty = () => {
                                         onChange={(e) => addData('propertyInformation', e.target.value, 'sqft')}
                                         inputType='number'
                                         placeholder='Size (SqFt)'
+                                        value={dataObj?.assignment?.sqft}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -611,6 +665,7 @@ const AddProperty = () => {
                                         onChange={(e) => addData('propertyInformation', e.target.value, 'bedrooms')}
                                         inputType='number'
                                         placeholder='# of Bedroom'
+                                        value={dataObj?.propertyInformation?.bedrooms}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -618,6 +673,7 @@ const AddProperty = () => {
                                         onChange={(e) => addData('propertyInformation', e.target.value, 'bathrooms')}
                                         inputType='number'
                                         placeholder='# of Bathrooms'
+                                        value={dataObj?.propertyInformation?.bathrooms}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -625,6 +681,7 @@ const AddProperty = () => {
                                         label='Basement'
                                         options={['Yes', 'No']}
                                         onSelect={(e) => addData('propertyInformation', e, 'basement')}
+                                        defaultValue={dataObj?.propertyInformation?.basement}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -632,6 +689,7 @@ const AddProperty = () => {
                                         label='Garage'
                                         options={['Yes', 'No']}
                                         onSelect={(e) => addData('propertyInformation', e, 'garage')}
+                                        defaultValue={dataObj?.propertyInformation?.garage}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -639,6 +697,7 @@ const AddProperty = () => {
                                         label='Property Management Company'
                                         options={['Yes', 'No']}
                                         onSelect={(e) => addData('propertyManagement', e, 'managedByCompany')}
+                                        defaultValue={dataObj?.propertyManagement?.managedByCompany}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -646,6 +705,7 @@ const AddProperty = () => {
                                         inputType='number'
                                         placeholder='Potential Return on Investment (ROI %)'
                                         onChange={(e) => addData('assignment', e.target.value, 'potentialRoi')}
+                                        value={dataObj?.assignment?.potentialRoi}
                                     />
                                 </Grid>
 
@@ -655,12 +715,14 @@ const AddProperty = () => {
                                             <InputField
                                                 placeholder='Management Company Name'
                                                 onChange={(e) => addData('propertyManagement', e.target.value, 'companyName')}
+                                                value={dataObj?.propertyManagement?.companyName}
                                             />
                                         </Grid>
                                         <Grid item sm={6} xs={12}>
                                             <InputField
                                                 placeholder='Property Management Company Information'
                                                 onChange={(e) => addData('propertyManagement', e.target.value, 'contactInformation')}
+                                                value={dataObj?.propertyManagement?.contactInformation}
                                             />
                                         </Grid>
                                     </>}
@@ -668,6 +730,9 @@ const AddProperty = () => {
                                     <SelectBox
                                         label='Owner Type'
                                         options={['Assignment / Wholesale', 'Corp / REIT / Fund', 'Private']}
+                                        onSelect={e => addData(ownerType, e)}
+                                        defaultValue={dataObj?.ownerType}
+
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -676,12 +741,15 @@ const AddProperty = () => {
                                         label='Financing Types'
                                         options={['Cash', 'Conventional', 'FHA', 'Land Contract']}
                                         onSelect={val => addData('financingOptions', val)}
+                                        defaultValue={dataObj?.financingOptions}
+
                                     />
                                 </Grid>
                                 {dataObj?.opportunityType?.includes('Flip Opportunity') && <Grid item sm={6} xs={12}>
                                     <InputField
                                         placeholder='ARV'
                                         onChange={(e) => addData('ARV', e.target.value)}
+                                        value={dataObj?.ARV}
                                     />
                                 </Grid>}
                                 <Grid item sm={12} xs={12}>
@@ -689,6 +757,7 @@ const AddProperty = () => {
                                         placeholder='Description/Remarks'
                                         onChange={(e) => addData('description', e.target.value)}
                                         isTextarea={true}
+                                        value={dataObj?.description}
                                     />
                                 </Grid>
                                 {/* <Grid item sm={12} xs={12}>
@@ -704,6 +773,13 @@ const AddProperty = () => {
                                         onFilesChange={handleUploadPhotos}
                                     />
                                 </Grid>
+                                {dataObj?.images?.map((e, i) => (
+                                    <div className="category-img">
+                                        <img src={e} alt="img" />
+                                    </div>
+                                ))
+
+                                }
                                 <Grid item xs={12}>
                                     <FileUpload
                                         label='Upload Video File'
@@ -712,6 +788,11 @@ const AddProperty = () => {
                                         onFilesChange={handleUploadVideo}
                                     />
                                 </Grid>
+                                {dataObj?.videoUrl ?
+                                    <div className='text-center pd-video-sec'>
+                                        <VideoBox videoURL={dataObj?.videoUrl} />
+                                    </div> : <div className='pd-p-val' style={{ marginLeft: 20 }} >No Video Uploaded</div>
+                                }
                             </Grid>
                         </>
                     }
@@ -975,10 +1056,13 @@ const AddProperty = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                <Btn
+                                {location?.state?.isEdit ? <Btn
+                                    label='Update'
+                                    onClick={updateProperty}
+                                /> : <Btn
                                     label='Submit'
                                     onClick={dataObj?.propertyInformation?.propertyType === 'Portfolio Package' ? handleMultipleSubmit : handleSubmit}
-                                />
+                                />}
                             </div>
                         </Grid>
                     </Grid>
