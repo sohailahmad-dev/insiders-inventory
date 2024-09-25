@@ -24,60 +24,59 @@ import Loader from '../../components/loader/Loader'
 import { getData } from '../../config/apiCalls'
 import toast from 'react-hot-toast'
 import useAuthCheck from '../../hooks/UseAuthCheck'
+import { IconButton } from '@mui/material';
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
+import Btn from '../../components/btn/Btn'
 
 
 const selectsData = [
     {
-        icon: locationIcon,
-        label: 'Location',
-        options: ['Gujrat', 'Delhi', 'Mumbai'],
-        filterName: 'location'
-    },
-    {
         icon: homeIcon,
         label: 'Property Type',
-        options: ['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Vacant Land'],
+        options: ['', 'Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Vacant Land'],
         filterName: 'propertyType'
     },
     {
         icon: opportunityIcon,
         label: 'Opportunity Type',
-        options: ['Buy & Hold', 'Flip Opportunity', 'Owner-Occupant', 'Retail', 'Current Renovation'],
+        options: ['', 'Buy & Hold', 'Flip Opportunity', 'Owner-Occupant', 'Retail', 'Current Renovation'],
         filterName: 'opportunityType'
     },
     {
         icon: garageIcon,
         label: 'Garage',
-        options: ['Yes', 'No'],
+        options: ['', 'Yes', 'No'],
         filterName: 'garage'
     },
     {
         icon: basementIcon,
         label: 'Basement',
-        options: ['Yes', 'No'],
+        options: ['', 'Yes', 'No'],
         filterName: 'basement'
     },
     {
         icon: bedroomIcon,
         label: 'Bedrooms',
-        options: ['2', '3', '4', '5'],
+        options: ['', 2, 3, 4, 5, 6, 7, 8],
         filterName: 'bedrooms'
     },
     {
         icon: bathroomIcon,
         label: 'Bathrooms',
-        options: ['2', '3', '4'],
+        options: ['', 2, 3, 4, 5, 6, 7, 8],
         filterName: 'bathrooms'
     },
-    {
-        icon: packageIcon,
-        iconWidth: 15,
-        iconHeight: 15,
-        label: 'Package',
-        options: ['Package - Yes', 'Package - No'],
-        filterName: 'package'
-    }
+
 ]
+
+// {
+//     icon: packageIcon,
+//     iconWidth: 15,
+//     iconHeight: 15,
+//     label: 'Package',
+//     options: ['', 'Yes', 'No'],
+//     filterName: 'package'
+// }
 
 export const Buyers = ({ hide }) => {
     useAuthCheck()
@@ -88,6 +87,29 @@ export const Buyers = ({ hide }) => {
     let [isLoading, setIsLoading] = useState(false);
 
     let [filteredProperties, setFilteredProperties] = useState([])
+
+    // Pagination 
+    const propertiesPerPage = 16;
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const totalPages = Math.ceil(filteredProperties.length / propertiesPerPage);
+    const startIndex = (currentPage - 1) * propertiesPerPage;
+    const endIndex = startIndex + propertiesPerPage;
+    const currentProperties = filteredProperties.slice(startIndex, endIndex);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    // Filters 
 
     const [filters, setFilters] = useState({
         location: '',
@@ -101,6 +123,19 @@ export const Buyers = ({ hide }) => {
         price: { min: 0, max: 1000000 },  // Example price range
     });
 
+    const clearFilters = () => {
+        setFilters({
+            location: '',
+            propertyType: '',
+            opportunityType: '',
+            garage: '',
+            basement: '',
+            bedrooms: null,
+            bathrooms: null,
+            sqft: null,
+            price: { min: 0, max: 1000000 },  // Example price range
+        })
+    }
     // Function to handle filter updates
     const updateFilter = (filterName, value) => {
         setFilters({
@@ -124,10 +159,10 @@ export const Buyers = ({ hide }) => {
                 price,
             } = filters;
 
-            // Only filter if a criterion is set; otherwise, pass
+            // Check each filter criterion independently
             const matchesLocation = location ? property.address.location.toLowerCase().includes(location.toLowerCase()) : true;
             const matchesPropertyType = propertyType ? property.propertyInformation.propertyType === propertyType : true;
-            const matchesOpportunityType = opportunityType ? property.opportunityType === opportunityType : true;
+            const matchesOpportunityType = opportunityType ? property.opportunityType.includes(opportunityType) : true;
             const matchesGarage = garage ? property.propertyInformation.garage === garage : true;
             const matchesBasement = basement ? property.propertyInformation.basement === basement : true;
             const matchesBedrooms = bedrooms !== null ? property.propertyInformation.bedrooms === bedrooms : true;
@@ -135,22 +170,30 @@ export const Buyers = ({ hide }) => {
             const matchesSqft = sqft ? property.propertyInformation.sqft >= sqft : true;
             const matchesPrice = property.price >= price.min && property.price <= price.max;
 
-            // A property must match all active (non-null, non-empty) filters
+            // A property must match all active filters
             return (
-                matchesLocation &&
+                // matchesLocation &&
+                // matchesPropertyType &&
+                // matchesOpportunityType &&
+                // matchesGarage &&
+                // matchesBasement &&
+                // matchesBedrooms &&
+                // matchesBathrooms &&
+                // matchesSqft &&
+                // matchesPrice
                 matchesPropertyType &&
                 matchesOpportunityType &&
                 matchesGarage &&
                 matchesBasement &&
-                matchesBedrooms &&
                 matchesBathrooms &&
-                matchesSqft &&
-                matchesPrice
+                matchesBedrooms
+
             );
         });
 
         setFilteredProperties(filtered);
     };
+
 
 
     useEffect(() => {
@@ -223,7 +266,9 @@ export const Buyers = ({ hide }) => {
                         <MapComponent />
                     </Grid>
                     <Grid item sm={7} xs={12}>
+
                         <Grid container spacing={2}>
+
                             {selectsData && selectsData.length > 0 &&
                                 selectsData.map((e, i) => (
                                     <Grid item sm={6} xs={12} key={i}>
@@ -250,6 +295,19 @@ export const Buyers = ({ hide }) => {
                                 />
                             </Grid>
                             {/* price range */}
+                            {/* <div
+                                onClick={clearFilters}
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'flex-end',
+                                    width: '100%'
+                                }}
+                            >
+                                <Btn
+                                    label='Clear Filters'
+                                />
+                            </div> */}
+
 
                         </Grid>
                     </Grid>
@@ -257,7 +315,7 @@ export const Buyers = ({ hide }) => {
 
 
                 <div className="buyers-sec2-bottom"    >
-                    <p>Showing 1-15 of 480 Properties</p>
+                    <p>Showing {startIndex + 1}-{endIndex > filteredProperties?.length ? filteredProperties?.length : endIndex} of {filteredProperties?.length} Properties</p>
 
                 </div>
 
@@ -284,8 +342,8 @@ export const Buyers = ({ hide }) => {
             {/* sec 3  */}
             <section className="buyers-sec-3 padding">
                 <Grid container spacing={3}>
-                    {filteredProperties && filteredProperties.length > 0 ?
-                        filteredProperties.map(item => (
+                    {currentProperties && currentProperties.length > 0 ?
+                        currentProperties.map(item => (
                             <Grid item xl={3} lg={4} md={4} sm={4} xs={12} key={Math.random()} >
                                 <Card
                                     key={item?._id}
@@ -313,6 +371,23 @@ export const Buyers = ({ hide }) => {
                     }
                 </Grid>
             </section>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+                <IconButton
+                    onClick={handlePreviousPage}
+                    disabled={currentPage === 1}
+                    sx={{ color: 'green' }}
+                >
+                    <ArrowBackIos />
+                </IconButton>
+
+                <IconButton
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                    sx={{ color: 'green' }}
+                >
+                    <ArrowForwardIos />
+                </IconButton>
+            </div>
             <Loader isLoading={isLoading} />
             {hide || <Footer active='Buyers' />}
         </div>
