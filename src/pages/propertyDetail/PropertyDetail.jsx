@@ -205,7 +205,7 @@ export default function PropertyDetail() {
                         <div className="pd-sec2-right">
                             <div className="pd-box pd-price-box" style={{ background: 'white' }} >
                                 <div className='pd-type-box1'>
-                                    <div className="heading1 pd-price" >${property?.price}</div>
+                                    <div className="heading1 pd-price" >${property?.price?.toLocaleString('en-US')}</div>
                                     <div className="pd-p-val"
                                         style={{
                                             color: 'lightgray',
@@ -216,24 +216,36 @@ export default function PropertyDetail() {
                                     >{property?.ownerType ?? 'Assignment'}</div>
                                 </div>
                                 <div className="pd-line"></div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label "> Initial Investment</div>
-                                    <div className="pd-p-val ">
-                                        ${property?.assignment?.initialInvestment ?? 20 / property?.price * 100}
+
+                                {property?.opportunityType === 'Buy & Hold' && <>
+                                    <div className="pd-stats-item1">
+                                        <div className="pd-p-label "> Initial Investment</div>
+                                        <div className="pd-p-val ">
+                                            ${((8 / 100) * property?.price).toFixed(0)}
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label "> Potential ROI </div>
-                                    <div className="pd-p-val ">{property?.assignment?.potentialRoi ?? 0}%</div>
-                                </div>
-                                <div className="pd-stats-item1">
-                                    <div className="pd-p-label ">Cap Rate </div>
-                                    <div className="pd-p-val "> ${((8 / 100) * property?.price).toFixed(2)}</div>
-                                </div>
+                                    <div className="pd-stats-item1">
+                                        <div className="pd-p-label ">Cap Rate </div>
+                                        <div className="pd-p-val "> ${((8 / 100) * property?.price).toFixed(0)}</div>
+                                    </div>
+
+                                </>}
+                                {property?.opportunityType === 'Flip Opportunity' && <>
+                                    <div className="pd-stats-item1">
+                                        <div className="pd-p-label "> Potential ROI </div>
+                                        <div className="pd-p-val "> ${((15 / 100) * property?.price).toFixed(0)}</div>
+                                    </div>
+                                    <div className="pd-stats-item1">
+                                        <div className="pd-p-label "> ARV </div>
+                                        <div className="pd-p-val "> ${property?.assignment?.cashFlowPerMonth}</div>
+                                    </div>
+                                </>}
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Cash Flow Per Month </div>
                                     <div className="pd-p-val "> ${property?.assignment?.cashFlowPerMonth}</div>
                                 </div>
+
+
 
                             </div>
 

@@ -12,16 +12,17 @@ export default function RangePicker({ MIN = 0, MAX = 1000000, label = 'Price' })
 
     return (
         <Box sx={{ width: '90%', margin: '0px 10px', }}>
+            <Typography
+                variant="body2"
+                sx={{
+                    cursor: 'pointer', fontSize: "14px",
+                    fontFamily: "Lato-SemiBold"
+                }}
+            >
+                {label}
+            </Typography>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography
-                    variant="body2"
-                    sx={{
-                        cursor: 'pointer', fontSize: "14px",
-                        fontFamily: "Lato-SemiBold"
-                    }}
-                >
-                    {label}
-                </Typography>
+                <div />
                 <Typography
                     variant="body2"
                     sx={{

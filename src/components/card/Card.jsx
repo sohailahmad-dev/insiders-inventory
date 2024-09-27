@@ -100,13 +100,13 @@ export default function Card({
             onClick={handleFavorite}
           >{isFavourite ? <FavoriteIcon sx={{ color: 'red' }} /> : <FavoriteBorderIcon />} </div>
         </div>
-        <div className="card-item-price">${price}</div>
+        <div className="card-item-price">${price?.toLocaleString('en-US')}</div>
         <div className="card-item-specs">{bedrooms} bedroom(s) | {bathrooms} bathroom(s) | {sqft} sq. ft.</div>
         <div className="card-item-lcation">
           <img src={location} alt="location-icon" />
           {property?.address?.street + ', ' + property?.address?.city + ", "}{country}</div>
         <Btn
-          label='Check Proprty Details'
+          label='Click for Property Details'
           onClick={() => navigate('/PropertyDetail', { state: property })}
         ></Btn>
       </div>

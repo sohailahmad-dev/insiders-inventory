@@ -52,9 +52,10 @@ const SelectBox = ({
                 <div className="custom-select1-label" style={containerStyle} onClick={() => setIsOpen(!isOpen)}>
                     <span className="custom-select1-text" style={{ color: selectedValue?.length > 0 ? 'black' : '#757575' }}>
                         {multiSelect
-                            ? (selectedValue.length > 0 ? selectedValue?.join(', ') : label) // Display comma-separated values for multi-select
+                            ? (selectedValue.length > 0 ? selectedValue?.join('  ') : label)
                             : (selectedValue || label) // Display single value for single-select
                         }
+
                     </span>
                     <KeyboardArrowDownIcon sx={{ color: iconColor ?? 'gray' }} />
                 </div>

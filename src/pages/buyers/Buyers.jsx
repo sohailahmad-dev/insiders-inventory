@@ -27,6 +27,7 @@ import useAuthCheck from '../../hooks/UseAuthCheck'
 import { IconButton } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import Btn from '../../components/btn/Btn'
+import SearchPlaceMap from '../../components/searchPlaceMap/SearchPlaceMap'
 
 
 const selectsData = [
@@ -69,7 +70,7 @@ const selectsData = [
 
 ]
 
-// {
+//                      
 //     icon: packageIcon,
 //     iconWidth: 15,
 //     iconHeight: 15,
@@ -255,7 +256,7 @@ export const Buyers = ({ hide }) => {
             {hide || <NavBar active='Buyers' />}
             {/* sec 1 hero  */}
             {hide || <div className="h-hero">
-                <div className="h-heading">Insider’s Off-Market  <span> Inventory</span> </div>
+                <div className="h-heading">Insider’s  <span> Off-Market Inventory</span> </div>
                 <div className="h-text">Our off-market inventory features unique opportunities tailored to your needs. Sign-Up to explore these hidden gems today.</div>
 
             </div>}
@@ -285,6 +286,7 @@ export const Buyers = ({ hide }) => {
 
                             <Grid item sm={6} xs={12}>
                                 <RangePicker
+
                                     label='Sqft'
                                     MIN={1}
                                     MAX={200}

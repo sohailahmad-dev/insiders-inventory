@@ -54,7 +54,7 @@ export default function FileUpload({ label = 'Upload Files', onFilesChange, mult
         <br />
 
       </div>
-      {hideNames || <div style={{ marginLeft: '20px', marginTop: 10, }}>
+      {/* {hideNames || <div style={{ marginLeft: '20px', marginTop: 10, }}>
         {selectedFiles.length > 0 && (
           <div className='file-info'>
             <ul>
@@ -64,7 +64,7 @@ export default function FileUpload({ label = 'Upload Files', onFilesChange, mult
             </ul>
           </div>
         )}
-      </div>}
+      </div>} */}
     </>
   );
 }

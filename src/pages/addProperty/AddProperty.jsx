@@ -60,7 +60,10 @@ const AddProperty = () => {
         propertyInformation: {
             propertyType: '',
             bedrooms: 0,
-            bathrooms: 0,
+            bathrooms: {
+                full: 0,
+                half: 0,
+            },
             sqft: '',
             garage: false,
             basement: false
@@ -148,7 +151,7 @@ const AddProperty = () => {
 
 
 
-    const addData = (label, value, child) => {
+    const addData = (label, value, child, grandChild) => {
         if (label === 'opportunityType') {
             if (dataObj[label].includes(value)) {
                 dataObj[label] = dataObj[label].filter(item => item !== value);
@@ -157,13 +160,16 @@ const AddProperty = () => {
             }
         } else if (child) {
             dataObj[label][child] = value;
-        } else {
+        } else if (grandChild) {
+            dataObj[label][child][grandChild] = value;
+        }
+        else {
             dataObj[label] = value;
         }
         setDataObj({ ...dataObj });
     };
 
-    const addData1 = (index, label, value, child) => {
+    const addData1 = (index, label, value, child, grandChild) => {
         setProperties(prevProperties => {
             const newProperties = [...prevProperties];
             const property = { ...newProperties[index] };
@@ -175,6 +181,8 @@ const AddProperty = () => {
                 // Toggle value: remove if it exists, otherwise add it
                 if (property[label].includes(value)) {
                     property[label] = property[label].filter(item => item !== value);
+                } else if (grandChild) {
+                    dataObj[label][child][grandChild] = value;
                 } else {
                     property[label].push(value);
                 }
@@ -244,7 +252,7 @@ const AddProperty = () => {
             setIsLoading(false)
             toast.error("Select Image(s)")
         }
-    }; 1
+    };
 
     // for single property 
     const handleUploadVideo = async (video) => {
@@ -295,7 +303,6 @@ const AddProperty = () => {
     }
 
 
-
     const handleSubmit = async () => {
         setIsLoading(true);
         const {
@@ -306,7 +313,7 @@ const AddProperty = () => {
             address: { street, zipCode, state, city },
             status,
             leaseInformation: { currentStatus },
-            propertyInformation: { propertyType, bedrooms, bathrooms, sqft },
+            propertyInformation: { propertyType, bedrooms, sqft },
             images,
         } = dataObj;
 
@@ -323,7 +330,6 @@ const AddProperty = () => {
             currentStatus &&
             propertyType &&
             bedrooms &&
-            bathrooms &&
             sqft &&
             images
         ) {
@@ -362,7 +368,7 @@ const AddProperty = () => {
                 opportunityType,
                 address: { street, zipCode, state, city },
                 leaseInformation: { currentStatus },
-                propertyInformation: { bedrooms, bathrooms, sqft },
+                propertyInformation: { bedrooms, sqft },
                 images,
                 status
             } = property;
@@ -378,7 +384,6 @@ const AddProperty = () => {
                 status &&
                 currentStatus &&
                 bedrooms &&
-                bathrooms &&
                 sqft &&
                 images
             );
@@ -413,7 +418,7 @@ const AddProperty = () => {
             address: { street, zipCode, state, city },
             status,
             leaseInformation: { currentStatus },
-            propertyInformation: { propertyType, bedrooms, bathrooms, sqft },
+            propertyInformation: { propertyType, bedrooms, sqft },
             images,
         } = dataObj;
 
@@ -429,7 +434,6 @@ const AddProperty = () => {
             currentStatus &&
             propertyType &&
             bedrooms &&
-            bathrooms &&
             images
         ) {
             try {
@@ -466,7 +470,7 @@ const AddProperty = () => {
             {location?.state?.path !== 'AddProperty' && <NavBar active='Off-Market Inventory' />}
             {/* sec 1 hero  */}
             {location?.state?.path !== 'AddProperty' && <div className="h-hero">
-                <div className="h-heading"> <span> Sell and Buy </span> Property</div>
+                <div className="h-heading">  Sell and Buy <span>  Property</span></div>
                 <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures. Discover your path to profitable real estate investments today</div>
             </div>}
             {/* sec 2  */}
@@ -664,21 +668,29 @@ const AddProperty = () => {
                                     <InputField
                                         onChange={(e) => addData('propertyInformation', e.target.value, 'bedrooms')}
                                         inputType='number'
-                                        placeholder='# of Bedroom'
+                                        placeholder='# of Bedrooms'
                                         value={dataObj?.propertyInformation?.bedrooms}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
-                                        onChange={(e) => addData('propertyInformation', e.target.value, 'bathrooms')}
+                                        onChange={(e) => addData('propertyInformation', e.target.value, 'bathrooms', 'full')}
                                         inputType='number'
-                                        placeholder='# of Bathrooms'
+                                        placeholder='# of Full Bathrooms'
+                                        value={dataObj?.propertyInformation?.bathrooms}
+                                    />
+                                </Grid>
+                                <Grid item sm={6} xs={12}>
+                                    <InputField
+                                        onChange={(e) => addData('propertyInformation', e.target.value, 'bathrooms', 'half')}
+                                        inputType='number'
+                                        placeholder='# of Half Bathrooms'
                                         value={dataObj?.propertyInformation?.bathrooms}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <SelectBox
-                                        label='Basement'
+                                        label='Basement?'
                                         options={['Yes', 'No']}
                                         onSelect={(e) => addData('propertyInformation', e, 'basement')}
                                         defaultValue={dataObj?.propertyInformation?.basement}
@@ -686,7 +698,7 @@ const AddProperty = () => {
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <SelectBox
-                                        label='Garage'
+                                        label='Garage?'
                                         options={['Yes', 'No']}
                                         onSelect={(e) => addData('propertyInformation', e, 'garage')}
                                         defaultValue={dataObj?.propertyInformation?.garage}
@@ -694,7 +706,7 @@ const AddProperty = () => {
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <SelectBox
-                                        label='Property Management Company'
+                                        label='Is there a Property Management Company?'
                                         options={['Yes', 'No']}
                                         onSelect={(e) => addData('propertyManagement', e, 'managedByCompany')}
                                         defaultValue={dataObj?.propertyManagement?.managedByCompany}
@@ -773,12 +785,13 @@ const AddProperty = () => {
                                         onFilesChange={handleUploadPhotos}
                                     />
                                 </Grid>
-                                {dataObj?.images?.map((e, i) => (
-                                    <div className="category-img">
-                                        <img src={e} alt="img" />
-                                    </div>
-                                ))
-
+                                {dataObj?.images?.length > 0 ?
+                                    dataObj?.images?.map((e, i) => (
+                                        <div className="category-img">
+                                            <img src={e} alt="img" />
+                                        </div>
+                                    )) :
+                                    <div className='pd-p-val mt-10' style={{ marginLeft: 20 }} >No Image(s) Uploaded</div>
                                 }
                                 <Grid item xs={12}>
                                     <FileUpload
@@ -791,7 +804,7 @@ const AddProperty = () => {
                                 {dataObj?.videoUrl ?
                                     <div className='text-center pd-video-sec'>
                                         <VideoBox videoURL={dataObj?.videoUrl} />
-                                    </div> : <div className='pd-p-val' style={{ marginLeft: 20 }} >No Video Uploaded</div>
+                                    </div> : <div className='pd-p-val mt-10' style={{ marginLeft: 20 }} >No Video Uploaded</div>
                                 }
                             </Grid>
                         </>
@@ -944,33 +957,40 @@ const AddProperty = () => {
                                                 <InputField
                                                     onChange={(e) => addData1(index, 'propertyInformation', e.target.value, 'bedrooms')}
                                                     inputType='number'
-                                                    placeholder='# of Bedroom'
+                                                    placeholder='# of Bedrooms'
                                                 />
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
-                                                    onChange={(e) => addData1(index, 'propertyInformation', e.target.value, 'bathrooms')}
+                                                    onChange={(e) => addData1(index, 'propertyInformation', e.target.value, 'bathrooms', 'full')}
+                                                    inputType='number'
+                                                    placeholder='# of Bathrooms'
+                                                />
+                                            </Grid>
+                                            <Grid item sm={6} xs={12}>
+                                                <InputField
+                                                    onChange={(e) => addData1(index, 'propertyInformation', e.target.value, 'bathrooms', 'half')}
                                                     inputType='number'
                                                     placeholder='# of Bathrooms'
                                                 />
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <SelectBox
-                                                    label='Basement'
+                                                    label='Basement?'
                                                     options={['Yes', 'No']}
                                                     onSelect={(e) => addData1(index, 'propertyInformation', e, 'basement')}
                                                 />
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <SelectBox
-                                                    label='Garage'
+                                                    label='Garage?'
                                                     options={['Yes', 'No']}
                                                     onSelect={(e) => addData1(index, 'propertyInformation', e, 'garage')}
                                                 />
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <SelectBox
-                                                    label='Property Management Company'
+                                                    label='Is there a Property Management Company?'
                                                     options={['Yes', 'No']}
                                                     onSelect={(e) => addData1(index, 'propertyManagement', e, 'managedByCompany')}
                                                 />
@@ -1037,6 +1057,14 @@ const AddProperty = () => {
                                                     label='Upload Photo Files'
                                                     onFilesChange={handleUploadPhotos1}
                                                 />
+                                                {/* {properties[index]?.images?.length > 0 ?
+                                                    properties[index]?.images?.map((e, i) => (
+                                                        <div className="category-img">
+                                                            <img src={e} alt="img" />
+                                                        </div>
+                                                    )) :
+                                                    <div className='pd-p-val mt-10' style={{ marginLeft: 20 }} >No Image(s) Uploaded</div>
+                                                } */}
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <FileUpload
