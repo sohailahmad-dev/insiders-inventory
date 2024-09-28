@@ -33,5 +33,37 @@
     font-family: Lato-Medium;
     font-size: 18px;
     color: var(--text);
+}
 
+.up-Profile-sec {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0px;
+}
+
+.up-center {
+    position: relative;
+
+}
+
+.up-profile {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 1px solid lightgray;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+
+.up-upload-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 0px;
+    color: green;
+    cursor: pointer;
 }

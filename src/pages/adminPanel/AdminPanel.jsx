@@ -75,6 +75,11 @@ export default function AdminPanel() {
             icon: HomeOutlinedIcon,
         },
         {
+            label: "Submit User's Property",
+            to: 'AddProperty',
+            icon: HomeOutlinedIcon,
+        },
+        {
             label: 'Categories',
             to: 'Categories',
             icon: CategoryIcon
@@ -103,7 +108,12 @@ export default function AdminPanel() {
                 setMenu(!menu)
             }
             setActiveScreen(e.label);
-            navigate(e.to, { state: e.to })
+            navigate(e.to, {
+                state: {
+                    path: e.to,
+                    submitUserProperty: e?.label === "Submit User's Property" ? true : false
+                }
+            })
 
         }
     }
@@ -147,6 +157,7 @@ export default function AdminPanel() {
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
+            setUserData(user)
         }
     }, [])
 
@@ -159,7 +170,11 @@ export default function AdminPanel() {
                 <div className={activeMenu}>
                     <div>
                         <div className="sideBar-Profile-sec">
-                            <img src={"https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"} className='ap-profile' />
+                            <div className="ap-profile"
+                                style={{
+                                    backgroundImage: `url(${userData?.avatar ?? "https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"})`
+                                }}
+                            ></div>
                             <div className="sideBar-profile-name">{userData?.username ?? "John Doe"}</div>
                             <div className="sideBar-profile-email">{userData?.email}</div>
                         </div>

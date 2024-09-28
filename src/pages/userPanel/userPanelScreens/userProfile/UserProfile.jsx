@@ -7,7 +7,9 @@ import Btn from '../../../../components/btn/Btn'
 import useAuthCheck from '../../../../hooks/UseAuthCheck'
 import Loader from '../../../../components/loader/Loader'
 import toast from 'react-hot-toast'
-import { putData } from '../../../../config/apiCalls'
+import { postData, putData } from '../../../../config/apiCalls'
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import FileUpload from '../../../../components/fileInput/FileUpload'
 
 
 export default function UserProfile() {
@@ -24,6 +26,8 @@ export default function UserProfile() {
         setIsLoading(true)
         putData('user/update', dataObj).then((response) => {
             toast.success(response.message)
+            console.log(response)
+            localStorage.setItem('user', JSON.stringify(response.user))
             setIsLoading(false)
         }
         ).catch((err) => {
@@ -31,6 +35,26 @@ export default function UserProfile() {
             setIsLoading(false)
         })
     }
+
+    const handleUploadPhoto = async (images) => {
+        setIsLoading(true)
+        if (images) {
+            try {
+                const formData = new FormData();
+                formData.append('files', images[0]);
+                const response = await postData('upload-images', formData); // Replace with actual API route
+                toast.success('Image uploaded successfully');
+                addData('avatar', response?.images[0])
+            } catch (error) {
+                toast.error(error.message || 'Error in uploading Image');
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            setIsLoading(false)
+            toast.error("Select Image")
+        }
+    };
 
     useEffect(() => {
         let user = JSON.parse(localStorage.getItem('user'));
@@ -88,6 +112,15 @@ export default function UserProfile() {
                 </Grid>
             </Grid> */}
             <div className="heading3 mt-20 mb-20">Edit Your Information</div>
+            <div className="up-Profile-sec">
+                <div className='up-center'>
+                    <div className="up-profile"
+                        style={{
+                            backgroundImage: `url(${dataObj?.avatar ?? "https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"})`
+                        }}
+                    ></div>
+                </div>
+            </div>
             <div>
                 <Grid container spacing={4}>
                     <Grid item sm={6} xs={12}>
@@ -128,6 +161,14 @@ export default function UserProfile() {
                             placeholder='Enter your phone number'
                             value={dataObj?.phoneNumber}
                             onChange={e => addData('phoneNumber', e.target.value)}
+                        />
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <FileUpload
+                            label='Upload Profile Photo'
+                            multiple={false}
+                            onFilesChange={handleUploadPhoto}
+                            hideNames={true}
                         />
                     </Grid>
                     {dataObj.role !== 'Admin' && <Grid item xs={12}>

@@ -239,6 +239,39 @@ export const Buyers = ({ hide }) => {
         setFilteredProperties([...properties])
     }
 
+    // search properties
+    const filterPropertiesByAddress = (searchQuery) => {
+        const filtered = properties.filter((property) => {
+            const { location, street, zipCode, state, city } = property.address;
+            const query = searchQuery.toLowerCase();
+
+            // Check if any part of the address contains the search query
+            return (
+                (location && location.toLowerCase().includes(query)) ||
+                (street && street.toLowerCase().includes(query)) ||
+                (zipCode && zipCode.toLowerCase().includes(query)) ||
+                (state && state.toLowerCase().includes(query)) ||
+                (city && city.toLowerCase().includes(query))
+            );
+        });
+
+        // Set the filtered properties into the filteredProperties state
+        setFilteredProperties(filtered);
+    };
+
+    // sort properties 
+    const sortProperties = (sortOption) => {
+        const sorted = [...filteredProperties]; // Make a copy of the filteredProperties array
+
+        if (sortOption === 'Price (Low to High)') {
+            sorted.sort((a, b) => a.price - b.price); // Sort ascending (low to high)
+        } else if (sortOption === 'Price (High to Low)') {
+            sorted.sort((a, b) => b.price - a.price); // Sort descending (high to low)
+        }
+
+        setFilteredProperties(sorted); // Update the filteredProperties state with sorted array
+    };
+
 
     useEffect(() => {
         getProperties()
@@ -328,14 +361,16 @@ export const Buyers = ({ hide }) => {
                     >
                         <InputField
                             placeholder='Search for a property address'
+                            onChange={e => filterPropertiesByAddress(e.target.value)}
                         />
                     </div>
                     <div
                         style={{ flex: 1 }}
                     >
                         <CustomSelect
-                            options={['4956 W Red Oaks (A to Z)', 'Price (Low to High)', 'Price (High to Low)', 'Newest']}
+                            options={['Price (Low to High)', 'Price (High to Low)']}
                             label="Sort By"
+                            onSelect={val => sortProperties(val)}
                         />
                     </div>
 

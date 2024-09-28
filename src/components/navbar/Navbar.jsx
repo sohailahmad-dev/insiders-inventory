@@ -121,12 +121,19 @@ export default function NavBar({ active, onLogoClick }) {
                     </div>
                     {isMobile && (userData?.firstName ?
                         <div className="sideBar-Profile-sec" style={{ width: '100%', position: 'relative', cursor: 'pointer' }}>
-                            <img
+                            {/* <img
                                 src={"https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"}
                                 className='nb-profile'
                                 onClick={togglePopup}
                                 alt="Profile"
-                            />
+                            /> */}
+                            <div className="nb-profile"
+                                onClick={togglePopup}
+                                alt="Profile"
+                                style={{
+                                    backgroundImage: `url(${userData?.avatar ?? "https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"})`
+                                }}
+                            ></div>
                             <div className="nb-profile-name">
                                 {userData?.firstName + " " + userData?.lastName ?? "John Doe"}
                             </div>
@@ -166,12 +173,14 @@ export default function NavBar({ active, onLogoClick }) {
                 </div>
                 {!isMobile && (userData?.firstName ?
                     <div className="sideBar-Profile-sec" style={{ position: 'relative', textAlign: 'center', minWidth: 80, cursor: 'pointer' }}>
-                        <img
-                            src={"https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"}
-                            className='nb-profile'
+                        <div className="nb-profile"
                             onClick={togglePopup}
                             alt="Profile"
-                        />
+                            style={{
+                                backgroundImage: `url(${userData?.avatar ?? "https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"})`
+                            }}
+                        ></div>
+
                         <div className="nb-profile-name">
                             {userData?.firstName + " " + userData?.lastName ?? "John Doe"}
                         </div>

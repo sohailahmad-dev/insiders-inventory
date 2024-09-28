@@ -7,20 +7,21 @@ import InputField from '../../components/inputField/InputField'
 import SelectBox from '../../components/selectBox/SelectBox'
 import FileUpload from '../../components/fileInput/FileUpload'
 import Btn from '../../components/btn/Btn'
-import CheckBox from '../../components/checkBox1/CheckBox'
 import add from '../../assets/imgs/add.png'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/UseAuth'
-import signImg from '../../assets/imgs/signImg.png'
 import Login from '../login/Login'
-import AddPropertyForm from './AddPropertyForm'
-import { postData, putData } from '../../config/apiCalls'
+import { getData, postData, putData } from '../../config/apiCalls'
 import Loader from '../../components/loader/Loader'
 import toast from 'react-hot-toast'
 import useAuthCheck from '../../hooks/UseAuthCheck'
 import VideoBox from '../../components/videoBox/VideoBox'
+import MapModal from './MapModal'
+import SearchPlaceMap from '../../components/searchPlaceMap/SearchPlaceMap'
+import MapComponent from '../../components/mapComponent/MapComponent'
+import MapComponent1 from '../../components/mapComponent/MapComponent1'
 
 
 
@@ -80,13 +81,15 @@ const AddProperty = () => {
             companyName: '',
             contactInformation: ''
         },
-        lockboxCode: ''
+        lockboxCode: '',
+        user: ''
     });
     const isLoggedIn = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
     let [user, setUser] = useState({});
-    let [isLoading, setIsLoading] = useState(false)
+    let [isLoading, setIsLoading] = useState(false);
+    let [openModal, setOpenModal] = useState(false)
 
     const [properties, setProperties] = useState([{
         title: '',
@@ -349,6 +352,54 @@ const AddProperty = () => {
         }
     };
 
+    const handleSubmitUserProperty = async () => {
+        setIsLoading(true);
+        const {
+            title,
+            price,
+            country,
+            opportunityType,
+            address: { street, zipCode, state, city },
+            status,
+            leaseInformation: { currentStatus },
+            propertyInformation: { propertyType, bedrooms, sqft },
+            images,
+            user
+        } = dataObj;
+
+        // Check if all values are available
+        if (
+            price &&
+            country &&
+            opportunityType &&
+            street &&
+            zipCode &&
+            state &&
+            city &&
+            status &&
+            currentStatus &&
+            propertyType &&
+            bedrooms &&
+            sqft &&
+            images &&
+            user
+        ) {
+            try {
+                const response = await postData('admin/create/user/properties', dataObj);
+                toast.success('Property added successfully');
+                console.log(response);
+            } catch (error) {
+                toast.error(error.message || 'Error in adding property');
+                console.log(error)
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            setIsLoading(false)
+            toast.error("Required Fields are missing!")
+        }
+    };
+
     const handleMultipleSubmit = async () => {
         console.log('multiple', properties);
         setIsLoading(true);
@@ -467,6 +518,36 @@ const AddProperty = () => {
             setDataObj(location?.state?.property)
             console.log(location?.state)
         }
+
+        if (location?.state?.submitUserProperty) {
+
+        }
+    }, [])
+
+    let [users, setUsers] = useState([])
+    let [userEmails, setUserEmails] = useState([])
+
+
+
+    function getUsers() {
+        setIsLoading(true)
+
+        getData('users').then((response) => {
+            setIsLoading(false)
+            setUsers(response?.users)
+            const emails = response?.users?.map(user => user.email);
+            const sortedEmails = emails.sort();
+            setUserEmails(sortedEmails)
+
+        }
+        ).catch((err) => {
+            toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+    }
+
+    useEffect(() => {
+        getUsers()
     }, [])
 
     return (
@@ -481,7 +562,23 @@ const AddProperty = () => {
             {isLoggedIn ?
                 <section className="add-property-sec-2 padding">
                     {location?.state?.isEdit || <>
-                        <div className="heading2 mb-30">Add a Property</div>
+
+                        {location?.state?.submitUserProperty &&
+                            <Grid container spacing={2}>
+                                <Grid item sm={7} xs={12}>
+                                    <SelectBox
+                                        label='Select User'
+                                        options={userEmails}
+                                        onSelect={val => {
+                                            let usr = users.filter(e => e.email === val)
+                                            addData('user', usr[0]?._id)
+                                        }}
+                                        defaultValue={dataObj?.email}
+                                    />
+                                </Grid>
+                            </Grid>
+                        }
+                        <div className="heading2 mb-30 mt-30">Add a Property</div>
                         <div className="heading3">Property Type</div>
                         <div className="add-property-types">
                             {types && types.length > 0 &&
@@ -584,6 +681,32 @@ const AddProperty = () => {
                                         value={dataObj?.country}
                                     />
                                 </Grid>
+
+                                <Grid item sm={6} xs={12}>
+                                    <Btn
+                                        label='Select Location on Map'
+                                        onClick={() => {
+                                            setOpenModal(true)
+                                        }}
+                                        style={{
+                                            backgroundColor: "#EFF0F2",
+                                            width: "100%",
+                                            color: 'gray',
+                                            border: 'none'
+                                        }}
+                                    >
+
+                                    </Btn>
+
+                                </Grid>
+                                {/* <>
+                                    <Grid item sm={7} xs={12}>
+                                        <SearchPlaceMap />
+                                    </Grid>
+                                    <Grid item sm={5} xs={12}>
+                                        <MapComponent1 />
+                                    </Grid>
+                                </> */}
                             </Grid>
                             <div className="heading3 mt-20">Details about your Listing</div>
                             <Grid container spacing={2}>
@@ -1091,10 +1214,16 @@ const AddProperty = () => {
                                 {location?.state?.isEdit ? <Btn
                                     label='Update'
                                     onClick={updateProperty}
-                                /> : <Btn
-                                    label='Submit'
-                                    onClick={dataObj?.propertyInformation?.propertyType === 'Portfolio Package' ? handleMultipleSubmit : handleSubmit}
-                                />}
+                                /> : location?.state?.submitUserProperty ?
+                                    <Btn
+                                        label='Submit User'
+                                        onClick={handleSubmitUserProperty}
+                                    />
+                                    : <Btn
+                                        label='Submit'
+                                        onClick={dataObj?.propertyInformation?.propertyType === 'Portfolio Package' ? handleMultipleSubmit : handleSubmit}
+                                    />
+                                }
                             </div>
                         </Grid>
                     </Grid>
@@ -1105,6 +1234,12 @@ const AddProperty = () => {
                 </div>
             }
             {location?.state?.path !== 'AddProperty' && <Footer hideEmail={true} active='Off-Market Inventory' />}
+            <MapModal
+                open={openModal}
+                onClose={() => {
+                    setOpenModal(false)
+                }}
+            />
             <Loader isLoading={isLoading} />
 
         </div>

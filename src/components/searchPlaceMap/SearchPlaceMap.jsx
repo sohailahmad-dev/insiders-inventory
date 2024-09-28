@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, Marker, Autocomplete } from '@react-google-maps/
 
 const mapContainerStyle = {
     height: "400px",
-    width: "800px",
+    width: "100%",
 };
 
 const defaultCenter = {
@@ -68,10 +68,13 @@ const SearchPlaceMap = () => {
 
     return (
         <div>
-            <LoadScript googleMapsApiKey="AIzaSyDLAEV6ENsy1siEIgAdnPeVwRqCh4s67vE" libraries={['places']}>
+            <LoadScript
+                //Later on I will store it in secret variable
+                googleMapsApiKey="AIzaSyDLAEV6ENsy1siEIgAdnPeVwRqCh4s67vE"
+                libraries={['places']}>
                 {/* Autocomplete input for searching places */}
                 <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceChanged}>
-                    <input type="text" placeholder="Search a place" style={{ width: "300px", height: "40px", marginBottom: "10px" }} />
+                    <input type="text" placeholder="Search a place" style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
                 </Autocomplete>
 
                 {/* Google Map Component */}
@@ -89,6 +92,13 @@ const SearchPlaceMap = () => {
                         icon={customMarkerIcon} // Custom icon from original example
                         title='Hello Selected'
                     />
+                    <Marker
+                        position={markerPosition}
+
+                        // icon={customMarkerIcon} 
+                        title='Hello Selected'
+                    />
+
                 </GoogleMap>
             </LoadScript>
 

@@ -168,7 +168,11 @@ export default function UserPanel() {
                 <div className={activeMenu}>
                     <div>
                         <div className="sideBar-Profile-sec">
-                            <img src={"https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"} className='ap-profile' />
+                            <div className="ap-profile"
+                                style={{
+                                    backgroundImage: `url(${userData?.avatar ?? "https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"})`
+                                }}
+                            ></div>
                             <div className="sideBar-profile-name">{userData?.firstName + userData?.lastName ?? "John Doe"}</div>
                             <div className="sideBar-profile-email">{userData?.email}</div>
                         </div>

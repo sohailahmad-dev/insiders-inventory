@@ -41,6 +41,10 @@
     height: 70px;
     border-radius: 50%;
     margin-bottom: 10px;
+    border: 1px solid lightgray;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
 }
 
 .sideBar-profile-name {
