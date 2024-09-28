@@ -18,7 +18,7 @@ import Card from '../../components/card/Card'
 import Properties from '../../static/json/Properties'
 import InputField from '../../components/inputField/InputField'
 import MapComponent from '../../components/mapComponent/MapComponent'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useIsMobile from '../../hooks/UseIsMobile'
 import Loader from '../../components/loader/Loader'
 import { getData } from '../../config/apiCalls'
@@ -80,6 +80,7 @@ const selectsData = [
 // }
 
 export const Buyers = ({ hide }) => {
+    const { category } = useParams()
     useAuthCheck()
     const navigate = useNavigate();
     const isMobile = useIsMobile();
@@ -133,8 +134,8 @@ export const Buyers = ({ hide }) => {
             basement: '',
             bedrooms: null,
             bathrooms: null,
-            sqft: null,
-            price: { min: 0, max: 1000000 },  // Example price range
+            sqft: [0, 500000],
+            price: [0, 10000000000],  // Example price range
         })
     }
     // Function to handle filter updates
@@ -168,26 +169,21 @@ export const Buyers = ({ hide }) => {
             const matchesBasement = basement ? property.propertyInformation.basement === basement : true;
             const matchesBedrooms = bedrooms !== null ? property.propertyInformation.bedrooms === bedrooms : true;
             const matchesBathrooms = bathrooms !== null ? property.propertyInformation.bathrooms === bathrooms : true;
-            const matchesSqft = sqft ? property.propertyInformation.sqft >= sqft : true;
-            const matchesPrice = property.price >= price.min && property.price <= price.max;
+            const matchesSqft = sqft ? ((property.propertyInformation.sqft >= sqft[0]) && (property.propertyInformation.sqft <= sqft[1])) : true;
+            const matchesPrice = ((property.price >= price[0]) && (property.price <= price[1]));
+            // console.log(property?.price, price, ((property.price >= price[0]) && (property.price <= price[1])))
 
             // A property must match all active filters
             return (
-                // matchesLocation &&
-                // matchesPropertyType &&
-                // matchesOpportunityType &&
-                // matchesGarage &&
-                // matchesBasement &&
-                // matchesBedrooms &&
-                // matchesBathrooms &&
-                // matchesSqft &&
-                // matchesPrice
                 matchesPropertyType &&
                 matchesOpportunityType &&
                 matchesGarage &&
                 matchesBasement &&
                 matchesBathrooms &&
                 matchesBedrooms
+                // &&
+                // matchesSqft &&
+                // matchesPrice
 
             );
         });
@@ -249,7 +245,10 @@ export const Buyers = ({ hide }) => {
         getFavorites()
     }, [])
 
+    useEffect(() => {
+        updateFilter("opportunityType", category)
 
+    }, [category])
 
     return (
         <div>
@@ -286,14 +285,15 @@ export const Buyers = ({ hide }) => {
 
                             <Grid item sm={6} xs={12}>
                                 <RangePicker
-
                                     label='Sqft'
                                     MIN={1}
-                                    MAX={200}
+                                    MAX={2000}
+                                    onSelect={(val) => updateFilter('sqft', val)}
                                 />
                             </Grid>
                             <Grid item sm={6} xs={12}>
                                 <RangePicker
+                                    onSelect={(val) => updateFilter('price', val)}
                                 />
                             </Grid>
                             {/* price range */}

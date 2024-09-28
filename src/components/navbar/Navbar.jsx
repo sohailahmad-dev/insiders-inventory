@@ -71,23 +71,23 @@ export default function NavBar({ active, onLogoClick }) {
         },
         {
             label: 'Buy & Hold',
-            to: '/Properties'
+            to: '/Properties/Buy & Hold'
         },
         {
             label: 'Flip Opportunities',
-            to: '/Properties'
+            to: '/Properties/Flip Opportunities'
         },
         {
             label: 'Retail',
-            to: '/Properties'
+            to: '/Properties/Retail'
         },
         {
             label: 'Owner-Occupant',
-            to: '/Properties'
+            to: '/Properties/Owner-Occupant'
         },
         {
             label: 'Current Renovation',
-            to: '/Properties'
+            to: '/Properties/Current Renovation'
         },
         {
             label: 'Submit an Off-Market Property',

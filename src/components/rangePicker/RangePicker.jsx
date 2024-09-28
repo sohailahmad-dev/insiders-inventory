@@ -4,10 +4,13 @@ import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 
 
-export default function RangePicker({ MIN = 0, MAX = 1000000, label = 'Price' }) {
+export default function RangePicker({ MIN = 0, MAX = 10000000, label = 'Price', onSelect }) {
     const [val, setVal] = React.useState([MIN, MAX]);
     const handleChange = (_, newValue) => {
         setVal(newValue);
+        if (onSelect) {
+            onSelect(newValue)
+        }
     };
 
     return (

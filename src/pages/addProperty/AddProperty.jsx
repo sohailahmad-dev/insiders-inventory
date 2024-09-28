@@ -357,6 +357,10 @@ const AddProperty = () => {
         const updatedProperties = properties.map(property => ({
             ...property,
             status: 'New',
+            propertyInformation: {
+                ...property.propertyInformation,
+                propertyType: 'Portfolio Package'
+            }
         }));
 
         // Check if all required fields are present for each updated property

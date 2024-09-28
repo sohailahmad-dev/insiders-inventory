@@ -94,17 +94,19 @@ export default function Card({
 
       <div className="sldier1-item-contents">
         <div className='card-favorite-box'>
-          <div className="card-item1-heading">{propertyType}</div>
+          <div className="card-item-price">${price?.toLocaleString('en-US')}</div>
           <div
             className="card-favoriteIcon"
             onClick={handleFavorite}
-          >{isFavourite ? <FavoriteIcon sx={{ color: 'red' }} /> : <FavoriteBorderIcon />} </div>
+          >
+            {isFavourite ? <FavoriteIcon sx={{ color: 'red' }} /> : <FavoriteBorderIcon />}
+          </div>
         </div>
-        <div className="card-item-price">${price?.toLocaleString('en-US')}</div>
+
         <div className="card-item-specs">{bedrooms} bedroom(s) | {bathrooms} bathroom(s) | {sqft} sq. ft.</div>
         <div className="card-item-lcation">
           <img src={location} alt="location-icon" />
-          {property?.address?.street + ', ' + property?.address?.city + ", "}{country}</div>
+          {property?.address?.street + ', ' + property?.address?.city}</div>
         <Btn
           label='Click for Property Details'
           onClick={() => navigate('/PropertyDetail', { state: property })}

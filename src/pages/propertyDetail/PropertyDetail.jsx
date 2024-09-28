@@ -221,23 +221,23 @@ export default function PropertyDetail() {
                                     <div className="pd-stats-item1">
                                         <div className="pd-p-label "> Initial Investment</div>
                                         <div className="pd-p-val ">
-                                            ${((8 / 100) * property?.price).toFixed(0)}
+                                            ${((8 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}
                                         </div>
                                     </div>
                                     <div className="pd-stats-item1">
                                         <div className="pd-p-label ">Cap Rate </div>
-                                        <div className="pd-p-val "> ${((8 / 100) * property?.price).toFixed(0)}</div>
+                                        <div className="pd-p-val "> ${((8 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}</div>
                                     </div>
 
                                 </>}
                                 {property?.opportunityType === 'Flip Opportunity' && <>
                                     <div className="pd-stats-item1">
                                         <div className="pd-p-label "> Potential ROI </div>
-                                        <div className="pd-p-val "> ${((15 / 100) * property?.price).toFixed(0)}</div>
+                                        <div className="pd-p-val "> ${((15 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}</div>
                                     </div>
                                     <div className="pd-stats-item1">
                                         <div className="pd-p-label "> ARV </div>
-                                        <div className="pd-p-val "> ${property?.assignment?.cashFlowPerMonth}</div>
+                                        <div className="pd-p-val "> ${property?.ARV.toLocaleString('eng-US')}</div>
                                     </div>
                                 </>}
                                 <div className="pd-stats-item1">

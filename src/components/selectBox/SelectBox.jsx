@@ -52,7 +52,7 @@ const SelectBox = ({
                 <div className="custom-select1-label" style={containerStyle} onClick={() => setIsOpen(!isOpen)}>
                     <span className="custom-select1-text" style={{ color: selectedValue?.length > 0 ? 'black' : '#757575' }}>
                         {multiSelect
-                            ? (selectedValue.length > 0 ? selectedValue?.join('  ') : label)
+                            ? (selectedValue.length > 0 ? selectedValue?.join(' ') : label)
                             : (selectedValue || label) // Display single value for single-select
                         }
 
