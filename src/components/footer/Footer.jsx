@@ -35,6 +35,45 @@ const socials = [
     }
 ]
 
+const links1 = [
+    {
+        label: 'Home',
+        to: '/',
+    },
+    {
+        label: 'All Off-Market Inventory',
+        to: '/Properties'
+    },
+    {
+        label: 'Submit an Off-Market Property',
+        to: '/AddProperty'
+    },
+
+]
+
+const links2 = [
+    {
+        label: 'Buy & Hold',
+        to: '/Properties/Buy & Hold'
+    },
+    {
+        label: 'Flip Opportunities',
+        to: '/Properties/Flip Opportunities'
+    },
+    {
+        label: 'Retail',
+        to: '/Properties/Retail'
+    },
+    {
+        label: 'Owner-Occupant',
+        to: '/Properties/Owner-Occupant'
+    },
+    {
+        label: 'Current Renovation',
+        to: '/Properties/Current Renovation'
+    },
+]
+
 
 
 export default function Footer({ active, inPanel, hideEmail }) {
@@ -150,64 +189,30 @@ export default function Footer({ active, inPanel, hideEmail }) {
                     </Grid>
                     <Grid item sm={8} xs={12}>
                         <div className='footerLinks'>
-                            <div
-                                className={activeLink == 'Home' ? "link-nb" : "link-nb1"}
-                                onClick={() => {
-                                    navigate('/')
-                                }
-                                }
-                            >Home</div>
-
-                            <div
-                                className={activeLink === 'Buyers' ? "link-nb" : "link-nb1"}
-                                onClick={() => {
-                                    navigate('/')
-                                }
-                                }
-                            >Buyers</div>
-
-                            <div
-                                className={activeLink === 'Sellers' ? "link-nb" : "link-nb1"}
-                                onClick={() => {
-                                    navigate('/')
-                                }
-                                }
-                            >Sellers</div>
-
-
+                            {links1.map(e => (
+                                <div
+                                    key={e?.label}
+                                    className={activeLink == e?.label ? "link-nb" : "link-nb1"}
+                                    onClick={() => {
+                                        navigate(e?.to)
+                                    }
+                                    }
+                                >{e?.label}</div>
+                            ))}
                         </div>
                         <div className='footerLinks mt-20'>
-                            <div
-                                className={activeLink === 'Buy & Hold' ? "link-nb" : "link-nb1"}
-                                onClick={() => {
-                                    navigate('/')
-                                }
-                                }
-                            >Buy & Hold</div>
-                            <div
-                                className={activeLink === 'Retail' ? "link-nb" : "link-nb1"}
-                                onClick={() => {
-                                    navigate('/')
-                                }
-                                }
-                            >Retail</div>
-
-                            <div
-                                className={activeLink === 'Flip Opportunities' ? "link-nb" : "link-nb1"}
-                                onClick={() => {
-                                    navigate('/')
-                                }
-                                }
-                            >Flip Opportunities</div>
-
-                            <div
-                                className={activeLink === 'Off-Market Inventory' ? "link-nb" : "link-nb1"}
-                                onClick={() => {
-                                    navigate('/')
-                                }
-                                }
-                            >Off-Market Inventory</div>
+                            {links2.map(e => (
+                                <div
+                                    key={e?.label}
+                                    className={activeLink == e?.label ? "link-nb" : "link-nb1"}
+                                    onClick={() => {
+                                        navigate(e?.to)
+                                    }
+                                    }
+                                >{e?.label}</div>
+                            ))}
                         </div>
+
 
                         {/* <div className="footer-social">
                             {socials.map((e, i) => (

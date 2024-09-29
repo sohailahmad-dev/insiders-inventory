@@ -121,12 +121,7 @@ export default function NavBar({ active, onLogoClick }) {
                     </div>
                     {isMobile && (userData?.firstName ?
                         <div className="sideBar-Profile-sec" style={{ width: '100%', position: 'relative', cursor: 'pointer' }}>
-                            {/* <img
-                                src={"https://tse1.mm.bing.net/th?id=OIP.FUYG2ULJI1LzxUqxK9pCZQHaHa&pid=Api&P=0&h=220"}
-                                className='nb-profile'
-                                onClick={togglePopup}
-                                alt="Profile"
-                            /> */}
+
                             <div className="nb-profile"
                                 onClick={togglePopup}
                                 alt="Profile"
@@ -162,14 +157,6 @@ export default function NavBar({ active, onLogoClick }) {
                             }
                         >{e?.label}</div>
                     ))}
-
-
-
-                    {/* {(isMobile && !isLoggedIn) ? <Btn
-                        label="Login/Signup" onClick={() => navigate('/Login')} /> : <div></div>} */}
-
-
-
                 </div>
                 {!isMobile && (userData?.firstName ?
                     <div className="sideBar-Profile-sec" style={{ position: 'relative', textAlign: 'center', minWidth: 80, cursor: 'pointer' }}>

@@ -162,7 +162,7 @@ export default function Properties() {
                                             <div className="th-heading1">Status</div>
                                             <SelectBox
                                                 label='Status'
-                                                options={['Pending', 'Sold']}
+                                                options={['Pending', 'Sold', 'Withdrawn']}
                                                 onSelect={status => updateStatus(e?._id, status)}
                                                 style={{
                                                     marginTop: 0,
@@ -194,15 +194,7 @@ export default function Properties() {
 
                                                     }}
                                                 />
-                                                <DeleteIcon
-                                                    onClick={() => updateStatus(e?._id, 'Withdrawn')}
-                                                    sx={{
-                                                        cursor: 'pointer',
-                                                        color: 'red',
-                                                        marginRight: 1
 
-                                                    }}
-                                                />
                                             </div>
                                         </div>
                                     </Grid>
