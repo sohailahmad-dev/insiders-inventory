@@ -75,7 +75,10 @@ const AddProperty = () => {
         description: '',
         images: [],
         videoUrl: '',
-        mapUrl: '',
+        mapCoordinates: {
+            lat: '',
+            lng: '',
+        },
         financingOptions: [],
         investmentTerms: '',
         buyingProcess: '',
@@ -130,7 +133,10 @@ const AddProperty = () => {
         description: '',
         images: [],
         videoUrl: '',
-        mapUrl: '',
+        mapCoordinates: {
+            lat: '',
+            lng: '',
+        },
         financingOptions: [],
         investmentTerms: '',
         buyingProcess: '',
@@ -687,32 +693,17 @@ const AddProperty = () => {
                                         onSelect={(e) => addData('country', e)}
                                     />
                                 </Grid>
-
-                                <Grid item sm={6} xs={12}>
-                                    <Btn
-                                        label='Select Location on Map'
-                                        onClick={() => {
-                                            setOpenModal(true)
-                                        }}
-                                        style={{
-                                            backgroundColor: "#EFF0F2",
-                                            width: "100%",
-                                            color: 'gray',
-                                            border: 'none'
-                                        }}
-                                    >
-
-                                    </Btn>
-
-                                </Grid>
-                                {/* <>
-                                    <Grid item sm={7} xs={12}>
-                                        <SearchPlaceMap />
+                                <>
+                                    <Grid item sm={8} xs={12}>
+                                        <div className="inputField-label">Select Location on Map </div>
+                                        <SearchPlaceMap
+                                            onSelect={coord => {
+                                                dataObj.mapCoordinates = coord;
+                                                setDataObj({ ...dataObj })
+                                            }}
+                                        />
                                     </Grid>
-                                    <Grid item sm={5} xs={12}>
-                                        <MapComponent1 />
-                                    </Grid>
-                                </> */}
+                                </>
                             </Grid>
                             <div className="heading3 mt-20">Details about your Listing</div>
                             <Grid container spacing={2}>
@@ -983,6 +974,24 @@ const AddProperty = () => {
                                                     onSelect={(e) => addData1(index, 'country', e)}
                                                 />
                                             </Grid>
+                                            <>
+                                                <Grid item sm={8} xs={12}>
+                                                    <div className="inputField-label">Select Location on Map </div>
+                                                    <SearchPlaceMap
+                                                        onSelect={coord => {
+                                                            const updatedProperties = [...properties];
+
+                                                            updatedProperties[index] = {
+                                                                ...updatedProperties[index],
+                                                                mapCoordinates: coord
+                                                            };
+
+                                                            setProperties(updatedProperties);
+                                                        }}
+
+                                                    />
+                                                </Grid>
+                                            </>
                                         </Grid>
                                         <div className="heading3 mt-20 mb-20">Details about your Listing</div>
                                         <Grid container spacing={2}>

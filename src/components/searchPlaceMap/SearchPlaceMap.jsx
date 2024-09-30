@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, Autocomplete } from '@react-google-maps/api';
 
 const mapContainerStyle = {
@@ -14,7 +14,7 @@ const defaultCenter = {
 // Custom marker icon (beach flag icon as in the original example)
 const customMarkerIcon = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 
-const SearchPlaceMap = () => {
+const SearchPlaceMap = ({ onSelect }) => {
     const [markerPosition, setMarkerPosition] = useState(defaultCenter);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const autocompleteRef = useRef(null);
@@ -30,7 +30,6 @@ const SearchPlaceMap = () => {
             setMarkerPosition(newPosition); // Set marker at new position
             setMapCenter(newPosition); // Update map center to the new position
             setSelectedPlace({
-                name: place.name,
                 lat: lat(),
                 lng: lng(),
             });
@@ -45,7 +44,6 @@ const SearchPlaceMap = () => {
         };
         setMarkerPosition(newPos);
         setSelectedPlace({
-            name: "Selected Position",
             lat: e.latLng.lat(),
             lng: e.latLng.lng(),
         });
@@ -60,11 +58,16 @@ const SearchPlaceMap = () => {
         setMarkerPosition(newPos);
         setMapCenter(newPos); // Optionally update the center
         setSelectedPlace({
-            name: "Random Selected Place",
             lat: e.latLng.lat(),
             lng: e.latLng.lng(),
         });
     }, []);
+
+    useEffect(() => {
+        if (onSelect) {
+            onSelect(selectedPlace)
+        }
+    }, [selectedPlace])
 
     return (
         <div>
@@ -74,7 +77,9 @@ const SearchPlaceMap = () => {
                 libraries={['places']}>
                 {/* Autocomplete input for searching places */}
                 <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceChanged}>
-                    <input type="text" placeholder="Search a place" style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
+                    <input
+                        className='inputBox'
+                        type="text" placeholder="Search a place" style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
                 </Autocomplete>
 
                 {/* Google Map Component */}
@@ -101,15 +106,6 @@ const SearchPlaceMap = () => {
 
                 </GoogleMap>
             </LoadScript>
-
-            {/* Displaying the selected place details */}
-            {selectedPlace && (
-                <div style={{ marginTop: "20px" }}>
-                    <h4>Selected Place: {selectedPlace.name}</h4>
-                    <p>Latitude: {selectedPlace.lat}</p>
-                    <p>Longitude: {selectedPlace.lng}</p>
-                </div>
-            )}
         </div>
     );
 };
