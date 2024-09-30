@@ -22,6 +22,8 @@ import MapModal from './MapModal'
 import SearchPlaceMap from '../../components/searchPlaceMap/SearchPlaceMap'
 import MapComponent from '../../components/mapComponent/MapComponent'
 import MapComponent1 from '../../components/mapComponent/MapComponent1'
+import useScrollToTop from '../../hooks/UseScrollToTop'
+import countries from '../../static/json/Countries'
 
 
 
@@ -29,6 +31,7 @@ const opportunityTypes = ['Buy & Hold', 'Flip Opportunity', 'Retail', 'Owner-Occ
 
 
 const AddProperty = () => {
+    useScrollToTop();
 
     useAuthCheck()
     let [types, setTypes] = useState(['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package'])
@@ -161,10 +164,11 @@ const AddProperty = () => {
             } else {
                 dataObj[label].push(value);
             }
-        } else if (child) {
-            dataObj[label][child] = value;
         } else if (grandChild) {
             dataObj[label][child][grandChild] = value;
+            console.log('inn grandchild')
+        } else if (child) {
+            dataObj[label][child] = value;
         }
         else {
             dataObj[label] = value;
@@ -337,6 +341,7 @@ const AddProperty = () => {
             images
         ) {
             try {
+                console.log(dataObj)
                 const response = await postData('create-single-property', dataObj);
                 toast.success('Property added successfully');
                 console.log(response);
@@ -660,13 +665,7 @@ const AddProperty = () => {
                                         value={dataObj?.address?.city}
                                     />
                                 </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <InputField
-                                        onChange={(e) => addData('address', e.target.value, 'zipCode')}
-                                        placeholder='Zip Code'
-                                        value={dataObj?.address?.zipCode}
-                                    />
-                                </Grid>
+
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         onChange={(e) => addData('address', e.target.value, 'state')}
@@ -676,9 +675,16 @@ const AddProperty = () => {
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
-                                        onChange={(e) => addData('country', e.target.value)}
-                                        placeholder='Country'
-                                        value={dataObj?.country}
+                                        onChange={(e) => addData('address', e.target.value, 'zipCode')}
+                                        placeholder='Zip Code'
+                                        value={dataObj?.address?.zipCode}
+                                    />
+                                </Grid>
+                                <Grid item sm={6} xs={12}>
+                                    <SelectBox
+                                        label='Country'
+                                        options={countries}
+                                        onSelect={(e) => addData('country', e)}
                                     />
                                 </Grid>
 
@@ -761,30 +767,6 @@ const AddProperty = () => {
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
                                     <InputField
-                                        onChange={(e) => addData('assignment', e.target.value, 'initialInvestment')}
-                                        inputType='number'
-                                        placeholder='Initial Investment / Down Payment'
-                                        value={dataObj?.assignment?.initialInvestment}
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <InputField
-                                        onChange={(e) => addData('assignment', e.target.value, 'capRate')}
-                                        inputType='number'
-                                        placeholder='Cap Rate (%)'
-                                        value={dataObj?.assignment?.capRate}
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <InputField
-                                        onChange={(e) => addData('assignment', e.target.value, 'cashFlowPerMonth')}
-                                        inputType='number'
-                                        placeholder='Cash Flow Per Month'
-                                        value={dataObj?.assignment?.cashFlowPerMonth}
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <InputField
                                         onChange={(e) => addData('propertyInformation', e.target.value, 'sqft')}
                                         inputType='number'
                                         placeholder='Size (SqFt)'
@@ -804,7 +786,7 @@ const AddProperty = () => {
                                         onChange={(e) => addData('propertyInformation', e.target.value, 'bathrooms', 'full')}
                                         inputType='number'
                                         placeholder='# of Full Bathrooms'
-                                        value={dataObj?.propertyInformation?.bathrooms}
+                                        value={dataObj?.propertyInformation?.bathrooms?.full}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -812,7 +794,6 @@ const AddProperty = () => {
                                         onChange={(e) => addData('propertyInformation', e.target.value, 'bathrooms', 'half')}
                                         inputType='number'
                                         placeholder='# of Half Bathrooms'
-                                        value={dataObj?.propertyInformation?.bathrooms}
                                     />
                                 </Grid>
                                 <Grid item sm={6} xs={12}>
@@ -839,14 +820,7 @@ const AddProperty = () => {
                                         defaultValue={dataObj?.propertyManagement?.managedByCompany}
                                     />
                                 </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <InputField
-                                        inputType='number'
-                                        placeholder='Potential Return on Investment (ROI %)'
-                                        onChange={(e) => addData('assignment', e.target.value, 'potentialRoi')}
-                                        value={dataObj?.assignment?.potentialRoi}
-                                    />
-                                </Grid>
+
 
                                 {dataObj?.propertyManagement?.managedByCompany === 'Yes' &&
                                     <>
@@ -869,7 +843,7 @@ const AddProperty = () => {
                                     <SelectBox
                                         label='Owner Type'
                                         options={['Assignment / Wholesale', 'Corp / REIT / Fund', 'Private']}
-                                        onSelect={e => addData(ownerType, e)}
+                                        onSelect={e => addData("ownerType", e)}
                                         defaultValue={dataObj?.ownerType}
 
                                     />
@@ -991,20 +965,22 @@ const AddProperty = () => {
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
-                                                    onChange={(e) => addData1(index, 'address', e.target.value, 'zipCode')}
-                                                    placeholder='Zip Code'
-                                                />
-                                            </Grid>
-                                            <Grid item sm={6} xs={12}>
-                                                <InputField
                                                     onChange={(e) => addData1(index, 'address', e.target.value, 'state')}
                                                     placeholder='State'
                                                 />
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
-                                                    onChange={(e) => addData1(index, 'country', e.target.value)}
-                                                    placeholder='Country'
+                                                    onChange={(e) => addData1(index, 'address', e.target.value, 'zipCode')}
+                                                    placeholder='Zip Code'
+                                                />
+                                            </Grid>
+
+                                            <Grid item sm={6} xs={12}>
+                                                <SelectBox
+                                                    label='Country'
+                                                    options={countries}
+                                                    onSelect={(e) => addData1(index, 'country', e)}
                                                 />
                                             </Grid>
                                         </Grid>
@@ -1054,27 +1030,6 @@ const AddProperty = () => {
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
-                                                    onChange={(e) => addData1(index, 'assignment', e.target.value, 'initialInvestment')}
-                                                    inputType='number'
-                                                    placeholder='Initial Investment / Down Payment'
-                                                />
-                                            </Grid>
-                                            <Grid item sm={6} xs={12}>
-                                                <InputField
-                                                    onChange={(e) => addData1(index, 'assignment', e.target.value, 'capRate')}
-                                                    inputType='number'
-                                                    placeholder='Cap Rate (%)'
-                                                />
-                                            </Grid>
-                                            <Grid item sm={6} xs={12}>
-                                                <InputField
-                                                    onChange={(e) => addData1(index, 'assignment', e.target.value, 'cashFlowPerMonth')}
-                                                    inputType='number'
-                                                    placeholder='Cash Flow Per Month'
-                                                />
-                                            </Grid>
-                                            <Grid item sm={6} xs={12}>
-                                                <InputField
                                                     onChange={(e) => addData1(index, 'propertyInformation', e.target.value, 'sqft')}
                                                     inputType='number'
                                                     placeholder='Size (SqFt)'
@@ -1091,14 +1046,14 @@ const AddProperty = () => {
                                                 <InputField
                                                     onChange={(e) => addData1(index, 'propertyInformation', e.target.value, 'bathrooms', 'full')}
                                                     inputType='number'
-                                                    placeholder='# of Bathrooms'
+                                                    placeholder='# of Full Bathrooms'
                                                 />
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
                                                     onChange={(e) => addData1(index, 'propertyInformation', e.target.value, 'bathrooms', 'half')}
                                                     inputType='number'
-                                                    placeholder='# of Bathrooms'
+                                                    placeholder='# of Half Bathrooms'
                                                 />
                                             </Grid>
                                             <Grid item sm={6} xs={12}>
@@ -1122,13 +1077,7 @@ const AddProperty = () => {
                                                     onSelect={(e) => addData1(index, 'propertyManagement', e, 'managedByCompany')}
                                                 />
                                             </Grid>
-                                            <Grid item sm={6} xs={12}>
-                                                <InputField
-                                                    inputType='number'
-                                                    placeholder='Potential Cash on Investment (ROI %) '
-                                                    onChange={(e) => addData1(index, 'assignment', e.target.value, 'potentialRoi')}
-                                                />
-                                            </Grid>
+
                                             {properties[index]?.propertyManagement?.managedByCompany === 'Yes' &&
                                                 <>
                                                     <Grid item sm={6} xs={12}>
@@ -1147,6 +1096,7 @@ const AddProperty = () => {
                                             <Grid item sm={6} xs={12}>
                                                 <SelectBox
                                                     label='Owner Type'
+                                                    onSelect={e => addData1(index, "ownerType", e)}
                                                     options={['Assignment / Wholesale', 'Corp / REIT / Fund', 'Private']}
                                                 />
                                             </Grid>

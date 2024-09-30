@@ -89,7 +89,7 @@ export default function ApplyModal({ open, onClose, property }) {
                                 <Grid item sm={6} xs={12}>
                                     <InputField
                                         onChange={e => addData('offerAmount', e.target.value)}
-                                        placeholder='Offer Amount'
+                                        placeholder='Offer Amount ( $ )'
                                         inputType={'number'}
                                     />
                                 </Grid>

@@ -48,7 +48,6 @@ export default function PropertyDetail() {
         setProperty(location?.state)
     }, [location])
 
-    console.log(location.state)
 
     return (
         <div>
@@ -111,10 +110,17 @@ export default function PropertyDetail() {
                                             {property?.propertyInformation?.bedrooms}</div>
                                     </div>
                                     <div className="pd-stats-item">
-                                        <div className="pd-p-label"> Bathrooms</div>
+                                        <div className="pd-p-label">Full Bathrooms</div>
                                         <div className="pd-p-val">
                                             <img src={pdIcon2} alt="icon" className='pd-p-icon' />
-                                            {property?.propertyInformation?.bathrooms}
+                                            {property?.propertyInformation?.bathrooms?.full ?? 0}
+                                        </div>
+                                    </div>
+                                    <div className="pd-stats-item">
+                                        <div className="pd-p-label">Half Bathrooms</div>
+                                        <div className="pd-p-val">
+                                            <img src={pdIcon2} alt="icon" className='pd-p-icon' />
+                                            {property?.propertyInformation?.bathrooms?.half ?? 0}
                                         </div>
                                     </div>
                                     <div className="pd-stats-item">
@@ -242,10 +248,8 @@ export default function PropertyDetail() {
                                 </>}
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Cash Flow Per Month </div>
-                                    <div className="pd-p-val "> ${property?.assignment?.cashFlowPerMonth}</div>
+                                    <div className="pd-p-val "> ${property?.assignment?.cashFlowPerMonth.toLocaleString('en-US')}</div>
                                 </div>
-
-
 
                             </div>
 

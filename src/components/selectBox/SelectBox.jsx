@@ -20,28 +20,39 @@ const SelectBox = ({
     const handleSelect = (value) => {
         if (multiSelect) {
             // For multi-select, toggle the selected value
-            if (selectedValue.includes(value)) {
-                setSelectedValue(selectedValue.filter(item => item !== value));
-            } else {
-                setSelectedValue([...selectedValue, value]);
+            const updatedValue = selectedValue.includes(value)
+                ? selectedValue.filter(item => item !== value)
+                : [...selectedValue, value];
+
+            setSelectedValue(updatedValue);
+
+            // Call the parent onSelect function with the updated selection
+            if (onSelect) {
+                onSelect(updatedValue); // Send updated array for multi-select
+
             }
         } else {
             // For single-select, set the value and close the dropdown
             setSelectedValue(value);
-            setIsOpen(false); // Close the dropdown for single-select
-        }
+            setIsOpen(false);
 
-        // Call the parent onSelect function with the updated selection
-        if (onSelect) {
-            onSelect(multiSelect ? [...selectedValue, value] : value); // Send array or single value based on multiSelect
+            // Call the parent onSelect function with the single value
+            if (onSelect) {
+
+                onSelect(value);
+            }
         }
     };
 
     useEffect(() => {
         if (defaultValue) {
-            handleSelect(defaultValue);
+            if (multiSelect && Array.isArray(defaultValue)) {
+                setSelectedValue(defaultValue); // Set default value directly for multi-select
+            } else if (!multiSelect) {
+                setSelectedValue(defaultValue); // Set default value for single-select
+            }
         }
-    }, []); // Set initial value based on defaultValue
+    }, [defaultValue, multiSelect]);
 
     return (
         <>
@@ -52,10 +63,9 @@ const SelectBox = ({
                 <div className="custom-select1-label" style={containerStyle} onClick={() => setIsOpen(!isOpen)}>
                     <span className="custom-select1-text" style={{ color: selectedValue?.length > 0 ? 'black' : '#757575' }}>
                         {multiSelect
-                            ? (selectedValue.length > 0 ? selectedValue?.join(' ') : label)
+                            ? (selectedValue.length > 0 ? selectedValue.join(', ') : label)
                             : (selectedValue || label) // Display single value for single-select
                         }
-
                     </span>
                     <KeyboardArrowDownIcon sx={{ color: iconColor ?? 'gray' }} />
                 </div>

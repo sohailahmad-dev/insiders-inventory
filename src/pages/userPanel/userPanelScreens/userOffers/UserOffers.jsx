@@ -23,16 +23,16 @@ export default function UserOffers() {
         const storedUser = JSON.parse(localStorage.getItem('user'));
         if (storedUser) {
             userId = storedUser?._id;
-            console.log(storedUser)
         }
 
-        getData(`user/${userId}/offers`).then((response) => {
+        getData(`offers`).then((response) => {
             toast.success(response.message)
             console.log(response)
             setOffers(response?.offers)
             setIsLoading(false)
         }
         ).catch((err) => {
+            console.log(err)
             toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
@@ -46,7 +46,7 @@ export default function UserOffers() {
 
     return (
         <div>
-            <div className="heading2 mb-20">All Users</div>
+            <div className="heading2 mb-20">My Offers</div>
 
             <div className="ap-table">
                 <div className="ap-th">

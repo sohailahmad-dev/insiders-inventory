@@ -14,8 +14,10 @@ import { useAuth } from '../../hooks/UseAuth'
 import Loader from '../../components/loader/Loader'
 import { getData } from '../../config/apiCalls'
 import Slider4 from '../../components/slider4/Slider4'
+import useScrollToTop from '../../hooks/UseScrollToTop'
 
 export const Home = () => {
+    useScrollToTop();
     const navigate = useNavigate();
     const isLoggedIn = useAuth();
     let [categories, setCategories] = useState([]);

@@ -177,7 +177,8 @@ export default function Slider1() {
                                 ROI={item?.assignment?.portentialRoi}
                                 initialInvestment={item?.assignment?.initialInvestment}
                                 bedrooms={item?.propertyInformation?.bedrooms}
-                                bathrooms={item?.propertyInformation?.bathrooms}
+                                bathrooms={item?.propertyInformation?.bathrooms?.full}
+                                bathroomsHalf={item?.propertyInformation?.bathrooms?.half}
                                 sqft={item?.propertyInformation?.sqft}
                                 isFavourite={isFavorite(item?._id)}
                                 onFavorite={updateFavorites}

@@ -28,6 +28,7 @@ import { IconButton } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import Btn from '../../components/btn/Btn'
 import SearchPlaceMap from '../../components/searchPlaceMap/SearchPlaceMap'
+import useScrollToTop from '../../hooks/UseScrollToTop'
 
 
 const selectsData = [
@@ -63,7 +64,7 @@ const selectsData = [
     },
     {
         icon: bathroomIcon,
-        label: 'Bathrooms',
+        label: 'Full Bathrooms',
         options: ['', 2, 3, 4, 5, 6, 7, 8],
         filterName: 'bathrooms'
     },
@@ -81,7 +82,8 @@ const selectsData = [
 
 export const Buyers = ({ hide }) => {
     const { category } = useParams()
-    useAuthCheck()
+    useAuthCheck();
+    useScrollToTop();
     const navigate = useNavigate();
     const isMobile = useIsMobile();
     let [properties, setProperties] = useState([]);
@@ -168,7 +170,7 @@ export const Buyers = ({ hide }) => {
             const matchesGarage = garage ? property.propertyInformation.garage === garage : true;
             const matchesBasement = basement ? property.propertyInformation.basement === basement : true;
             const matchesBedrooms = bedrooms !== null ? property.propertyInformation.bedrooms === bedrooms : true;
-            const matchesBathrooms = bathrooms !== null ? property.propertyInformation.bathrooms === bathrooms : true;
+            const matchesBathrooms = bathrooms !== null ? property.propertyInformation.bathrooms?.full === bathrooms : true;
             const matchesSqft = sqft ? ((property.propertyInformation.sqft >= sqft[0]) && (property.propertyInformation.sqft <= sqft[1])) : true;
             const matchesPrice = ((property.price >= price[0]) && (property.price <= price[1]));
             // console.log(property?.price, price, ((property.price >= price[0]) && (property.price <= price[1])))
@@ -394,7 +396,8 @@ export const Buyers = ({ hide }) => {
                                     ROI={item?.assignment?.portentialRoi}
                                     initialInvestment={item?.assignment?.initialInvestment}
                                     bedrooms={item?.propertyInformation?.bedrooms}
-                                    bathrooms={item?.propertyInformation?.bathrooms}
+                                    bathrooms={item?.propertyInformation?.bathrooms?.full ?? 0}
+                                    bathroomsHalf={item?.propertyInformation?.bathrooms?.half ?? 0}
                                     sqft={item?.propertyInformation?.sqft}
                                     isFavourite={isFavorite(item?._id)}
                                     onFavorite={updateFavorites}

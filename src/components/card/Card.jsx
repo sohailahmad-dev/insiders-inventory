@@ -15,16 +15,14 @@ import toast from 'react-hot-toast';
 export default function Card({
   property,
   images = [img],
-  title = 'Luxury Apartment',
   status = 'New',
-  country = 'Australia',
   propertyType = 'Condo',
-  price = '1200000',
-  ROI = '15',
-  initialInvestment = '25000',
-  bedrooms = 2,
-  bathrooms = 3,
-  sqft = 120,
+  price = 0,
+  initialInvestment = 0,
+  bedrooms = 0,
+  bathrooms = 0,
+  bathroomsHalf = 0,
+  sqft = 0,
   isFavourite = false,
   onFavorite
 }) {
@@ -103,7 +101,7 @@ export default function Card({
           </div>
         </div>
 
-        <div className="card-item-specs">{bedrooms} bedroom(s) | {bathrooms} bathroom(s) | {sqft} sq. ft.</div>
+        <div className="card-item-specs">{bedrooms} bedroom(s) | {bathrooms} full bathroom(s) |{bathroomsHalf} half bathroom(s) | {sqft} sq. ft.</div>
         <div className="card-item-lcation">
           <img src={location} alt="location-icon" />
           {property?.address?.street + ', ' + property?.address?.city}</div>
