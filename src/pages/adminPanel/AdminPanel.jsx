@@ -23,6 +23,7 @@ import useAuthCheck from '../../hooks/UseAuthCheck';
 import VipBuyers from './adminPanelScreens/vipBuyer/VipBuyers';
 import EmailIcon from '@mui/icons-material/Email';
 import Emails from './adminPanelScreens/emails/Emails';
+import UserOffers from '../userPanel/userPanelScreens/userOffers/UserOffers';
 
 
 
@@ -211,6 +212,7 @@ export default function AdminPanel() {
                         <Route path='VipBuyers' element={<VipBuyers />}></Route>
                         <Route path='Emails' element={<Emails />}></Route>
                         <Route path='Categories' element={<Categories />}></Route>
+                        <Route path='Offers' element={<UserOffers />}></Route>
                     </Routes>
                 </div>
 

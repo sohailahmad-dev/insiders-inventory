@@ -13,6 +13,7 @@ import pdIcon2 from '../../assets/imgs/pdIcon2.png'
 import pdIcon3 from '../../assets/imgs/pdIcon3.png'
 import pdIcon4 from '../../assets/imgs/pdIcon4.png'
 import pdIcon5 from '../../assets/imgs/pdIcon5.png'
+import noImg from '../../assets/imgs/noImg.jpeg'
 import map1 from '../../assets/imgs/map1.png'
 import videoImg from '../../assets/imgs/videoImg.png'
 import Card from '../../components/card/Card'
@@ -82,10 +83,14 @@ export default function PropertyDetail() {
                 <Grid container spacing={5}>
                     <Grid item sm={7.5} xs={12}>
                         <div className='pd-sec2-left'>
-                            <Slider2 sliderData={property?.images} />
-                            <div >
-                                <Slider3 sliderData={property?.images} />
-                            </div>
+                            {(property?.images && property?.images.legth >= 1) ? <>
+                                <Slider2 sliderData={property?.images} />
+                                <div >
+                                    <Slider3 sliderData={property?.images} />
+                                </div>
+                            </> :
+                                <img src={noImg} alt='no img' width='100%' />
+                            }
                             {/* property stats  */}
                             <div className="pd-box mt-30">
                                 <div className="pd-p-header">

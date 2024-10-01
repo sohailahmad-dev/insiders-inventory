@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom'
 import { getData, putData } from '../../../../config/apiCalls'
 import toast from 'react-hot-toast'
 import useAuthCheck from '../../../../hooks/UseAuthCheck'
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+
 
 
 export default function Properties() {
@@ -192,6 +194,16 @@ export default function Properties() {
                                                         color: '#32CD32',
                                                         marginRight: 1
 
+                                                    }}
+                                                />
+                                                <LocalOfferIcon
+                                                    onClick={() => {
+                                                        navigate('/AdminPanel/Offers', {
+                                                            state: {
+                                                                propertyId: e?._id,
+                                                                label: 'Property Offers'
+                                                            }
+                                                        })
                                                     }}
                                                 />
 

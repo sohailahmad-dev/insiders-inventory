@@ -32,7 +32,8 @@ export default function Slider1() {
         setIsLoading(true)
 
         getData('properties').then((response) => {
-            setProperties(response?.properties)
+            const num = response?.properties?.length
+            setProperties(response?.properties.slice(0, 8))
             setIsLoading(false)
         }
         ).catch((err) => {
@@ -119,25 +120,7 @@ export default function Slider1() {
             {/* slider ruler  */}
             <div className='slider1-upper' >
                 <div className="heading1">Off-Market<span>Properties</span></div>
-                {/* <div className='slider1-navigation'> */}
-
-                {/* </div> */}
             </div>
-            {/* <img onClick={prevSlide} src={prev} alt="prev"
-                className='slider1-prev'
-                style={{
-                    opacity: 1,
-                    cursor: 'pointer'
-                }}
-            />
-
-            <img onClick={nextSlide} src={next} alt="next"
-                className='slider1-next'
-                style={{
-                    opacity: 1,
-                    cursor: 'pointer'
-                }}
-            /> */}
 
             <div className='slider1-prev' onClick={prevSlide}>
                 <ArrowBackIosIcon

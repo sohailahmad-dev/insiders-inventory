@@ -15,6 +15,7 @@ import AddProperty from '../addProperty/AddProperty'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import UserOffers from './userPanelScreens/userOffers/UserOffers';
 import useAuthCheck from '../../hooks/UseAuthCheck';
+import PropertyDetail from '../propertyDetail/PropertyDetail';
 
 
 
@@ -49,7 +50,12 @@ export default function UserPanel() {
             icon: MapsHomeWorkOutlinedIcon,
         },
         {
-            label: 'My Offers',
+            label: 'Sent Offers',
+            to: 'UserOffers',
+            icon: LocalOfferIcon,
+        },
+        {
+            label: 'Received Offers',
             to: 'UserOffers',
             icon: LocalOfferIcon,
         },
@@ -65,29 +71,6 @@ export default function UserPanel() {
         },
     ]
 
-    const handleCloseSnack = () => {
-        setOpenSnack(false);
-        setSnackMsg('');
-        setSeverity('error');
-    }
-
-    // useEffect(() => {
-    //     const storedUserData = localStorage.getItem("user");
-    //     if (storedUserData) {
-    //         const data = JSON.parse(storedUserData);
-    //         setUserData(data);
-    //         if (data?.role.toLowerCase() === 'admin') {
-    //             setIsAdminLoggedIn(true);
-    //             setActiveScreen('User Management')
-    //             navigate('UserManagement')
-    //         } else {
-    //             navigate('/');
-    //         }
-    //     } else {
-    //         navigate('/')
-    //     }
-    // }, [isAdminLoggedIn])
-
 
     const handleBtnClick = (e) => {
         if (e.label === 'Logout') {
@@ -98,7 +81,12 @@ export default function UserPanel() {
                 setMenu(!menu)
             }
             setActiveScreen(e.label);
-            navigate(e.to, { state: { path: e.to } })
+            navigate(e.to, {
+                state: {
+                    path: e.to,
+                    label: e.label
+                }
+            })
         }
     }
 
@@ -140,7 +128,6 @@ export default function UserPanel() {
         const user = JSON.parse(localStorage.getItem('user'));
         if (user) {
             setUserData(user)
-            console.log(user)
         }
     }, [])
 
@@ -206,12 +193,12 @@ export default function UserPanel() {
                         <Route path='UserProperties' element={<UserProperties />}></Route>
                         <Route path='AddProperty' element={<AddProperty />}></Route>
                         <Route path='UserOffers' element={<UserOffers />}></Route>
+                        <Route path='PropertyDetail' element={<PropertyDetail />}></Route>
                     </Routes>
                 </div>
 
             </div>
             <Footer inPanel={true} active='Off-Market Inventory' />
-            <Snack msg={snackMsg} open={openSnack} onClose={handleCloseSnack} severity={severity} />
             <Loader isLoading={isLoading} />
         </div>
     )

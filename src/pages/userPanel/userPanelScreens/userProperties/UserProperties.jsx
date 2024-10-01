@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { getData, putData } from '../../../../config/apiCalls'
 import toast from 'react-hot-toast'
 import useAuthCheck from '../../../../hooks/UseAuthCheck'
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 
 export default function UserProperties() {
@@ -29,6 +30,7 @@ export default function UserProperties() {
             setIsLoading(false)
         }
         ).catch((err) => {
+            console.log(err)
             toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
@@ -181,8 +183,7 @@ export default function UserProperties() {
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Actions</div>
-                                            <div
-                                            >
+                                            <div>
                                                 <EditIcon
                                                     onClick={() => navigate('/UserPanel/AddProperty', {
                                                         state: {
@@ -195,7 +196,16 @@ export default function UserProperties() {
                                                         cursor: 'pointer',
                                                         color: '#32CD32',
                                                         marginRight: 1
-
+                                                    }}
+                                                />
+                                                <LocalOfferIcon
+                                                    onClick={() => {
+                                                        navigate('/UserPanel/UserOffers', {
+                                                            state: {
+                                                                propertyId: e?._id,
+                                                                label: 'Property Offers'
+                                                            }
+                                                        })
                                                     }}
                                                 />
 
