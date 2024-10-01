@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, Autocomplete } from '@react-google-maps/api';
 import markerIcon from '../../assets/imgs/markerIcon.png'
 
+
 const mapContainerStyle = {
     height: "400px",
     width: "100%",
@@ -12,12 +13,14 @@ const defaultCenter = {
     lng: -118.243683,
 };
 
+// Custom marker icon (beach flag icon as in the original example)
+const customMarkerIcon = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+
 const SearchPlaceMap = ({ onSelect }) => {
     const [markerPosition, setMarkerPosition] = useState(defaultCenter);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const autocompleteRef = useRef(null);
     const [mapCenter, setMapCenter] = useState(defaultCenter);
-    const [customMarkerIcon, setCustomMarkerIcon] = useState(null);
 
     // Handles place change from the autocomplete input
     const onPlaceChanged = () => {
@@ -62,36 +65,23 @@ const SearchPlaceMap = ({ onSelect }) => {
         });
     }, []);
 
-    // Set the custom marker icon after the Google Maps API is loaded
-    useEffect(() => {
-        if (window.google) {
-            setCustomMarkerIcon({
-                url: markerIcon,
-                scaledSize: new window.google.maps.Size(20, 30), // Set width to 20 and height to 30
-            });
-        }
-    }, []);
-
     useEffect(() => {
         if (onSelect) {
-            onSelect(selectedPlace);
+            onSelect(selectedPlace)
         }
-    }, [selectedPlace, onSelect]);
+    }, [selectedPlace])
 
     return (
         <div>
             <LoadScript
+                //Later on I will store it in secret variable
                 googleMapsApiKey="AIzaSyDLAEV6ENsy1siEIgAdnPeVwRqCh4s67vE"
-                libraries={['places']}
-            >
+                libraries={['places']}>
                 {/* Autocomplete input for searching places */}
                 <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceChanged}>
                     <input
                         className='inputBox'
-                        type="text"
-                        placeholder="Search a place"
-                        style={{ width: "100%", height: "40px", marginBottom: "10px" }}
-                    />
+                        type="text" placeholder="Search a place" style={{ width: "100%", height: "40px", marginBottom: "10px" }} />
                 </Autocomplete>
 
                 {/* Google Map Component */}
@@ -101,16 +91,21 @@ const SearchPlaceMap = ({ onSelect }) => {
                     zoom={19} // Closer zoom level
                     onClick={onMapClick} // Enable clicking on the map to place marker
                 >
-                    {/* Custom Marker with controlled size, only render if customMarkerIcon is available */}
-                    {customMarkerIcon && (
-                        <Marker
-                            position={markerPosition}
-                            draggable={true}
-                            onDragEnd={onMarkerDragEnd}
-                            icon={customMarkerIcon} // Apply custom icon with size control
-                            title='Selected Marker'
-                        />
-                    )}
+                    {/* Custom Marker with beach flag icon */}
+                    <Marker
+                        position={markerPosition}
+                        draggable={true}
+                        onDragEnd={onMarkerDragEnd}
+                        icon={customMarkerIcon} // Custom icon from original example
+                        title='Hello Selected'
+                    />
+                    <Marker
+                        position={markerPosition}
+
+                        // icon={customMarkerIcon} 
+                        title='Hello Selected'
+                    />
+
                 </GoogleMap>
             </LoadScript>
         </div>
