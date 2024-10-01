@@ -2,12 +2,13 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import markerIcon from '../../assets/imgs/markerIcon.png'
 
 // Import your custom icon or image
 // import customIconUrl from './path-to-your-icon.png';
 
 const customIcon = new L.Icon({
-    iconUrl: 'https://w7.pngwing.com/pngs/279/458/png-transparent-white-and-green-house-house-symbol-home-icon-green-marker-s-building-text-triangle.png',
+    iconUrl: markerIcon,
     iconSize: [20, 30], // size of the icon
     iconAnchor: [19, 38], // point of the icon which will correspond to marker's location
     popupAnchor: [0, -38], // point from which the popup should open relative to the iconAnchor

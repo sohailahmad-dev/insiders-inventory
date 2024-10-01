@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, Autocomplete } from '@react-google-maps/api';
+import markerIcon from '../../assets/imgs/markerIcon.png'
+
 
 const mapContainerStyle = {
     height: "400px",
@@ -12,7 +14,7 @@ const defaultCenter = {
 };
 
 // Custom marker icon (beach flag icon as in the original example)
-const customMarkerIcon = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+const customMarkerIcon = markerIcon;
 
 const SearchPlaceMap = ({ onSelect }) => {
     const [markerPosition, setMarkerPosition] = useState(defaultCenter);

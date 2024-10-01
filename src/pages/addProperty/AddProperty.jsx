@@ -20,8 +20,6 @@ import useAuthCheck from '../../hooks/UseAuthCheck'
 import VideoBox from '../../components/videoBox/VideoBox'
 import MapModal from './MapModal'
 import SearchPlaceMap from '../../components/searchPlaceMap/SearchPlaceMap'
-import MapComponent from '../../components/mapComponent/MapComponent'
-import MapComponent1 from '../../components/mapComponent/MapComponent1'
 import useScrollToTop from '../../hooks/UseScrollToTop'
 import countries from '../../static/json/Countries'
 
@@ -219,27 +217,22 @@ const AddProperty = () => {
     // for single property 
     const handleUploadPhotos = async (images) => {
         setIsLoading(true)
-
-        if (images.length >= 2) {
-            try {
-                const formData = new FormData();
-                images.forEach((img) => {
-                    formData.append('files', img);
-                });
-                const response = await postData('upload-images', formData); // Replace with actual API route
-                toast.success('Images uploaded successfully');
-                console.log(response)
-                addData('images', response?.images)
-            } catch (error) {
-                toast.error(error.message || 'Error in uploading Images');
-                console.log(error)
-            } finally {
-                setIsLoading(false);
-            }
-        } else {
-            setIsLoading(false)
-            toast.error("Minimum 2 Images are required")
+        try {
+            const formData = new FormData();
+            images.forEach((img) => {
+                formData.append('files', img);
+            });
+            const response = await postData('upload-images', formData); // Replace with actual API route
+            toast.success('Images uploaded successfully');
+            console.log(response)
+            addData('images', response?.images)
+        } catch (error) {
+            toast.error(error.message || 'Error in uploading Images');
+            console.log(error)
+        } finally {
+            setIsLoading(false);
         }
+
     };
 
     // for multiple properties 
@@ -343,8 +336,7 @@ const AddProperty = () => {
             currentStatus &&
             propertyType &&
             bedrooms &&
-            sqft &&
-            images
+            sqft
         ) {
             try {
                 console.log(dataObj)
@@ -392,7 +384,6 @@ const AddProperty = () => {
             propertyType &&
             bedrooms &&
             sqft &&
-            images &&
             user
         ) {
             try {
@@ -450,8 +441,7 @@ const AddProperty = () => {
                 status &&
                 currentStatus &&
                 bedrooms &&
-                sqft &&
-                images
+                sqft
             );
         });
 
@@ -499,8 +489,7 @@ const AddProperty = () => {
             status &&
             currentStatus &&
             propertyType &&
-            bedrooms &&
-            images
+            bedrooms
         ) {
             try {
                 const response = await putData(`property/${dataObj?._id}`, dataObj);
