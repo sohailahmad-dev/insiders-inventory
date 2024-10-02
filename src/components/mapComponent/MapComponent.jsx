@@ -20,10 +20,9 @@ const markers = [
 
 
 
-
-const MapComponent = ({ coords = markers }) => {
+const MapComponent = ({ coords = markers, center }) => {
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '355px', width: '100%', borderRadius: 20 }}>
+        <MapContainer center={[coords[0]?.lat ?? 51.505, coords[0]?.lng ?? -0.09]} zoom={13} style={{ height: '355px', width: '100%', borderRadius: 20 }}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

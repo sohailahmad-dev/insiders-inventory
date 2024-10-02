@@ -96,11 +96,12 @@ export const Buyers = ({ hide }) => {
     // Pagination 
     const propertiesPerPage = 16;
     const [currentPage, setCurrentPage] = useState(1);
-
+    const [currentProperties, setCurrentProperties] = useState(([]))
     const totalPages = Math.ceil(filteredProperties.length / propertiesPerPage);
     const startIndex = (currentPage - 1) * propertiesPerPage;
     const endIndex = startIndex + propertiesPerPage;
-    const currentProperties = filteredProperties.slice(startIndex, endIndex);
+
+
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -124,8 +125,8 @@ export const Buyers = ({ hide }) => {
         basement: '',
         bedrooms: null,
         bathrooms: null,
-        sqft: null,
-        price: { min: 0, max: 1000000 },  // Example price range
+        sqft: [0, 500000],
+        price: [0, 10000000000],
     });
 
     const clearFilters = () => {
@@ -138,7 +139,7 @@ export const Buyers = ({ hide }) => {
             bedrooms: null,
             bathrooms: null,
             sqft: [0, 500000],
-            price: [0, 10000000000],  // Example price range
+            price: [0, 10000000000],
         })
     }
     // Function to handle filter updates
@@ -173,8 +174,8 @@ export const Buyers = ({ hide }) => {
             const matchesBedrooms = bedrooms !== null ? property.propertyInformation.bedrooms === bedrooms : true;
             const matchesBathrooms = bathrooms !== null ? property.propertyInformation.bathrooms?.full === bathrooms : true;
             const matchesSqft = sqft ? ((property.propertyInformation.sqft >= sqft[0]) && (property.propertyInformation.sqft <= sqft[1])) : true;
-            const matchesPrice = ((property.price >= price[0]) && (property.price <= price[1]));
-            // console.log(property?.price, price, ((property.price >= price[0]) && (property.price <= price[1])))
+            const matchesPrice = price ? ((property.price >= price[0]) && (property.price <= price[1])) : true;
+
 
             // A property must match all active filters
             return (
@@ -184,9 +185,9 @@ export const Buyers = ({ hide }) => {
                 matchesBasement &&
                 matchesBathrooms &&
                 matchesBedrooms
-                // &&
-                // matchesSqft &&
-                // matchesPrice
+                &&
+                matchesSqft &&
+                matchesPrice
 
             );
         });
@@ -264,7 +265,7 @@ export const Buyers = ({ hide }) => {
 
     // sort properties 
     const sortProperties = (sortOption) => {
-        const sorted = [...filteredProperties]; // Make a copy of the filteredProperties array
+        const sorted = [...currentProperties]; // Make a copy of the filteredProperties array
 
         if (sortOption === 'Price (Low to High)') {
             sorted.sort((a, b) => a.price - b.price); // Sort ascending (low to high)
@@ -272,7 +273,7 @@ export const Buyers = ({ hide }) => {
             sorted.sort((a, b) => b.price - a.price); // Sort descending (high to low)
         }
 
-        setFilteredProperties(sorted); // Update the filteredProperties state with sorted array
+        setCurrentProperties(sorted); // Update the filteredProperties state with sorted array
     };
 
 
@@ -283,8 +284,25 @@ export const Buyers = ({ hide }) => {
 
     useEffect(() => {
         updateFilter("opportunityType", category)
-
     }, [category])
+
+    useEffect(() => {
+        setCurrentProperties([...filteredProperties.slice(startIndex, endIndex)])
+    }, [startIndex, endIndex, filteredProperties])
+
+    const extractMapCoordinates = (properties) => {
+        return properties
+            .filter(property => property.mapCoordinates && property.mapCoordinates.lat && property.mapCoordinates.lng) // Filter out invalid coordinates
+            .map(property => property.mapCoordinates);
+    };
+
+    useEffect(() => {
+        if (currentProperties && currentProperties.length > 0) {
+            const extractedCoords = extractMapCoordinates(currentProperties);
+            setCoords(extractedCoords);
+        }
+    }, [currentProperties]);
+
 
     return (
         <div>
@@ -299,7 +317,7 @@ export const Buyers = ({ hide }) => {
             {hide || <section className="buyers-sec2 padding">
                 <Grid container spacing={3}>
                     <Grid item sm={5} xs={12}>
-                        <MapComponent />
+                        <MapComponent coords={coords} center={[coords[0]?.lat, coords[0]?.lng]} />
                     </Grid>
                     <Grid item sm={7} xs={12}>
 
