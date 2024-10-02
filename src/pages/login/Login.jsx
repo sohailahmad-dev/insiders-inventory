@@ -70,6 +70,7 @@ export default function Login({ hide }) {
                                 label='Password'
                                 placeholder='Enter your password'
                                 onChange={(e) => addData('password', e.target.value)}
+                                inputType='password'
 
                             />
                             <div className='sign-bottom' >

@@ -59,6 +59,7 @@ export default function MasterLogin() {
                     label='Password'
                     onChange={(e) => addData('password', e.target.value)}
                     placeholder='Enter your password'
+                    inputType='password'
                     labelStyle={{ color: '#EFF0F2' }}
                 />
                 <div className='sign-bottom' >

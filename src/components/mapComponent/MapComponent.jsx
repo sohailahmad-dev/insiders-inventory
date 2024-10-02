@@ -15,41 +15,22 @@ const customIcon = new L.Icon({
 });
 
 const markers = [
-    { id: 1, position: { lat: 51.515, lng: -0.1 }, title: 'Elegant Apartment in Central London' },
-    { id: 2, position: { lat: 51.525, lng: -0.09 }, title: 'Modern Flat near Regent’s Park' },
-    { id: 3, position: { lat: 51.505, lng: -0.11 }, title: 'Charming Studio in South Bank' },
-    { id: 4, position: { lat: 51.495, lng: -0.08 }, title: 'Cozy Home in East London' },
-    { id: 5, position: { lat: 51.535, lng: -0.12 }, title: 'Spacious House in West Kensington' },
-    { id: 6, position: { lat: 51.520, lng: -0.15 }, title: 'Luxury Condo near Hyde Park' },
-    { id: 7, position: { lat: 51.510, lng: -0.06 }, title: 'Riverside Apartment in Canary Wharf' },
-    { id: 8, position: { lat: 51.530, lng: -0.04 }, title: 'Stylish Loft in Shoreditch' },
-    { id: 9, position: { lat: 51.500, lng: -0.13 }, title: 'Penthouse in Westminster' },
-    { id: 10, position: { lat: 51.540, lng: -0.1 }, title: 'Victorian House in Hampstead' },
-    { id: 11, position: { lat: 51.485, lng: -0.05 }, title: 'Contemporary Flat in Greenwich' },
-    { id: 12, position: { lat: 51.525, lng: -0.16 }, title: 'Family Home in Camden' },
-    { id: 13, position: { lat: 51.495, lng: -0.14 }, title: 'Renovated Apartment in Chelsea' },
-    { id: 14, position: { lat: 51.515, lng: -0.04 }, title: 'Townhouse in Covent Garden' },
-    { id: 15, position: { lat: 51.535, lng: -0.07 }, title: 'Duplex near King’s Cross' },
-    { id: 16, position: { lat: 51.505, lng: -0.18 }, title: 'Classic Home in Kensington' },
-    { id: 17, position: { lat: 51.545, lng: -0.06 }, title: 'Designer Flat in Islington' },
-    { id: 18, position: { lat: 51.475, lng: -0.02 }, title: 'Apartment with River Views in Deptford' },
-    { id: 19, position: { lat: 51.515, lng: -0.19 }, title: 'Elegant Mansion in Notting Hill' },
-    { id: 20, position: { lat: 51.525, lng: -0.05 }, title: 'High-rise Flat in The City' },
+    { lat: 51.515, lng: -0.1 },
 ];
 
 
 
 
-const MapComponent = () => {
+const MapComponent = ({ coords = markers }) => {
     return (
         <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '355px', width: '100%', borderRadius: 20 }}>
             <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-            {markers.map(marker => (
-                <Marker key={marker.id} position={marker.position} icon={customIcon}>
-                    <Popup>{marker.title}</Popup>
+            {coords.map((marker, i) => (
+                <Marker key={i} position={marker} icon={customIcon}>
+                    {/* <Popup>{marker.title}</Popup> */}
                 </Marker>
             ))}
         </MapContainer>

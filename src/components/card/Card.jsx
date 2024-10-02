@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Btn from '../btn/Btn'
 import location from '../../assets/imgs/location.png';
 import img from '../../assets/local/img3.png'
+import noImg from '../../assets/imgs/noImg.jpeg'
 import { useNavigate } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -14,7 +15,7 @@ import toast from 'react-hot-toast';
 
 export default function Card({
   property,
-  images = [img],
+  images = [noImg],
   status = 'New',
   propertyType = 'Condo',
   price = 0,

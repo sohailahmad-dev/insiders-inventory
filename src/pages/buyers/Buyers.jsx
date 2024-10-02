@@ -88,6 +88,7 @@ export const Buyers = ({ hide }) => {
     const isMobile = useIsMobile();
     let [properties, setProperties] = useState([]);
     let [favorites, setFavorites] = useState([]);
+    let [coords, setCoords] = useState([]);
     let [isLoading, setIsLoading] = useState(false);
 
     let [filteredProperties, setFilteredProperties] = useState([])

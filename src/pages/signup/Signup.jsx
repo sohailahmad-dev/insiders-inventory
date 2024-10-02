@@ -107,11 +107,13 @@ export default function Signup() {
                                 label='Password'
                                 placeholder='Enter password'
                                 onChange={(e) => addData('password', e.target.value)}
+                                inputType='password'
                             />
                             <InputField
                                 label='Confirm Password'
                                 placeholder='Confirm password'
                                 onChange={(e) => addData('confirmPassword', e.target.value)}
+                                inputType='password'
                             />
 
                             <div className='sign-bottom' >
