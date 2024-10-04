@@ -23,6 +23,7 @@ import ApplyModal from './applyModal/ApplyModal'
 import VideoBox from '../../components/videoBox/VideoBox'
 import { Buyers } from '../buyers/Buyers'
 import useAuthCheck from '../../hooks/UseAuthCheck'
+import MapComponent from '../../components/mapComponent/MapComponent'
 
 
 const type = 'Assignment'
@@ -49,7 +50,6 @@ export default function PropertyDetail() {
         setProperty(location?.state)
     }, [location])
 
-
     return (
         <div>
             <NavBar active='Off-Market Inventory' />
@@ -57,7 +57,7 @@ export default function PropertyDetail() {
             <section className="pd-padding">
                 <div className="pd-header">
                     <div>
-                        <div className="heading1">{property?.title ?? 'Luxury Apartment'}</div>
+                        <div className="heading1">{property?.propertyInformation?.propertyType ?? 'Condo'}</div>
                         <div className="card-item-lcation">
                             <img src={locationIcon} alt="location-icon" />
                             {property?.country ?? 'Australia'}</div>
@@ -83,7 +83,7 @@ export default function PropertyDetail() {
                 <Grid container spacing={5}>
                     <Grid item sm={7.5} xs={12}>
                         <div className='pd-sec2-left'>
-                            {(property?.images && property?.images.legth >= 1) ? <>
+                            {(property?.images && property?.images.length > 1) ? <>
                                 <Slider2 sliderData={property?.images} />
                                 <div >
                                     <Slider3 sliderData={property?.images} />
@@ -156,24 +156,6 @@ export default function PropertyDetail() {
                                 label='Description'
                             >
                                 {property?.description}
-                                {/* <p className='pd-p-val'>
-                                    This heritage home in Lorain OH has been Majorly Renovated. It’s beautiful inside, structurally sound, and set to appreciate.
-                                    <br />
-                                    Renovations include:
-                                    <br />
-                                    * Updated kitchen: New tile kitchen backsplash, new kitchen light fixture, new kitchen range hood, new dishwasher
-                                    <br />* Updated bathroom: new bathroom accessories, new tile show surround, new bathroom accent tile, new shower tile, new bathroom light fixture,  install new bathroom fan with exterior vent
-                                    <br />* Lots of $$$ spent to reinforce foundation per structural engineer
-                                    <br />* 3 new windows
-                                    <br />* new hot water tank
-                                    <br />* new baseboard heater
-                                    upstairs
-                                    <br />
-                                    * repaired attic rafters
-                                    <br />* new GFCI outlets, repaired drywall, new lock sets
-                                    <br />* all new glass block windows.
-                                    Exterior: repaired siding, repaired lattice around front steps, pressure washed exterior, painted foundation, floor and porch paint, exterior paint, landscaped perimeter of house for moisture protection.
-                                </p> */}
                             </ExpandableBox>
                             {/* address  */}
                             <ExpandableBox
@@ -286,7 +268,9 @@ export default function PropertyDetail() {
                             {/* video  */}
                             <div className='text-center pd-video-sec'>
                                 <VideoBox videoURL={property?.videoUrl} />
-                                <img className='mt-20' src={map1} alt='map1' />
+                                {property?.mapCoordinates && property?.mapCoordinates?.lat && property?.mapCoordinates?.lng && <MapComponent
+                                    height='200px'
+                                    coords={[property?.mapCoordinates]} />}
                             </div>
                         </div>
                     </Grid>
