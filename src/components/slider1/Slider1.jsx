@@ -1,21 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './Slider1.css'
+import React, { useEffect, useRef, useState } from 'react';
+import './Slider1.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import img3 from '../../assets/local/img3.png';
-import img4 from '../../assets/local/img4.png';
-import img5 from '../../assets/local/img5.png';
-
-import { Grid } from '@mui/material';
+import { Grid, Skeleton } from '@mui/material';
 import Btn from '../btn/Btn';
 import Card from '../card/Card';
-import prev from '../../assets/imgs/prev1.png';
-import next from '../../assets/imgs/next1.png';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { getData } from '../../config/apiCalls';
-import Loader from '../loader/Loader';
 import toast from 'react-hot-toast';
 
 export default function Slider1() {
@@ -29,29 +22,23 @@ export default function Slider1() {
     };
 
     function getProperties() {
-        setIsLoading(true)
-
+        setIsLoading(true);
         getData('properties').then((response) => {
-            const num = response?.properties?.length
-            setProperties(response?.properties.slice(0, 8))
-            setIsLoading(false)
-        }
-        ).catch((err) => {
-            setIsLoading(false)
-        })
+            setProperties(response?.properties.slice(0, 8));
+            setIsLoading(false);
+        }).catch((err) => {
+            setIsLoading(false);
+        });
     }
 
-
     function getFavorites() {
-        setIsLoading(true)
-
+        setIsLoading(true);
         getData('favorites').then((response) => {
-            setFavorites(response?.properties)
-            setIsLoading(false)
-        }
-        ).catch((err) => {
-            setIsLoading(false)
-        })
+            setFavorites(response?.properties);
+            setIsLoading(false);
+        }).catch((err) => {
+            setIsLoading(false);
+        });
     }
 
     const updateFavorites = () => {
@@ -61,10 +48,8 @@ export default function Slider1() {
 
     useEffect(() => {
         getProperties();
-        getFavorites()
-
-    }, [])
-
+        getFavorites();
+    }, []);
 
     var settings = {
         dots: false,
@@ -104,49 +89,45 @@ export default function Slider1() {
 
     const prevSlide = () => {
         sliderRef.slickPrev();
-
     }
 
     const nextSlide = () => {
-
         sliderRef.slickNext();
-
     }
 
-
-
     return (
-        <section className="home-sec8-box slider1"  >
+        <section className="home-sec8-box slider1">
             {/* slider ruler  */}
-            <div className='slider1-upper' >
+            <div className='slider1-upper'>
                 <div className="heading1">Off-Market<span>Properties</span></div>
             </div>
 
             <div className='slider1-prev' onClick={prevSlide}>
                 <ArrowBackIosIcon
                     fontSize='large'
-                    sx={{
-                        cursor: 'pointer',
-                        color: '#4DAD49'
-                    }}
+                    sx={{ cursor: 'pointer', color: '#4DAD49' }}
                 />
             </div>
             <div className='slider1-next' onClick={nextSlide}>
                 <ArrowForwardIosIcon
                     fontSize='large'
-                    sx={{
-                        cursor: 'pointer',
-                        color: '#4DAD49'
-                    }}
+                    sx={{ cursor: 'pointer', color: '#4DAD49' }}
                 />
             </div>
-            <div className='home-slider1'  >
+            <div className='home-slider1'>
                 <Slider
-                    ref={slider => {
-                        sliderRef = slider;
-                    }}
+                    ref={slider => { sliderRef = slider; }}
                     {...settings}>
-                    {properties && properties.length > 0 &&
+                    {isLoading ? (
+                        // Skeleton loader for better user experience
+                        Array.from(new Array(4)).map((_, index) => (
+                            <div key={index}>
+                                <Skeleton variant="rectangular" width={300} height={200} />
+                                <Skeleton variant="text" width={200} />
+                                <Skeleton variant="text" width={150} />
+                            </div>
+                        ))
+                    ) : (
                         properties.map(item => (
                             <Card
                                 key={item?._id}
@@ -166,12 +147,10 @@ export default function Slider1() {
                                 isFavourite={isFavorite(item?._id)}
                                 onFavorite={updateFavorites}
                             />
-                        ))}
+                        ))
+                    )}
                 </Slider>
-
             </div>
-
-            <Loader isLoading={isLoading} />
         </section>
     )
 }

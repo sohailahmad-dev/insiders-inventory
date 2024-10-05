@@ -20,8 +20,6 @@ export const Home = () => {
     useScrollToTop();
     const navigate = useNavigate();
     const isLoggedIn = useAuth();
-    let [categories, setCategories] = useState([]);
-    let [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (!isLoggedIn) {
@@ -29,22 +27,6 @@ export const Home = () => {
         }
     }, [])
 
-    function getCategories() {
-        setIsLoading(true)
-
-        getData('categories').then((response) => {
-            setCategories(response?.categories)
-            setIsLoading(false)
-        }
-        ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
-            setIsLoading(false)
-        })
-    }
-
-    useEffect(() => {
-        getCategories()
-    }, [])
 
     return (
         <div>
@@ -85,7 +67,6 @@ export const Home = () => {
             <section className="h-sec4 padding">
                 <Testimonial />
             </section>
-            <Loader isLoading={isLoading} />
             <Footer />
         </div>
     )
