@@ -202,8 +202,6 @@ export default function AdminPanel() {
                 </div>
                 {/* Main Content of Screeens  */}
                 <div className={handleContent} >
-
-
                     <Routes>
                         <Route path='UserProfile' element={<UserProfile />}></Route>
                         <Route path='Properties' element={<Properties />}></Route>

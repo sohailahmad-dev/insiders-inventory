@@ -493,8 +493,7 @@ const AddProperty = () => {
         ) {
             try {
                 const response = await putData(`property/${dataObj?._id}`, dataObj);
-                toast.success('Property updated successfully');
-                console.log(response);
+                toast.success(response?.message ?? 'Property updated');
             } catch (error) {
                 toast.error(error.message || 'Error in updating property');
                 console.log(error)
@@ -680,12 +679,14 @@ const AddProperty = () => {
                                         label='Country'
                                         options={countries}
                                         onSelect={(e) => addData('country', e)}
+                                        defaultValue={dataObj?.country}
                                     />
                                 </Grid>
                                 <>
                                     <Grid item sm={8} xs={12}>
                                         <div className="inputField-label">Select Location on Map </div>
                                         <SearchPlaceMap
+                                            center={dataObj?.mapCoordinates}
                                             onSelect={coord => {
                                                 dataObj.mapCoordinates = coord;
                                                 setDataObj({ ...dataObj })

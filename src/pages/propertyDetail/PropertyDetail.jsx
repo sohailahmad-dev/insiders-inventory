@@ -270,7 +270,10 @@ export default function PropertyDetail() {
                                 <VideoBox videoURL={property?.videoUrl} />
                                 {property?.mapCoordinates && property?.mapCoordinates?.lat && property?.mapCoordinates?.lng && <MapComponent
                                     height='200px'
-                                    coords={[property?.mapCoordinates]} />}
+                                    coords={[{
+                                        marker: property?.mapCoordinates,
+                                        status: property?.status
+                                    }]} />}
                             </div>
                         </div>
                     </Grid>

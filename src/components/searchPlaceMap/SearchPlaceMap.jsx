@@ -16,7 +16,7 @@ const defaultCenter = {
 // Custom marker icon (beach flag icon as in the original example)
 const customMarkerIcon = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
 
-const SearchPlaceMap = ({ onSelect }) => {
+const SearchPlaceMap = ({ onSelect, center }) => {
     const [markerPosition, setMarkerPosition] = useState(defaultCenter);
     const [selectedPlace, setSelectedPlace] = useState(null);
     const autocompleteRef = useRef(null);
@@ -71,6 +71,12 @@ const SearchPlaceMap = ({ onSelect }) => {
         }
     }, [selectedPlace])
 
+    useEffect(() => {
+        if (center?.lat && center?.lng) {
+            setMarkerPosition(center)
+        }
+    }, [center])
+
     return (
         <div>
             <LoadScript
@@ -97,13 +103,13 @@ const SearchPlaceMap = ({ onSelect }) => {
                         draggable={true}
                         onDragEnd={onMarkerDragEnd}
                         icon={customMarkerIcon} // Custom icon from original example
-                        title='Hello Selected'
+                        title='Selected'
                     />
                     <Marker
                         position={markerPosition}
 
                         // icon={customMarkerIcon} 
-                        title='Hello Selected'
+                        title='Selected'
                     />
 
                 </GoogleMap>

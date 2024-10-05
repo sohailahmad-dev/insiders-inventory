@@ -29,7 +29,6 @@ export default function Emails() {
         setIsLoading(true)
 
         postData('admin/send-email', dataObj).then((response) => {
-            console.log(response)
             toast.success(response.message)
             setIsLoading(false)
         }
@@ -44,7 +43,9 @@ export default function Emails() {
         setIsLoading(true)
 
         postData('admin/send-emails', dataObj).then((response) => {
-            console.log(response)
+            dataObj.subject = '',
+                dataObj.message = '',
+                setDataObj({ ...dataObj })
             toast.success(response.message)
             setIsLoading(false)
         }
@@ -77,29 +78,16 @@ export default function Emails() {
 
 
     return (
-        <div>
-            {/* <div className="add-property-types" style={{ marginBottom: 30 }}>
-                {types && types.length > 0 &&
-                    types.map(e => (
-                        <div key={e}
-                            onClick={() => setType(e)}
-                            className={e === type ? 'add-property-type add-property-type-active' : 'add-property-type'}
-                        >
-                            {e}
-                        </div>
-                    ))}
-            </div> */}
-
-            {/* For Single Email  */}
-
+        <div className='emails-ap' >
             <Grid container spacing={2}>
 
                 <Grid item sm={7} xs={12}>
                     <SelectBox
-                        label='Receiver Emails'
+                        label='Receiver Email(s)'
                         options={users}
                         onSelect={val => addData('emails', val)}
                         defaultValue={dataObj?.email}
+                        multiSelect={true}
                     />
                 </Grid>
 
@@ -107,6 +95,7 @@ export default function Emails() {
                     <InputField
                         onChange={(e) => addData('subject', e.target.value)}
                         placeholder='Subject'
+                        value={dataObj?.subject}
                     />
                 </Grid>
                 <Grid item sm={9} xs={12}>
@@ -114,6 +103,7 @@ export default function Emails() {
                         placeholder='Message'
                         onChange={(e) => addData('message', e.target.value)}
                         isTextarea={true}
+                        value={dataObj?.message}
                     />
                 </Grid>
             </Grid>

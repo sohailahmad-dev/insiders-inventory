@@ -293,8 +293,12 @@ export const Buyers = ({ hide }) => {
     const extractMapCoordinates = (properties) => {
         return properties
             .filter(property => property.mapCoordinates && property.mapCoordinates.lat && property.mapCoordinates.lng) // Filter out invalid coordinates
-            .map(property => property.mapCoordinates);
+            .map(property => ({
+                status: property.status,
+                marker: property.mapCoordinates
+            }));
     };
+
 
     useEffect(() => {
         if (currentProperties && currentProperties.length > 0) {

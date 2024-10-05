@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import videoImg from '../../assets/imgs/videoImg.png'
 import toast from 'react-hot-toast';
 
-const VideoBox = ({ videoURL = 'https://www.w3schools.com/html/mov_bbb.mp4' }) => {
+const VideoBox = ({ videoURL }) => {
     let [isVideoPlaying, setIsVideoPlaying] = useState(true)
     const handleEnded = () => {
         if (setIsVideoPlaying) {
