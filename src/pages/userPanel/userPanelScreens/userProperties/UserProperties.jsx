@@ -25,7 +25,7 @@ export default function UserProperties() {
     function getProperties() {
         setIsLoading(true)
 
-        getData('user/properties').then((response) => {
+        getData('properties').then((response) => {
             setProperties(response?.properties)
             setIsLoading(false)
         }
