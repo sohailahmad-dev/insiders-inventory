@@ -30,7 +30,6 @@ export default function UserOffers() {
         getData(endPoint).then((response) => {
             setOffers(response?.offers)
             setIsLoading(false)
-            console.log(response?.offers)
         }
         ).catch((err) => {
             toast.error(err.message ?? 'Network Error')
@@ -119,7 +118,7 @@ export default function UserOffers() {
                                     <Grid item sm={1} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Offered Amount</div>
-                                            <div className="tr-data">{e?.offerAmount}</div>
+                                            <div className="tr-data">{e?.offerAmount?.toLocaleString('eng-US')}</div>
                                         </div>
                                     </Grid>
                                     <Grid item sm={1} xs={12}>

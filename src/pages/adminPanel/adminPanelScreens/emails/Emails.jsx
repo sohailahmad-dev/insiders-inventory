@@ -33,7 +33,7 @@ export default function Emails() {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
+            toast.error('Network Error')
             setIsLoading(false)
         })
 
@@ -50,7 +50,7 @@ export default function Emails() {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
+            toast.error('Network Error')
             setIsLoading(false)
         })
 
@@ -67,7 +67,7 @@ export default function Emails() {
 
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
+            toast.error('Network Error')
             setIsLoading(false)
         })
     }

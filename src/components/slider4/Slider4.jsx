@@ -7,10 +7,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { getData } from '../../config/apiCalls';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function Slider4() {
     let [categories, setCategories] = useState([]);
     let [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     function getCategories() {
         setIsLoading(true);
@@ -110,9 +112,11 @@ export default function Slider4() {
                                 <Skeleton variant="text" width={120} sx={{ margin: 'auto' }} />
                             </div>
                         ))
-                    ) : (
+                    ) : (categories && categories?.length > 0 &&
                         categories.map((e, key) => (
-                            <div className="home-card3" key={key}>
+                            <div className="home-card3" key={key}
+                                onClick={() => navigate(`/Properties/${e?.name}`)}
+                            >
                                 <div className='home-card3-imgBox'
                                     style={{ backgroundImage: `url(${e?.image})`, borderRadius: '50%' }}
                                 >

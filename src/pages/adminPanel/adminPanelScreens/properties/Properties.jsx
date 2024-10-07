@@ -156,7 +156,7 @@ export default function Properties() {
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Price</div>
-                                            <div className="tr-data" style={{ color: 'green' }} >${e?.price}</div>
+                                            <div className="tr-data" style={{ color: 'green' }} >${e?.price?.toLocaleString('eng-US')}</div>
                                         </div>
                                     </Grid>
                                     <Grid item sm={1.5} xs={12}>

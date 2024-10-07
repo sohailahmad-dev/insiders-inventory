@@ -540,7 +540,7 @@ const AddProperty = () => {
 
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
+            toast.error('Network Error')
             setIsLoading(false)
         })
     }

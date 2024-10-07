@@ -120,7 +120,7 @@ export default function Favorites() {
                                     <Grid item sm={2} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Price</div>
-                                            <div className="tr-data" style={{ color: 'green' }} >${e?.price}</div>
+                                            <div className="tr-data" style={{ color: 'green' }} >${e?.price?.toLocaleString('eng-US')}</div>
                                         </div>
                                     </Grid>
 
