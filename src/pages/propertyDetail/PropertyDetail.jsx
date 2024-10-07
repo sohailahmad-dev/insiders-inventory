@@ -13,7 +13,7 @@ import pdIcon2 from '../../assets/imgs/pdIcon2.png'
 import pdIcon3 from '../../assets/imgs/pdIcon3.png'
 import pdIcon4 from '../../assets/imgs/pdIcon4.png'
 import pdIcon5 from '../../assets/imgs/pdIcon5.png'
-import noImg from '../../assets/imgs/noImg.jpeg'
+import noImg from '../../assets/imgs/noImg.png'
 import map1 from '../../assets/imgs/map1.png'
 import videoImg from '../../assets/imgs/videoImg.png'
 import Card from '../../components/card/Card'
@@ -89,8 +89,11 @@ export default function PropertyDetail() {
                                     <Slider3 sliderData={property?.images} />
                                 </div>
                             </> :
-                                <img src={noImg} alt='no img' width='100%' />
+                                <>
+                                    <img src={property?.images[0] ?? noImg} alt='no img' width='100%' style={{ borderRadius: 20, maxHeight: 450 }} />
+                                </>
                             }
+
                             {/* property stats  */}
                             <div className="pd-box mt-30">
                                 <div className="pd-p-header">
@@ -206,28 +209,28 @@ export default function PropertyDetail() {
                                             display: 'flex',
                                             justifyContent: 'center'
                                         }}
-                                    >{property?.ownerType ?? 'Assignment'}</div>
+                                    >{property?.ownerType ?? 'Assignment / Wholesale'}</div>
                                 </div>
                                 <div className="pd-line"></div>
 
-                                {property?.opportunityType === 'Buy & Hold' && <>
-                                    <div className="pd-stats-item1">
-                                        <div className="pd-p-label "> Initial Investment</div>
-                                        <div className="pd-p-val ">
-                                            ${((8 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}
-                                        </div>
-                                    </div>
-                                    <div className="pd-stats-item1">
-                                        <div className="pd-p-label ">Cap Rate </div>
-                                        <div className="pd-p-val "> ${((8 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}</div>
-                                    </div>
 
-                                </>}
-                                {property?.opportunityType === 'Flip Opportunity' && <>
-                                    <div className="pd-stats-item1">
-                                        <div className="pd-p-label "> Potential ROI </div>
-                                        <div className="pd-p-val "> ${((15 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}</div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label "> Initial Investment</div>
+                                    <div className="pd-p-val ">
+                                        ${((20 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}
                                     </div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label ">Cap Rate </div>
+                                    <div className="pd-p-val "> ${((8 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}</div>
+                                </div>
+                                <div className="pd-stats-item1">
+                                    <div className="pd-p-label "> Potential ROI </div>
+                                    <div className="pd-p-val "> ${((15 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}</div>
+                                </div>
+
+                                {property?.opportunityType === 'Flip Opportunity' && <>
+
                                     <div className="pd-stats-item1">
                                         <div className="pd-p-label "> ARV </div>
                                         <div className="pd-p-val "> ${property?.ARV.toLocaleString('eng-US')}</div>

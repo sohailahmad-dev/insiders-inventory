@@ -78,13 +78,13 @@ export default function Card({
             <Grid item xs={6}>
               <div className="sldier1-stats-left">
                 <div className="card-stats-label">Initial Investment</div>
-                <div className="card-stats-figure">${initialInvestment}</div>
+                <div className="card-stats-figure">${((8 / 100) * price).toFixed(0).toLocaleString('eng-US')}</div>
               </div>
             </Grid>
             <Grid item xs={6}>
               <div className="sldier1-stats-right">
                 <div className="card-stats-label">Potential ROI</div>
-                <div className="card-stats-figure">{property?.assignment?.potentialRoi ?? 15}%</div>
+                <div className="card-stats-figure">15%</div>
               </div>
             </Grid>
           </Grid>

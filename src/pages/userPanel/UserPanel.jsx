@@ -16,6 +16,9 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import UserOffers from './userPanelScreens/userOffers/UserOffers';
 import useAuthCheck from '../../hooks/UseAuthCheck';
 import PropertyDetail from '../propertyDetail/PropertyDetail';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import Favorites from './userPanelScreens/favorites/Favorites';
+
 
 
 
@@ -58,6 +61,11 @@ export default function UserPanel() {
             label: 'Received Offers',
             to: 'UserOffers',
             icon: LocalOfferIcon,
+        },
+        {
+            label: 'Favorites',
+            to: 'Favorites',
+            icon: FavoriteIcon,
         },
         {
             label: 'Submit Property',
@@ -193,6 +201,7 @@ export default function UserPanel() {
                         <Route path='UserProperties' element={<UserProperties />}></Route>
                         <Route path='AddProperty' element={<AddProperty />}></Route>
                         <Route path='UserOffers' element={<UserOffers />}></Route>
+                        <Route path='Favorites' element={<Favorites />}></Route>
                         <Route path='PropertyDetail' element={<PropertyDetail />}></Route>
                     </Routes>
                 </div>
