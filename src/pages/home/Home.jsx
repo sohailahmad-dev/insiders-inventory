@@ -40,7 +40,7 @@ export const Home = () => {
                     Discover your path to profitable real estate investments.</div>
                 <div className="h-btns">
                     <Btn
-                        onClick={() => navigate('/Buyers')}
+                        onClick={() => navigate('/Properties')}
                         label='View our Off-Market Inventory'
 
                     />
