@@ -90,7 +90,7 @@ export default function PropertyDetail() {
                                 </div>
                             </> :
                                 <>
-                                    <img src={property?.images[0] ?? noImg} alt='no img' width='100%' style={{ borderRadius: 20, maxHeight: 450 }} />
+                                    <img src={(property?.images && property?.images?.length > 0) ? property?.images[0] : noImg} alt='no img' width='100%' style={{ borderRadius: 20, maxHeight: 450 }} />
                                 </>
                             }
 

@@ -3,7 +3,7 @@ import SelectBox from '../../../../components/selectBox/SelectBox'
 import { Grid } from '@mui/material'
 import InputField from '../../../../components/inputField/InputField'
 import Btn from '../../../../components/btn/Btn'
-import noImg from '../../../../assets/imgs/noImg.jpeg';
+import noImg from '../../../../assets/imgs/noImg.png';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom'

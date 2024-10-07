@@ -123,7 +123,10 @@ const AddProperty = () => {
         propertyInformation: {
             propertyType: '',
             bedrooms: 0,
-            bathrooms: 0,
+            bathrooms: {
+                full: 0,
+                half: 0,
+            },
             sqft: '',
             garage: false,
             basement: false
@@ -192,12 +195,13 @@ const AddProperty = () => {
                 // Toggle value: remove if it exists, otherwise add it
                 if (property[label].includes(value)) {
                     property[label] = property[label].filter(item => item !== value);
-                } else if (grandChild) {
-                    dataObj[label][child][grandChild] = value;
                 } else {
                     property[label].push(value);
                 }
-            } else if (child) {
+            } else if (grandChild) {
+                dataObj[label][child][grandChild] = value;
+            }
+            else if (child) {
                 // Handle nested child properties
                 property[label] = { ...property[label], [child]: value };
             } else {
@@ -1107,7 +1111,7 @@ const AddProperty = () => {
                                                     onSelect={val => addData1(index, 'financingOptions', val)}
                                                 />
                                             </Grid>
-                                            {properties[index].opportunityType.includes('Flip Opportunity') && <Grid item sm={6} xs={12}>
+                                            {properties[index].opportunityType?.includes('Flip Opportunity') && <Grid item sm={6} xs={12}>
                                                 <InputField
                                                     placeholder='ARV'
                                                     onChange={(e) => addData1(index, 'ARV', e.target.value)}
