@@ -80,6 +80,12 @@ export default function UserModal({ open, onClose, user }) {
                                 placeholder='Enter your email'
                                 onChange={(e) => addData('email', e.target.value)}
                             />
+                            <InputField
+                                label='Password'
+                                placeholder='Enter your password'
+                                value={dataObj?.password}
+                                onChange={e => addData('password', e.target.value)}
+                            />
                             <SelectBox
                                 defaultValue={dataObj?.role}
                                 label='Role'

@@ -158,6 +158,14 @@ export default function UserProfile() {
                     </Grid>
                     <Grid item sm={6} xs={12}>
                         <InputField
+                            label='Password'
+                            placeholder='Enter your password'
+                            value={dataObj?.password}
+                            onChange={e => addData('password', e.target.value)}
+                        />
+                    </Grid>
+                    <Grid item sm={6} xs={12}>
+                        <InputField
                             label='Phone Number'
                             placeholder='Enter your phone number'
                             value={dataObj?.phoneNumber}

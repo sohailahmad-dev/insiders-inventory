@@ -18,22 +18,24 @@ export default function UserProperties() {
     useAuthCheck()
     const navigate = useNavigate();
     let [properties, setProperties] = useState([]);
+    let [user, setUser] = useState({});
     let [dataObj, setDataObj] = useState({})
     let [isLoading, setIsLoading] = useState(false);
 
 
     function getProperties() {
         setIsLoading(true)
-
-        getData('properties').then((response) => {
-            setProperties(response?.properties?.reverse())
-            setIsLoading(false)
+        if (user?._id) {
+            getData(`user/properties/${user?._id}`).then((response) => {
+                setProperties(response?.properties?.reverse())
+                setIsLoading(false)
+            }
+            ).catch((err) => {
+                console.log(err)
+                toast.error('Network Error')
+                setIsLoading(false)
+            })
         }
-        ).catch((err) => {
-            console.log(err)
-            toast.error('Network Error')
-            setIsLoading(false)
-        })
     }
 
     const updateStatus = (id, status) => {
@@ -50,8 +52,13 @@ export default function UserProperties() {
     }
 
     useEffect(() => {
-        getProperties();
+        let data = JSON.parse(localStorage.getItem('user'))
+        setUser(data);
     }, [])
+
+    useEffect(() => {
+        getProperties();
+    }, [user])
 
     return (
         <div>

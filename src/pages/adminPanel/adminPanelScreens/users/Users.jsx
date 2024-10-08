@@ -64,16 +64,19 @@ export default function Users() {
                         <Grid item sm={0.5}>
                             <div className="th-heading">#</div>
                         </Grid>
-                        <Grid item sm={2}>
+                        <Grid item sm={1.5}>
                             <div className="th-heading">First Name</div>
                         </Grid>
-                        <Grid item sm={2}>
+                        <Grid item sm={1.5}>
                             <div className="th-heading">Last Name</div>
                         </Grid>
                         <Grid item sm={2}>
                             <div className="th-heading">Email</div>
                         </Grid>
-                        <Grid item sm={2}>
+                        <Grid item sm={1.5}>
+                            <div className="th-heading">Password</div>
+                        </Grid>
+                        <Grid item sm={1.5}>
                             <div className="th-heading">Category</div>
                         </Grid>
                         <Grid item sm={2}>
@@ -95,13 +98,13 @@ export default function Users() {
                                             <div className="tr-data">{i + 1}</div>
                                         </div>
                                     </Grid>
-                                    <Grid item sm={2} xs={12}>
+                                    <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">First Name</div>
                                             <div className="tr-data">{e?.firstName}</div>
                                         </div>
                                     </Grid>
-                                    <Grid item sm={2} xs={12}>
+                                    <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Last Name</div>
                                             <div className="tr-data">{e?.lastName}</div>
@@ -113,7 +116,13 @@ export default function Users() {
                                             <div className="tr-data">{e?.email}</div>
                                         </div>
                                     </Grid>
-                                    <Grid item sm={2} xs={12}>
+                                    <Grid item sm={1.5} xs={12}>
+                                        <div className="ap-tr">
+                                            <div className="th-heading1">Password</div>
+                                            <div className="tr-data" >{e?.password}</div>
+                                        </div>
+                                    </Grid>
+                                    <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Category</div>
                                             <div className="tr-data" >{e?.role}</div>
