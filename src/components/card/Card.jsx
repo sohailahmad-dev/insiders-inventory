@@ -3,8 +3,7 @@ import './Card.css'
 import React, { useState } from 'react'
 import Btn from '../btn/Btn'
 import location from '../../assets/imgs/location.png';
-import img from '../../assets/local/img3.png'
-import noImg from '../../assets/imgs/noImg.jpeg'
+import noImg from '../../assets/imgs/noImg.png'
 import { useNavigate } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -65,7 +64,7 @@ export default function Card({
       className="card-Item"
     >
       <div className="card-img"
-        style={{ backgroundImage: `url(${images[0]})` }}
+        style={{ backgroundImage: `url(${images[0] ?? noImg} )` }}
       >
         {status === 'Sold' && <span className='card-house-new' style={{ background: 'red' }} >{status}</span>}
         {status === 'New' && <span className='card-house-new' >{status}</span>}
@@ -84,7 +83,7 @@ export default function Card({
             <Grid item xs={6}>
               <div className="sldier1-stats-right">
                 <div className="card-stats-label">Potential ROI</div>
-                <div className="card-stats-figure">15%</div>
+                <div className="card-stats-figure">${((15 / 100) * price).toFixed(0).toLocaleString('eng-US')}</div>
               </div>
             </Grid>
           </Grid>

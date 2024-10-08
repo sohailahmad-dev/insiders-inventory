@@ -87,8 +87,8 @@ export const Buyers = ({ hide }) => {
     const navigate = useNavigate();
     const isMobile = useIsMobile();
     let [properties, setProperties] = useState([]);
-    let [favorites, setFavorites] = useState([]);
     let [coords, setCoords] = useState([]);
+    let [favorites, setFavorites] = useState([]);
     let [isLoading, setIsLoading] = useState(false);
 
     let [filteredProperties, setFilteredProperties] = useState([])
@@ -212,7 +212,7 @@ export const Buyers = ({ hide }) => {
         setIsLoading(true)
 
         getData('properties').then((response) => {
-            setProperties(response?.properties)
+            setProperties(response?.properties?.reverse())
             setFilteredProperties(response?.properties)
             setIsLoading(false)
         }

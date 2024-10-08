@@ -56,7 +56,7 @@ export default function VipBuyers() {
 
     return (
         <div>
-            <div className="heading2 mb-20">All Users</div>
+            <div className="heading2 mb-20">All VIP Buyers</div>
 
             <div className="ap-table">
                 <div className="ap-th">

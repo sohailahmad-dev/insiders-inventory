@@ -236,10 +236,10 @@ export default function PropertyDetail() {
                                         <div className="pd-p-val "> ${property?.ARV.toLocaleString('eng-US')}</div>
                                     </div>
                                 </>}
-                                <div className="pd-stats-item1">
+                                {/* <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Cash Flow Per Month </div>
                                     <div className="pd-p-val "> ${property?.assignment?.cashFlowPerMonth.toLocaleString('en-US')}</div>
-                                </div>
+                                </div> */}
 
                             </div>
 
@@ -271,12 +271,18 @@ export default function PropertyDetail() {
                             {/* video  */}
                             <div className='text-center pd-video-sec'>
                                 <VideoBox videoURL={property?.videoUrl} />
-                                {property?.mapCoordinates && property?.mapCoordinates?.lat && property?.mapCoordinates?.lng && <MapComponent
-                                    height='200px'
-                                    coords={[{
-                                        marker: property?.mapCoordinates,
-                                        status: property?.status
-                                    }]} />}
+                                <div></div>
+                                {property?.mapCoordinates && property?.mapCoordinates?.lat && property?.mapCoordinates?.lng &&
+                                    <>
+                                        <div className="heading3 text-center mt-40 mb-20">Map</div>
+                                        <MapComponent
+                                            height='200px'
+                                            coords={[{
+                                                marker: property?.mapCoordinates,
+                                                status: property?.status
+                                            }]} />
+                                    </>
+                                }
                             </div>
                         </div>
                     </Grid>

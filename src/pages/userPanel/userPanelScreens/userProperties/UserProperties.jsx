@@ -26,7 +26,7 @@ export default function UserProperties() {
         setIsLoading(true)
 
         getData('properties').then((response) => {
-            setProperties(response?.properties)
+            setProperties(response?.properties?.reverse())
             setIsLoading(false)
         }
         ).catch((err) => {
