@@ -10,10 +10,10 @@ import CheckBox from '../../components/checkBox1/CheckBox'
 import Loader from '../../components/loader/Loader'
 import { postData } from '../../config/apiCalls'
 import toast from 'react-hot-toast'
+import SelectBox from '../../components/selectBox/SelectBox'
 
 export default function Signup() {
     // Roles handling
-    const roles = ['Investor', 'Home Buyer', 'Agent', 'Fund/REIT Investment Buyer'];
     const [selectedRole, setSelectedRole] = useState('');
 
     const navigate = useNavigate();
@@ -86,8 +86,13 @@ export default function Signup() {
                                 placeholder='Enter your email'
                                 onChange={(e) => addData('email', e.target.value)}
                             />
+                            <SelectBox
+                                label='Role'
+                                options={['Investor', 'Home Buyer', 'Agent', 'Fund/REIT Investment Buyer']}
+                                onSelect={val => addData('role', val)}
+                            />
                             {/* checbox  */}
-                            <div style={{ flexWrap: 'wrap', display: 'flex' }}>
+                            {/* <div style={{ flexWrap: 'wrap', display: 'flex' }}>
                                 {roles.map((role) => (
                                     <CheckBox
                                         key={role}
@@ -97,7 +102,7 @@ export default function Signup() {
                                         onChange={(e) => handleChange(role, e.target.checked)}
                                     />
                                 ))}
-                            </div>
+                            </div> */}
                             <InputField
                                 label='Phone Number'
                                 placeholder='Enter your phone number '

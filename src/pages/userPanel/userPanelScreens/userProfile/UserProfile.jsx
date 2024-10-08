@@ -10,6 +10,7 @@ import toast from 'react-hot-toast'
 import { postData, putData } from '../../../../config/apiCalls'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import FileUpload from '../../../../components/fileInput/FileUpload'
+import SelectBox from '../../../../components/selectBox/SelectBox'
 
 
 export default function UserProfile() {
@@ -163,6 +164,14 @@ export default function UserProfile() {
                             onChange={e => addData('phoneNumber', e.target.value)}
                         />
                     </Grid>
+                    {dataObj.role !== 'Admin' && <Grid item sm={6} xs={12}>
+                        <SelectBox
+                            label='Role'
+                            options={['Investor', 'Home Buyer', 'Agent', 'Fund/REIT Investment Buyer']}
+                            onSelect={val => addData('role', val)}
+                            defaultValue={dataObj?.role}
+                        />
+                    </Grid>}
                     <Grid item sm={6} xs={12}>
                         <FileUpload
                             label='Upload Profile Photo'
@@ -171,7 +180,8 @@ export default function UserProfile() {
                             hideNames={true}
                         />
                     </Grid>
-                    {dataObj.role !== 'Admin' && <Grid item xs={12}>
+
+                    {/* {dataObj.role !== 'Admin' && <Grid item xs={12}>
                         <FormControl>
                             <RadioGroup
                                 row
@@ -194,7 +204,7 @@ export default function UserProfile() {
                                     value="Fund/REIT Investment Buyer" control={<Radio color='success' />} label="Fund/REIT Investment Buyer" />
                             </RadioGroup>
                         </FormControl>
-                    </Grid>}
+                    </Grid>} */}
                     <Grid item xs={12}>
                         <Btn
                             label='Update'

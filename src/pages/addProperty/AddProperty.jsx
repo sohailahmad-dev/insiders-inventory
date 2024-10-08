@@ -555,7 +555,7 @@ const AddProperty = () => {
 
     return (
         <div>
-            {location?.state?.path !== 'AddProperty' && <NavBar active='Off-Market Inventory' />}
+            {location?.state?.path !== 'AddProperty' && <NavBar active='Submit an Off-Market Property' />}
             {/* sec 1 hero  */}
             {location?.state?.path !== 'AddProperty' && <div className="h-hero">
                 <div className="h-heading">  Sell and Buy <span>  Property</span></div>
@@ -715,7 +715,6 @@ const AddProperty = () => {
                                         options={['Yes', 'No']}
                                         onSelect={val => addData('leaseInformation', val, 'currentStatus')}
                                         defaultValue={dataObj?.leaseInformation?.currentStatus}
-
                                     />
                                 </Grid>
                                 {dataObj?.leaseInformation?.currentStatus === 'Yes' && <>

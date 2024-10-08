@@ -152,6 +152,7 @@ export default function NavBar({ active, onLogoClick }) {
                             key={e?.label}
                             className={activeLink == e?.label ? "link-nb" : "link-nb1"}
                             onClick={() => {
+                                setActiveLink(e?.label)
                                 navigate(e?.to)
                             }
                             }

@@ -18,7 +18,7 @@ import Card from '../../components/card/Card'
 import Properties from '../../static/json/Properties'
 import InputField from '../../components/inputField/InputField'
 import MapComponent from '../../components/mapComponent/MapComponent'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import useIsMobile from '../../hooks/UseIsMobile'
 import Loader from '../../components/loader/Loader'
 import { getData } from '../../config/apiCalls'
@@ -85,7 +85,7 @@ export const Buyers = ({ hide }) => {
     useAuthCheck();
     useScrollToTop();
     const navigate = useNavigate();
-    const isMobile = useIsMobile();
+    let [active, setActive] = useState('All Off-Market Inventory')
     let [properties, setProperties] = useState([]);
     let [coords, setCoords] = useState([]);
     let [favorites, setFavorites] = useState([]);
@@ -308,9 +308,10 @@ export const Buyers = ({ hide }) => {
     }, [currentProperties]);
 
 
+
     return (
         <div>
-            {hide || <NavBar active='Buyers' />}
+            {hide || <NavBar active={active} />}
             {/* sec 1 hero  */}
             {hide || <div className="h-hero">
                 <div className="h-heading">Insider’s  <span> Off-Market Inventory</span> </div>

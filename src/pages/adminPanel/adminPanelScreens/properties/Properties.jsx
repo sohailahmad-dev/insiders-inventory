@@ -7,7 +7,7 @@ import noImg from '../../../../assets/imgs/noImg.png';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom'
-import { getData, putData } from '../../../../config/apiCalls'
+import { deleteData, getData, putData } from '../../../../config/apiCalls'
 import toast from 'react-hot-toast'
 import useAuthCheck from '../../../../hooks/UseAuthCheck'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
@@ -37,13 +37,25 @@ export default function Properties() {
 
     const updateStatus = (id, status) => {
         putData(`property/status/${id}`, { status }).then((response) => {
-            console.log(response);
             toast.success(response?.message);
             getProperties()
             setIsLoading(false)
         }
         ).catch((err) => {
             toast.error(err.message ?? 'Network Error')
+            setIsLoading(false)
+        })
+    }
+
+
+    const handleDelete = (id) => {
+        setIsLoading(true)
+        deleteData(`property/${id}`).then(response => {
+            toast.success(response?.message);
+            getProperties();
+            setIsLoading(false)
+        }).catch(err => {
+            toast.error(err?.message ?? 'Network Error');
             setIsLoading(false)
         })
     }
@@ -181,6 +193,17 @@ export default function Properties() {
                                         <div className="ap-tr">
                                             <div className="th-heading1">Actions</div>
                                             <div >
+                                                <LocalOfferIcon
+                                                    sx={{ marginRight: 1 }}
+                                                    onClick={() => {
+                                                        navigate('/AdminPanel/Offers', {
+                                                            state: {
+                                                                propertyId: e?._id,
+                                                                label: 'Property Offers'
+                                                            }
+                                                        })
+                                                    }}
+                                                />
                                                 <EditIcon
                                                     onClick={() => navigate('/AdminPanel/AddProperty', {
                                                         state: {
@@ -196,15 +219,10 @@ export default function Properties() {
 
                                                     }}
                                                 />
-                                                <LocalOfferIcon
-                                                    onClick={() => {
-                                                        navigate('/AdminPanel/Offers', {
-                                                            state: {
-                                                                propertyId: e?._id,
-                                                                label: 'Property Offers'
-                                                            }
-                                                        })
-                                                    }}
+
+                                                <DeleteIcon
+                                                    onClick={() => handleDelete(e?._id)}
+                                                    sx={{ color: 'red', cursor: 'pointer' }}
                                                 />
 
                                             </div>
