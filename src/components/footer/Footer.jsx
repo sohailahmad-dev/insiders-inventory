@@ -98,7 +98,7 @@ export default function Footer({ active, inPanel, hideEmail }) {
         setIsLoading(true)
         if (firstName && lastName && email && phone) {
             postData('newsletter', dataObj).then((response) => {
-                toast.success(response.message)
+                toast.success("Successfully Subscribed")
                 setDataObj({
                     firstName: '',
                     lastName: '',
