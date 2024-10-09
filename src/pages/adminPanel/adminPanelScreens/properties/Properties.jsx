@@ -36,6 +36,7 @@ export default function Properties() {
     }
 
     const updateStatus = (id, status) => {
+        setIsLoading(true)
         putData(`property/status/${id}`, { status }).then((response) => {
             toast.success(response?.message);
             getProperties()
@@ -55,7 +56,7 @@ export default function Properties() {
             getProperties();
             setIsLoading(false)
         }).catch(err => {
-            toast.error(err?.message ?? 'Network Error');
+            toast.error('Properties not found');
             setIsLoading(false)
         })
     }

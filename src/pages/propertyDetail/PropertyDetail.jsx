@@ -204,7 +204,7 @@ export default function PropertyDetail() {
                                     <div className="heading1 pd-price" >${property?.price?.toLocaleString('en-US')}</div>
                                     <div className="pd-p-val"
                                         style={{
-                                            color: 'lightgray',
+                                            color: 'gray',
                                             margin: '10px auto',
                                             display: 'flex',
                                             justifyContent: 'center'

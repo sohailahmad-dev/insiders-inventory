@@ -34,7 +34,10 @@ export const Home = () => {
             {/* sec 1 hero  */}
             <div className="h-hero">
                 <div className="h-subHeading">Insider's Off-Market Inventory</div>
-                <div className="h-heading">Your <span> Next Opportunity </span> <br className="desktop" /> Awaits</div>
+                <div className="h-heading">Beyond the MLS</div>
+
+                <div className="h-heading"> <span> Opening Doors to Hidden Homes </span> </div>
+
                 <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures.
                     <br className="desktop" />
                     Discover your path to profitable real estate investments.</div>

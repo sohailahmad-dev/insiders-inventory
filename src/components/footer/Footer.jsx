@@ -185,7 +185,7 @@ export default function Footer({ active, inPanel, hideEmail }) {
                         <div className="logo-nb">
                             Insider's <span>Inventory</span>
                         </div>
-                        <div className="footer-text">Your Gateway to Real Estate Excellence. </div>
+                        <div className="footer-text">Opening Doors to Hidden Homes </div>
                     </Grid>
                     <Grid item sm={8} xs={12}>
                         <div className='footerLinks'>

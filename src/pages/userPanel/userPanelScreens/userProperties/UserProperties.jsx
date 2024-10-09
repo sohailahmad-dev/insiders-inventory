@@ -31,8 +31,7 @@ export default function UserProperties() {
                 setIsLoading(false)
             }
             ).catch((err) => {
-                console.log(err)
-                toast.error('Network Error')
+                toast.error(err?.message ?? 'No Properties Found')
                 setIsLoading(false)
             })
         }
