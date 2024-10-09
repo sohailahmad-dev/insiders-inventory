@@ -1,11 +1,22 @@
 .h-hero {
-    padding: 3% 0px;
+    padding: 5% 0px;
     background-color: var(--primary-bg);
+}
+
+.h-hero-inner {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 10px;
+    position: relative;
+}
+
+.h-hero-inner img {
+    position: absolute;
+    width: 80%;
+    max-width: 250px;
+    right: 5%;
 }
 
 .h-subHeading {
@@ -76,6 +87,12 @@
     margin-top: 10px;
 }
 
+@media screen and (max-width:1280px) {
+    .h-hero-inner img {
+        right: 0%;
+        max-width: 150px;
+    }
+}
 
 
 
@@ -106,5 +123,12 @@
     .h-btns {
         flex-direction: column;
         gap: 10px;
+    }
+
+    .h-hero-inner img {
+        right: 0%;
+        max-width: 150px;
+        /* display: none; */
+        position: relative;
     }
 }

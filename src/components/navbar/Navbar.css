@@ -41,12 +41,12 @@
     cursor: pointer;
     font-family: Lato-SemiBold;
     color: var(--accent-text);
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .logo-nb span {
     color: var(--primary-text);
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .faq-nb {

@@ -5,7 +5,7 @@ import Btn from '../../components/btn/Btn'
 import Footer from '../../components/footer/Footer'
 import { Grid } from '@mui/material'
 // local temp imgs 
-import img1 from '../../assets/imgs/img1.png'
+import mls from '../../assets/imgs/mls.png'
 import img2 from '../../assets/imgs/img2.png'
 import Slider1 from '../../components/slider1/Slider1'
 import Testimonial from '../../components/testimonial/Testimonial'
@@ -33,29 +33,32 @@ export const Home = () => {
             <NavBar active={'Home'} />
             {/* sec 1 hero  */}
             <div className="h-hero">
-                <div className="h-subHeading">Insider's Off-Market Inventory</div>
-                <div className="h-heading">Beyond the MLS</div>
+                <div className='h-hero-inner'>
+                    <div className="h-subHeading">Insider's Off-Market Inventory</div>
+                    <div className="h-heading">  Opening Doors <span> to Hidden Homes </span> </div>
+                    <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures.
+                        <br className="desktop" />
+                        Discover your path to profitable real estate investments.</div>
+                    <div className="h-btns">
+                        <Btn
+                            onClick={() => navigate('/Properties')}
+                            label='View our Off-Market Inventory'
 
-                <div className="h-heading"> <span> Opening Doors to Hidden Homes </span> </div>
+                        />
+                        <Btn
+                            onClick={() => navigate('/AddProperty')}
+                            label='Submit an Off-Market Property'
+                            style={{
+                                backgroundColor: 'transparent',
+                                color: '#4DAD49'
+                            }}
+                        />
+                    </div>
+                    <img src={mls} alt="mls" />
 
-                <div className="h-text">Unlock Exclusive Opportunities at Insider's Inventory, specializing in Buy & Hold, Owner-Occupied Retail, and Lucrative Flip Ventures.
-                    <br className="desktop" />
-                    Discover your path to profitable real estate investments.</div>
-                <div className="h-btns">
-                    <Btn
-                        onClick={() => navigate('/Properties')}
-                        label='View our Off-Market Inventory'
-
-                    />
-                    <Btn
-                        onClick={() => navigate('/AddProperty')}
-                        label='Submit an Off-Market Property'
-                        style={{
-                            backgroundColor: 'transparent',
-                            color: '#4DAD49'
-                        }}
-                    />
                 </div>
+
+
             </div>
             {/* sec 2  */}
             <div className="h-sec4 padding" >
