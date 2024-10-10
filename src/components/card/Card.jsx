@@ -77,13 +77,13 @@ export default function Card({
             <Grid item xs={6}>
               <div className="sldier1-stats-left">
                 <div className="card-stats-label">Initial Investment</div>
-                <div className="card-stats-figure">${((8 / 100) * price).toFixed(0).toLocaleString('eng-US')}</div>
+                <div className="card-stats-figure">${((8 / 100) * price).toLocaleString('eng-US')}</div>
               </div>
             </Grid>
             <Grid item xs={6}>
               <div className="sldier1-stats-right">
                 <div className="card-stats-label">Potential ROI</div>
-                <div className="card-stats-figure">${((15 / 100) * price).toFixed(0).toLocaleString('eng-US')}</div>
+                <div className="card-stats-figure">${((15 / 100) * price).toLocaleString('eng-US')}</div>
               </div>
             </Grid>
           </Grid>
@@ -101,7 +101,7 @@ export default function Card({
           </div>
         </div>
 
-        <div className="card-item-specs">{bedrooms} bedroom(s) | {bathrooms} full bathroom(s) |{bathroomsHalf} half bathroom(s) | {sqft} sq. ft.</div>
+        <div className="card-item-specs">{bedrooms} bedroom(s) | {bathrooms} full bathroom(s) | {bathroomsHalf} half bathroom(s) | {sqft} sq. ft.</div>
         <div className="card-item-lcation">
           <img src={location} alt="location-icon" />
           {property?.address?.street + ', ' + property?.address?.city}</div>

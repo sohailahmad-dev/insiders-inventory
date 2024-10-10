@@ -41,7 +41,7 @@ const selectsData = [
     {
         icon: opportunityIcon,
         label: 'Opportunity Type',
-        options: ['', 'Buy & Hold', 'Flip Opportunity', 'Owner-Occupant', 'Retail', 'Current Renovation'],
+        options: ['', 'Buy & Hold', 'Flip Opportunity', 'Owner-Occupant', 'Retail', 'Newly Renovated'],
         filterName: 'opportunityType'
     },
     {
@@ -217,7 +217,6 @@ export const Buyers = ({ hide }) => {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
     }

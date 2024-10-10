@@ -50,6 +50,7 @@ export default function PropertyDetail() {
         setProperty(location?.state)
     }, [location])
 
+
     return (
         <div>
             <NavBar active='Off-Market Inventory' />
@@ -60,7 +61,8 @@ export default function PropertyDetail() {
                         <div className="heading1">{property?.propertyInformation?.propertyType ?? 'Condo'}</div>
                         <div className="card-item-lcation">
                             <img src={locationIcon} alt="location-icon" />
-                            {property?.country ?? 'Australia'}</div>
+                            {property?.address?.street + ', ' + property?.address?.city + ', '}
+                            {property?.country}</div>
                     </div>
                     <div className='pd-header-right' >
                         <Btn
@@ -188,7 +190,17 @@ export default function PropertyDetail() {
                                 </div>
                             </ExpandableBox>
                             <ExpandableBox label='Financing Options'>
-                                <p className='pd-p-val' >{property?.financingOptions}</p>
+
+                                <ul>
+                                    {property?.financingOptions && property?.financingOptions?.length > 0 &&
+                                        property?.financingOptions.map(val => (
+                                            <li key={val} style={{ marginLeft: '10px' }}>
+                                                <p className='pd-p-val' >{val}</p>
+
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
                             </ExpandableBox>
                             <ExpandableBox label='Buying Process' >
                                 <p className='pd-p-val' >{property?.buyingProcess}</p>
@@ -217,16 +229,16 @@ export default function PropertyDetail() {
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Initial Investment</div>
                                     <div className="pd-p-val ">
-                                        ${((20 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}
+                                        ${((20 / 100) * property?.price).toLocaleString('eng-US')}
                                     </div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label ">Cap Rate </div>
-                                    <div className="pd-p-val "> ${((8 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}</div>
+                                    <div className="pd-p-val "> 8-10%</div>
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Potential ROI </div>
-                                    <div className="pd-p-val "> ${((15 / 100) * property?.price).toFixed(0).toLocaleString('eng-US')}</div>
+                                    <div className="pd-p-val "> ${((15 / 100) * property?.price).toLocaleString('eng-US')}</div>
                                 </div>
 
                                 {property?.opportunityType === 'Flip Opportunity' && <>

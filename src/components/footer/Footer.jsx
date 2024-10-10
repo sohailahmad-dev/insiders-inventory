@@ -69,8 +69,8 @@ const links2 = [
         to: '/Properties/Owner-Occupant'
     },
     {
-        label: 'Current Renovation',
-        to: '/Properties/Current Renovation'
+        label: 'Newly Renovated',
+        to: '/Properties/Newly Renovated'
     },
 ]
 

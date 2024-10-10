@@ -100,7 +100,7 @@ export default function Favorites() {
                                                 {/* </div> */}
                                                 <div>
                                                     <div className="tr-data">{e?.propertyInformation?.propertyType}</div>
-                                                    <div className="tr-data-loc"> {e?.address?.city + ", "}{e?.country}</div>
+                                                    <div className="tr-data-loc"> {e?.address?.street + ", " + e?.address?.city + ", "}{e?.country}</div>
                                                 </div>
                                             </div>
                                         </div>

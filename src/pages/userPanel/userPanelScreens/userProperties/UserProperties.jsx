@@ -31,7 +31,6 @@ export default function UserProperties() {
                 setIsLoading(false)
             }
             ).catch((err) => {
-                toast.error(err?.message ?? 'No Properties Found')
                 setIsLoading(false)
             })
         }
@@ -45,7 +44,7 @@ export default function UserProperties() {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error('Network Error')
+            toast.error('Status not Updated')
             setIsLoading(false)
         })
     }
@@ -145,7 +144,7 @@ export default function UserProperties() {
                                                 {/* </div> */}
                                                 <div>
                                                     <div className="tr-data">{e?.propertyInformation?.propertyType}</div>
-                                                    <div className="tr-data-loc"> {e?.address?.city + ", "}{e?.country}</div>
+                                                    <div className="tr-data-loc"> {e?.address?.street + ", " + e?.address?.city + ", "}{e?.country}</div>
                                                 </div>
                                             </div>
                                         </div>

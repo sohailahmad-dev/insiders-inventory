@@ -25,13 +25,12 @@ import countries from '../../static/json/Countries'
 
 
 
-const opportunityTypes = ['Buy & Hold', 'Flip Opportunity', 'Retail', 'Owner-Occupant', 'Just Remodeled']
+const opportunityTypes = ['Buy & Hold', 'Flip Opportunity', 'Retail', 'Owner-Occupant', 'Newly Renovated']
 
 
 const AddProperty = () => {
     useScrollToTop();
 
-    useAuthCheck()
     let [types, setTypes] = useState(['Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Portfolio Package'])
     const [files, setFiles] = useState([]);
     const [dataObj, setDataObj] = useState({
@@ -464,7 +463,6 @@ const AddProperty = () => {
         } else {
             setIsLoading(false);
             toast.error("Required Fields are missing for some properties!");
-            console.log('not valid');
         }
     };
 
@@ -500,7 +498,6 @@ const AddProperty = () => {
                 toast.success(response?.message ?? 'Property updated');
             } catch (error) {
                 toast.error(error.message || 'Error in updating property');
-                console.log(error)
             } finally {
                 setIsLoading(false);
             }
@@ -544,13 +541,20 @@ const AddProperty = () => {
 
         }
         ).catch((err) => {
-            toast.error('Network Error')
             setIsLoading(false)
         })
     }
 
     useEffect(() => {
         getUsers()
+    }, [])
+
+    useEffect(() => {
+        const user = localStorage.getItem('user');
+        if (!user) {
+            navigate('/LoginSignup', { state: 'Submit Property' });
+            return;
+        }
     }, [])
 
     return (
@@ -598,15 +602,9 @@ const AddProperty = () => {
 
                     {dataObj?.propertyInformation?.propertyType === 'Portfolio Package' && <Grid container spacing={2}>
                         <Grid item sm={6} xs={12}>
-                            <SelectBox
-                                label='No. of Units'
-                                options={[1, 2, 3, 4, 5]}
-
-                            />
-                        </Grid>
-                        <Grid item sm={6} xs={12}>
                             <InputField
-                                placeholder='Target Area'
+                                placeholder='No. of Units'
+                                inputType='number'
                             />
                         </Grid>
                         <Grid item sm={6} xs={12}>

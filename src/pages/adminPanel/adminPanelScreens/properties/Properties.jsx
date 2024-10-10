@@ -30,7 +30,6 @@ export default function Properties() {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
     }
@@ -56,7 +55,6 @@ export default function Properties() {
             getProperties();
             setIsLoading(false)
         }).catch(err => {
-            toast.error('Properties not found');
             setIsLoading(false)
         })
     }
@@ -148,8 +146,8 @@ export default function Properties() {
                                             <div className="tr-property">
                                                 <img src={e?.images?.[0] || noImg} alt='img' />
                                                 <div>
-                                                    <div className="tr-data">{e?.title}</div>
-                                                    <div className="tr-data-loc">{e?.country}</div>
+                                                    <div className="tr-data">{e?.propertyInformation?.propertyType}</div>
+                                                    <div className="tr-data-loc"> {e?.address?.street + ", " + e?.address?.city + ", "}{e?.country}</div>
                                                 </div>
                                             </div>
                                         </div>

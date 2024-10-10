@@ -24,21 +24,6 @@ export default function Emails() {
     }
 
 
-
-    function sendEmail() {
-        setIsLoading(true)
-
-        postData('admin/send-email', dataObj).then((response) => {
-            toast.success(response.message)
-            setIsLoading(false)
-        }
-        ).catch((err) => {
-            toast.error('Network Error')
-            setIsLoading(false)
-        })
-
-    }
-
     function sendEmails() {
         setIsLoading(true)
 
@@ -50,7 +35,7 @@ export default function Emails() {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error('Network Error')
+            toast.error('Error in sending Email(s)')
             setIsLoading(false)
         })
 
@@ -67,7 +52,6 @@ export default function Emails() {
 
         }
         ).catch((err) => {
-            toast.error('Network Error')
             setIsLoading(false)
         })
     }

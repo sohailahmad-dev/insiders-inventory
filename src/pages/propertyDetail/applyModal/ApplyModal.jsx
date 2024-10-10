@@ -107,7 +107,7 @@ export default function ApplyModal({ open, onClose, property }) {
                                 <Grid item xs={12}>
                                     <SelectBox
                                         label='Do you have a home to sell?'
-                                        onSelect={(e) => addData('hasHomeToSell', true)}
+                                        onSelect={(e) => addData('hasHomeToSell', e)}
                                         options={['Yes', 'No']}
                                     />
                                 </Grid>

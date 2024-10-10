@@ -6,7 +6,6 @@ import { Skeleton } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { getData } from '../../config/apiCalls';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 export default function Slider4() {
@@ -20,7 +19,6 @@ export default function Slider4() {
             setCategories(response?.categories);
             setIsLoading(false);
         }).catch((err) => {
-            toast.error(err.message ?? 'Network Error');
             setIsLoading(false);
         });
     }

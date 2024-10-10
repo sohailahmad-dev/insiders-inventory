@@ -4,7 +4,7 @@ import markerIcon from '../../assets/imgs/markerIcon.png'
 
 
 const mapContainerStyle = {
-    height: "400px",
+    height: "250px",
     width: "100%",
 };
 

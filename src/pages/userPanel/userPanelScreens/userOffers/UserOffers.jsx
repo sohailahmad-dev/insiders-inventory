@@ -3,7 +3,6 @@ import { Grid } from '@mui/material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Loader from '../../../../components/loader/Loader'
 import { getData } from '../../../../config/apiCalls'
-import toast from 'react-hot-toast';
 import useAuthCheck from '../../../../hooks/UseAuthCheck';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
@@ -32,7 +31,6 @@ export default function UserOffers() {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
     }
@@ -100,7 +98,7 @@ export default function UserOffers() {
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1"> Name</div>
-                                            <div className="tr-data">{e?.firstName + e?.lastName}</div>
+                                            <div className="tr-data">{e?.firstName + " " + e?.lastName}</div>
                                         </div>
                                     </Grid>
                                     <Grid item sm={2} xs={12}>
@@ -130,7 +128,7 @@ export default function UserOffers() {
                                     <Grid item sm={1} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Has Home To Sell</div>
-                                            <div className="tr-data">{e?.hasHomeToSell ? 'Yes' : 'No'}</div>
+                                            <div className="tr-data">{e?.hasHomeToSell}</div>
                                         </div>
                                     </Grid>
                                     <Grid item sm={2.5} xs={12}>

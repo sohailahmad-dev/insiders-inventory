@@ -9,7 +9,6 @@ import Card from '../card/Card';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { getData } from '../../config/apiCalls';
-import toast from 'react-hot-toast';
 
 export default function Slider1() {
     let [properties, setProperties] = useState([]);

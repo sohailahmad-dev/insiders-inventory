@@ -4,10 +4,12 @@ import Footer from '../../components/footer/Footer'
 import { Grid } from '@mui/material'
 import signImg from '../../assets/imgs/signImg.png'
 import Btn from '../../components/btn/Btn'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export default function LoginSignup({ hide }) {
     const navigate = useNavigate();
+    const location = useLocation();
+
 
     return (
         <div>
@@ -25,7 +27,11 @@ export default function LoginSignup({ hide }) {
                                 onClick={() => navigate('/MasterLogin')}
                                 className="sign-heading text-center mb-20"
                             >
-                                Login or Sign-Up to view available Off-Market Inventory
+                                {location?.state === 'Submit Property' ?
+                                    "Login or Sign-Up to Submit an Off-Market Property"
+                                    :
+                                    "Login or Sign-Up to view available Off-Market Inventory"}
+
                             </div>
 
                             <div className='text-center'>

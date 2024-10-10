@@ -86,14 +86,18 @@ export default function NavBar({ active, onLogoClick }) {
             to: '/Properties/Owner-Occupant'
         },
         {
-            label: 'Current Renovation',
-            to: '/Properties/Current Renovation'
+            label: 'Newly Renovated',
+            to: '/Properties/Newly Renovated'
         },
         {
             label: 'Submit an Off-Market Property',
             to: '/AddProperty'
         },
     ]
+
+    const handleBtn = () => {
+        navigate('/Login')
+    }
 
 
 
@@ -146,7 +150,7 @@ export default function NavBar({ active, onLogoClick }) {
                         </div>
                         :
                         <Btn
-                            label="Insider Login/Sign-up" onClick={() => navigate('/LoginSignup')} />)}
+                            label="Insider Login/Sign-up" onClick={handleBtn} />)}
                     {links.map(e => (
                         <div
                             key={e?.label}
@@ -186,7 +190,7 @@ export default function NavBar({ active, onLogoClick }) {
                     </div>
                     :
                     <Btn
-                        label="Insider Login/Sign-up" onClick={() => navigate('/LoginSignup')} />)}
+                        label="Insider Login/Sign-up" onClick={handleBtn} />)}
 
                 <div className="icon">
                     {menu ? <MenuIcon
