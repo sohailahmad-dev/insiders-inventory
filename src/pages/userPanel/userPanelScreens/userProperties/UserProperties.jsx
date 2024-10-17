@@ -164,7 +164,7 @@ export default function UserProperties() {
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Price</div>
-                                            <div className="tr-data" style={{ color: 'green' }} >${e?.price?.toLocaleString('eng-US')}</div>
+                                            <div className="tr-data" style={{ color: 'green' }} >{e?.price ? `$${e?.price?.toLocaleString('eng-US')}` : 'TBD'}</div>
                                         </div>
                                     </Grid>
                                     <Grid item sm={1.5} xs={12}>
@@ -181,6 +181,7 @@ export default function UserProperties() {
                                                 }}
                                                 labelStyle={{
                                                     fontSize: 12,
+                                                    marginTop: 0,
                                                 }}
                                             />
                                         </div>

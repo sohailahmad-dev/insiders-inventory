@@ -26,7 +26,6 @@ export default function Users() {
             setIsLoading(false)
         }
         ).catch((err) => {
-            toast.error(err.message ?? 'Network Error')
             setIsLoading(false)
         })
     }

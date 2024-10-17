@@ -17,7 +17,7 @@ export default function Card({
   images = [noImg],
   status = 'New',
   propertyType = 'Condo',
-  price = 0,
+  price,
   initialInvestment = 0,
   bedrooms = 0,
   bathrooms = 0,
@@ -59,6 +59,7 @@ export default function Card({
 
   }
 
+
   return (
     <div
       className="card-Item"
@@ -77,13 +78,13 @@ export default function Card({
             <Grid item xs={6}>
               <div className="sldier1-stats-left">
                 <div className="card-stats-label">Initial Investment</div>
-                <div className="card-stats-figure">${((8 / 100) * price).toLocaleString('eng-US')}</div>
+                <div className="card-stats-figure">{price ? `$${((8 / 100) * price).toLocaleString('eng-US')}` : '8%'}</div>
               </div>
             </Grid>
             <Grid item xs={6}>
               <div className="sldier1-stats-right">
                 <div className="card-stats-label">Potential ROI</div>
-                <div className="card-stats-figure">${((15 / 100) * price).toLocaleString('eng-US')}</div>
+                <div className="card-stats-figure">{price ? `$${((15 / 100) * price).toLocaleString('eng-US')}` : '15%'}</div>
               </div>
             </Grid>
           </Grid>
@@ -92,7 +93,7 @@ export default function Card({
 
       <div className="sldier1-item-contents">
         <div className='card-favorite-box'>
-          <div className="card-item-price">${price?.toLocaleString('en-US')}</div>
+          <div className="card-item-price">{price ? `$${price?.toLocaleString('en-US')}` : 'TBD'}</div>
           <div
             className="card-favoriteIcon"
             onClick={handleFavorite}

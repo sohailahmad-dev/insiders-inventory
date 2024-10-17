@@ -24,6 +24,8 @@ import VideoBox from '../../components/videoBox/VideoBox'
 import { Buyers } from '../buyers/Buyers'
 import useAuthCheck from '../../hooks/UseAuthCheck'
 import MapComponent from '../../components/mapComponent/MapComponent'
+import Loader from '../../components/loader/Loader'
+import { postData } from '../../config/apiCalls'
 
 
 const type = 'Assignment'
@@ -33,8 +35,20 @@ export default function PropertyDetail() {
     let [properties, setProperties] = useState([]);
     let [property, setProperty] = useState({});
     let [openModal, setOpenModal] = useState(false);
+    let [isLoading, setIsLoading] = useState(false);
     const location = useLocation();
 
+    const handleSchedule = () => {
+        setIsLoading(true)
+
+        postData('schedule', { propertyId: property?._id }).then((response) => {
+            toast.success(response.message)
+            setIsLoading(false)
+        }
+        ).catch((err) => {
+            setIsLoading(false)
+        })
+    }
 
     const closeModal = () => {
         setOpenModal(false)
@@ -71,6 +85,7 @@ export default function PropertyDetail() {
                                 backgroundColor: 'transparent',
                                 color: '#4DAD49'
                             }}
+                            onClick={handleSchedule}
                         />
                         <Btn
                             label='Submit An Offer'
@@ -213,7 +228,7 @@ export default function PropertyDetail() {
                         <div className="pd-sec2-right">
                             <div className="pd-box pd-price-box" style={{ background: 'white' }} >
                                 <div className='pd-type-box1'>
-                                    <div className="heading1 pd-price" >${property?.price?.toLocaleString('en-US')}</div>
+                                    <div className="heading1 pd-price" >{property?.price ? `$${property?.price?.toLocaleString('en-US')}` : 'TBD'}</div>
                                     <div className="pd-p-val"
                                         style={{
                                             color: 'gray',
@@ -229,7 +244,7 @@ export default function PropertyDetail() {
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Initial Investment</div>
                                     <div className="pd-p-val ">
-                                        ${((20 / 100) * property?.price).toLocaleString('eng-US')}
+                                        {property?.price ? `$${((8 / 100) * property?.price).toLocaleString('eng-US')}` : '8%'}
                                     </div>
                                 </div>
                                 <div className="pd-stats-item1">
@@ -238,7 +253,7 @@ export default function PropertyDetail() {
                                 </div>
                                 <div className="pd-stats-item1">
                                     <div className="pd-p-label "> Potential ROI </div>
-                                    <div className="pd-p-val "> ${((15 / 100) * property?.price).toLocaleString('eng-US')}</div>
+                                    <div className="pd-p-val ">   {property?.price ? `$${((15 / 100) * property?.price).toLocaleString('eng-US')}` : '15%'}</div>
                                 </div>
 
                                 {property?.opportunityType === 'Flip Opportunity' && <>
@@ -316,6 +331,7 @@ export default function PropertyDetail() {
                 property={property}
             />
             <Footer active='Off-Market Inventory' />
+            <Loader isLoading={isLoading} />
         </div>
     )
 }

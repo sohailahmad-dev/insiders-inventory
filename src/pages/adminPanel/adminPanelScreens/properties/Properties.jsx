@@ -11,6 +11,7 @@ import { deleteData, getData, putData } from '../../../../config/apiCalls'
 import toast from 'react-hot-toast'
 import useAuthCheck from '../../../../hooks/UseAuthCheck'
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import Loader from '../../../../components/loader/Loader'
 
 
 
@@ -132,7 +133,7 @@ export default function Properties() {
                 <div className="ap-tb">
                     {properties && properties.length > 0 &&
                         properties.map((e, i) => (
-                            <div className='ap-th'>
+                            <div className='ap-th' key={i}>
                                 <Grid container spacing={1}>
                                     <Grid item sm={0.75} xs={12} >
                                         <div className="ap-tr">
@@ -147,7 +148,7 @@ export default function Properties() {
                                                 <img src={e?.images?.[0] || noImg} alt='img' />
                                                 <div>
                                                     <div className="tr-data">{e?.propertyInformation?.propertyType}</div>
-                                                    <div className="tr-data-loc"> {e?.address?.street + ", " + e?.address?.city + ", "}{e?.country}</div>
+                                                    <div className="tr-data"> {e?.address?.street + ", " + e?.address?.city + ", "}{e?.country}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -167,12 +168,12 @@ export default function Properties() {
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
                                             <div className="th-heading1">Price</div>
-                                            <div className="tr-data" style={{ color: 'green' }} >${e?.price?.toLocaleString('eng-US')}</div>
+                                            <div className="tr-data" style={{ color: 'green' }} >{e?.price ? `$${e?.price?.toLocaleString('eng-US')}` : 'TBD'}</div>
                                         </div>
                                     </Grid>
                                     <Grid item sm={1.5} xs={12}>
                                         <div className="ap-tr">
-                                            <div className="th-heading1">Status</div>
+                                            <div className="th-heading1" style={{ color: 'red' }}>Status</div>
                                             <SelectBox
                                                 label='Status'
                                                 options={['Pending', 'Sold', 'Withdrawn']}
@@ -184,6 +185,7 @@ export default function Properties() {
                                                 }}
                                                 labelStyle={{
                                                     fontSize: 12,
+                                                    marginTop: 0,
                                                 }}
                                             />
                                         </div>
@@ -232,7 +234,7 @@ export default function Properties() {
                         ))}
                 </div>
             </div>
-
+            <Loader isLoading={isLoading} />
         </div>
     )
 }

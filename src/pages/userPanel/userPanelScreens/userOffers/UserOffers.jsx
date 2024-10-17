@@ -28,6 +28,7 @@ export default function UserOffers() {
 
         getData(endPoint).then((response) => {
             setOffers(response?.offers)
+            console.log(response?.offers)
             setIsLoading(false)
         }
         ).catch((err) => {

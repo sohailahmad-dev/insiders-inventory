@@ -4,7 +4,7 @@ import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 
 
-export default function RangePicker({ MIN = 0, MAX = 10000000, label = 'Price', onSelect }) {
+export default function RangePicker({ MIN = 1, MAX = 3000000, label = 'Price', onSelect }) {
     const [val, setVal] = React.useState([MIN, MAX]);
     const handleChange = (_, newValue) => {
         setVal(newValue);
@@ -33,7 +33,7 @@ export default function RangePicker({ MIN = 0, MAX = 10000000, label = 'Price', 
                         fontFamily: "Lato-SemiBold", color: 'gray'
                     }}
                 >
-                    {val[0] + ' , ' + val[1]}
+                    {val[0]?.toLocaleString('eng-US') + ' , ' + val[1]?.toLocaleString('eng-US')}
                 </Typography>
             </Box>
             <Slider

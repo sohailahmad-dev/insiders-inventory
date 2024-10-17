@@ -22,6 +22,7 @@ import MapModal from './MapModal'
 import SearchPlaceMap from '../../components/searchPlaceMap/SearchPlaceMap'
 import useScrollToTop from '../../hooks/UseScrollToTop'
 import countries from '../../static/json/Countries'
+import CheckBox from '../../components/checkBox1/CheckBox'
 
 
 
@@ -35,7 +36,8 @@ const AddProperty = () => {
     const [files, setFiles] = useState([]);
     const [dataObj, setDataObj] = useState({
         title: '',
-        price: 0,
+        price: '',
+        tbd: false,
         country: '',
         opportunityType: [],
         address: {
@@ -96,7 +98,8 @@ const AddProperty = () => {
 
     const [properties, setProperties] = useState([{
         title: '',
-        price: 0,
+        price: '',
+        tbd: false,
         country: '',
         opportunityType: [],
         address: {
@@ -315,31 +318,12 @@ const AddProperty = () => {
     const handleSubmit = async () => {
         setIsLoading(true);
         const {
-            title,
-            price,
-            country,
-            opportunityType,
-            address: { street, zipCode, state, city },
-            status,
-            leaseInformation: { currentStatus },
-            propertyInformation: { propertyType, bedrooms, sqft },
-            images,
+            opportunityType
         } = dataObj;
 
         // Check if all values are available
         if (
-            price &&
-            country &&
-            opportunityType &&
-            street &&
-            zipCode &&
-            state &&
-            city &&
-            status &&
-            currentStatus &&
-            propertyType &&
-            bedrooms &&
-            sqft
+            opportunityType
         ) {
             try {
                 console.log(dataObj)
@@ -361,32 +345,13 @@ const AddProperty = () => {
     const handleSubmitUserProperty = async () => {
         setIsLoading(true);
         const {
-            title,
-            price,
-            country,
             opportunityType,
-            address: { street, zipCode, state, city },
-            status,
-            leaseInformation: { currentStatus },
-            propertyInformation: { propertyType, bedrooms, sqft },
-            images,
             user
         } = dataObj;
 
         // Check if all values are available
         if (
-            price &&
-            country &&
             opportunityType &&
-            street &&
-            zipCode &&
-            state &&
-            city &&
-            status &&
-            currentStatus &&
-            propertyType &&
-            bedrooms &&
-            sqft &&
             user
         ) {
             try {
@@ -422,29 +387,11 @@ const AddProperty = () => {
         // Check if all required fields are present for each updated property
         const allPropertiesValid = updatedProperties.every(property => {
             const {
-                title,
-                price,
-                country,
-                opportunityType,
-                address: { street, zipCode, state, city },
-                leaseInformation: { currentStatus },
-                propertyInformation: { bedrooms, sqft },
-                images,
-                status
+                opportunityType
             } = property;
 
             return (
-                price &&
-                country &&
-                opportunityType &&
-                street &&
-                zipCode &&
-                state &&
-                city &&
-                status &&
-                currentStatus &&
-                bedrooms &&
-                sqft
+                opportunityType
             );
         });
 
@@ -469,29 +416,12 @@ const AddProperty = () => {
     const updateProperty = async () => {
         setIsLoading(true);
         const {
-            title,
-            price,
-            country,
-            opportunityType,
-            address: { street, zipCode, state, city },
-            status,
-            leaseInformation: { currentStatus },
-            propertyInformation: { propertyType, bedrooms, sqft },
-            images,
+            opportunityType
         } = dataObj;
 
         // Check if all values are available
         if (
-            price &&
-            country &&
-            opportunityType &&
-            street &&
-            state &&
-            city &&
-            status &&
-            currentStatus &&
-            propertyType &&
-            bedrooms
+            opportunityType
         ) {
             try {
                 const response = await putData(`property/${dataObj?._id}`, dataObj);
@@ -634,7 +564,7 @@ const AddProperty = () => {
 
                             </div>
                             {user?.role === 'Admin' && <>
-                                <div className="heading3 mt-20 mb-20">Lockbox Code</div>
+                                <div className="heading3">Lockbox Code</div>
                                 <Grid container spacing={2}>
                                     <Grid item xs={12}>
                                         <InputField
@@ -645,6 +575,27 @@ const AddProperty = () => {
                                     </Grid>
                                 </Grid>
                             </>}
+                            <>
+                                <div className="heading3">Price</div>
+                                <Grid container spacing={2}>
+                                    <Grid item sm={6} xs={12}>
+                                        <div className='addProperty-tbd'>
+                                            <CheckBox
+                                                label='TBD (To Be Determined)'
+                                                onChange={(e) => addData('tbd', e.target.checked)}
+                                            />
+                                        </div>
+                                    </Grid>
+                                    {dataObj?.tbd || <Grid item sm={6} xs={12}>
+                                        <InputField
+                                            placeholder='Price'
+                                            inputType='number'
+                                            onChange={(e) => addData('price', e.target.value)}
+                                            value={dataObj?.price}
+                                        />
+                                    </Grid>}
+                                </Grid>
+                            </>
                             <div className="heading3">Property Address</div>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
@@ -920,7 +871,7 @@ const AddProperty = () => {
                                                 ))}
 
                                         </div>
-                                        {true && <>
+                                        {user?.role === 'Admin' && <>
                                             <div className="heading3 mt-20 mb-20">Lockbox Code</div>
                                             <Grid container spacing={2}>
                                                 <Grid item xs={12}>
@@ -931,6 +882,28 @@ const AddProperty = () => {
                                                 </Grid>
                                             </Grid>
                                         </>}
+                                        <>
+                                            <div className="heading3 mt-20">Price</div>
+                                            <Grid container spacing={2}>
+                                                <Grid item sm={6} xs={12}>
+                                                    <div className='addProperty-tbd'>
+                                                        <CheckBox
+                                                            label='TBD (To Be Determined)'
+                                                            onChange={(e) => addData1(index, 'tbd', e.target.checked)}
+                                                        />
+                                                    </div>
+                                                </Grid>
+                                                {properties[index]?.tbd || <Grid item sm={6} xs={12}>
+
+                                                    <InputField
+                                                        placeholder='Price'
+                                                        inputType='number'
+                                                        onChange={(e) => addData1(index, 'price', e.target.value)}
+                                                    />
+
+                                                </Grid>}
+                                            </Grid>
+                                        </>
                                         <div className="heading3 mt-20 mb-20">Property Address</div>
                                         <Grid container spacing={2}>
                                             <Grid item xs={12}>

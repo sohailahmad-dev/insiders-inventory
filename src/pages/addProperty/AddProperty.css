@@ -90,3 +90,11 @@
     background-color: #4DAD49;
     /* Green checkbox */
 }
+
+.addProperty-tbd {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    justify-content: center;
+}

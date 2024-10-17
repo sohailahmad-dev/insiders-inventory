@@ -3,31 +3,23 @@ import './Buyers.css'
 import NavBar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
 import CustomSelect from '../../components/customSelect/CustomSelect'
-import locationIcon from '../../assets/imgs/locationIcon.png'
-import sizeIcon from '../../assets/imgs/sizeIcon.png'
 import bathroomIcon from '../../assets/imgs/bathroomIcon.png'
 import bedroomIcon from '../../assets/imgs/bedroomIcon.png'
 import basementIcon from '../../assets/imgs/basementIcon.png'
 import garageIcon from '../../assets/imgs/garageIcon.png'
 import homeIcon from '../../assets/imgs/homeIcon.png'
-import packageIcon from '../../assets/imgs/packageIcon.png'
 import opportunityIcon from '../../assets/imgs/opportunityIcon.png'
 import { Grid } from '@mui/material'
 import RangePicker from '../../components/rangePicker/RangePicker'
 import Card from '../../components/card/Card'
-import Properties from '../../static/json/Properties'
 import InputField from '../../components/inputField/InputField'
 import MapComponent from '../../components/mapComponent/MapComponent'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import useIsMobile from '../../hooks/UseIsMobile'
+import { useNavigate, useParams } from 'react-router-dom'
 import Loader from '../../components/loader/Loader'
 import { getData } from '../../config/apiCalls'
-import toast from 'react-hot-toast'
 import useAuthCheck from '../../hooks/UseAuthCheck'
 import { IconButton } from '@mui/material';
 import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
-import Btn from '../../components/btn/Btn'
-import SearchPlaceMap from '../../components/searchPlaceMap/SearchPlaceMap'
 import useScrollToTop from '../../hooks/UseScrollToTop'
 
 
@@ -38,12 +30,12 @@ const selectsData = [
         options: ['', 'Condo', 'Commercial', 'Multi-family Residential', 'Single-Family Residential', 'Vacant Land'],
         filterName: 'propertyType'
     },
-    {
-        icon: opportunityIcon,
-        label: 'Opportunity Type',
-        options: ['', 'Buy & Hold', 'Flip Opportunity', 'Owner-Occupant', 'Retail', 'Newly Renovated'],
-        filterName: 'opportunityType'
-    },
+    // {
+    //     icon: opportunityIcon,
+    //     label: 'Opportunity Type',
+    //     options: ['', 'Buy & Hold', 'Flip Opportunity', 'Owner-Occupant', 'Retail', 'Newly Renovated'],
+    //     filterName: 'opportunityType'
+    // },
     {
         icon: garageIcon,
         label: 'Garage',
@@ -59,14 +51,20 @@ const selectsData = [
     {
         icon: bedroomIcon,
         label: 'Bedrooms',
-        options: ['', 2, 3, 4, 5, 6, 7, 8],
+        options: ['', 1, 2, 3, 4, 5, 6, 7, 8],
         filterName: 'bedrooms'
     },
     {
         icon: bathroomIcon,
         label: 'Full Bathrooms',
-        options: ['', 2, 3, 4, 5, 6, 7, 8],
-        filterName: 'bathrooms'
+        options: ['', 1, 2, 3, 4, 5, 6, 7, 8],
+        filterName: 'bathroomsFull'
+    },
+    {
+        icon: bathroomIcon,
+        label: 'Half Bathrooms',
+        options: ['', 1, 2, 3, 4, 5, 6, 7, 8],
+        filterName: 'bathroomsHalf'
     },
 
 ]
@@ -124,7 +122,8 @@ export const Buyers = ({ hide }) => {
         garage: '',
         basement: '',
         bedrooms: null,
-        bathrooms: null,
+        bathroomsFull: null,
+        bathroomsHalf: null,
         sqft: [0, 500000],
         price: [0, 10000000000],
     });
@@ -160,7 +159,8 @@ export const Buyers = ({ hide }) => {
                 garage,
                 basement,
                 bedrooms,
-                bathrooms,
+                bathroomsFull,
+                bathroomsHalf,
                 sqft,
                 price,
             } = filters;
@@ -172,7 +172,8 @@ export const Buyers = ({ hide }) => {
             const matchesGarage = garage ? property.propertyInformation.garage === garage : true;
             const matchesBasement = basement ? property.propertyInformation.basement === basement : true;
             const matchesBedrooms = bedrooms !== null ? property.propertyInformation.bedrooms === bedrooms : true;
-            const matchesBathrooms = bathrooms !== null ? property.propertyInformation.bathrooms?.full === bathrooms : true;
+            const matchesBathroomsFull = bathroomsFull !== null ? property.propertyInformation.bathrooms?.full === bathroomsFull : true;
+            const matchesBathroomsHalf = bathroomsHalf !== null ? property.propertyInformation.bathrooms?.half === bathroomsHalf : true;
             const matchesSqft = sqft ? ((property.propertyInformation.sqft >= sqft[0]) && (property.propertyInformation.sqft <= sqft[1])) : true;
             const matchesPrice = price ? ((property.price >= price[0]) && (property.price <= price[1])) : true;
 
@@ -183,7 +184,8 @@ export const Buyers = ({ hide }) => {
                 matchesOpportunityType &&
                 matchesGarage &&
                 matchesBasement &&
-                matchesBathrooms &&
+                matchesBathroomsFull &&
+                matchesBathroomsHalf &&
                 matchesBedrooms
                 &&
                 matchesSqft &&
@@ -345,7 +347,7 @@ export const Buyers = ({ hide }) => {
                                 <RangePicker
                                     label='Sqft'
                                     MIN={1}
-                                    MAX={2000}
+                                    MAX={9999}
                                     onSelect={(val) => updateFilter('sqft', val)}
                                 />
                             </Grid>
@@ -427,9 +429,14 @@ export const Buyers = ({ hide }) => {
                                 />
                             </Grid>
                         )) : (<div style={{ textAlign: 'center', width: '100%' }}>
-                            <div className='heading2 mt-50 mb-50 all-inventorty-text'
-                                onClick={resetFilters}
-                            >Check Out All Inventory Instead</div >
+                            {category &&
+                                <div className='heading2 mt-50 mb-50 all-inventorty-text'
+                                    onClick={resetFilters}
+                                >Check Out All Inventory Instead</div >
+                                // :
+                                // <div className='heading2 mt-50 mb-50 all-inventorty-text'
+                                // >Check Out All Inventory Instead</div >
+                            }
                         </div>)
                     }
                 </Grid>
