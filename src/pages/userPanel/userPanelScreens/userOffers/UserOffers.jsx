@@ -137,6 +137,8 @@ export default function UserOffers() {
                                             <div className="th-heading1">User</div>
                                             <div className='tr-data' >
                                                 {e?.user?.email ?? e?.user}
+                                                <br />
+                                                {e?.user?.phoneNumber ?? e?.user}
                                             </div>
                                         </div>
                                     </Grid>
