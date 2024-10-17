@@ -12,6 +12,7 @@
     justify-content: center;
     align-items: center;
     font-size: 16px;
+    padding: 10px;
     font-family: Lato-Regular;
     color: white;
 }
@@ -148,6 +149,19 @@
 .nb-popup-option:hover {
     background-color: #f0f0f0;
     /* Change to the hover color you prefer */
+}
+
+@media screen and (max-width:1500px) {
+
+    .logo-nb,
+    .logo-nb span {
+        font-size: 20px;
+    }
+
+    .link-nb,
+    .link-nb1 {
+        font-size: 14px;
+    }
 }
 
 

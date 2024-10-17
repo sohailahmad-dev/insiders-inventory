@@ -692,14 +692,6 @@ const AddProperty = () => {
                                 </>}
                                 <Grid item sm={6} xs={12}>
                                     <InputField
-                                        placeholder='Price'
-                                        inputType='number'
-                                        onChange={(e) => addData('price', e.target.value)}
-                                        value={dataObj?.price}
-                                    />
-                                </Grid>
-                                <Grid item sm={6} xs={12}>
-                                    <InputField
                                         onChange={(e) => addData('propertyInformation', e.target.value, 'sqft')}
                                         inputType='number'
                                         placeholder='Size (SqFt)'
@@ -994,13 +986,6 @@ const AddProperty = () => {
                                                     />
                                                 </Grid>
                                             </>}
-                                            <Grid item sm={6} xs={12}>
-                                                <InputField
-                                                    placeholder='Price'
-                                                    inputType='number'
-                                                    onChange={(e) => addData1(index, 'price', e.target.value)}
-                                                />
-                                            </Grid>
                                             <Grid item sm={6} xs={12}>
                                                 <InputField
                                                     onChange={(e) => addData1(index, 'propertyInformation', e.target.value, 'sqft')}

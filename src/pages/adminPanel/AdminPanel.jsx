@@ -141,13 +141,10 @@ export default function AdminPanel() {
             }
         };
 
-        // Initial check on component mount
         handleResize();
 
-        // Add event listener to check on window resize
         window.addEventListener('resize', handleResize);
 
-        // Cleanup the event listener on component unmount
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -215,7 +212,7 @@ export default function AdminPanel() {
                 </div>
 
             </div>
-            <Footer inPanel={true} />
+            {/* <Footer inPanel={true} hideDeals={true} /> */}
             <Snack msg={snackMsg} open={openSnack} onClose={handleCloseSnack} severity={severity} />
             <Loader isLoading={isLoading} />
         </div>

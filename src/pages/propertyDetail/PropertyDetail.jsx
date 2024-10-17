@@ -26,6 +26,7 @@ import useAuthCheck from '../../hooks/UseAuthCheck'
 import MapComponent from '../../components/mapComponent/MapComponent'
 import Loader from '../../components/loader/Loader'
 import { postData } from '../../config/apiCalls'
+import toast from 'react-hot-toast'
 
 
 const type = 'Assignment'
