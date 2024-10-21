@@ -578,14 +578,6 @@ const AddProperty = () => {
                             <>
                                 <div className="heading3">Price</div>
                                 <Grid container spacing={2}>
-                                    <Grid item sm={6} xs={12}>
-                                        <div className='addProperty-tbd'>
-                                            <CheckBox
-                                                label='TBD (To Be Determined)'
-                                                onChange={(e) => addData('tbd', e.target.checked)}
-                                            />
-                                        </div>
-                                    </Grid>
                                     {dataObj?.tbd || <Grid item sm={6} xs={12}>
                                         <InputField
                                             placeholder='Price'
@@ -594,6 +586,15 @@ const AddProperty = () => {
                                             value={dataObj?.price}
                                         />
                                     </Grid>}
+                                    <Grid item sm={6} xs={12}>
+                                        <div className='addProperty-tbd'>
+                                            <CheckBox
+                                                label='TBD (To Be Determined)'
+                                                onChange={(e) => addData('tbd', e.target.checked)}
+                                            />
+                                        </div>
+                                    </Grid>
+
                                 </Grid>
                             </>
                             <div className="heading3">Property Address</div>
@@ -679,12 +680,14 @@ const AddProperty = () => {
                                         <InputField
                                             placeholder='Lease Start Date'
                                             onChange={(e) => addData('leaseInformation', e.target.value, 'leaseStartDate')}
+                                            inputType='date'
                                             value={dataObj?.leaseInformation?.leaseStartDate}
                                         />
                                     </Grid>
                                     <Grid item sm={6} xs={12}>
                                         <InputField
                                             placeholder='Lease End Date'
+                                            inputType='date'
                                             onChange={(e) => addData('leaseInformation', e.target.value, 'leaseEndDate')}
                                             value={dataObj?.leaseInformation?.leaseEndDate}
                                         />
@@ -877,14 +880,7 @@ const AddProperty = () => {
                                         <>
                                             <div className="heading3 mt-20">Price</div>
                                             <Grid container spacing={2}>
-                                                <Grid item sm={6} xs={12}>
-                                                    <div className='addProperty-tbd'>
-                                                        <CheckBox
-                                                            label='TBD (To Be Determined)'
-                                                            onChange={(e) => addData1(index, 'tbd', e.target.checked)}
-                                                        />
-                                                    </div>
-                                                </Grid>
+
                                                 {properties[index]?.tbd || <Grid item sm={6} xs={12}>
 
                                                     <InputField
@@ -894,6 +890,14 @@ const AddProperty = () => {
                                                     />
 
                                                 </Grid>}
+                                                <Grid item sm={6} xs={12}>
+                                                    <div className='addProperty-tbd'>
+                                                        <CheckBox
+                                                            label='TBD (To Be Determined)'
+                                                            onChange={(e) => addData1(index, 'tbd', e.target.checked)}
+                                                        />
+                                                    </div>
+                                                </Grid>
                                             </Grid>
                                         </>
                                         <div className="heading3 mt-20 mb-20">Property Address</div>
@@ -976,11 +980,13 @@ const AddProperty = () => {
                                                 <Grid item sm={6} xs={12}>
                                                     <InputField
                                                         placeholder='Lease Start Date'
+                                                        inputType='date'
                                                         onChange={(e) => addData1(index, 'leaseInformation', e.target.value, 'leaseStartDate')}
                                                     />
                                                 </Grid>
                                                 <Grid item sm={6} xs={12}>
                                                     <InputField
+                                                        inputType='date'
                                                         placeholder='Lease End Date'
                                                         onChange={(e) => addData1(index, 'leaseInformation', e.target.value, 'leaseEndDate')}
                                                     />
