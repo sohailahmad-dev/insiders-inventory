@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // export const API_BASE_URL = 'https://localhost:8000/api/';
-export const API_BASE_URL = 'https://inventery-insider-95bd4e1e1c18.herokuapp.com/api/v1/';
+export const API_BASE_URL = 'https://insiders-inventery-backend.vercel.app/api/v1/';
 
 const axiosInstance = axios.create({
     baseURL: API_BASE_URL,
