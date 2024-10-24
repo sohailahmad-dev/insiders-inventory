@@ -544,7 +544,7 @@ const AddProperty = () => {
                         </Grid>
                         <Grid item sm={6} xs={12}>
                             <InputField
-                                placeholder='Price'
+                                placeholder='Price ($) '
                             />
                         </Grid>
                     </Grid>}
@@ -580,7 +580,7 @@ const AddProperty = () => {
                                 <Grid container spacing={2}>
                                     {dataObj?.tbd || <Grid item sm={6} xs={12}>
                                         <InputField
-                                            placeholder='Price'
+                                            placeholder='Price ($) '
                                             inputType='number'
                                             onChange={(e) => addData('price', e.target.value)}
                                             value={dataObj?.price}
@@ -884,7 +884,7 @@ const AddProperty = () => {
                                                 {properties[index]?.tbd || <Grid item sm={6} xs={12}>
 
                                                     <InputField
-                                                        placeholder='Price'
+                                                        placeholder='Price ($)'
                                                         inputType='number'
                                                         onChange={(e) => addData1(index, 'price', e.target.value)}
                                                     />

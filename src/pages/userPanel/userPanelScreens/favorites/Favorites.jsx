@@ -8,6 +8,7 @@ import useAuthCheck from '../../../../hooks/UseAuthCheck';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import noImg from '../../../../assets/imgs/noImg.png'
 
 
 export default function Favorites() {
@@ -81,7 +82,7 @@ export default function Favorites() {
                     </Grid>
                 </div>
                 <div className="ap-tb">
-                    {favorites && favorites.length > 0 &&
+                    {(favorites && favorites.length > 0) ?
                         favorites.map((e, i) => (
                             <div className='ap-th' key={i}>
                                 <Grid container spacing={1}>
@@ -137,7 +138,8 @@ export default function Favorites() {
                                     </Grid>
                                 </Grid>
                             </div>
-                        ))}
+                        )) : <div className="heading2 mt-20 text-center">No Favorites Available</div>
+                    }
                 </div>
             </div>
             <Loader isLoading={isLoading} />

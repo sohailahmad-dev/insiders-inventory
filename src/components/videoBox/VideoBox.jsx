@@ -21,7 +21,7 @@ const VideoBox = ({ videoURL }) => {
 
 
     return (
-        <div style={{ width: '100%', maxWidth: '350px' }}>
+        <div style={{ width: '100%' }}>
 
             {videoURL &&
                 <>

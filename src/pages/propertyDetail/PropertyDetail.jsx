@@ -107,9 +107,9 @@ export default function PropertyDetail() {
                                     <Slider3 sliderData={property?.images} />
                                 </div>
                             </> :
-                                <>
-                                    <img src={(property?.images && property?.images?.length > 0) ? property?.images[0] : noImg} alt='no img' width='100%' style={{ borderRadius: 20, maxHeight: 450 }} />
-                                </>
+                                <div className='pd-sec2-left-img1'>
+                                    <img src={(property?.images && property?.images?.length > 0) ? property?.images[0] : noImg} alt='no img' width='100%' style={{ borderRadius: 20 }} />
+                                </div>
                             }
 
                             {/* property stats  */}
@@ -117,9 +117,6 @@ export default function PropertyDetail() {
                                 <div className="pd-p-header">
                                     <div className="pd-heading">Property Information</div>
                                     <div style={{ display: 'flex', gap: 5, alignItems: 'center' }}>
-                                        <div className="pd-p-label">Property ID:</div>
-
-                                        <span className='pd-p-val'>{property?._id}</span>
                                     </div>
 
                                 </div>

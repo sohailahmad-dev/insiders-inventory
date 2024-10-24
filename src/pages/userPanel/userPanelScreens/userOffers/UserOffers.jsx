@@ -86,7 +86,7 @@ export default function UserOffers() {
                     </Grid>
                 </div>
                 <div className="ap-tb">
-                    {offers && offers.length > 0 &&
+                    {(offers && offers.length > 0) ?
                         offers.map((e, i) => (
                             <div className='ap-th' key={i}>
                                 <Grid container spacing={1}>
@@ -164,7 +164,8 @@ export default function UserOffers() {
                                     </Grid>
                                 </Grid>
                             </div>
-                        ))}
+                        )) : <div className="heading2 mt-20 text-center">No Offer Found</div>
+                    }
                 </div>
             </div>
             <Loader isLoading={isLoading} />
